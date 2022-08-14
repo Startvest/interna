@@ -1,5 +1,5 @@
 <p align='center'>
-  <img src="https://github.com/Startvest/frontend/blob/main/public/logo-bar.png?raw=true" alt='Startvest logo' height='100%' >
+  <img src="https://github.com/Startvest/interna/blob/main/public/banner.png?raw=true" alt='Interna logo' height='20px' width='100%' />
 </p>
  
  ---
