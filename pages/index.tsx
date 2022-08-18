@@ -6,9 +6,13 @@ import styles from '../styles/Home.module.css';
 import { getdata } from '../services/getTestData';
 import { IHello } from '../server/hello/hello.model';
 import { useMutation } from 'react-query';
+import {Toast, Itoast} from '../components/toast';
 
 const Home: NextPage = () => {
   const [data, setData] = useState<any>({});
+  const [toastData, setToastData] = useState<Itoast>({title: "", message: "", type: "success"});
+  const [toast, setToast] = useState<boolean>(false);
+
   const dataMutation = useMutation(getdata, {
     onSuccess: (data) => {
       setData(data);
@@ -23,8 +27,22 @@ const Home: NextPage = () => {
     dataMutation.mutate();
   }, []);
 
+  const handletoast = () => {
+     setToast(true);
+        setToastData({
+            title: "Hello",
+            message: "Hello this is a test",
+            type: "primary"
+        });
+      
+      setTimeout(() => {
+        setToast(false);
+      } , 4000);
+  }
+
   return (
     <div className={styles.container}>
+      {toast &&  <Toast data={toastData}/>}
       <Head>
         <title>
           Connect with interns | Connect with opportunities | Interna
@@ -48,6 +66,9 @@ const Home: NextPage = () => {
             {data.name}, {data.desc}
           </div>
         )}
+
+        <button onClick={handletoast}>Toast</button>
+       
       </main>
     </div>
   );
