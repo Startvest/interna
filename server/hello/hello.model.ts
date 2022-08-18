@@ -1,6 +1,6 @@
-export interface IHello{
-     name: string;
-     desc: string;
-     server: string;
-     id: number;
+export interface IHello {
+  name: string;
+  desc: string;
+  server: string;
+  id: number;
 }

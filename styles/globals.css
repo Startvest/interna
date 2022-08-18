@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
 
-:root{
-  --primary: #21295C;
-  --secondary: #04DE00;
-  --contrast: #D3E2ED;
-  --white: #FFFFFF;
+:root {
+  --primary: #21295c;
+  --secondary: #04de00;
+  --contrast: #d3e2ed;
+  --white: #ffffff;
   --black: #000000;
-  
+
   --dark-primary: #212121;
 }
 
@@ -15,10 +15,10 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Montserrat', sans-serif, Droid Sans, Helvetica Neue, ;
+  font-family: 'Montserrat', sans-serif, Droid Sans, Helvetica Neue;
 }
 
-.admin-font{
+.admin-font {
   font-family: 'Work Sans';
 }
 

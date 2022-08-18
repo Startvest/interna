@@ -1,12 +1,11 @@
 <p align='center'>
-  <img src="https://github.com/Startvest/interna/blob/main/public/banner.png?raw=true" alt='Interna logo' height='20px' width='100%' />
+  <img src="https://github.com/Startvest/interna/blob/main/public/banner2.png?raw=true" alt='Interna logo' height='100px' width='auto' />
 </p>
  
  ---
 ## What is interna?
 
-Interna is a solution designed to bridge the gap between students who have undergone internships and students who are looking for internships by giving them a social community where previous interns can share their internship experiences with interested students and guide them through the internship process. 
-
+Interna is a solution designed to bridge the gap between students who have undergone internships and students who are looking for internships by giving them a social community where previous interns can share their internship experiences with interested students and guide them through the internship process.
 
 ### Mission
 
@@ -14,7 +13,7 @@ We are bridging the gap between learning and the industry, by providing a commun
 
 ### Vision
 
-To be the go-to platform  for students looking to gain practical experiences in the industry as early as possible
+To be the go-to platform for students looking to gain practical experiences in the industry as early as possible
 
 ## Learn More
 
