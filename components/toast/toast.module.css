@@ -24,6 +24,15 @@
      cursor: pointer;
      opacity: 1;
 }
+
+.body{
+     display: flex;
+     justify-items: center;
+     align-items: center;
+}
+.icon{
+     margin-right: .5rem;
+}
 .primary{
      background-color: var(--primary);
 }
