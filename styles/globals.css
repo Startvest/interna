@@ -5,10 +5,15 @@
   --primary: #21295c;
   --secondary: #04de00;
   --contrast: #d3e2ed;
-  --white: #ffffff;
   --black: #000000;
 
-  --dark-primary: #212121;
+  --background: #ffffff;
+  --foreground: #21295c;
+}
+
+[data-theme='dark'] {
+  --background: #212121;
+  --foreground: white;
 }
 
 html,
@@ -24,14 +29,4 @@ body {
 
 * {
   box-sizing: border-box;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: var(--dark-primary);
-  }
 }

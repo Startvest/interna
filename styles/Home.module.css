@@ -12,9 +12,15 @@
   align-items: center;
 }
 
+/* Each component should have a light and dark 
+mode styling like this */
 .title a {
-  color: var(--secondary);
+  color: var(--primary);
   text-decoration: none;
+}
+
+[data-theme='dark'] .title a {
+  color: var(--secondary);
 }
 
 .title a:hover,
