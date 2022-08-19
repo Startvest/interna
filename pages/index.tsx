@@ -57,14 +57,10 @@ const Home: NextPage = () => {
     <div className={styles.container}>
       {toast && <Toast data={toastData} />}
       <Head>
+      <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
         <title>
           Connect with interns | Connect with opportunities | Interna
         </title>
-        <meta
-          name="description"
-          content="Interna is a community social platform that connect interns and opportunities, as well as a medium to share experiences among themselves"
-        />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>

@@ -1,0 +1,39 @@
+{
+     "theme_color": "#21295c",
+     "background_color": "#ffffff",
+     "display": "standalone",
+     "orientation": "portrait",
+     "scope": "/",
+     "start_url": "/",
+     "name": "interna",
+     "short_name": "interna",
+     "description": "Interna is a community social platform that connect interns and opportunities, as well as a medium to share experiences among themselves",
+     "icons": [
+         {
+             "src": "icons/icon-192x192.png",
+             "sizes": "192x192",
+             "type": "image/png"
+         },
+         {
+             "src": "icons/icon-256x256.png",
+             "sizes": "256x256",
+             "type": "image/png"
+         },
+         {
+             "src": "icons/icon-384x384.png",
+             "sizes": "384x384",
+             "type": "image/png"
+         },
+         {
+             "src": "icons/icon-512x512.png",
+             "sizes": "512x512",
+             "type": "image/png"
+         },
+         {
+          "src": "icons/maskable.png",
+          "sizes": "48x48",      
+          "type": "image/x-icon",
+          "purpose": "maskable"
+        }
+     ]
+ }
