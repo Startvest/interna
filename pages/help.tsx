@@ -21,11 +21,11 @@ const Help: NextPage = () => {
   const [data, setData] = useState<any>({});
 
   const dataMutation = useMutation(getdata, {
-    onSuccess: (data) => {
+    onSuccess: (data:any) => {
       setData(data);
       setMounted(true);
     },
-    onError: (error) => {
+    onError: (error:any) => {
       console.log(error);
       // Notification error component
     },
