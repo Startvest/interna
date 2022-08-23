@@ -1,0 +1,10 @@
+.icon{
+     position: absolute;
+     top: 1rem;
+     right: 1rem;
+     color: var(--primary);
+     cursor: pointer;
+}
+[data-theme="dark"] .icon{
+     color: var(--secondary); 
+}

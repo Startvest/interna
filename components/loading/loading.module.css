@@ -1,0 +1,30 @@
+.main{
+     min-height: 100vh;
+     display: flex;
+     justify-content: center;
+     text-align: center;
+     align-items: center;
+}
+.logo{
+     animation: bounce 2s infinite;
+}
+.text{
+     font-size: xx-large;
+     font-weight: bolder;
+     color: var(--primary);
+}
+[data-theme="dark"] .text{
+     color: var(--contrast);
+}
+
+@keyframes bounce{
+     0%{
+          transform: translateY(-1rem);
+     }
+     50%{
+          transform: translateY(0.5rem);
+     }
+     100%{
+          transform: translateY(-1rem);
+     }
+}

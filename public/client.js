@@ -1,5 +1,5 @@
 
-const publicKey ='BNN23SZRRIdcACXiNvS9_VaoF_-IxHpz6zwczq8BiqFIsv_FrYvpi1xbN14HwnP4RORoxVcp8DdPV5nkdI_7TkM';
+// const publicKey ='BNN23SZRRIdcACXiNvS9_VaoF_-IxHpz6zwczq8BiqFIsv_FrYvpi1xbN14HwnP4RORoxVcp8DdPV5nkdI_7TkM';
 
 if ('serviceWorker' in navigator){
      send().catch(e => console.error(e));
