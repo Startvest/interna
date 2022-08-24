@@ -3,7 +3,7 @@ import type { NextPage } from 'next';
 import styles from '../styles/Home.module.css';
 import { Header } from '../components/header';
 import Script from 'next/script'
-import {LoadingScreen} from '../components/loading';
+import {LoadingScreen} from '../components/loadScreen';
 
 const Home: NextPage = () => {
   const [loading, setLoading] = useState<boolean>(false);
