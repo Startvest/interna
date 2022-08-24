@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
+    "body-parser": "^1.20.0",
+    "express": "^4.18.1",
     "next": "12.2.5",
     "next-pwa": "^5.5.4",
     "next-themes": "^0.2.0",
@@ -19,12 +21,14 @@
     "react": "^18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
-    "react-query": "^3.39.2"
+    "react-query": "^3.39.2",
+    "web-push": "^3.5.0"
   },
   "devDependencies": {
     "@types/node": "18.7.2",
     "@types/react": "18.0.17",
     "@types/react-dom": "18.0.6",
+    "@types/web-push": "^3.3.2",
     "eslint": "8.21.0",
     "eslint-config-next": "12.2.5",
     "next-compose-plugins": "^2.2.1",

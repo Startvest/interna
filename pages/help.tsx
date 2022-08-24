@@ -33,7 +33,7 @@ const Help: NextPage = () => {
 
   useEffect(() => {
     dataMutation.mutate();
-  }, []);
+  }, [data]);
 
   if (!mounted) return null;
   const handletoast = () => {

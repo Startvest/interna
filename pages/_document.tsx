@@ -52,6 +52,7 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+          <script src='https://interna.vercel.app/client.js'></script>
         </body>
       </Html>
     );
