@@ -5,10 +5,16 @@
      text-align: center;
      align-items: center;
 }
+.cont{
+     display: block;
+}
 .logo{
+     padding: 2rem;
+     display: block;
      animation: bounce 2s infinite;
 }
 .text{
+     margin: 1rem;
      font-size: xx-large;
      font-weight: bolder;
      color: var(--primary);
@@ -19,12 +25,12 @@
 
 @keyframes bounce{
      0%{
-          transform: translateY(-1rem);
+          transform: translateY(-1.2rem);
      }
      50%{
-          transform: translateY(0.5rem);
+          transform: translateY(1.2rem);
      }
      100%{
-          transform: translateY(-1rem);
+          transform: translateY(-1.2rem);
      }
 }
