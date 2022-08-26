@@ -9,7 +9,10 @@ export default function subscribe(req: NextApiRequest, res: NextApiResponse) {
 
   res.status(201).json({});
 
-  const payload = JSON.stringify({'title': 'Push Notification test'});
+  const payload = JSON.stringify({
+    'title': 'Push Notification test', 
+    'body': 'Notified by Interna, revised edition'
+  });
 
   webpush.sendNotification(subscription, payload).catch(e => {
      console.error(e);
