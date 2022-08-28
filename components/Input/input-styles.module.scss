@@ -1,0 +1,32 @@
+.inputGroup{
+
+    input {
+        width: 100%;
+        padding: 0 8px;
+        height: 41px;
+        margin: 8px 0;
+
+        &::placeholder {
+            font-family: 'Montserrat', Verdana, Geneva, Tahoma, sans-serif , 'sans-serif';
+        }
+
+        &:focus-visible, &:focus-within, &:focus {
+            border: 0;
+        }
+
+    }
+}
+
+.inputLabel{
+    text-transform: capitalize;
+    font-weight: 600;
+    font-family: 'Montserrat', Verdana, Geneva, Tahoma, sans-serif , 'sans-serif';
+    margin: 4px 0;
+    color: var(--primary)
+}
+
+[data-theme="dark"]{
+    .inputLabel {
+        color: white
+    }
+}
