@@ -1,0 +1,77 @@
+.waitlistPage {
+    padding: 0 12px;
+    height: 100vh;
+    display: flex;
+    align-items: center
+}
+
+.waitlistForm {
+    
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+
+    .formHeading {
+        text-align: center;
+        * {
+            margin: 10px 0;
+        }
+
+        p { font-size: 14px; }
+    }
+}
+
+.waitlistInput {
+    border-radius: 20px;
+    border: 0;
+    background-color: #d3e2ed77;
+
+        
+    &::placeholder {
+        color: var(--primary);
+    }
+}
+
+
+[data-theme='dark'] {
+    .waitlistInput {
+       background-color: #333333;
+
+       &::placeholder {
+        color: white;
+       }
+    }
+
+}
+
+
+
+.waitlistButton {
+    color: white;
+    width: 50%;
+    height: 30px;
+    margin: 20px auto;
+    background-color: var(--primary);
+    font-family: 'Montserrat', Verdana, Geneva, Tahoma, sans-serif , 'sans-serif';
+}
+
+.dismissButton {
+    color: white;
+    width: 70%;
+    height: 30px;
+    margin: 20px auto;
+    background-color: var(--primary);
+    font-family: 'Montserrat', Verdana, Geneva, Tahoma, sans-serif , 'sans-serif';
+}
+
+.gifHolder {
+    width: 100%;
+    height: 190px;
+    position: relative;
+    transform: scale(0.8);
+}
+
+
+.important {
+    color: var(--secondary);
+}
