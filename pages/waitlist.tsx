@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Input } from "../components/Input";
-import { Modal } from "../components/modal";
+import { Modal } from "../components/Modal";
 import Image from "next/image";
 
 import styles from '../styles/waitlist.module.scss';
