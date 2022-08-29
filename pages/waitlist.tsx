@@ -1,8 +1,8 @@
 import { NextPage } from "next";
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Input } from "../components/Input";
-import { Modal } from "../components/Modal";
+import { Modal } from "../components/modal";
 import Image from "next/image";
 
 import styles from '../styles/waitlist.module.scss';
