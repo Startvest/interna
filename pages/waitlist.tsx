@@ -43,10 +43,10 @@ const WaitlistPage: NextPage = () => {
                         </div>
         
                         <div className={styles.gifHolder}>
-                            <Image src="/minions.gif" layout="fill" alt="minions excited"/>
+                            <Image src="/sassy.gif" layout="fill" alt="minions excited"/>
                         </div>
                         
-                        <h4>We know you're exicited, we are too!</h4>
+                        <h4>We know you are exicited, we are too!</h4>
                         <p>
                             You will definetely be the first to get an email
                             from us when we first launch!! 🚀
