@@ -26,7 +26,7 @@ const WaitlistPage: NextPage = () => {
                         </div>
         
                         <div className={styles.gifHolder}>
-                            <Image src="/minions.gif" layout="fill" />
+                            <Image src="/minions.gif" layout="fill" alt="minions excited"/>
                         </div>
         
                         <p>
@@ -43,7 +43,7 @@ const WaitlistPage: NextPage = () => {
                         </div>
         
                         <div className={styles.gifHolder}>
-                            <Image src="/minions.gif" layout="fill" />
+                            <Image src="/minions.gif" layout="fill" alt="minions excited"/>
                         </div>
                         
                         <h4>We know you're exicited, we are too!</h4>
