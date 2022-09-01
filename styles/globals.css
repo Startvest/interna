@@ -27,6 +27,10 @@ body {
   font-family: 'Work Sans';
 }
 
+.secondary {
+  color: var(--secondary);
+}
+
 * {
   box-sizing: border-box;
 }
