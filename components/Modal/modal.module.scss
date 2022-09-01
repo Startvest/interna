@@ -21,7 +21,7 @@
         border-radius: 15px;
         @include flex-center();
         padding: 8px;
-        box-shadow: 0px 0px 5px 2px darken($color: #fff, $amount: 15);
+        box-shadow: 0px 0px 3px 2px darken($color: #fff, $amount: 15);
 
         h2, h4, h5, p { 
             text-align: center;
