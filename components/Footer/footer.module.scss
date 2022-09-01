@@ -1,0 +1,24 @@
+.footer {
+    background-color: var(--primary);
+    color: white;
+    padding: 10px;
+
+
+
+    p { 
+        text-align: center; 
+        margin: 0;
+    }
+
+    .socials {
+        display: flex;
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+        gap: 12px;
+
+        *{
+            font-size: 25px;
+        }
+    }
+}
