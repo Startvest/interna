@@ -1,8 +1,77 @@
 .waitlistPage {
-    padding: 0 12px;
     height: 100vh;
+    overflow-y: scroll;
+}
+
+.landingPageHeader {
     display: flex;
-    align-items: center
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    width: 100%;
+
+    span {
+        display: inherit;
+    }
+
+
+    .headerCta {
+        width: 120px;
+    }
+}
+
+.illustrationHolder {
+    display: flex;
+    justify-content: center;
+}
+
+.introduction{
+    background-image: url('/assets/grid.png');
+    padding: 20px 10px;
+
+    h1 {
+        color: var(--primary);
+        font-weight: bold;
+    }
+}
+
+.internaDetails{
+    background: var(--secondary);
+    padding: 20px 10px;
+    
+    h4 { 
+        color: white;
+        margin: 0;
+    }
+    p { margin: 0; }
+    
+    .descriptionGroup {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 25px;
+        font-family: 'Montserrat', Verdana, Geneva, Tahoma, sans-serif , 'sans-serif';
+
+    }
+}
+
+.points {
+    display: grid;
+    grid-template-columns: 10% 90%;
+    gap: 5px;
+
+    span {
+        background-color: var(--primary);
+        color: var(--secondary);
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        margin: auto 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
 }
 
 .waitlistForm {
@@ -33,16 +102,6 @@
 }
 
 
-[data-theme='dark'] {
-    .waitlistInput {
-       background-color: #333333;
-
-       &::placeholder {
-        color: white;
-       }
-    }
-
-}
 
 
 
@@ -75,3 +134,64 @@
 .important {
     color: var(--secondary);
 }
+
+.ourSponsors {
+    text-align: center;
+
+    h5 {
+        padding: 0 10px;
+    }
+
+    button{
+        margin-bottom: 20px;
+    }
+}
+
+.carouselHolder {
+    overflow: hidden;
+}
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding-left: 25%;
+
+    .carouselSlide {
+        width: 200px;
+        flex-shrink: 0;
+        height: max-content;
+        margin-right: 15px;
+    }
+}
+
+//Dark Mode Styles
+[data-theme='dark'] {
+    .waitlistPage {
+        background-color: var(--background);
+    }
+    .waitlistInput {
+       background-color: #333333;
+
+       &::placeholder {
+        color: white;
+       }
+    }
+
+    .introduction {
+        background-image: none;
+        background-color: var(--background);
+
+        h1 {
+            color: white;
+        }
+    }
+
+    .descriptionGroup {
+
+        p { color: var(--primary); }
+    }
+
+}
+
+
