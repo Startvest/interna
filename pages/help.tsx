@@ -57,12 +57,12 @@ const Help: NextPage = () => {
       <Header />
       {toast && <Toast data={toastData} />}
       <h2>Data from Server</h2>
-      <p>{dataMutation.isLoading && <div>Loading....</div>}</p>
-      <p>{dataMutation.isSuccess && data && (
-        <div>
+      <div>{dataMutation.isLoading && <div>Loading....</div>}</div>
+      <div>{dataMutation.isSuccess && data && (
+        <p>
           {data.name}, {data.desc}
-        </div> 
-      )}</p>
+        </p> 
+      )}</div>
 
       <button onClick={handletoast}>Toast</button>
 
