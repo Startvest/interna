@@ -1,10 +1,14 @@
-.inputGroup{
-
+.inputGroup{  
+    font-size: 19px;
+    text-align: left;
     input {
-        width: 100%;
+        width: 90%;
         padding: 0 8px;
         height: 41px;
         margin: 8px 0;
+        border: 1px solid var(--primary);
+        border-radius: 8px;
+        text-align: left;
 
         &::placeholder {
             font-family: 'Montserrat', Verdana, Geneva, Tahoma, sans-serif , 'sans-serif';
@@ -21,8 +25,8 @@
     text-transform: capitalize;
     font-weight: 600;
     font-family: 'Montserrat', Verdana, Geneva, Tahoma, sans-serif , 'sans-serif';
-    margin: 4px 0;
-    color: var(--primary)
+    text-align: left;
+    color: var(--primary);
 }
 
 [data-theme="dark"]{

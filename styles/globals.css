@@ -31,11 +31,36 @@ body {
   color: var(--secondary);
 }
 
-* {
-  box-sizing: border-box;
-}
 
 button {
   border: 0;
   border-radius: 10px;
+}
+
+/* Styling to change the appearance of the scroll bars */
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 5px;
+}
+/* the track (progress bar) NOT covered by the handle. */
+::-webkit-scrollbar-track-piece{
+  background: transparent;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  /* background: var(--contrast); */
+  cursor: pointer;
 }
