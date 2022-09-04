@@ -1,4 +1,4 @@
-import styles from './altLogin.module.css';
+import styles from './altlogin.module.css';
 import {IoLogoGoogle, IoLogoTwitter} from 'react-icons/io5';
 
 export const AltLogin = () =>{
