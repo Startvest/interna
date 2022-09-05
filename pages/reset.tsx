@@ -4,24 +4,24 @@ import { Form } from '../components/LoginForm';
 import styles from '../components/LoginForm/login.module.css';
 import {ThemeIcon} from '../components/ThemeIcon';
 
-const forgotPassword: NextPage = () => {
+const Reset: NextPage = () => {
   return (
     <div className={styles.container}>
-      <Header pageName="Forgot password" />
+      <Header pageName="Reset Password | Interna" />
       <ThemeIcon/>
       <img
         className={styles.headImage}
-        src="/assets/illustrations/forgotpassword.svg"
+        src="/assets/illustrations/reset.svg"
       />
-      <h1 className={styles.header}>Forgot Password?</h1>
+      <h1 className={styles.header}>Enter new Password</h1>
 
       <div className={styles.subtext}>
-      We have all been there. Enter the email associated with the account and we will cover the rest
+      I guess you can put the password you can easily remeber, yet secured. Good Luck!
       </div>
 
-      <Form type="forgot" />
+      <Form type="reset" />
     </div>
   );
 };
 
-export default forgotPassword;
+export default Reset;
