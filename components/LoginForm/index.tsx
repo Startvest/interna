@@ -12,7 +12,7 @@ export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'})
   return (
     <div>
       <form className={styles.form}>
-        {(['login','forgot'].indexOf(type) > -1) && (
+        {(['login','forgot','signup'].indexOf(type) > -1) && (
           <Input
             type="text"
             name="email"
@@ -23,7 +23,7 @@ export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'})
         )}
         {/* {errors.email && <span>{errors.email?.message}</span>} */}
 
-        {(['login','reset'].indexOf(type) > -1) && (
+        {(['login','reset','signup'].indexOf(type) > -1) && (
           <Input
             type="password"
             name="password"
@@ -51,18 +51,22 @@ export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'})
           <button className={styles.btnPrimary}>Login</button>
         )}
 
+        {type == 'signup' && (
+          <button className={styles.btnPrimary}>Sign Up</button>
+        )}
+
         {(['reset','forgot'].indexOf(type) > -1) && (
           <button className={styles.btnPrimary}>Submit</button>
         )}
 
-        {type == 'login' && (
+        {(['login', 'signup', ].indexOf(type) > -1) && (
           <div className={styles.altLoginText}>Or Login with</div>
         )}
 
-        {(['login'].indexOf(type) > -1) && <AltLogin />}
+        {(['login', 'signup', ].indexOf(type) > -1) && <AltLogin />}
 
         {type == 'login' && (
-         <div>Do not have an account? Sign up!</div>
+         <div className={styles.altLoginText}>Do not have an account? Sign up!</div>
         )}
 
         {type == 'signup' && (

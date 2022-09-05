@@ -44,6 +44,7 @@
      font-size: 13px;
      font-style: normal;
      margin: 2rem auto;
+     font-weight: 600;
 }
 [data-theme="dark"] .altLoginText{
      color: white;
