@@ -1,13 +1,19 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import type { NextPage } from 'next';
 import styles from '../styles/Home.module.css';
 import { Header } from '../components/header';
 import Script from 'next/script'
 import {LoadingScreen} from '../components/loadScreen';
 import showNotification from '../public/client';
-
+import { useRouter } from 'next/router';
 const Home: NextPage = () => {
   const [loading, setLoading] = useState<boolean>(false);
+  const router = useRouter();
+    useEffect(() => {
+      setTimeout(() => {
+        router.push('/login')
+      }, 3000);
+  },[]);
 
   return (
     <div>

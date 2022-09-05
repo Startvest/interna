@@ -2,12 +2,15 @@ import { useForm } from 'react-hook-form';
 import { Input } from '../Input';
 import { AltLogin } from './AltLogin';
 import styles from './login.module.css';
+import {useRouter} from 'next/router';
 
 export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'}) {
   const {
     register,
     formState: { errors },
   } = useForm();
+
+  const router = useRouter();
 
   return (
     <div>
@@ -52,7 +55,7 @@ export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'})
         )}
 
         {type == 'signup' && (
-          <button className={styles.btnPrimary}>Sign Up</button>
+          <button className={styles.btnPrimary} onClick={(e) => {e.preventDefault(); router.push('/complete-signup')}}>Sign Up</button>
         )}
 
         {(['reset','forgot'].indexOf(type) > -1) && (
@@ -66,11 +69,11 @@ export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'})
         {(['login', 'signup', ].indexOf(type) > -1) && <AltLogin />}
 
         {type == 'login' && (
-         <div className={styles.altLoginText}>Do not have an account? Sign up!</div>
+         <div className={styles.altLoginText}>Do not have an account? <span onClick={() => router.push('/signup')}>Sign up!</span></div>
         )}
 
         {type == 'signup' && (
-         <div className={styles.altLoginText}>Have an account? Log in!</div>
+         <div className={styles.altLoginText}>Have an account? <span onClick={() => router.push('/login')}>Log in!</span></div>
         )}
       </form>
     </div>

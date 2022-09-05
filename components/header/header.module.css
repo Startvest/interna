@@ -1,0 +1,16 @@
+.header{
+     text-align: left;
+     margin-bottom: 2rem;
+     display: flex;
+     justify-content: left;
+     align-items: center;
+}
+.h2{
+     font-weight: bold;
+     font-size: 19px;
+     color: var(--primary);
+     font-family: 'montserrat';
+}
+[data-theme="dark"] .h2{
+     color: white;
+}

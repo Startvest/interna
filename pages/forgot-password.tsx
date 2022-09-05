@@ -7,7 +7,7 @@ import {ThemeIcon} from '../components/ThemeIcon';
 const forgotPassword: NextPage = () => {
   return (
     <div className={styles.container}>
-      <Header pageName="Forgot password" />
+      <Header pageName="Forgot password" head/>
       <ThemeIcon/>
       <img
         className={styles.headImage}

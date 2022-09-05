@@ -7,7 +7,7 @@ import {ThemeIcon} from '../components/ThemeIcon';
 const Login : NextPage = () => {
      return(
          <div className={styles.container}>
-             <Header pageName='Login to interna'/>
+             <Header pageName='Login to interna' head/>
              <ThemeIcon/>
              <img className={styles.headImage} src='/assets/illustrations/welcome.svg'/>
              <h1 className={styles.header}>Welcome Back!</h1>
