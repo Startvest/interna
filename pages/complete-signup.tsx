@@ -12,7 +12,7 @@ const CompleteSignup : NextPage = () => {
              {/* <img className={styles.headImage} src='/assets/illustrations/welcome.svg'/> */}
              <h1 className={styles.header}>Complete your Profile</h1>
              <div className={styles.subtext}>
-               We would like to know more about you 
+               We would like to know more about you!
              </div>
 
              <form className={styles.form}>
@@ -47,6 +47,9 @@ const CompleteSignup : NextPage = () => {
                placeholder="Current place of employment"
                labelName={'Company name'}
                />
+               {/* <div className={styles.searchContainer}>
+               {['hanif', 'brother', 'sister'].map(c => <div className={styles.searchResult}>{c}</div>) }
+               </div> */}
 
                <Input
                type="select"
@@ -57,7 +60,7 @@ const CompleteSignup : NextPage = () => {
                />
 
                <Input
-               type="text"
+               type="tel"
                name="description"
                onChange={(e: any) => console.log(e.target.value)}
                placeholder="Enter a brief description of yourself"

@@ -135,7 +135,7 @@ const JoinWaitlist: React.FC = () => {
         </main>
         <Footer/>
 
-        <Modal isOpen={modalOpen}>
+        <Modal isOpen={modalOpen} closeModal={() => setModal(!modalOpen)}>
         {
             !hasSubmittedForm ?
             (<React.Fragment>

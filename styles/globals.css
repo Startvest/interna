@@ -9,6 +9,7 @@
 
   --background: #ffffff;
   --foreground: #21295c;
+  --altDark:   #1E1E1E;
 }
 
 [data-theme='dark'] {

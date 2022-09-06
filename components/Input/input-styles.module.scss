@@ -10,6 +10,8 @@
         border: 1px solid var(--primary);
         border-radius: 8px;
         text-align: left;
+        
+      
 
         &::placeholder {
             font-family: 'Montserrat', Verdana, Geneva, Tahoma, sans-serif , 'sans-serif';
@@ -31,6 +33,11 @@
 }
 
 [data-theme="dark"]{
+    .inputGroup{
+        input{
+            background-color: var(--altDark);
+        }
+    }
     .inputLabel {
         color: white
     }
