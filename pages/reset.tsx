@@ -12,6 +12,7 @@ const Reset: NextPage = () => {
       <img
         className={styles.headImage}
         src="/assets/illustrations/reset.svg"
+        alt="rest icon"
       />
       <h1 className={styles.header}>Enter new Password</h1>
 

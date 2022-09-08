@@ -19,7 +19,7 @@ const Signup : NextPage = () => {
          <div className={styles.container}>
              <Header pageName='Sign up to use interna' head/>
              <ThemeIcon/>
-             <img className={styles.headImage} src={resolvedTheme == 'light' ? '/assets/illustrations/welcome.svg':'/assets/illustrations/welcomeDark.svg' }/>
+             <img className={styles.headImage} src={resolvedTheme == 'light' ? '/assets/illustrations/welcome.svg':'/assets/illustrations/welcomeDark.svg' } alt="signup icon"/>
              <h1 className={styles.header}>Welcome to Interna!</h1>
 
              <Form type='signup'/>             

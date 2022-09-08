@@ -12,6 +12,7 @@ const forgotPassword: NextPage = () => {
       <img
         className={styles.headImage}
         src="/assets/illustrations/forgotpassword.svg"
+        alt="forgot password icon"
       />
       <h1 className={styles.header}>Forgot Password?</h1>
 

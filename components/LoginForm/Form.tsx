@@ -56,11 +56,11 @@ export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'})
         )}
 
         {type == 'login' && (
-          <div className={styles.forgot}>Forgot password?</div>
+          <div className={styles.forgot} onClick={() => router.push('/forgot-password')}>Forgot password?</div>
         )}
 
         {type == 'login' && (
-          <button className={styles.btnPrimary}>Login</button>
+          <button className={styles.btnPrimary} onClick={() => router.push('/complete-signup')}>Login</button>
         )}
 
         {type == 'signup' && (
@@ -68,7 +68,7 @@ export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'})
         )}
 
         {(['reset','forgot'].indexOf(type) > -1) && (
-          <button className={styles.btnPrimary}>Submit</button>
+          <button className={styles.btnPrimary} onClick={(e) => {e.preventDefault(); (type === 'forgot') ? router.push('/reset'):router.push('/signup')}}>Submit</button>
         )}
 
         {(['login', 'signup', ].indexOf(type) > -1) && (

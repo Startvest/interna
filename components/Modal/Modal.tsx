@@ -12,7 +12,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, children, closeModal }) =>
     return(
         <div className={styles.modalBackdrop} >
             <div className={styles.modalContainer}>
-                <span className={styles.cancelIcon} onClick={closeModal}><IoCloseOutline/></span>
+                <span className={styles.cancelIcon} onClick={closeModal}><IoCloseOutline size={30}/></span>
                 { children }
             </div>
         </div>
