@@ -5,7 +5,7 @@ self.addEventListener('push', e=> {
      console.log('Push received');
      self.registration.showNotification(data.title, {
          body: data.body,
-         icon: 'https://interna.vercel.app/icons/icon-192x192.png',
+         icon: 'https://getinterna.com/icons/icon-192x192.png',
         //  actions: '', 
      });
 })

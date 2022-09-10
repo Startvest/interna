@@ -16,7 +16,7 @@ class MyDocument extends Document {
           <meta name="theme-color" content="#21295c" />
 
           <meta name="twitter:card" content="summary" />
-          <meta name="twitter:url" content="https://interna.vercel.app" />
+          <meta name="twitter:url" content="https://getinterna.com" />
           <meta name="twitter:title" content="Interna" />
           <meta
             name="twitter:description"
@@ -24,7 +24,7 @@ class MyDocument extends Document {
           />
           <meta
             name="twitter:image"
-            content="https://interna.vercel.app/icons/icons-192x192.png"
+            content="https://getinterna.com/icons/icons-192x192.png"
           />
           <meta name="twitter:creator" content="@Devhanif" />
           <meta property="og:type" content="website" />
@@ -34,10 +34,10 @@ class MyDocument extends Document {
             content="Interna is a community social platform that connect interns and opportunities, as well as a medium to share experiences among themselves"
           />
           <meta property="og:site_name" content="Interna" />
-          <meta property="og:url" content="https://interna.vercel.app" />
+          <meta property="og:url" content="https://getinterna.com" />
           <meta
             property="og:image"
-            content="https://interna.vercel.app/apple-touch-icon.png"
+            content="https://getinterna.com/apple-touch-icon.png"
           />
 
           <meta name="application-name" content="interna" />
@@ -52,7 +52,7 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <script src='https://interna.vercel.app/client.js'></script>
+          <script src='https://getinterna.com/client.js'></script>
         </body>
       </Html>
     );
