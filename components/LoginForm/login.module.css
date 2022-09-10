@@ -147,4 +147,7 @@
      .subtext{
           max-width: 90%;
      }
+     .header{
+          font-size: 28px;
+     }
 }
