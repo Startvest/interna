@@ -3,7 +3,7 @@ import styles from './loading.module.css';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import {ProgressBar} from '../progressBar';
-
+import {useInterval} from '../customhook/useInterval';
 import {ThemeIcon} from '../ThemeIcon';
 
 export function LoadingScreen(){
@@ -13,12 +13,13 @@ export function LoadingScreen(){
      
      useEffect(() => {
           setMounted(true);
-          setInterval(() => {
-               if(progress <= 100){
+     },[])
+
+     useInterval(() => {
+          if(progress < 100){
                setProgress(progress + 10)
           }
-          }, 1000);
-     },[])
+        }, 300);
      
      if (!mounted) return null;
      return(

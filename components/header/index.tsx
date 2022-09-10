@@ -11,7 +11,7 @@ export function Header({ pageName, head }: { pageName?: string , head? : boolean
       />
       <title>
         {pageName ||
-          'Interna | Connect with interns | Connect with opportunities'}
+          'Interna | Discover internship opportunities'}
       </title>
     </Head>
 

@@ -13,6 +13,10 @@ export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'})
      e.preventDefault();
      setCodeModal(true);
    }
+   const handleRoute = ( e: any, route : string) =>{
+    e.preventDefault();
+    (route) ? router.push(route) : null;
+   }
    const {
     register,
     formState: { errors },
@@ -56,11 +60,11 @@ export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'})
         )}
 
         {type == 'login' && (
-          <div className={styles.forgot} onClick={() => router.push('/forgot-password')}>Forgot password?</div>
+          <div className={styles.forgot} onClick={(e) => handleRoute(e, '/forgot-password')}>Forgot password?</div>
         )}
 
         {type == 'login' && (
-          <button className={styles.btnPrimary} onClick={() => router.push('/complete-signup')}>Login</button>
+          <button className={styles.btnPrimary} onClick={(e) => handleRoute(e, '/complete-signup')}>Login</button>
         )}
 
         {type == 'signup' && (
@@ -78,11 +82,11 @@ export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'})
         {(['login', 'signup', ].indexOf(type) > -1) && <AltLogin />}
 
         {type == 'login' && (
-         <div className={styles.altLoginText}>Do not have an account? <span onClick={() => router.push('/signup')}>Sign up!</span></div>
+         <div className={styles.altLoginText}>Do not have an account? <span onClick={(e) => handleRoute(e, '/signup')}>Sign up!</span></div>
         )}
 
         {type == 'signup' && (
-         <div className={styles.altLoginText}>Have an account? <span onClick={() => router.push('/login')}>Log in!</span></div>
+         <div className={styles.altLoginText}>Have an account? <span onClick={(e) => handleRoute(e, '/login')}>Log in!</span></div>
         )}
       </form>
     </div>
