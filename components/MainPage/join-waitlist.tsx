@@ -1,22 +1,28 @@
 import { NextPage } from "next";
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Input } from "../components/Input";
-import { Modal } from "../components/Modal";
+import { Input } from "../Input";
+import { Modal } from "../Modal";
 import Image from "next/image";
-import { ThemeIcon } from "../components/ThemeIcon";
-import styles from '../styles/waitlist.module.scss';
-import { Button } from "../components/Button";
+import { ThemeIcon } from "../ThemeIcon";
+import styles from '../../styles/waitlist.module.scss';
+import { Button } from "../Button";
 import { MdCheck, MdSearch, MdShare } from "react-icons/md"
 import { useTheme } from "next-themes"
-import Footer from "../components/Footer";
+import { useRouter } from "next/router";
+import Footer from "../Footer";
 
-const JoinWaitlist: React.FC = () => {
+type Props = {
+    isWaitlist: boolean
+}
+
+export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
 
     const [modalOpen, setModal] = useState<boolean>(false);
     const [submitCount, setSubmitCount] = useState<number>(0)
     const [hasSubmittedForm, setHasSubmitted] = useState(false)
-    const { resolvedTheme } = useTheme()
+    const { resolvedTheme } = useTheme();
+    const router = useRouter();
 
     const illustration = resolvedTheme === 'light' ? '/assets/illustration.svg' : '/assets/illustration-dark.svg'
 
@@ -47,11 +53,20 @@ const JoinWaitlist: React.FC = () => {
                 </h1>
 
                 <p>Welcome to the community of students and interns.</p>
-
-                <Button onClick={() => setModal(true)}>
-                    Join the waitlist!
-                </Button>
+                {
+                    isWaitlist ? (
+                    <Button onClick={() => setModal(true)}>
+                        Join the waitlist
+                    </Button>
+                    ) : (
+                    <Button onClick={() => router.push('/signup')}>
+                        Join the community
+                    </Button>
+                    )
+                }
             </section>
+            {
+                isWaitlist ? (
             <section className={styles.internaDetails}>
                 <div className={styles.descriptionGroup}>
                     <h4>What is Interna?</h4>
@@ -101,6 +116,44 @@ const JoinWaitlist: React.FC = () => {
                     </div>
                 </div>
             </section>
+                ) : (
+            <React.Fragment>
+                <section className={styles.landingPageWelcome}>
+                    <div className={styles.descriptionGroup}>
+                        <h4>What is Interna?</h4>
+                        <p>
+                            A social platfrom where you can easily share your internship experiences
+                            with other students in your community, as well as connect with them.
+                        </p>
+                    </div>
+                </section>
+
+                <section className={styles.connectWithOthers}>
+                    <div>
+                        <span>
+                            <h3>Connect with</h3>
+                            <h3>other interns</h3>
+                        </span>
+                        <Image style={{textAlign:'right', marginTop:'25px'}} src="/assets/profile-mockup.png" width={'285.07'} height={'384px'}/>
+                    </div>
+
+                </section>
+
+                <section className={styles.shareExperiences}>
+                    <div>
+                        <span>
+                            <h3>Share your</h3>
+                            <h3>experiences</h3>
+                        </span>
+                        <Image style={{marginTop:'25px'}} src="/assets/feed-mockup.png" width={'285.07'} height={'384px'}/>
+                    </div>
+
+                </section>
+
+
+            </React.Fragment>
+                )
+            }
 
             <section className={styles.ourSponsors}>
                 <h3>Supported by</h3>
@@ -256,4 +309,3 @@ const Form: React.FC<FormProps> = ({ setHasSubmitted }) => {
 
 
 
-export default JoinWaitlist;
