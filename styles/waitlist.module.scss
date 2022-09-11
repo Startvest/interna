@@ -51,9 +51,62 @@
         gap: 8px;
         margin-bottom: 25px;
         font-family: 'Montserrat', Verdana, Geneva, Tahoma, sans-serif , 'sans-serif';
-
     }
 }
+
+section.landingPageWelcome{
+    background-color: var(--primary);
+    padding: 2rem 10px;
+
+    .descriptionGroup {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        font-family: 'Montserrat', Verdana, Geneva, Tahoma, sans-serif , 'sans-serif';
+        h4, p { 
+            color: #fff !important;
+            margin: 0;
+        }
+    }
+
+}
+
+.connectWithOthers {
+    background: var(--secondary);
+    text-align: right;
+    padding-right: 2rem;
+    padding-top: 30px;
+
+    h3 { 
+        margin: 0; 
+        font-size: 30px;
+        text-align: right;
+
+        &:first-of-type {
+            padding-right: 3rem;
+        }
+    }
+
+}
+
+.shareExperiences {
+    padding-left: 2rem;
+    padding-top: 30px;
+    text-align: left;
+    background: var(--primary);
+    h3 { 
+        margin: 0; 
+        font-size: 30px;
+        text-align: left;
+
+        &:first-of-type {
+            padding-right: 3rem;
+        }
+    }
+
+
+}
+
 
 .points {
     display: grid;
