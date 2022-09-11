@@ -9,16 +9,30 @@
         text-align: center; 
         margin: 0;
     }
-
-    .socials {
-        display: flex;
+    ul {
         padding: 0;
         margin: 0;
         list-style-type: none;
+    }
+
+    .footerLinks {
+        li{
+            &:first-of-type {
+                font-weight: bold;
+            }
+        }
+    }
+    .socials {
+        display: flex;
         gap: 12px;
 
         *{
             font-size: 25px;
         }
     }
+}
+
+.footerContent {
+    display: flex;
+    justify-content: space-between;
 }

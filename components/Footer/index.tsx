@@ -1,37 +1,42 @@
 import { IoLogoTwitter, IoLogoLinkedin, IoLogoInstagram, IoLogoYoutube } from 'react-icons/io5';
 import styles from './footer.module.scss';
+import Image from "next/image";
 
 const Footer:React.FC = () => {
     return(
     <footer className={styles.footer}>
-        <div>
-            Interna
+        <Image src="/assets/logo-white.svg" height={'20px'} width={'93px'}/>
+        <div className={styles.footerContent}>
+            <div>
+                <h4>
+                    Interna is a community socail platfom that connects 
+                    interns with sudents with students looking for internship placements.
+                </h4>
 
-            <h4>
-                Interna is a community socail platfom that connects 
-                interns with sudents with students looking for internship placements.
-            </h4>
+                <ul className={styles.footerLinks}>
+                    <li>RESOURCES</li>
+                    <li>Privacy Policy</li>
+                    <li>Terms and Conditions</li>
+                    <li>Contact us</li>
+                </ul>
 
-            <h4>RESOURCES</h4>
-            <h5>Privacy Policy</h5>
-            <h5>Terms and Conditions</h5>
-            <h5>Contact us</h5>
+                <ul className={styles.socials}>
+                    <li>
+                        <IoLogoLinkedin />
+                    </li>
+                    <li>
+                        <IoLogoTwitter/>
+                    </li>
+                    <li>
+                        <IoLogoInstagram/>
+                    </li>
+                    <li>
+                        <IoLogoYoutube/>
+                    </li>
+                </ul>
+            </div>
+            <Image src="/assets/Vector.svg" width={'170px'} height={'170px'}/>
 
-
-            <ul className={styles.socials}>
-                <li>
-                    <IoLogoLinkedin />
-                </li>
-                <li>
-                    <IoLogoTwitter/>
-                </li>
-                <li>
-                    <IoLogoInstagram/>
-                </li>
-                <li>
-                    <IoLogoYoutube/>
-                </li>
-            </ul>
         </div>
 
         <p>Copyright © 2022 Startvest Solutions | All Rights reserved </p>
