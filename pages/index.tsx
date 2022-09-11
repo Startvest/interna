@@ -2,16 +2,21 @@ import {useState, useEffect} from 'react';
 import type { NextPage } from 'next';
 import styles from '../styles/Home.module.css';
 import { Header } from '../components/header';
+import { LandingPage } from '../components/MainPage';
 import Script from 'next/script'
 import {LoadingScreen} from '../components/loadScreen';
 import showNotification from '../public/client';
 import { useRouter } from 'next/router';
 const Home: NextPage = () => {
   const [loading, setLoading] = useState<boolean>(true);
+  const [isWailist, setIsWaitlist] = useState<boolean>(true);
+
   const router = useRouter();
+  
     useEffect(() => {
       setTimeout(() => {
-        router.push('/login')
+        //router.push('/login')
+        setLoading(false)
       }, 3000);
   },[]);
 
@@ -21,12 +26,8 @@ const Home: NextPage = () => {
       {loading && <LoadingScreen/>}
       {!loading && 
       // TODO: Fortune import the waitlist component here 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Interna!</a>
-        </h1>
-        <button onClick={() => showNotification()}>Show notification !</button>
-      </main>
+        <LandingPage isWaitlist={!isWailist}/>
+      
       } 
       
       {/* Script for push notification  [still testing, do not edit]*/}
