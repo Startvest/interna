@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/customhook/useInterval.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/customhook/useInterval.jsx", "components/DisplayDate/index.js"],
   "exclude": ["node_modules"]
 }

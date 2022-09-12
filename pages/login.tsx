@@ -5,6 +5,7 @@ import { Form } from '../components/LoginForm';
 import styles from '../components/LoginForm/login.module.css';
 import { ThemeIcon } from '../components/ThemeIcon';
 import { useTheme } from 'next-themes';
+import DisplayDate from '../components/DisplayDate';
 
 const Login: NextPage = () => {
   const { resolvedTheme, setTheme } = useTheme();
@@ -25,7 +26,7 @@ const Login: NextPage = () => {
         alt="welcome icon"
       />
       <h1 className={styles.header}>Welcome Back!</h1>
-
+      {/* <DisplayDate date={"Mon Sep 9 2022 17:55:34 GMT+0100 (West Africa Standard Time)"} show={"ago"}/> */}
       <Form type="login" />
     </div>
   );
