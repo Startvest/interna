@@ -6,6 +6,7 @@ import { useTheme } from 'next-themes';
 import { Header } from '../components/header';
 import { getdata } from '../services/getTestData';
 import { useMutation } from 'react-query';
+import {NavBar} from '../components/FloatingNavbar';
 
 const Help: NextPage = () => {
   const { resolvedTheme, setTheme } = useTheme();
@@ -51,6 +52,7 @@ const Help: NextPage = () => {
     <div className={styles.main}>
       <Header />
       {toast && <Toast data={toastData}  setToast={setToast} position='top-right'/>}
+      <NavBar/>
       <h2>Data from Server</h2>
       {/* <div>{dataMutation.isLoading && <div>Loading....</div>}</div> */}
       {/* <div>{dataMutation.isSuccess && data && (
