@@ -4,14 +4,21 @@
   color: white;
   position: fixed;
   z-index: 10;
+}
+.top-right{
   top: 1rem;
   right: 1rem;
-  animation: toast-right-in 0.7s;
+  animation: toast-right-in 1s;
+}
+.bottom{
+  bottom: 1rem;
+  /* right: 1rem; */
+  animation: toast-bottom-in 1s;
 }
 .notification {
   border-radius: 5px;
   box-shadow: 0 0 1px #999;
-  opacity: 0.9;
+  opacity: 1;
   height: auto;
   min-width: 20vw;
   width: auto;
@@ -23,6 +30,17 @@
 .notification:hover {
   cursor: pointer;
   opacity: 1;
+  scale: 1.1;
+}
+.top-right-remove{
+  -webkit-animation: toast-right-out 1s;
+  -moz-animation: toast-right-out 1s;
+  animation: toast-right-out 1s;
+}
+.bottom-remove{
+  -webkit-animation: toast-bottom-out 1s;
+  -moz-animation: toast-bottom-out 1s;
+  animation: toast-bottom-out 1s;
 }
 
 .body {
@@ -30,6 +48,9 @@
   justify-items: center;
   align-items: center;
 }
+
+
+
 .icon {
   margin-right: 0.5rem;
 }
@@ -55,5 +76,32 @@
   }
   to {
     transform: translateX(0);
+  }
+}
+
+@keyframes toast-bottom-in {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes toast-right-out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(150%);
+  }
+}
+
+@keyframes toast-bottom-out {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(200%);
   }
 }

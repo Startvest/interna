@@ -39,30 +39,25 @@ const Help: NextPage = () => {
   const handletoast = () => {
     setToast(true);
     setToastData({
-      title: 'Hello',
       message: 'Hello this is a test',
-      type: 'primary',
-    });
-
-    setTimeout(() => {
-      setToast(false);
-    }, 4000);
-  };
+      type: 'success',
+    })
+  }
 
   const handleTheme = () => {
     setTheme(resolvedTheme === 'light' ? 'dark' : 'light');
-  };
+  }
   return (
     <div className={styles.main}>
       <Header />
-      {toast && <Toast data={toastData} />}
+      {toast && <Toast data={toastData}  setToast={setToast} position='top-right'/>}
       <h2>Data from Server</h2>
-      <div>{dataMutation.isLoading && <div>Loading....</div>}</div>
-      <div>{dataMutation.isSuccess && data && (
+      {/* <div>{dataMutation.isLoading && <div>Loading....</div>}</div> */}
+      {/* <div>{dataMutation.isSuccess && data && (
         <p>
           {data.name}, {data.desc}
         </p> 
-      )}</div>
+      )}</div> */}
 
       <button onClick={handletoast}>Toast</button>
 

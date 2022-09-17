@@ -1,5 +1,6 @@
 import styles from './toast.module.css';
 import { Itoast } from './toastList';
+import {useEffect, useState} from 'react';
 import {
   IoAlertCircleOutline,
   IoWarningOutline,
@@ -21,16 +22,24 @@ const icon = (type: 'success' | 'error' | 'warning' | 'info' | 'primary') => {
       return '';
   }
 };
-export function Toast({ data }: { data: Itoast }) {
+export function Toast({ data, setToast, position = 'top-right' }: { data: Itoast, setToast: Function, position?: 'top-right' | 'bottom'  }) {
+  const [remove, setRemove] = useState(false);
+
+  useEffect(() =>{
+    setTimeout(() => {
+      setRemove(true);
+    },3000);
+   
+    setTimeout(() => { 
+      setToast(false);
+    }, 4000);
+  },[])
   return (
     <div
-      className={`${styles.container} ${styles.notification} ${
-        styles[data.type]
-      } `}
+      className={`${styles.container} ${styles[position]} ${styles.notification} ${styles[data.type]}  ${remove ? styles[`${position}-remove`] : ''}`}
     >
       <div className={`${styles.body}`}>
-        {/* <p>{data.title}</p> */}
-        {icon(data.type)}
+        <span>{icon(data.type)}</span>
         <p> {data.message}</p>
       </div>
     </div>
