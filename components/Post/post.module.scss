@@ -1,0 +1,53 @@
+$padding: 5px 10px;
+
+.postActions {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    align-items: center;
+    padding: $padding;
+}
+
+.post {
+    height: auto;
+    border-radius: 7px;
+    box-shadow: 1px 0px 5px -1px #333333;
+    margin: 15px 0;
+}
+
+.postContent {
+    padding: $padding;
+}
+
+.imageHolder {
+    width: 100%;
+    height: 11.25em;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.userInfo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: $padding;
+    height: 4.375em;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        h3, p { margin: 0; }
+    }
+
+    span {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+}
