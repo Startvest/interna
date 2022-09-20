@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css';
 import { Toast, Itoast } from '../components/toast';
 import { useTheme } from 'next-themes';
-import { Header } from '../components/header';
+import { AppHeader } from '../components/header';
 import { getdata } from '../services/getTestData';
 import { useMutation } from 'react-query';
 import {NavBar} from '../components/FloatingNavbar';
@@ -48,9 +48,9 @@ const Help: NextPage = () => {
   const handleTheme = () => {
     setTheme(resolvedTheme === 'light' ? 'dark' : 'light');
   }
-  return (
+  return (<>
+    <AppHeader pageName={"Get help | Interna"}/>
     <div className={styles.main}>
-      <Header />
       {toast && <Toast data={toastData}  setToast={setToast} position='top-right'/>}
       <NavBar/>
       <h2>Data from Server</h2>
@@ -69,6 +69,7 @@ const Help: NextPage = () => {
         </button>
       </p>
     </div>
+    </>
   );
 };
 

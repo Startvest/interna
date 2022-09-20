@@ -14,3 +14,22 @@
 [data-theme="dark"] .h2{
      color: white;
 }
+.icon-user{
+     position: absolute;
+     top: 1rem;
+     left: 1rem;
+     width: 50px;
+     border-radius: 50%;
+}
+
+.icon-logo{
+     position: absolute;
+     /* top: 1rem; */
+     cursor: pointer;
+     width: 100px;
+     left:0;
+     right:0;
+   
+     margin-left: auto;
+     margin-right: auto
+}
