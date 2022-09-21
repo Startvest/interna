@@ -17,7 +17,7 @@ export const post = [
           _id: "dfddf299933",
           author: '456ydhh999j',
           content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget congue ornare consequat eget enim. Risus fringilla posuere amet sagittis habitant nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget congue ornare consequat eget enim. Risus fringilla posuere amet sagittis habitant nulla.",
-          image: "",
+          image: "/assets/images/post.png",
           createdAt: "Mon Sep 11 2022 07:34:34 GMT+0100 (West Africa Standard Time)",
           comments:[
                {
