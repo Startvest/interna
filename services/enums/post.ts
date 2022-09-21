@@ -32,4 +32,4 @@ export const post = [
                },
           ]
      }
-] as const;
+];

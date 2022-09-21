@@ -32,9 +32,9 @@ export function Toast({ data, setToast, position = 'top-right' }: { data: Itoast
    
     setTimeout(() => { 
       setToast(false);
-
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, 4000);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
   return (
     <div

@@ -8,7 +8,7 @@ type AvatarProps = {
 export const Avatar: React.FC<AvatarProps> = ({ src, alt }) => {
     return(
         <div className={styles.avatar}>
-            <img src={src} alt={alt?alt:'profile-avatar'} />
+            <img src={src} alt={alt?alt:'profile-avatar'} width={'50px'}/>
         </div>
     )
 }
