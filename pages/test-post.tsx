@@ -3,7 +3,7 @@ import { post } from "../services/enums/post";
 
 const Posts: React.FC = () => {
     return(
-    <div>
+    <div style={{padding:'0 10px'}}>
     {
         post.map(post => (
             <Post key={post._id} {...post} />
