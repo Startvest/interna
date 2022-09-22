@@ -24,7 +24,8 @@ $dark-shadow: #333333;
     height: auto;
     border-radius: 7px;
     box-shadow: 2px 1px 5px -1px $dark-shadow;
-    margin: 15px 0;
+    margin: 15px auto;
+    width: 30%;
 }
 
 .postContent {
@@ -94,4 +95,15 @@ $dark-shadow: #333333;
         box-shadow: 2px 1px 5px -1px $light-shadow;
     }
     
+}
+
+@media only screen and (max-width: 1000px) and (min-width: 701px) {
+    .post{
+         width: 60%;
+    }
+}
+@media only screen and (max-width: 700px) {
+    .post{
+         width: 80%;
+    }
 }
