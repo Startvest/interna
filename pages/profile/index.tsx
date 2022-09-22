@@ -7,6 +7,7 @@ import { BiBuildings } from 'react-icons/bi';
 import { Post } from "../../components/Post";
 import { post } from "../../services/enums/post";
 import { MdOutlineSchool, MdOutlineLocationOn, MdOutlineLink, MdArrowBack } from 'react-icons/md';
+import { Header } from '../../components/header';
 
 const ProfilePage: React.FC = () => {
     const profileHeaderStyle = {
@@ -14,6 +15,7 @@ const ProfilePage: React.FC = () => {
     }
     return(
     <main>
+        <Header pageName={"John Doe's Profile"}/>
         <section className={styles.profileIntro}>
             <div style={profileHeaderStyle} className={styles.profileHeader}>
                 <span className={styles.arrowBack}>
