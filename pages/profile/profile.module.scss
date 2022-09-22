@@ -1,0 +1,94 @@
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+}
+
+.profileIntro {
+    height: auto;
+    position: relative;
+
+    .profileHeader {
+        height: 110px;
+        width: 100%;
+        background-color: var(--primary);
+    }
+
+    .profileHeader:after {
+        content: "";
+        position: fixed;
+        top: 0; bottom: 0; left: 0; right: 0; 
+        background: rgba(0,0,0,0.1);
+        pointer-events: none;
+    }
+
+    .avatar {
+        z-index: 999;
+        position: absolute;
+        top: 40%;
+        padding: 0 10px;
+    }
+}
+
+.arrowBack {
+    z-index: 999;
+    color: white;
+    margin: 10px 10px;
+    position: absolute
+}
+
+.actions {
+    @include flex-center;
+    justify-content: flex-end;
+    padding: 0 10px;
+    height: 55px;
+    gap: 15px;
+}
+
+
+.detailsRow {
+    @include flex-center;
+    gap: 0.625em;
+    margin-top: 5px;
+
+    span{
+        @include flex-center;
+        gap: 0.2em;
+
+        p {
+            margin: 0;
+            font-size: 13px;
+            font-weight: 'Montserrat', sans-serif;
+        }
+    }
+
+    a, a:visited, a:active {
+        text-decoration: none;
+        font-size: 13px;
+    }
+}
+
+.profile, .userPosts {
+    padding: 0 10px;
+}
+
+.profileNames {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    margin: 5px 0 15px 0;
+
+    h3 {
+        font-weight: bold;
+        font-size: 24px;
+    }
+
+    p{
+        font-weight: 600;
+        font-size: 13px;
+    }
+}
+
+.connectBtn {
+    border-radius: 15px;
+    width: 75px;
+}
