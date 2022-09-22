@@ -8,17 +8,20 @@ import { Post } from "../../components/Post";
 import { post } from "../../services/enums/post";
 import { MdOutlineSchool, MdOutlineLocationOn, MdOutlineLink, MdArrowBack } from 'react-icons/md';
 import { Header } from '../../components/header';
+import { useRouter } from 'next/router'
 
 const ProfilePage: React.FC = () => {
     const profileHeaderStyle = {
         backgroundImage: `url('/assets/images/post.png')`,
     }
+    const router = useRouter()
     return(
     <main>
         <Header pageName={"John Doe's Profile"}/>
+        <section className={styles.profileContainer}>
         <section className={styles.profileIntro}>
             <div style={profileHeaderStyle} className={styles.profileHeader}>
-                <span className={styles.arrowBack}>
+                <span className={styles.arrowBack} onClick={() => router.back()}>
                     <MdArrowBack size={25}/>
                 </span>
             </div>
@@ -72,6 +75,7 @@ const ProfilePage: React.FC = () => {
                 </span>
 
             </div>
+        </section>
         </section>
         <section className={styles.userPosts}>
         {

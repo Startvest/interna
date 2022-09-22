@@ -3,6 +3,10 @@
     align-items: center;
 }
 
+.profileContainer{
+    width: 30%;
+    margin: auto;
+}
 .profileIntro {
     height: auto;
     position: relative;
@@ -31,7 +35,7 @@
 
 .arrowBack {
     z-index: 999;
-    color: white;
+    color: var(--primary);
     margin: 10px 10px;
     position: absolute
 }
@@ -91,4 +95,24 @@
 .connectBtn {
     border-radius: 15px;
     width: 75px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+[data-theme="dark"]{
+    .connectBtn{
+        background-color: var(--secondary);
+        color: rgba(255, 255, 255, 0.9)
+    }
+}
+
+@media only screen and (max-width: 1000px) and (min-width: 701px) {
+    .profileContainer{
+         width: 60%;
+    }
+}
+@media only screen and (max-width: 700px) {
+    .profileContainer{
+        width: 100%;
+    }
 }
