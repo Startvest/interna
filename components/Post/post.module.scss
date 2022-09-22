@@ -1,11 +1,11 @@
 $padding: 5px 10px;
 $light-shadow: #cacaca;
 $dark-shadow: #333333;
+$contrastLight: rgba(211, 226, 237, 0.4);
 
 .postActions {
     display: flex;
     justify-content: space-around;
-    height: 50px;
     align-items: center;
     padding: $padding;
 
@@ -14,18 +14,82 @@ $dark-shadow: #333333;
         align-items: center;
         gap: 5px;
         flex-direction: column;
+        cursor: pointer;
         p{
             margin: 0;
+            font-size: 11px;
+            font-weight: bold;
         }
     }
 }
 
 .post {
     height: auto;
-    border-radius: 7px;
-    box-shadow: 2px 1px 5px -1px $dark-shadow;
-    margin: 15px auto;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px 4px rgba(0, 0, 0, 0.15);
+    margin: 2rem auto;
     width: 30%;
+
+    input{
+        background-color: $contrastLight;
+        border: none;
+        border-radius: 20px;
+        margin: 1rem auto;
+        outline: none;
+        font-size: 16px;
+        width: 90%;
+        padding: 0 .5rem;
+        height: 41px;
+        text-align: left;
+        color: var(--primary);
+
+        &::placeholder {
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 500;
+            padding: 0 .5rem;
+        }
+    }
+
+    .newPost{
+        display: flex;
+        justify-content:space-between;
+        align-items:center;
+        width: 100%;
+        gap: 10px;
+        padding-bottom: 1rem !important;
+
+        .newPostIcon{
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        span{
+            background-color: $contrastLight;
+            border-radius: 5px;
+            padding: .1rem;
+            color: var(--primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .buttonContainer{
+            margin-right: 8%;
+            button{
+                background-color: var(--primary);
+                padding: .5rem 1rem;
+                color: white;
+                border-radius: 10px;
+                width: 70px;
+                cursor: pointer;
+                
+            }
+        }
+        
+    }
+    
 }
 
 .postContent {
@@ -50,21 +114,35 @@ $dark-shadow: #333333;
     padding: $padding;
     height: 4.375em;
 
+
     div {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 4px;
 
-        h3, p { margin: 0; }
+        h3{
+            font-size: 14px;
+            margin: 0;
+        }
+        p { 
+            margin: 0; 
+            font-size: 11px;
+            font-weight: bold;
+            color: var(--foreground);
+            font-weight: 400;
+        }
     }
 
     span {
         display: flex;
         align-items: center;
-        gap: 15px;
+        gap: 10px;
+        color: var(--primary);
     }
 }
-
+.icon{
+    color: var(--secondary);
+}
 .comments {
     margin-top: 10px;
     padding: 0 4px;
@@ -84,6 +162,9 @@ $dark-shadow: #333333;
 
 .showMoreBtn {
     font-weight: bold;
+    cursor: pointer;
+    color: var(--primary);
+    font-size: 12px;
 }
 
 [data-theme="light"] {
@@ -104,6 +185,6 @@ $dark-shadow: #333333;
 }
 @media only screen and (max-width: 700px) {
     .post{
-         width: 80%;
+         width: 90%;
     }
 }

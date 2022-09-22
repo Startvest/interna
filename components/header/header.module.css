@@ -5,6 +5,13 @@
      justify-content: left;
      align-items: center;
 }
+.headContainer{
+     display: flex;
+     width: 30%;
+     justify-content: space-between;
+     margin: 1rem auto;
+     align-items: center;
+}
 .h2{
      font-weight: bold;
      font-size: 19px;
@@ -15,20 +22,20 @@
      color: white;
 }
 .icon-user{
-     position: absolute;
-     top: 1rem;
-     left: 1rem;
      width: 50px;
+     height: 50px;
      border-radius: 50%;
+    
 }
-
-.icon-logo{
-     position: absolute;
+.icon{
      cursor: pointer;
-     width: 100px;
-     left:0;
-     right:0;
-   
-     margin-left: auto;
-     margin-right: auto
+     color: var(--primary);
+}
+[data-theme="dark"] .icon{
+     color: var(--secondary); 
+}
+.icon-logo{
+     width: 50px;
+     height: 50px;
+     margin: 0;
 }

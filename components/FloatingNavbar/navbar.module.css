@@ -4,8 +4,12 @@
      display: flex;
      justify-content: space-between;
      padding: 1rem 1rem;
-     margin: auto;
      position: fixed;
+     left:0;
+     right:0;
+     margin-left: auto;
+     margin-right: auto;
+     
      bottom: 1em;
      border-radius: 10px;
      z-index: 99;

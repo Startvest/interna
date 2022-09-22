@@ -47,7 +47,7 @@ export const PostDetail: React.FC = () => {
         <MdDragIndicator size={30}/>
        </Toolbar>
         <div className={styles.userInfo}>
-            <Avatar src='/assets/user.png' />
+            <Avatar src='/assets/user.png' width="80px"/>
 
             <div>
                 <span>
