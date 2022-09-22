@@ -9,7 +9,7 @@ type ButtonProps = {
 
 export const Button: React.FC<ButtonProps> = (props) => {
     return(
-    <button {...props} className={styles.button}>
+    <button {...props} className={`${styles.button} ${props.className}`}>
         { props.children }
     </button>
     )
