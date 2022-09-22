@@ -39,3 +39,14 @@
      height: 50px;
      margin: 0;
 }
+
+@media only screen and (max-width: 1000px) and (min-width: 701px) {
+     .headContainer{
+          width: 60%;
+     }
+ }
+ @media only screen and (max-width: 700px) {
+     .headContainer{
+          width: 90%;
+     }
+ }
