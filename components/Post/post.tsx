@@ -2,6 +2,14 @@ import { Avatar } from '../Avatar';
 import { useState } from 'react';
 import DisplayDate from '../DisplayDate';
 import { MdFavoriteBorder, MdFavorite, MdShare, MdSend, MdComment } from 'react-icons/md';
+import {
+    IoHeart,
+    IoHeartOutline,
+    IoChatboxEllipsesOutline,
+    IoSendOutline,
+    IoShareSocialOutline,
+    IoEllipse
+} from 'react-icons/io5';
 import styles from './post.module.scss';
 import { useRouter } from 'next/router';
 
@@ -11,7 +19,7 @@ type PostProps = {
     createdAt: string,
     content: string,
     author: string,
-    _id: string
+    _id: string,
 }
 
 export const Post: React.FC<PostProps> = (props) => {
@@ -35,6 +43,7 @@ export const Post: React.FC<PostProps> = (props) => {
                 <div>
                     <span>
                         <h3>John Faruk</h3>
+                        <IoEllipse size={5}/>
                         <DisplayDate date={createdAt} show={'ago'}/>
                     </span>
                     <p>Intern at Google</p>
@@ -42,9 +51,9 @@ export const Post: React.FC<PostProps> = (props) => {
             </div>
 
             <div className={styles.postContent}>
-                { showMore ? content : content.substring(0, 65)+"..." }
+                { showMore ? content : content.substring(0, 70)+"..." }
                 <span className={styles.showMoreBtn} onClick={() => setShowText(!showMore)}>
-                    { showMore ? 'see less' : 'see more' }
+                    { showMore ? ' see less' : 'see more' }
                 </span>
             </div>
 
@@ -54,19 +63,19 @@ export const Post: React.FC<PostProps> = (props) => {
 
             <div className={styles.postActions}>
                 <span>
-                    <MdFavoriteBorder size={25}/>
+                    <IoHeartOutline size={20}/>
                     <p>10K</p>
                 </span>
                 <span>
-                    <MdComment size={25}/>
+                    <IoChatboxEllipsesOutline size={20}/>
                     <p>2K</p>
                 </span>
                 <span>
-                    <MdSend size={25}/>
+                    <IoSendOutline size={20}/>
                     <p>Send</p>
                 </span>
                 <span onClick={sharePost}>
-                    <MdShare size={25}/>
+                    <IoShareSocialOutline size={20} className={styles.icon}/>
                     <p>Share</p>
                 </span>
             </div>
