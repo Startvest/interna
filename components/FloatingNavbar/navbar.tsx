@@ -30,12 +30,14 @@ export function NavBar(){
      let settingsIcon = path === '/settings' ? <IoSettings size={30} className={styles.icon}/> : <IoSettingsOutline size={30} className={styles.icon}/>
      
      return(
-          <div className={styles.container}>
-               <Link href={'/feed'}>{ albumsIcon }</Link>
-               <Link href={'/search'}>{ searchIcon }</Link>
-               <Link href={'/notifications'}>{ notificationsIcon }</Link>
-               <Link href={'/messages'}>{ mailIcon }</Link>
-               <Link href={'/settings'}>{ settingsIcon }</Link>
+          <div className={styles.navHolder}>
+               <div className={styles.container}>
+                    <Link href={'/feed'}>{ albumsIcon }</Link>
+                    <Link href={'/search'}>{ searchIcon }</Link>
+                    <Link href={'/notifications'}>{ notificationsIcon }</Link>
+                    <Link href={'/messages'}>{ mailIcon }</Link>
+                    <Link href={'/settings'}>{ settingsIcon }</Link>
+               </div>
           </div>
      )
 }
