@@ -30,7 +30,7 @@ export const Post: React.FC<PostProps> = (props) => {
     return(
         <div className={styles.post}>
             <div className={styles.userInfo}>
-                <Avatar src='/assets/images/user.png' />
+                <Avatar size='small' src='/assets/images/user.png' />
 
                 <div>
                     <span>
