@@ -32,6 +32,8 @@ body {
   color: var(--secondary);
 }
 
+h3, p { margin: 0; }
+
 
 button {
   border: 0;
