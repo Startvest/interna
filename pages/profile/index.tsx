@@ -38,6 +38,12 @@ const ProfilePage: React.FC = () => {
                 <p>@johndoe</p>
             </div>
             <div className={styles.detailsRow}>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                    Aliquam nulla urna, gravida adipiscing odio.                
+                </p>
+            </div>
+            <div className={styles.detailsRow}>
                 <span>
                     <BiBuildings/>
                     <p>Google</p>
