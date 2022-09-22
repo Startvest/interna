@@ -1,17 +1,12 @@
-import { Avatar } from '../Avatar';
-import { useState } from 'react';
-import DisplayDate from '../DisplayDate';
-import { MdFavoriteBorder, MdFavorite, MdShare, MdSend, MdComment } from 'react-icons/md';
-import {
-    IoHeart,
-    IoHeartOutline,
-    IoChatboxEllipsesOutline,
-    IoSendOutline,
-    IoShareSocialOutline,
-    IoEllipse
-} from 'react-icons/io5';
-import styles from './post.module.scss';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
+import {
+    IoChatboxEllipsesOutline, IoEllipse, IoHeartOutline, IoSendOutline,
+    IoShareSocialOutline
+} from 'react-icons/io5';
+import { Avatar } from '../Avatar';
+import DisplayDate from '../DisplayDate';
+import styles from './post.module.scss';
 
 
 type PostProps = {
