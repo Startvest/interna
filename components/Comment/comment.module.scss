@@ -1,0 +1,115 @@
+$contrastLight: rgba(211, 226, 237, 0.4);
+$contrastDark: rgba(100, 100, 100, 0.5);
+$postDark: rgba(77, 77, 77, 0.2);
+
+
+.container{
+     margin: 2rem auto;
+     width: 100%;
+     height: max-content;
+     display: flex;
+     justify-content: space-around;
+     align-items: flex-start;
+
+     .commentBox{
+          width: 80%;
+          background-color: $contrastLight;
+          border-radius: 10px;
+          padding: .5rem .5rem .5rem 1rem;
+
+          .userInfo{
+               font-size: 13px;
+               color: var(--primary);
+     
+               span{
+                    display: flex;
+                    justify-content: left;
+                    align-items: center;
+                    gap: 10px;
+               }
+     
+               h3{
+                    font-weight: bold;
+               }
+     
+               p{ 
+                    opacity: .8;
+               }
+          }
+
+          input{
+               border: none;
+               background: none;
+               outline: none;
+               font-size: 16px;
+               width: 100%;
+               color: var(--primary);
+          }
+     }
+
+
+     .postContent {
+          font-style: normal;
+          font-weight: 400;
+          font-size: 14px;
+          margin: 1rem auto;
+          color: var(--primary);
+     }
+
+     .postActions {
+          width: 100%;
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          color: var(--primary);
+          font-size: 12px;
+          font-style: normal;
+          font-weight: 700;
+          gap: 4px;
+          cursor: pointer;
+     }
+}
+.buttonContainer{
+     width: 100%;
+     display: flex;
+     justify-content:flex-end;
+
+     button{
+          background-color: var(--primary);
+          padding: .5rem 1rem;
+          color: white;
+          border-radius: 20px;
+          width: 100px;
+          cursor: pointer;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 16px;
+     }
+}
+
+[data-theme="dark"] {
+     .commentBox{
+          background-color: $postDark;
+
+          input{
+               color: white;
+          }
+     }
+     .userInfo{
+          color: white;
+
+          span, p{ 
+               color: white;
+          }
+     }
+     .postActions {
+          color: white;
+     }
+     .postContent {
+          color: white;
+     }
+}
+
+
+
+

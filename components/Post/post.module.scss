@@ -10,6 +10,7 @@ $postDark: rgba(77, 77, 77, 0.2);
     justify-content: space-around;
     align-items: center;
     padding: $padding;
+    margin-top: .5rem;
 
     span {
         display: flex;
@@ -25,12 +26,17 @@ $postDark: rgba(77, 77, 77, 0.2);
     }
 }
 
+.largePost{
+    width: 40%;
+    margin: auto;
+}
 .post {
     height: auto;
     border-radius: 10px;
     box-shadow: 3px 3px 10px 4px rgba(0, 0, 0, 0.15);
     margin: 2rem auto;
-    width: 30%;
+    width: 40%;
+    cursor: pointer;
 
     input{
         background-color: $contrastLight;
@@ -100,7 +106,9 @@ $postDark: rgba(77, 77, 77, 0.2);
 .postContent {
     padding: $padding;
 }
-
+.backIcon{
+    cursor: pointer;
+}
 .imageHolder {
     width: 100%;
     height: 11.25em;
@@ -111,7 +119,16 @@ $postDark: rgba(77, 77, 77, 0.2);
         object-fit: cover;
     }
 }
+.largeimageHolder{
+    width: 100%;
+    height: auto;
 
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
 .userInfo {
     display: flex;
     align-items: center;
@@ -148,22 +165,6 @@ $postDark: rgba(77, 77, 77, 0.2);
 .icon{
     color: var(--secondary);
 }
-.comments {
-    margin-top: 10px;
-    padding: 0 4px;
-
-    span {
-        width: 100%;
-        height: 20px;
-    }
-
-    .comment {
-        margin: 8px 0;
-        padding: 4px;
-        border-radius: 5px;
-        background: var(--contrast);
-    }
-}
 
 .showMoreBtn {
     font-weight: bold;
@@ -171,7 +172,12 @@ $postDark: rgba(77, 77, 77, 0.2);
     color: var(--primary);
     font-size: 12px;
 }
-
+.noPost{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
 [data-theme="light"] {
     .postActions {
         color: var(--primary);
@@ -216,12 +222,12 @@ $postDark: rgba(77, 77, 77, 0.2);
 }
 
 @media only screen and (max-width: 1000px) and (min-width: 701px) {
-    .post{
+    .post, .largePost{
          width: 60%;
     }
 }
 @media only screen and (max-width: 700px) {
-    .post{
+    .post, .largePost{
         width: 95%;
     }
 }
