@@ -80,7 +80,10 @@ const ProfilePage: React.FC = () => {
         <section className={styles.userPosts}>
         {
             post.map(post => (
-                <Post key={post._id} {...post} />
+                <Post 
+                    isMobile={window.innerWidth < 800 ? true:false} 
+                    key={post._id} postData={post}
+                />
             ))
         }
         </section>
