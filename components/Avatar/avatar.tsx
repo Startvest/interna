@@ -3,13 +3,14 @@ import styles from './avatar.module.scss';
 type AvatarProps = {
     src: string
     alt?: string
-    size?: 'small'|'large'|'medium'
+    size?: 'small'|'large'|'medium',
+    className?: string
 }
 
-export const Avatar: React.FC<AvatarProps> = ({ size, src, alt }) => {
+export const Avatar: React.FC<AvatarProps> = ({ className, size, src, alt }) => {
     return(
         <img 
-        className={`${styles.avatar} ${size === 'small'? styles.small : size === 'large' ? styles.large : styles.medium}`} 
+        className={`${styles.avatar} ${className} ${size === 'small'? styles.small : size === 'large' ? styles.large : styles.medium}`} 
         src={src} alt={alt?alt:'profile-avatar'}/>
     )
 }
