@@ -1,3 +1,8 @@
+$contrastLight: rgba(211, 226, 237, 0.4);
+$contrastDark: rgba(100, 100, 100, 0.5);
+$postDark: rgba(77, 77, 77, 0.2);
+$shareText: rgba(33, 41, 92, 0.6);
+
 @mixin flex-center {
     display: flex;
     align-items: center;
@@ -10,14 +15,14 @@
     right: 0;
     top: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, .8);
+    background-color: rgba(0, 0, 0, .9);
     @include flex-center();
     
     .modalContainer{
         background: white;
         position: relative;
-        width: 50%; 
-        min-height: 20rem;
+        width: 40%; 
+        // min-height: 20rem;
         height: auto;
         display: flex;
         flex-direction: column;
@@ -41,6 +46,63 @@
     }
 }
 
+// Modal styles
+.header{
+    color: var(--primary);
+     font-size: 20px;
+     font-weight: 600;
+}
+.sharelink{
+    width: max-content;
+    max-width: 90%;
+    border-radius: 20px;
+    padding: .5rem 1rem;
+    background: $contrastLight;
+    color: $shareText;
+    font-size: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 2rem 0 1rem 0;
+    text-align: center;
+    font-weight: 500;
+}
+.copyButtonContainer{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 5%;
+}
+.copyButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+    padding: 0 .5rem;
+}
+.copylogo{
+    color: white;
+}
+.logo{
+    color: var(--primary);
+}
+.shareContainer{
+    width: 100%;
+    .text{
+        text-align: left;
+        color: var(--primary);
+        font-weight: 600;
+        font-size: 15px;
+        margin-left: 5%;
+    }
+    .icons{
+        width: 90%;
+        display: flex;
+        justify-content:space-between;
+        align-items:center;
+        margin: 2rem auto 1rem auto;
+    }
+}
+
 [data-theme='dark']{
     .modalBackdrop {
         // background-color: lighten($color:#212121, $amount:2);
@@ -50,6 +112,21 @@
             background: var(--altDark);
         }
     
+    }
+    .header{
+        color: white;
+    }
+    .sharelink{
+        background: $contrastDark;
+        color: white;
+    }
+    .shareContainer{
+        .text{
+            color: white;
+        }
+    }
+    .logo{
+        color: white;
     }
 }
 @media only screen and (max-width: 600px) {

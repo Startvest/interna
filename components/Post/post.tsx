@@ -11,26 +11,33 @@ import {
 import { Avatar } from '../Avatar';
 import DisplayDate from '../DisplayDate';
 import styles from './post.module.scss';
-import {IPost, IComment} from '../../services/enums/types';
+import {IPost} from '../../services/enums/types';
+import { ShareModal } from '../../components/Modal/ShareModal';
 
-
-export const Post: React.FC<IPost> = (props) => {
-const { _id, author, content, createdAt, image, likes , comments} = props;
+interface IPostExtended extends IPost{
+    isMobile: boolean;
+}
+export const Post: React.FC<IPostExtended> = (props) => {
+const { _id, author, content, createdAt, image, likes , comments, isMobile} = props;
 const [showMore, setShowText] = useState(false);
   const router = useRouter();
   const [liked, setLiked] = useState(false);
+  const [shareModal, setShareModal] = useState(false);
   let heartIcon = (liked) ? <IoHeart size={25}/> : <IoHeartOutline size={25} />; 
 
   const sharePost = () => {
-    navigator.share({
-      title: `Check out this post by ${author.name}`,
-      text: content,
-      url: `https://getinterna.com/post/${_id}`,
-    });
+    (!isMobile) ? 
+    setShareModal(true)
+    : navigator.share({
+     title: `Check out this post by ${author.name}`,
+     text: content,
+     url: `https://getinterna.com/feed/${_id}`,
+   }); 
   };
   
   return (
     <div className={styles.post} >
+        {shareModal && <ShareModal isOpen={shareModal} closeModal={() => setShareModal(!shareModal)} postId={_id}/>}
       <div className={styles.userInfo}>
         <Avatar size="small" src="/assets/images/user.png" />
 

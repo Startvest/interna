@@ -1,24 +1,40 @@
-import { AppHeader } from '../../components/header';
-import { Post } from '../../components/Post';
-import { post } from '../../services/enums/post';
-import {NavBar} from '../../components/FloatingNavbar';
 import { NextPage } from 'next';
-import {NewPost} from "../../components/Post";
+import { useEffect } from 'react';
+import { NavBar } from '../../components/FloatingNavbar';
+import { AppHeader } from '../../components/header';
+import { NewPost, Post } from '../../components/Post';
+import { post } from '../../services/enums/post';
 
-const Feed: NextPage = () => {
+type FeedProps = {
+  isMobile: boolean,
+}
+const Feed: NextPage<FeedProps> = ({isMobile}) => {
+  useEffect(() => {
+    console.log(isMobile);
+  }, []);
   return (
     <>
       <AppHeader pageName={'Feed | Interna'} />
-      <NewPost/>
+      <NewPost />
       <div style={{ padding: '0 10px' }}>
         {post.map((post) => (
-          <Post key={post._id} {...post} />
+          <Post key={post._id} {...post} isMobile={isMobile}/>
         ))}
       </div>
 
-      <NavBar/>
+      <NavBar />
     </>
   );
 };
 
 export default Feed;
+
+import { GetServerSideProps } from 'next';
+import { getDevice } from '../../server/getDevice';
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  return {
+    props: {
+      isMobile: Boolean(getDevice(req))
+    }, // will be passed to the page component as props
+  };
+};

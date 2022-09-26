@@ -10,7 +10,7 @@ type ModalProps = {
 export const Modal: React.FC<ModalProps> = ({ isOpen, children, closeModal }) => {    
     if(!isOpen) return null
     return(
-        <div className={styles.modalBackdrop} >
+        <div className={styles.modalBackdrop}>
             <div className={styles.modalContainer}>
                 <span className={styles.cancelIcon} onClick={closeModal}><IoCloseOutline size={30}/></span>
                 { children }
