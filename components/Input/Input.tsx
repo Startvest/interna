@@ -6,17 +6,18 @@ type InputProps = {
     labelName: string,
     type?: string;
     inputClassName?: string,
-    onChange?: any
+    onChange?: any,
+    value?: string|number
 }
 
 
-export const Input:React.FC<InputProps> = ({ type, name, onChange, inputClassName, placeholder, labelName, }) => {
+export const Input:React.FC<InputProps> = ({ value, type, name, onChange, inputClassName, placeholder, labelName, }) => {
     return(
         <div className={styles.inputGroup}>
             <label htmlFor={name} className={styles.inputLabel}>
                 {labelName}
             </label>
-            <input onChange={onChange} className={inputClassName} id={name} type={type} title={name} placeholder={placeholder}  />
+            <input value={value} onChange={onChange} className={inputClassName} id={name} type={type} title={name} placeholder={placeholder}  />
         </div>
     )
 }
