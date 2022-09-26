@@ -18,7 +18,7 @@ const Feed: NextPage<FeedProps> = ({isMobile}) => {
       <NewPost />
       <div style={{ padding: '0 10px' }}>
         {post.map((post) => (
-          <Post key={post._id} {...post} isMobile={isMobile}/>
+          <Post key={post._id} postData={post} isMobile={isMobile}/>
         ))}
       </div>
 

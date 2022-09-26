@@ -14,11 +14,12 @@ import styles from './post.module.scss';
 import {IPost} from '../../services/enums/types';
 import { ShareModal } from '../../components/Modal/ShareModal';
 
-interface IPostExtended extends IPost{
+type PostProps =  {
+    postData: IPost;
     isMobile: boolean;
 }
-export const Post: React.FC<IPostExtended> = (props) => {
-const { _id, author, content, createdAt, image, likes , comments, isMobile} = props;
+export const Post: React.FC<PostProps> = ({postData, isMobile}) => {
+const { _id, author, content, createdAt, image, likes , comments} = postData;
 const [showMore, setShowText] = useState(false);
   const router = useRouter();
   const [liked, setLiked] = useState(false);
