@@ -10,7 +10,11 @@ import { MdOutlineSchool, MdOutlineLocationOn, MdOutlineLink, MdArrowBack } from
 import { Header } from '../../components/header';
 import { useRouter } from 'next/router'
 
-const ProfilePage: React.FC = () => {
+type ProfileProps = {
+    isMobile: boolean,
+  }
+
+const ProfilePage: React.FC<ProfileProps> = ({isMobile}) => {
     const profileHeaderStyle = {
         backgroundImage: `url('/assets/images/post.png')`,
     }
@@ -80,7 +84,7 @@ const ProfilePage: React.FC = () => {
         <section className={styles.userPosts}>
         {
             post.map(post => (
-                <Post key={post._id} {...post} />
+                <Post key={post._id} postData={post} isMobile={isMobile}/>
             ))
         }
         </section>
@@ -90,3 +94,13 @@ const ProfilePage: React.FC = () => {
 }
 
 export default ProfilePage;
+
+import { GetServerSideProps } from 'next';
+import { getDevice } from '../../server/getDevice';
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  return {
+    props: {
+      isMobile: Boolean(getDevice(req))
+    }, // will be passed to the page component as props
+  };
+};
