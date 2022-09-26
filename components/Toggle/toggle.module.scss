@@ -1,0 +1,41 @@
+.toggle[type=checkbox]{
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+
+.toggleLabel {
+	cursor: pointer;
+	text-indent: -9999px;
+	width: 50px;
+	height: 25px;
+	background: grey;
+	display: block;
+	border-radius: 100px;
+	position: relative;
+}
+
+.toggleLabel:after {
+	content: '';
+	position: absolute;
+	top: 2.5px;
+	left: 2.5px;
+	width: 20px;
+	height: 20px;
+	background: #fff;
+	border-radius: 90px;
+	transition: 0.3s;
+}
+
+.toggle:checked + .toggleLabel {
+	background: #21295c;
+}
+
+.toggle:checked + .toggleLabel:after {
+	left: calc(100% - 5px);
+	transform: translateX(-100%);
+}
+
+.toggleLabel:active:after {
+	width: 20px;
+}
