@@ -1,0 +1,39 @@
+.hidden {
+    visibility: hidden;
+}
+
+
+.searchbar {
+    background-color: #d3e2ed6d;
+    color: rgba(33, 41, 92, 0.6);
+    width: 336px;
+    height: 41px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    margin: 10px 0;
+
+    .iconAndText {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    input {
+        border: 0;
+        background: transparent;
+
+        &:active, &:focus, &:focus-within {
+            outline: none;
+        }
+    }
+}
+
+[data-theme="dark"] {
+    .searchbar {
+        background-color: #333333;
+        color: white;
+    }
+}
