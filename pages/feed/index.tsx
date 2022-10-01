@@ -1,9 +1,10 @@
 import { NextPage } from 'next';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { NavBar } from '../../components/FloatingNavbar';
 import { AppHeader } from '../../components/header';
 import { NewPost, Post } from '../../components/Post';
 import { post } from '../../services/enums/post';
+import { RefreshIcon } from '../../components/RefreshIcon';
 
 type FeedProps = {
   isMobile: boolean,
@@ -12,10 +13,12 @@ const Feed: NextPage<FeedProps> = ({isMobile}) => {
   useEffect(() => {
     console.log(isMobile);
   }, []);
+  const [showToast, setShowToast] = useState(true);
   return (
     <>
       <AppHeader pageName={'Feed | Interna'} />
       <NewPost />
+      {showToast && <RefreshIcon setToast={setShowToast}/>}
       <div style={{ padding: '0 10px' }}>
         {post.map((post) => (
           <Post key={post._id} postData={post} isMobile={isMobile}/>

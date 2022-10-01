@@ -85,6 +85,9 @@ $shareText: rgba(33, 41, 92, 0.6);
 .logo{
     color: var(--primary);
 }
+.logo:hover{
+    scale: 1.2;
+}
 .shareContainer{
     width: 100%;
     .text{
