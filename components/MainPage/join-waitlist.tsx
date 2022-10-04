@@ -113,8 +113,8 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist, isMobile }) => {
             {/* Desktop View */}
             {!isMobile && 
                 <section className={styles.deskUsp}>
-                    {uniqueSellingPoints.map(usp => 
-                    <div className={`${styles.box}`}>
+                    {uniqueSellingPoints.map((usp, k) => 
+                    <div key={k} className={`${styles.box}`}>
                         <div className={styles.iconCont}>
                             <img src={usp.icon}/>
                         </div>
