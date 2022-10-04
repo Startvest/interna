@@ -19,6 +19,6 @@ To be the go-to platform for students looking to gain practical experiences in t
 
 To learn more about Next.js, take a look at the following resources:
 
-- [contact@startvest.io](mailto:contact@startvest.io) - Send us a quick mail if you have any questions.
+- [support@getinterna.com](mailto:support@getinterna.com) - Send us a quick mail if you have any questions.
 
 You can check out [the waitlist page](https://getinterna.com/) - your feedback and contributions are welcome!
