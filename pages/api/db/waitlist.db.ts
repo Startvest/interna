@@ -31,16 +31,6 @@ waitlistDb.createWaitlistMember = async (data: {name: string, email: string} ) =
         email: data.email
       };
 
-      // let response = await client.db(db_name).collection("waitlist").drop(function(err: any, delOK: any) {
-      //   if (err) throw err;
-      //   if (delOK) console.log("Collection deleted")
-      //   client.close();
-      // });
-
-      // if (client.db(db_name).collection("waitlist").findOne({email: member.email})._id) {
-      //   return "User with that email exists already.";
-      // }
-
       let email_check = await client.db(db_name).collection("waitlist").findOne({email: member.email});
 
       if (email_check) {
