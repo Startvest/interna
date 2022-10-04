@@ -17,7 +17,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // console.log(serRes);
 
     if (serRes) { 
-      return res.status(201).json({"response": "Member created successfully"});
+      if (serRes === "User with that email exists already.") {
+        res.status(400).json({"response": "Email has already been used."})
+      }
+      else {
+        return res.status(201).json({"response": "Member created successfully"});
+      }
     }
     else {
       return res.status(500).json({"error": "An error occured. Please try again"});

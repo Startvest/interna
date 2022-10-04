@@ -1,8 +1,8 @@
 const uuid = require('uuid');
 
 let MongoClient = require('mongodb').MongoClient;
-const url: string = "mongodb://127.0.0.1:27017/";
-const db_name: string = "interna_db";
+const url: string = process.env.DB_URL || "mongodb://127.0.0.1:27017/";
+const db_name: string = process.env.DB_NAME || "interna_db";
 
 const waitlistDb : any = {};
 
@@ -12,11 +12,13 @@ class WaitlistMember {
   public waitlist_id: string;
   public name: string;
   public email: string;
+  public position: {type: "string", company_name: "string"};
 
-  public constructor(waitlist_id: string, name: string, email: string) {
+  public constructor(waitlist_id: string, name: string, email: string, position: {type: "string", company_name: "string"}) {
       this.waitlist_id = waitlist_id;
       this.name = name;
       this.email = email;
+      this.position = position;
   }
 }
 
@@ -28,6 +30,22 @@ waitlistDb.createWaitlistMember = async (data: {name: string, email: string} ) =
         name: data.name,
         email: data.email
       };
+
+      // let response = await client.db(db_name).collection("waitlist").drop(function(err: any, delOK: any) {
+      //   if (err) throw err;
+      //   if (delOK) console.log("Collection deleted")
+      //   client.close();
+      // });
+
+      // if (client.db(db_name).collection("waitlist").findOne({email: member.email})._id) {
+      //   return "User with that email exists already.";
+      // }
+
+      let email_check = await client.db(db_name).collection("waitlist").findOne({email: member.email});
+
+      if (email_check) {
+        return "User with that email exists already.";
+      }
 
       const response = await client.db(db_name).collection("waitlist").insertOne(member);
 
@@ -53,7 +71,7 @@ waitlistDb.getMembers = async () => {
       const results = await client.db(db_name).collection("waitlist").find({}).toArray();
 
       for (let result of results) {
-        response.push(new WaitlistMember(result.waitlist_id, result.name, result.email));
+        response.push(new WaitlistMember(result.waitlist_id, result.name, result.email, result.position));
       }
 
       client.close();
