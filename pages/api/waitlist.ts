@@ -1,15 +1,30 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { waitlistService } from './services';
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  switch (req.method) {
-    case 'GET':
-      res.status(200).json({content: "Waitlist"});
-      break
-    case 'POST':
-      res.status(200).json({content: "successful"});
-      break
-    default:
-      res.status(405).end() //Method Not Allowed
-      break
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method === 'GET') {
+    let serRes = await waitlistService.getMembers();
+    if (serRes) {
+      return res.status(200).json({"response": serRes});
+    }
+    else {
+      return res.status(500).json({"error": "An error occured. Please try again"});
+    }
+  }
+  
+  else if (req.method === 'POST') {
+    let serRes = await waitlistService.createWaitlistMember(req.body);
+    // console.log(serRes);
+
+    if (serRes) { 
+      return res.status(201).json({"response": "Member created successfully"});
+    }
+    else {
+      return res.status(500).json({"error": "An error occured. Please try again"});
+    }
+  }
+
+  else {
+    return res.status(405).end()
   }
 }
