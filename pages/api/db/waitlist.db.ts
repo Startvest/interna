@@ -1,12 +1,13 @@
 const uuid = require('uuid');
 
-let MongoClient = require('mongodb').MongoClient;
+const { MongoClient, ServerApiVersion } = require('mongodb');
 const url: string = process.env.DB_URL || "mongodb://127.0.0.1:27017/";
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_USER_PASS}@internadb.1a9jv1q.mongodb.net/?retryWrites=true`;
 const db_name: string = process.env.DB_NAME || "interna_db";
 
 const waitlistDb : any = {};
 
-const client = new MongoClient(url);
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 class WaitlistMember {
   public waitlist_id: string;
@@ -22,13 +23,14 @@ class WaitlistMember {
   }
 }
 
-waitlistDb.createWaitlistMember = async (data: {name: string, email: string} ) => {
+waitlistDb.createWaitlistMember = async (data: {name: string, email: string, position: {type: "string", company_name: "string"}} ) => {
     try {
       await client.connect();
-      let member: {waitlist_id: string, name: string, email: string} = {
+      let member: {waitlist_id: string, name: string, email: string, position: {type: "string", company_name: "string"}} = {
         waitlist_id: uuid.v4(),
         name: data.name,
-        email: data.email
+        email: data.email,
+        position: data.position
       };
 
       let email_check = await client.db(db_name).collection("waitlist").findOne({email: member.email});
@@ -59,6 +61,7 @@ waitlistDb.getMembers = async () => {
       let response: any[] = [];
       
       const results = await client.db(db_name).collection("waitlist").find({}).toArray();
+      console.log(results);
 
       for (let result of results) {
         response.push(new WaitlistMember(result.waitlist_id, result.name, result.email, result.position));
