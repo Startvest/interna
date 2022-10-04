@@ -127,8 +127,8 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist, isMobile }) => {
             {isMobile && 
                 <section className={styles.mobileUsp}>
                     {uniqueSellingPoints.map((usp, k) => 
-                    <div className={`${styles.box}`}>
-                        <div key={k} className={styles.iconCont}>
+                    <div key={k} className={`${styles.box}`}>
+                        <div  className={styles.iconCont}>
                             <img src={usp.icon}/>
                         </div>
                         <h2>{usp.title}</h2>
