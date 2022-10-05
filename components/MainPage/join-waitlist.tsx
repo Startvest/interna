@@ -1,7 +1,6 @@
 import { NextPage } from "next";
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { Input } from "../Input";
+
 import { Modal } from "../Modal";
 import Image from "next/image";
 import { ThemeIcon } from "../ThemeIcon";
@@ -11,6 +10,7 @@ import { useTheme } from "next-themes"
 import { useRouter } from "next/router";
 import Footer from "../Footer";
 import {uniqueSellingPoints} from '../../services/enums/usp';
+import {WaitlistForm} from '../MainPage';
 
 type Props = {
     isWaitlist: boolean,
@@ -20,8 +20,8 @@ type Props = {
 export const LandingPage: React.FC<Props> = ({ isWaitlist, isMobile }) => {
 
     const [modalOpen, setModal] = useState<boolean>(false);
-    const [submitCount, setSubmitCount] = useState<number>(0)
-    const [hasSubmittedForm, setHasSubmitted] = useState(false)
+    const [hasSubmittedForm, setHasSubmitted] = useState(false);
+    const [submitCount, setSubmitCount] = useState<number>(0);
     const { resolvedTheme } = useTheme();
     const router = useRouter();
 
@@ -29,11 +29,21 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist, isMobile }) => {
 
     return(
     <div className={styles.waitlistPage}>
+         <Modal isOpen={modalOpen} closeModal={() => setModal(!modalOpen)}>
+            <WaitlistForm 
+                setHasSubmitted={(val) => setHasSubmitted(val)} 
+                hasSubmittedForm={hasSubmittedForm} 
+                submitCount={submitCount}
+                setSubmitCount={(count) => setSubmitCount(count)}
+                setModal={() => setModal(!modalOpen)}
+            /> 
+        </Modal>
+
         <header className={styles.landingPageHeader}>
             <span className={styles.headerLogo}>
-                {/* <Image src="/fav.ico" width={'100px'} height={'100px'}/>
-                <h2>Interna</h2> */}
-                <img src="/assets/logohead.svg" />
+                {/* <img src="/assets/logohead.svg" /> */}
+                <Image src="/fav.ico" width={'70px'} height={'70px'}/>
+                <h2 className={styles.h2}>Interna</h2>
             </span>
 
             <span className={styles.headerCta}>
@@ -173,135 +183,26 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist, isMobile }) => {
                         Join the community of <span className="secondary">forward thinking students</span> taking
                         a <span className="secondary">bold</span> step towards their career growth
                     </h5>
-
-                    <Button onClick={() => setModal(true)}>
-                        Join the waitlist
-                    </Button>
+                    {
+                        isWaitlist ? (
+                        <Button onClick={() => setModal(true)}>
+                            Join the waitlist
+                        </Button>
+                        ) : (
+                        <Button onClick={() => router.push('/signup')}>
+                            Join the community
+                        </Button>
+                        )
+                    }
                 </div>
-            </section>
-
-            
+            </section> 
         </main>
         <Footer/>
-
-        <Modal isOpen={modalOpen} closeModal={() => setModal(!modalOpen)}>
-        {
-            !hasSubmittedForm ?
-            (<React.Fragment>
-                <Form setHasSubmitted={setHasSubmitted} /> 
-            </React.Fragment> )
-
-            : hasSubmittedForm && submitCount >= 1 ? 
-            (<React.Fragment>
-                <div className={styles.formHeader}>
-                    <h2>
-                        You are <span className={styles.important}>already</span> in!
-                    </h2>
-                </div>
-
-                <div className={styles.gifHolder}>
-                    <Image src="/assets/sassy.gif" layout="fill" alt="minions excited"/>
-                </div>
-                
-                <h4>We know you are exicited, we are too!</h4>
-                <p>
-                    You will definetely be the first to get an email
-                    from us when we first launch!! 🚀
-                </p>
-
-                <button className={styles.dismissButton} onClick={() =>{
-                    setModal(false)
-                }}>
-                Dismiss
-            </button>
-
-            </React.Fragment>
-            )
-
-            :(
-                <React.Fragment>
-                    <div className={styles.formHeader}>
-                        <h2>
-                            You are <span className={styles.important}>in!</span> 
-                        </h2>
-                    </div>
-    
-                    <div className={styles.gifHolder}>
-                        <Image src="/minions.gif" layout="fill" alt="minions excited"/>
-                    </div>
-    
-                    <p>
-                        You will definetely be the first to get an email
-                        from us when we first launch!! 🚀
-                    </p>
-
-                    <button className={styles.dismissButton} onClick={() =>{
-                        setModal(false)
-                        setSubmitCount(submitCount+1)
-                    }}>
-                        Dismiss
-                    </button>
-                </React.Fragment>) 
-        }  
-        </Modal>
-
-
-
     </div>
     )
 }
 
-type FormProps = {
-    setHasSubmitted: Dispatch<React.SetStateAction<boolean>>
-}
 
-const Form: React.FC<FormProps> = ({ setHasSubmitted }) => {
-    const { getValues, setValue, handleSubmit } = useForm({
-        defaultValues: {
-            name: '',
-            email: ''
-        }
-    });
-
-    function submitForm(){
-        console.log(getValues())
-        setHasSubmitted(true)
-    }
-
-    return(
-        <form className={styles.waitlistForm} onSubmit={handleSubmit(submitForm)}>
-            <div className={styles.formHeading}>
-                <h2>
-                    Join our <span className={styles.important}>waitlist!</span>
-                </h2>
-                <p>
-                    By joining you are one of the very first people to try our 
-                    product when it launches!
-                </p>
-            </div>
-            
-            <Input 
-                onChange={(e:any) => setValue("name", e.target.value)}
-                labelName="Enter your full name"
-                name="name" 
-                placeholder="eg. John Doe" 
-                inputClassName={styles.waitlistInput}
-            />
-
-            <Input 
-                onChange={(e:any) => setValue("email", e.target.value)}
-                labelName="Enter your email address"
-                name="email" 
-                placeholder="eg. example@abc.com"
-                inputClassName={styles.waitlistInput}
-            />
-
-            <button className={styles.waitlistButton} type="submit">
-                Join!
-            </button>
-        </form>
-    )
-}
 
 
 

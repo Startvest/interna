@@ -19,7 +19,7 @@ export const RefreshIcon: React.FC<RefreshIconProps> = ({setToast}) => {
      }
      return (
           <div className={styles.container} onClick={() => handleRefresh()}>
-             <IoArrowUpOutline size={20}/>  <span className={styles.text}>Latest tweets</span>
+             <IoArrowUpOutline size={20} className={styles.icon}/>  <span className={styles.text}>Latest posts</span>
           </div>
      ) 
 } 

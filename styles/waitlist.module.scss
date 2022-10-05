@@ -330,10 +330,9 @@ section.landingPageWelcome{
     }
 }
 .waitlistForm {
-    
     display: flex;
     flex-direction: column;
-    margin-bottom: 25px;
+    margin: 1rem 0;
 
     .formHeading {
         text-align: center;
@@ -343,23 +342,70 @@ section.landingPageWelcome{
 
         p { font-size: 14px; }
     }
+
+    h2{
+        font-weight: 700;
+        font-size: 25px;
+        color: var(--primary);
+    }
+
+    .customInputGroup{
+        font-size: 19px;
+        text-align: left;
+        margin: 0.5rem 0;
+
+        .inputLabel{
+            text-transform: capitalize;
+            font-weight: 600;
+            font-family: 'Montserrat', Verdana, Geneva, Tahoma, sans-serif , 'sans-serif';
+            text-align: left;
+            color: var(--primary);
+        }
+
+        .inputCont {
+            width: 90%;
+            padding: 0 8px;
+            height: 41px;
+            margin: 8px 0;
+            border-radius: 20px;
+            border: 0 !important;
+            background-color: #d3e2ed77;
+            text-align: left;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            select{
+                background: none;
+                border: 0;
+                font-size: 16px;
+                color: var(--primary);
+            }
+            span{
+                color: var(--primary);
+                font-size: 16px;
+                font-weight: 600;
+            }
+            input{
+                color: var(--primary);
+                background: none;
+                border: 0;
+                font-size: 16px;
+            }
+        }
+    }
 }
-
 .waitlistInput {
-    border-radius: 20px;
-    border: 0;
+    border-radius: 20px !important;
+    border: 0 !important;
     background-color: #d3e2ed77;
-
-        
+  
     &::placeholder {
         color: var(--primary);
     }
 }
-
-
-
-
-
 .waitlistButton {
     color: white;
     width: 50%;
@@ -367,6 +413,7 @@ section.landingPageWelcome{
     margin: 20px auto;
     background-color: var(--primary);
     font-family: 'Montserrat', Verdana, Geneva, Tahoma, sans-serif , 'sans-serif';
+    cursor: pointer;
 }
 
 .dismissButton {
@@ -376,6 +423,7 @@ section.landingPageWelcome{
     margin: 20px auto;
     background-color: var(--primary);
     font-family: 'Montserrat', Verdana, Geneva, Tahoma, sans-serif , 'sans-serif';
+    cursor: pointer;
 }
 
 .gifHolder {
@@ -389,12 +437,18 @@ section.landingPageWelcome{
     }
 }
 
-
 .important {
     color: var(--secondary);
 }
 //Dark Mode Styles
 [data-theme='dark'] {
+    .landingPageHeader {    
+        .headerLogo{
+            h2{
+                color: white; 
+            }
+        }
+    }
     .waitlistPage {
         background-color: var(--background);
     }

@@ -7,6 +7,7 @@ import Script from 'next/script'
 import {LoadingScreen} from '../components/loadScreen';
 import showNotification from '../public/client';
 import { useRouter } from 'next/router';
+import {ThemeIcon} from '../components/ThemeIcon';
 
 type HomeProps = {
   isMobile: boolean,
@@ -27,7 +28,8 @@ const Home: React.FC<HomeProps> = ({isMobile}) => {
 
   return (
     <div>
-      <Header />
+      {/* <Header pageName='Login to interna' head/>
+      <ThemeIcon/> */}
       {loading && <LoadingScreen/>}
       {!loading && 
       // TODO: Fortune import the waitlist component here 
