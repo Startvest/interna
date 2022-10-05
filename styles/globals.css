@@ -9,6 +9,7 @@
 
   --background: #ffffff;
   --foreground: #21295c;
+  --altDark:   #1E1E1E;
 }
 
 [data-theme='dark'] {
@@ -27,6 +28,54 @@ body {
   font-family: 'Work Sans';
 }
 
-* {
-  box-sizing: border-box;
+.secondary {
+  color: var(--secondary);
+}
+
+h3, p { margin: 0; }
+
+
+button {
+  border: 0;
+  border-radius: 10px;
+}
+
+/* Styling to change the appearance of the scroll bars */
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 5px;
+}
+/* the track (progress bar) NOT covered by the handle. */
+::-webkit-scrollbar-track-piece{
+  background: transparent;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  /* background: var(--contrast); */
+  cursor: pointer;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

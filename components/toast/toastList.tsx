@@ -1,5 +1,5 @@
 export interface Itoast {
-  title: string;
+  title?: string;
   message: string;
   type: 'success' | 'error' | 'warning' | 'info' | 'primary';
 }

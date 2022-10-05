@@ -3,9 +3,10 @@ import { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css';
 import { Toast, Itoast } from '../components/toast';
 import { useTheme } from 'next-themes';
-import { Header } from '../components/header';
+import { AppHeader } from '../components/header';
 import { getdata } from '../services/getTestData';
 import { useMutation } from 'react-query';
+import {NavBar} from '../components/FloatingNavbar';
 
 const Help: NextPage = () => {
   const { resolvedTheme, setTheme } = useTheme();
@@ -21,11 +22,11 @@ const Help: NextPage = () => {
   const [data, setData] = useState<any>({});
 
   const dataMutation = useMutation(getdata, {
-    onSuccess: (data) => {
+    onSuccess: (data:any) => {
       setData(data);
       setMounted(true);
     },
-    onError: (error) => {
+    onError: (error:any) => {
       console.log(error);
       // Notification error component
     },
@@ -39,30 +40,26 @@ const Help: NextPage = () => {
   const handletoast = () => {
     setToast(true);
     setToastData({
-      title: 'Hello',
       message: 'Hello this is a test',
-      type: 'primary',
-    });
-
-    setTimeout(() => {
-      setToast(false);
-    }, 4000);
-  };
+      type: 'success',
+    })
+  }
 
   const handleTheme = () => {
     setTheme(resolvedTheme === 'light' ? 'dark' : 'light');
-  };
-  return (
+  }
+  return (<>
+    <AppHeader pageName={"Get help | Interna"}/>
     <div className={styles.main}>
-      <Header />
-      {toast && <Toast data={toastData} />}
+      {toast && <Toast data={toastData}  setToast={setToast} position='top-right'/>}
+      <NavBar/>
       <h2>Data from Server</h2>
-      <p>{dataMutation.isLoading && <div>Loading....</div>}</p>
-      <p>{dataMutation.isSuccess && data && (
-        <div>
+      {/* <div>{dataMutation.isLoading && <div>Loading....</div>}</div> */}
+      {/* <div>{dataMutation.isSuccess && data && (
+        <p>
           {data.name}, {data.desc}
-        </div> 
-      )}</p>
+        </p> 
+      )}</div> */}
 
       <button onClick={handletoast}>Toast</button>
 
@@ -72,6 +69,7 @@ const Help: NextPage = () => {
         </button>
       </p>
     </div>
+    </>
   );
 };
 

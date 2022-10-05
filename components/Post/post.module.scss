@@ -1,0 +1,233 @@
+$padding: 5px 10px;
+$light-shadow: #cacaca;
+$dark-shadow: #333333;
+$contrastLight: rgba(211, 226, 237, 0.4);
+$contrastDark: rgba(100, 100, 100, 0.5);
+$postDark: rgba(77, 77, 77, 0.2);
+
+.postActions {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: $padding;
+    margin-top: .5rem;
+
+    span {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        flex-direction: column;
+        cursor: pointer;
+        p{
+            margin: 0;
+            font-size: 11px;
+            font-weight: bold;
+        }
+    }
+}
+
+.largePost{
+    width: 40%;
+    margin: auto;
+}
+.post {
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px 4px rgba(0, 0, 0, 0.15);
+    margin: 2rem auto;
+    width: 40%;
+    cursor: pointer;
+
+    input{
+        background-color: $contrastLight;
+        border: none;
+        border-radius: 20px;
+        margin: 1rem .5rem;
+        outline: none;
+        font-size: 16px;
+        width: 90%;
+        padding: 0 .5rem;
+        height: 41px;
+        text-align: left;
+        color: var(--primary);
+
+        &::placeholder {
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 500;
+            padding: 0 .5rem;
+        }
+    }
+
+    .newPost{
+        display: flex;
+        justify-content:space-between;
+        align-items:center;
+        width: 100%;
+        gap: 10px;
+        padding-bottom: 1rem !important;
+        padding-left: 1rem;
+
+        .newPostIcon{
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        span{
+            background-color: $contrastLight;
+            border-radius: 5px;
+            padding: .2rem;
+            color: var(--primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .buttonContainer{
+            margin-right: 8%;
+            button{
+                background-color: var(--primary);
+                padding: .5rem 1rem;
+                color: white;
+                border-radius: 20px;
+                width: 100px;
+                cursor: pointer;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 16px;
+            }
+        }
+        
+    }
+    
+}
+
+.postContent {
+    padding: $padding;
+}
+.backIcon{
+    cursor: pointer;
+}
+.imageHolder {
+    width: 100%;
+    height: 11.25em;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+.largeimageHolder{
+    width: 100%;
+    height: auto;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+.userInfo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: $padding;
+    height: 4.375em;
+
+
+    div {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        h3{
+            font-size: 14px;
+            margin: 0;
+        }
+        p { 
+            margin: 0; 
+            font-size: 11px;
+            font-weight: bold;
+            color: var(--foreground);
+            font-weight: 400;
+        }
+    }
+
+    span {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--primary);
+    }
+}
+.icon{
+    color: var(--secondary);
+}
+
+.showMoreBtn {
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--primary);
+    font-size: 12px;
+}
+.noPost{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+[data-theme="light"] {
+    .postActions {
+        color: var(--primary);
+    }
+
+    .post {
+        box-shadow: 2px 1px 5px -1px $light-shadow;
+    }
+    
+}
+
+[data-theme="dark"] {
+    .post{
+        background-color: $postDark;
+        input{
+                background-color: $contrastDark;
+                color: white;
+        }
+    }
+    .userInfo{
+
+        span{
+            color: white;
+        }
+        
+    }
+
+    .newPost{
+        span{
+            background-color: $contrastDark;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        span:hover{
+            color: rgba(255, 255, 255, 0.8);
+        }
+    }
+
+    .showMoreBtn {
+        color: white;
+    }
+
+}
+
+@media only screen and (max-width: 1000px) and (min-width: 701px) {
+    .post, .largePost{
+         width: 60%;
+    }
+}
+@media only screen and (max-width: 700px) {
+    .post, .largePost{
+        width: 95%;
+    }
+}

@@ -1,0 +1,64 @@
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profileAvatar {
+    border: 3px solid var(--primary);
+}
+
+.save{
+    border-radius: 15px;
+    padding: 0 12px;
+}
+
+.userInfo {
+    @include flex-center;
+    flex-direction: column;
+    gap: 5px;
+    margin: 10px;
+
+    h1, p{ margin: 0; }
+}
+
+.toggleAction {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 19px;
+    margin-bottom: 5px;
+}
+
+.settingsPage {
+    @include flex-center;
+    flex-direction: column;
+    padding: 12px 9px 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.banner {
+    width: 100%;
+    background-color: var(--primary);
+    color: white;
+    height: 74px;
+    border-radius: 15px;
+    @include flex-center;
+    font-weight: bold;
+    gap: 15px;
+}
+
+.form {
+    width: 100%;
+}
+
+//[data-theme="dark"] {
+
+    /*
+    .toggleAction, p {
+        color: #D3E2ED;
+    }*/
+
+
+//}

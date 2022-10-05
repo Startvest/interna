@@ -23,6 +23,20 @@
      color: var(--contrast);
 }
 
+.footer{
+     position: absolute;
+     bottom: 24px;
+     font-weight: 600;
+     margin: auto;
+     font-size: 13px;
+     color: var(--primary)
+}
+[data-theme="dark"] .footer{
+     color: white;
+}
+.startvest{
+     margin-right: 2rem;
+}
 @keyframes bounce{
      0%{
           transform: translateY(-1.2rem);
