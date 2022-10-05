@@ -1,7 +1,7 @@
 .container{
      position: fixed;
      animation: icon-top-in 1s;
-     top: 20vh;
+     top: 15vh;
      left:0;
      right:0;
      margin-left: auto;
@@ -23,10 +23,12 @@
           margin-left: .5rem;
      }
 }
-
+.icon{
+     color: white;
+}
 .container:hover{
      cursor: pointer;
-     scale: 1.2;
+     scale: 1.1;
 }
 
 @keyframes icon-top-in {
