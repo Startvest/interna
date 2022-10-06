@@ -40,9 +40,19 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 1rem;
+        gap: 2rem;
+        .altButton{
+            background: none;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
         button{
             padding: .5em 1em;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+        button:hover{
+            transform: translateY(-.1rem);
         }
     }
 }
@@ -332,7 +342,7 @@ section.landingPageWelcome{
 .waitlistForm {
     display: flex;
     flex-direction: column;
-    margin: 1rem 0;
+   width: 90%;
 
     .formHeading {
         text-align: center;
@@ -352,7 +362,7 @@ section.landingPageWelcome{
     .customInputGroup{
         font-size: 19px;
         text-align: left;
-        margin: 0.5rem 0;
+        // margin: 0.5rem 1rem;
 
         .inputLabel{
             text-transform: capitalize;
@@ -376,6 +386,7 @@ section.landingPageWelcome{
             display: flex;
             align-items: center;
             gap: 1rem;
+            overflow: hidden;
 
             select{
                 background: none;
@@ -469,6 +480,17 @@ section.landingPageWelcome{
         }
     }
 
+    .headerCta {
+        .altButton{
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+        button{
+            background-color: #04de00b3;
+            color: white;
+        }
+    }
+
     .descriptionGroup {
 
         p { color: var(--primary); }
@@ -483,6 +505,9 @@ section.landingPageWelcome{
             height: auto;
         }
     }
+    .headerCta {
+        gap: 1rem !important;
+    }
     .designHolder{
         img{
             width: 60%;
@@ -496,6 +521,9 @@ section.landingPageWelcome{
         h3{
             font-size: 20px;
         }
+    }
+    .waitlistForm {
+       width: 95%;
     }
 }
 

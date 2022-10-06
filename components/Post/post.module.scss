@@ -24,6 +24,9 @@ $postDark: rgba(77, 77, 77, 0.2);
             font-weight: bold;
         }
     }
+    span:hover{
+        scale: 1.05;
+    }
 }
 
 .largePost{
@@ -97,8 +100,32 @@ $postDark: rgba(77, 77, 77, 0.2);
                 font-weight: 500;
                 font-size: 16px;
             }
+            button:hover{
+                scale: 1.05;
+            }
         }
         
+    }
+
+    .pickImg{
+        border-radius: 5px;
+        background-color: $contrastLight;
+        padding: .5rem;
+        margin: 0 0 5% 5%;
+        width: min-content;
+        position: relative;
+        img{
+            width: 100px;
+            height: 70px;
+        }
+        .closeIcon{
+            color: red;
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin-top: -10px;
+            margin-right: -10px;
+        }
     }
     
 }
@@ -188,7 +215,9 @@ $postDark: rgba(77, 77, 77, 0.2);
     }
     
 }
-
+.hidden{
+    display: none;
+}
 [data-theme="dark"] {
     .post{
         background-color: $postDark;

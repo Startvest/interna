@@ -47,9 +47,23 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist, isMobile }) => {
             </span>
 
             <span className={styles.headerCta}>
-                <Button onClick={() => setModal(true)}>
-                    Join our waitlist
-                </Button>
+                    {
+                        isWaitlist ? (
+                        <Button onClick={() => setModal(true)}>
+                            Join the waitlist
+                        </Button>
+                        ) : (
+                        <>
+                        <Button className={styles.altButton} onClick={() => router.push('/login')}>
+                            Login
+                        </Button>
+                        <Button onClick={() => router.push('/signup')}>
+                            Signup
+                        </Button>
+                        </>
+                        
+                        )
+                    }
                 <ThemeIcon size={30} absolute={false}/>
             </span>
            

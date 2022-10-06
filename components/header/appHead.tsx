@@ -3,6 +3,7 @@ import Image from "next/image";
 import styles from './header.module.css';
 import {useState, useEffect} from 'react';
 import { useTheme } from 'next-themes';
+import {useRouter} from 'next/router';
 import {
   IoSunnyOutline,
   IoMoonOutline
@@ -11,6 +12,7 @@ import {
 export function AppHeader({pageName}:{ pageName? : string}) {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const router = useRouter();
 
   const handleTheme = () => {
        setTheme(resolvedTheme === 'light' ? 'dark' : 'light');
@@ -34,12 +36,12 @@ export function AppHeader({pageName}:{ pageName? : string}) {
     </Head>
 
     <header className={styles.headContainer}>
-      <img className={styles['icon-user']} src="/assets/images/user2.png" />
-      <img className={styles['icon-logo']} src="/icons/icon-256x256.png" />
+      <img onClick={() => router.push("/profile")} className={styles['icon-user']} src="/assets/images/user2.svg" />
+      <img onClick={() => router.push("/")} className={styles['icon-logo']} src="/icons/icon-256x256.png" />
       {(resolvedTheme === 'light') ? 
-               <IoMoonOutline size={35} className={styles.icon} onClick={handleTheme}/>
+          <IoMoonOutline size={35} className={styles.icon} onClick={handleTheme}/>
           :
-               <IoSunnyOutline size={35} className={styles.icon} onClick={handleTheme}/>
+          <IoSunnyOutline size={35} className={styles.icon} onClick={handleTheme}/>
           }
     </header>
     </>

@@ -15,8 +15,9 @@ import DisplayDate from '../../components/DisplayDate';
 import styles from '../../components/Post/post.module.scss';
 import { Toolbar } from '../../components/Toolbar';
 import { post } from '../../services/enums/post';
-import { IPost } from '../../services/enums/types';
+import { IComment, IPost } from '../../services/enums/types';
 import { ShareModal } from '../../components/Modal/ShareModal';
+import { AppHeader } from '../../components/header';
 
 type PostProps = {
      isMobile: boolean,
@@ -24,9 +25,10 @@ type PostProps = {
 export const PostDetail: React.FC<PostProps> = ({isMobile}) => {
   const { id } = useRouter().query;
   const [currentPost, setPost] = useState<IPost>();
-  const [liked, setLiked] = useState(false);
+  const [liked, setLiked] = useState(currentPost?.likes.includes("12d999hj"));
   const router = useRouter();
   const [shareModal, setShareModal] = useState(false);
+  const [noLikes, setNoLikes] = useState(currentPost?.likes.length || 0);
   let heartIcon = liked ? <IoHeart size={25} /> : <IoHeartOutline size={25} />;
 
   const sharePost = () => {
@@ -47,8 +49,26 @@ export const PostDetail: React.FC<PostProps> = ({isMobile}) => {
     setPost(curr);
   }, []);
 
+  const handleLike = () =>{
+    setLiked(!liked);
+    (liked) ? setNoLikes(noLikes-1) : setNoLikes(noLikes+1);
+  }
+
+  const addComment = (data: IComment) =>{
+    console.log(data);
+    if(currentPost){
+      const post = currentPost; 
+      post.comments = [...post.comments, data];
+      setPost(post);
+    }
+  }
+
+  const likeComment = (id:string) =>{
+    console.log(`Comment ${id} liked`)
+  }
   return (
     <>
+    <AppHeader pageName={'Feed | Interna'} />
     {currentPost && shareModal && <ShareModal isOpen={shareModal} closeModal={() => setShareModal(!shareModal)} postId={currentPost._id}/>}
     {!currentPost && (
      <div className={styles.noPost}>
@@ -81,9 +101,9 @@ export const PostDetail: React.FC<PostProps> = ({isMobile}) => {
           </div>
 
           <div className={styles.postActions}>
-            <span onClick={() => setLiked(!liked)}>
+            <span onClick={() => handleLike()}>
               {heartIcon}
-              <p>{currentPost.likes.length}</p>
+              <p>{noLikes}</p>
             </span>
             <span>
               <IoChatboxOutline size={25} />
@@ -100,7 +120,9 @@ export const PostDetail: React.FC<PostProps> = ({isMobile}) => {
           </div>
           <div className={styles.comments}>
             <span>Comments</span>
-            <CommentList comments={currentPost.comments} />
+            <CommentList 
+            comments={currentPost.comments} 
+            likeComment={likeComment} />
           </div>
         </div>
       )}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Modal } from '../Modal';
-import styles from './login.module.css';
+import styles from './login.module.scss';
 import {useRouter} from 'next/router';
 
 export const CodeModal = ({ handleModal }: { handleModal: any }) => {

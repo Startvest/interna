@@ -1,13 +1,14 @@
 import {useRef, useState} from 'react';
 import type { NextPage } from 'next';
 import { Header } from '../components/header';
-import styles from '../components/LoginForm/login.module.css';
+import styles from '../components/LoginForm/login.module.scss';
 import {Input} from '../components/Input';
 import {ThemeIcon} from '../components/ThemeIcon';
-
+import { useRouter } from 'next/router';
 const CompleteSignup : NextPage = () => {
      const imageInputRef = useRef<HTMLInputElement>(null);
      const [image, setImage] = useState<string>('/assets/illustrations/avatar.png');
+     const router = useRouter();
      return(
          <div className={styles.container}>
              <Header pageName='Login to interna' head/>
@@ -99,7 +100,7 @@ const CompleteSignup : NextPage = () => {
                labelName={'How do you plan on using interna?'}
                />
 
-               <button className={styles.btnPrimary} >Submit</button>
+               <button className={styles.btnPrimary} onClick={(e) => {e.preventDefault(); router.push('/feed')}}>Submit</button>
              </form>         
          </div>
      )
