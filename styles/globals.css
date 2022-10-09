@@ -79,3 +79,13 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+//For the pages visible on the tab bar
+.page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 12px 9px 0;
+  font-family: 'Montserrat', sans-serif;
+}
