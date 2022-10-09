@@ -1,0 +1,41 @@
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    width: 30%;
+}
+
+.searchPage {
+    @include flex-center;
+    flex-direction: column;
+    padding: 12px 9px 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.filterBox{
+    background-color: var(--contrast);
+    color: var(--primary);
+    border-radius: 5px;
+    height: 110px;
+}
+
+.buttonHolder {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+}
+
+@media only screen and (max-width: 1000px) and (min-width: 701px) {
+    .container{
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .container{
+        width: calc(100% - 50px);
+    }
+}
