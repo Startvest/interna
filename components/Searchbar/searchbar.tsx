@@ -23,14 +23,16 @@ export const Searchbar: React.FC<SearchbarProps> = ({ value, onChange, placehold
     
     return(
         <div className={styles.searchbar}>
-            <span className={styles.iconAndText}>
-                <MdSearch size={25}/>
-                <input ref={inputRef} value={value} className={`${className}`} type="text" placeholder={placeholder}/>
-            </span>
-            
-            <span className={styles.cancelBtn}>
-                <IoCloseSharp size={25}/>
-            </span>
+            <div>
+                <span className={styles.iconAndText}>
+                    <MdSearch size={25}/>
+                    <input ref={inputRef} value={value} className={`${className}`} type="text" placeholder={placeholder}/>
+                </span>
+                
+                <span className={styles.cancelBtn}>
+                    <IoCloseSharp size={25}/>
+                </span>
+            </div>
         </div>
     )
 }
