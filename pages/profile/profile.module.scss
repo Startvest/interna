@@ -4,7 +4,7 @@
 }
 
 .profileContainer{
-    width: 30%;
+    width: 40%;
     margin: auto;
 }
 .profileIntro {
@@ -46,6 +46,7 @@
     padding: 0 10px;
     height: 55px;
     gap: 15px;
+    color: var(--primary);
 }
 
 
@@ -53,6 +54,10 @@
     @include flex-center;
     gap: 0.625em;
     margin-top: 5px;
+    color: var(--primary);
+    font-family: 'Montserrat';
+    font-weight: 400;
+    font-size: 14px;
 
     span{
         @include flex-center;
@@ -70,9 +75,17 @@
         font-size: 13px;
     }
 }
-
-.profile, .userPosts {
+.light{
+    p{
+        color: rgba(33, 41, 92, 0.8);
+    }
+    
+}
+.userPosts {
     padding: 0 10px;
+}
+.profile, .avatar{
+    padding: 0 1rem;
 }
 
 .profileNames {
@@ -80,6 +93,7 @@
     flex-direction: column;
     gap: 1px;
     margin: 5px 0 10px 0;
+    color: var(--primary);
 
     h3 {
         font-weight: bold;
@@ -94,15 +108,32 @@
 
 .connectBtn {
     border-radius: 15px;
-    width: 75px;
+    // width: 75px;
     cursor: pointer;
     font-weight: bold;
+    padding: auto 2rem !important;
+}
+.connectedBtn {
+    border-radius: 15px;
+    background-color: var(--secondary) !important;
+    cursor: pointer;
+    font-weight: bold;
+    padding: auto 2rem !important;
 }
 
 [data-theme="dark"]{
+    .profileNames, .detailsRow ,.actions {
+        color: white;
+    }
     .connectBtn{
-        background-color: var(--secondary);
+        // background-color: var(--secondary);
         color: rgba(255, 255, 255, 0.9)
+    }
+    .light{
+        p{
+            color: rgba(255, 255, 255, 0.6)
+        }
+        
     }
 }
 

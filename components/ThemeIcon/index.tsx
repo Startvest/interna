@@ -6,7 +6,7 @@ import {
 } from 'react-icons/io5';
 import styles from './themeIcon.module.css';
 
-export function ThemeIcon(){
+export function ThemeIcon({absolute = true, size=40}:{absolute?:boolean, size?:number}){
      const { resolvedTheme, setTheme } = useTheme();
      const [mounted, setMounted] = useState(false);
 
@@ -22,9 +22,9 @@ export function ThemeIcon(){
      return(
           <>
           {(resolvedTheme === 'light') ? 
-               <IoMoonOutline size={40} className={styles.icon} onClick={handleTheme}/>
+               <IoMoonOutline size={size} className={`${styles.icon} ${(absolute) ? styles.abs: ''}`} onClick={handleTheme}/>
           :
-               <IoSunnyOutline size={40} className={styles.icon} onClick={handleTheme}/>
+               <IoSunnyOutline size={size} className={`${styles.icon} ${(absolute) ? styles.abs: ''}`} onClick={handleTheme}/>
           }
           </>
      )

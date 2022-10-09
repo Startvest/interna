@@ -39,11 +39,11 @@ export const post = [
           createdAt: "Mon Sep 11 2022 07:34:34 GMT+0100 (West Africa Standard Time)",
           comments:[
                {
-                    _id: "com4676",
+                    _id: "testId5564",
                     author: { 
                          id: "456ydhh999j",
-                         name: "John Taiwo",
-                         position: "Intern at Google",
+                         name: "Bella Taiwo",
+                         position: "Student at Nile University",
                          image: "/assets/images/user.png"
                     },
                     content: "You are doing a great job!",
@@ -51,15 +51,15 @@ export const post = [
                     likes : []
                },
                {
-                    _id: "com4676",
+                    _id: "testId4676",
                     author: { 
                          id: "456ydhh999j",
-                         name: "John Taiwo",
+                         name: "Bella See",
                          position: "Intern at Google",
                          image: "/assets/images/user.png"
                     },
-                    content: "You are doing a great job!",
-                    createdAt: "Mon Sep 11 2022 07:34:34 GMT+0100 (West Africa Standard Time)",
+                    content: "A new comment!",
+                    createdAt: "Mon Sep 12 2022 07:34:34 GMT+0100 (West Africa Standard Time)",
                     likes : [],
                },
           ],
@@ -83,7 +83,7 @@ export const post = [
                          id: "456ydhh999j",
                          name: "John Taiwo",
                          position: "Intern at Google",
-                         image: "/assets/images/user2.png"
+                         image: "/assets/images/user2.svg"
                     },
                     content: "You are doing a great job!",
                     createdAt: "Mon Sep 11 2022 07:34:34 GMT+0100 (West Africa Standard Time)",
@@ -95,7 +95,7 @@ export const post = [
                          id: "456ydhh999j",
                          name: "John Taiwo",
                          position: "Intern at Google",
-                         image: "/assets/images/user2.png"
+                         image: "/assets/images/user2.svg"
                     },
                     content: "You are doing a great job!",
                     createdAt: "Mon Sep 11 2022 07:34:34 GMT+0100 (West Africa Standard Time)",
@@ -134,7 +134,7 @@ export const post = [
                          id: "456ydhh999j",
                          name: "John Taiwo",
                          position: "Intern at Google",
-                         image: "/assets/images/user2.png"
+                         image: "/assets/images/user2.svg"
                     },
                     content: "You are doing a great job!",
                     createdAt: "Mon Sep 11 2022 07:34:34 GMT+0100 (West Africa Standard Time)",

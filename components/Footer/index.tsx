@@ -9,8 +9,8 @@ const Footer:React.FC = () => {
         <div className={styles.footerContent}>
             <div>
                 <h4>
-                    Interna is a community socail platfom that connects 
-                    interns with sudents with students looking for internship placements.
+                    Interna is a community social platfom that connects 
+                    interns with students looking for internship placements.
                 </h4>
 
                 <ul className={styles.footerLinks}>

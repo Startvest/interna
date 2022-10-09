@@ -15,7 +15,7 @@ export const profiles = [
           _id: "12d999hj",
           name: "John Taiwo",
           position: "Flutterwave",
-          imageUrl: "/assets/images/user2.png",
+          imageUrl: "/assets/images/user2.svg",
      }
 
 ] as const;

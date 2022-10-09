@@ -10,29 +10,129 @@
     position: relative;
     width: 100%;
 
+    .headerLogo{
+        display: flex;
+        justify-content:center;
+        align-items: center;
+        margin: 0;
+
+        h2{
+            color: var(--primary);
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: bolder;
+            font-size: 20px;
+            text-align: center;
+        }
+        img{ 
+            height: 5rem;
+            width: auto;
+        }
+    }
+    
+
     span {
         display: inherit;
     }
 
 
     .headerCta {
-        width: 120px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        .altButton{
+            background: none;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        button{
+            padding: .5em 1em;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+        button:hover{
+            transform: translateY(-.1rem);
+        }
     }
 }
 
-.illustrationHolder {
+.introContainer{
     display: flex;
-    justify-content: center;
+    height: 100%;
+    justify-content: space-between;
+    margin: 2rem auto;
+    align-items: center;
+
+    .illustrationHolder {
+       width: 50%;
+        img{
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    .introduction{
+        width: 50%;
+        height: 100%;
+        background-image: url('/assets/grid.png');
+        padding: 20px 10px;
+    
+        h1 {
+            color: var(--primary);
+            font-family: 'Mont Blanc-Trial';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 60px;
+        }
+
+        p{ 
+            font-size: 24px;
+        }
+
+        button{
+            font-size: 20px;
+            margin-top: 2em;
+            padding: 1.5rem 2rem;
+        }
+    }
+
 }
 
-.introduction{
-    background-image: url('/assets/grid.png');
-    padding: 20px 10px;
+// For mobile
+.mobileIntroContainer{
+    height: max-content;
+    width: 100%;
+    margin: 2rem auto;
+    align-items: center;
 
-    h1 {
-        color: var(--primary);
-        font-weight: bold;
-    }
+    .illustrationHolder {
+        width: 90%;
+        margin: auto;
+         img{
+             width: 100%;
+             height: auto;
+         }
+     }
+ 
+     .introduction{
+         background-image: url('/assets/grid.png');
+         padding: 20px 10px;
+     
+         h1 {
+             color: var(--primary);
+             font-family: 'Mont Blanc-Trial';
+             font-style: normal;
+             font-weight: 700;
+             font-size: 32px;
+         }
+ 
+         button{
+             margin-top: 2em;
+             padding: .5em 1em;
+             font-size: 20px;
+         }
+     }
 }
 
 .internaDetails{
@@ -57,81 +157,192 @@
 section.landingPageWelcome{
     background-color: var(--primary);
     padding: 2rem 10px;
+    min-height: 10rem;
 
     .descriptionGroup {
         display: flex;
         flex-direction: column;
         gap: 15px;
-        font-family: 'Montserrat', Verdana, Geneva, Tahoma, sans-serif , 'sans-serif';
+        font-size: 20px;
         h4, p { 
             color: #fff !important;
             margin: 0;
         }
-    }
-
-}
-
-.connectWithOthers {
-    background: var(--secondary);
-    text-align: right;
-    padding-right: 2rem;
-    padding-top: 30px;
-
-    h3 { 
-        margin: 0; 
-        font-size: 30px;
-        text-align: right;
-
-        &:first-of-type {
-            padding-right: 3rem;
+        h4{
+            font-size: 20px;
+        }
+        p{
+            font-size: 16px;
+        }
+        button{
+            background-color: white;
+            color: var(--primary);
+            width: max-content;
+            font-weight: 700;
+            font-size: 20px;
+            text-align: center;        
+            padding: .5em 2em;
         }
     }
 
 }
-
-.shareExperiences {
-    padding-left: 2rem;
-    padding-top: 30px;
-    text-align: left;
-    background: var(--primary);
-    h3 { 
-        margin: 0; 
-        font-size: 30px;
-        text-align: left;
-
-        &:first-of-type {
-            padding-right: 3rem;
-        }
-    }
-
-
+.deskUsp{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    margin: 8rem auto;
+    width: 95%;
 }
+.mobileUsp{
+    display: block;
+    margin: 4rem auto;
+    width: 90%;
 
+    .box{
+        width: 90%;
+        margin: 4rem auto;
+    }
+}
+.box{
+    width: 40%;
+    background-color: var(--primary);
+    border-radius: 10px;
+    color: white;
+    padding: 1rem;
+    box-shadow: 4px 4px 7px 5px rgba(0, 0, 0, 0.17);
 
-.points {
-    display: grid;
-    grid-template-columns: 10% 90%;
-    gap: 5px;
-
-    span {
-        background-color: var(--primary);
-        color: var(--secondary);
-        border-radius: 50%;
-        width: 25px;
-        height: 25px;
-        margin: auto 0;
+    .iconCont{
+        background-color: rgba(211, 226, 237, 0.2);
+        padding: .7rem;
         display: flex;
         align-items: center;
         justify-content: center;
-    }
+        width: max-content;
+        border-radius: 5px;
 
+        img{
+            height:30px;
+            width:30px;
+        }
+        p{ 
+            font-weight: 400;
+            font-size: 13px;
+        }
+        h2{
+            font-weight: 600;
+            font-size: 20px;
+        }
+    }
 }
 
+
+.designHolder{
+    width: 90%;
+    background-color: var(--primary);
+    margin: 4rem auto;
+    border-radius: 10px;
+    padding: 0 !important;
+    box-shadow: 4px 4px 7px 5px rgba(0, 0, 0, 0.17);
+
+    img{
+        margin: 4rem 0 -4px 4rem;
+        width: 30%;
+        height: auto;
+    }
+}
+.firstHolder{
+    background-color: var(--secondary);
+    text-align: right;
+
+    img{
+        margin: 4rem 4rem -4px 0;
+    }
+}
+
+.ourSponsors {
+    text-align: center;
+    margin: 8rem auto;
+    h3{
+        font-family: 'Montserrat';
+        color: var(--primary);
+        font-weight: 600;
+        font-size: 25px;
+        margin: 2rem auto;
+    }
+    h5 {
+        padding: 0 10px;
+    }
+
+    button{
+        margin-bottom: 20px;
+    }
+}
+.carouselHolder {
+    overflow: hidden;
+}
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding-left: 25%;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;
+    // animation: slide 15s linear infinite;
+
+    .carouselSlide {
+        width: 200px;
+        flex-shrink: 0;
+        height: auto;
+        margin-right: 20%;
+    }
+}
+.carousel::-webkit-scrollbar {
+    display: none;
+}
+
+@keyframes slide {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(-100%, 0, 0); /* The image width */
+    }
+  }
+
+.getStarted{
+    width: 90%;
+    margin: 4rem auto;
+    text-align: center;
+    background: var(--primary) url('/assets/wavyBbg.svg') no-repeat scroll center;
+    background-size: 100%;
+    color: white;
+    padding: 1rem 0;
+    border-radius: 15px;
+
+    h3{
+        color: white;
+        font-weight: 600;
+        font-size: 25px;
+    }
+    h5{
+        font-weight: 500;
+        font-size: 16px;
+    }
+    button{
+        margin: 0 auto;
+        background-color: white;
+        color: var(--primary);
+        font-weight: 600;
+        font-size: 16px;
+        padding: 0.5rem 1rem;
+    }
+}
 .waitlistForm {
-    
     display: flex;
     flex-direction: column;
-    margin-bottom: 25px;
+   width: 90%;
 
     .formHeading {
         text-align: center;
@@ -141,23 +352,71 @@ section.landingPageWelcome{
 
         p { font-size: 14px; }
     }
+
+    h2{
+        font-weight: 700;
+        font-size: 25px;
+        color: var(--primary);
+    }
+
+    .customInputGroup{
+        font-size: 19px;
+        text-align: left;
+        // margin: 0.5rem 1rem;
+
+        .inputLabel{
+            text-transform: capitalize;
+            font-weight: 600;
+            font-family: 'Montserrat', Verdana, Geneva, Tahoma, sans-serif , 'sans-serif';
+            text-align: left;
+            color: var(--primary);
+        }
+
+        .inputCont {
+            width: 90%;
+            padding: 0 8px;
+            height: 41px;
+            margin: 8px 0;
+            border-radius: 20px;
+            border: 0 !important;
+            background-color: #d3e2ed77;
+            text-align: left;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            overflow: hidden;
+
+            select{
+                background: none;
+                border: 0;
+                font-size: 16px;
+                color: var(--primary);
+            }
+            span{
+                color: var(--primary);
+                font-size: 16px;
+                font-weight: 600;
+            }
+            input{
+                color: var(--primary);
+                background: none;
+                border: 0;
+                font-size: 16px;
+            }
+        }
+    }
 }
-
 .waitlistInput {
-    border-radius: 20px;
-    border: 0;
+    border-radius: 20px !important;
+    border: 0 !important;
     background-color: #d3e2ed77;
-
-        
+  
     &::placeholder {
         color: var(--primary);
     }
 }
-
-
-
-
-
 .waitlistButton {
     color: white;
     width: 50%;
@@ -165,6 +424,7 @@ section.landingPageWelcome{
     margin: 20px auto;
     background-color: var(--primary);
     font-family: 'Montserrat', Verdana, Geneva, Tahoma, sans-serif , 'sans-serif';
+    cursor: pointer;
 }
 
 .dismissButton {
@@ -174,6 +434,7 @@ section.landingPageWelcome{
     margin: 20px auto;
     background-color: var(--primary);
     font-family: 'Montserrat', Verdana, Geneva, Tahoma, sans-serif , 'sans-serif';
+    cursor: pointer;
 }
 
 .gifHolder {
@@ -187,43 +448,18 @@ section.landingPageWelcome{
     }
 }
 
-
 .important {
     color: var(--secondary);
 }
-
-.ourSponsors {
-    text-align: center;
-
-    h5 {
-        padding: 0 10px;
-    }
-
-    button{
-        margin-bottom: 20px;
-    }
-}
-
-.carouselHolder {
-    overflow: hidden;
-}
-.carousel {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    padding-left: 25%;
-
-    .carouselSlide {
-        width: 200px;
-        flex-shrink: 0;
-        height: max-content;
-        margin-right: 15px;
-    }
-}
-
 //Dark Mode Styles
 [data-theme='dark'] {
+    .landingPageHeader {    
+        .headerLogo{
+            h2{
+                color: white; 
+            }
+        }
+    }
     .waitlistPage {
         background-color: var(--background);
     }
@@ -244,11 +480,52 @@ section.landingPageWelcome{
         }
     }
 
+    .headerCta {
+        .altButton{
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+        button{
+            background-color: #04de00b3;
+            color: white;
+        }
+    }
+
     .descriptionGroup {
 
         p { color: var(--primary); }
     }
 
 }
+
+@media only screen and (max-width: 600px) {
+    .illustrationHolder {    
+        img{
+            width: 80%;
+            height: auto;
+        }
+    }
+    .headerCta {
+        gap: 1rem !important;
+    }
+    .designHolder{
+        img{
+            width: 60%;
+            text-align: center;
+        }
+    }
+    .getStarted{
+        h5{
+            text-align: left;
+        }
+        h3{
+            font-size: 20px;
+        }
+    }
+    .waitlistForm {
+       width: 95%;
+    }
+}
+
 
 

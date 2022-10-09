@@ -8,6 +8,9 @@
     p { 
         text-align: center; 
         margin: 0;
+        margin-top: 1rem;
+        font-weight: 500;
+        font-size: 13px;
     }
     ul {
         padding: 0;
@@ -20,19 +23,33 @@
             &:first-of-type {
                 font-weight: bold;
             }
+            margin: .5rem 0;
         }
+        margin: 2rem 0;
     }
     .socials {
         display: flex;
-        gap: 12px;
+        gap: 2rem;
 
         *{
             font-size: 25px;
         }
+        li:hover{
+            cursor: pointer;
+            scale: 1.2;
+        }
     }
+    
 }
 
 .footerContent {
     display: flex;
     justify-content: space-between;
+
+    h4{
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+    }
 }
