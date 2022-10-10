@@ -9,7 +9,7 @@ import { RefreshIcon } from '../../components/RefreshIcon';
 interface FeedProps{
   isMobile: boolean;
 }
-const Feed: NextPage = ({isMobile}: FeedProps) => {
+const Feed = ({isMobile}: FeedProps) => {
   useEffect(() => {
     console.log(isMobile);
   }, []);

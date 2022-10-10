@@ -13,8 +13,8 @@ interface FeedProps{
   isMobile: boolean;
 }
 
-const Resume: NextPage = ({isMobile}: FeedProps) => {
-
+const Resume = ({isMobile}: FeedProps) => {
+  console.log(isMobile);
    const otherResumes = [
      '/assets/images/resume2.svg', '/assets/images/resume3.svg', '/assets/images/resume4.svg'
    ]
