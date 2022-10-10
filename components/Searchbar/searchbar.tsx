@@ -10,26 +10,30 @@ type SearchbarProps = {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   placeholder: string;
   className?: string;
+  onBlur?: React.FocusEventHandler<HTMLInputElement>;
+  onFocus?: React.FocusEventHandler<HTMLInputElement>;
 };
 
 
-export const Searchbar: React.FC<SearchbarProps> = ({ value, onChange, placeholder, className }) => {
-    const inputRef = useRef<HTMLInputElement>(null);
-    const isHidden = inputRef.current?.value === "" ? styles.hidden : "";; 
-    
-    useEffect(() => {
-        console.log('ok')
-    }, [inputRef.current?.value])
-    
+export const Searchbar: React.FC<SearchbarProps> = ({ onBlur, value, onChange, onFocus ,placeholder, className }) => {
+        
     return(
         <div className={styles.searchbar}>
             <div>
                 <span className={styles.iconAndText}>
                     <MdSearch size={25}/>
-                    <input ref={inputRef} value={value} className={`${className}`} type="text" placeholder={placeholder}/>
+                    <input 
+                        onBlur={onBlur}
+                        onChange={onChange}
+                        onFocus={onFocus} 
+                        value={value} 
+                        className={`${className}`} 
+                        type="text" 
+                        placeholder={placeholder}
+                    />
                 </span>
                 
-                <span className={styles.cancelBtn}>
+                <span onClick={() => onBlur} className={styles.cancelBtn}>
                     <IoCloseSharp size={25}/>
                 </span>
             </div>

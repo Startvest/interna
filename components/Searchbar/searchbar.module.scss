@@ -6,17 +6,21 @@
 .searchbar {
     background-color: #d3e2ed6d;
     color: rgba(33, 41, 92, 0.6);
-    width: 336px;
+    width: 30%;
+    margin: 0 auto;
     height: 41px;
     border-radius: 20px;
-    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     
     div {
-        padding: 0 20px;
         width: 100%;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: space-between;    
+        box-sizing: border-box;
+        padding: 0 8px;
     }
 
     .iconAndText {
@@ -39,5 +43,17 @@
     .searchbar {
         background-color: #333333;
         color: white;
+    }
+}
+
+@media only screen and (max-width: 1000px) and (min-width: 701px) {
+    .searchbar{
+        width: 60%;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .searchbar{
+        width: 95%;
     }
 }
