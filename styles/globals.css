@@ -90,6 +90,44 @@ input[type=number] {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 12px 9px 0;
+  padding: 0 10px;
   font-family: 'Montserrat', sans-serif;
 }
+
+.content {
+  font-family: 'Montserrat', sans-serif;
+  padding: 0 10px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.chip {
+  border-radius: 6px;
+  padding: 4px;
+  font-size: 13px;
+  margin: 10px;
+}
+
+.primary { 
+  background: var(--primary); 
+  color: white;
+}
+
+.contrast {
+  background: var(--contrast)
+}
+
+/* Utility Classes for simple styling solutions */
+.flex { display: flex; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-end { justify-content: flex-end; }
+.justify-start { justify-content: flex-start; }
