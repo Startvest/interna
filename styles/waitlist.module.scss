@@ -1,3 +1,4 @@
+$inputDark: #333333;
 .waitlistPage {
     height: 100vh;
     overflow-y: scroll;
@@ -350,7 +351,7 @@ section.landingPageWelcome{
             margin: 10px 0;
         }
 
-        p { font-size: 14px; }
+        p {font-weight: 500; font-size: 14px; color: var(--primary);}
     }
 
     h2{
@@ -370,6 +371,7 @@ section.landingPageWelcome{
             font-family: 'Montserrat', Verdana, Geneva, Tahoma, sans-serif , 'sans-serif';
             text-align: left;
             color: var(--primary);
+            font-size: 16px;
         }
 
         .inputCont {
@@ -385,7 +387,7 @@ section.landingPageWelcome{
             font-weight: 500;
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: .5rem;
             overflow: hidden;
 
             select{
@@ -393,7 +395,9 @@ section.landingPageWelcome{
                 border: 0;
                 font-size: 16px;
                 color: var(--primary);
+                outline: none !important;
             }
+
             span{
                 color: var(--primary);
                 font-size: 16px;
@@ -404,6 +408,7 @@ section.landingPageWelcome{
                 background: none;
                 border: 0;
                 font-size: 16px;
+                outline: none !important;
             }
         }
     }
@@ -412,7 +417,7 @@ section.landingPageWelcome{
     border-radius: 20px !important;
     border: 0 !important;
     background-color: #d3e2ed77;
-  
+    font-size: 16px !important;
     &::placeholder {
         color: var(--primary);
     }
@@ -463,12 +468,33 @@ section.landingPageWelcome{
     .waitlistPage {
         background-color: var(--background);
     }
-    .waitlistInput {
-       background-color: #333333;
+    .formHeading {
+        h2, p{ 
+            color: white;
+        }
+        
+    }
+    .inputLabel{
+        color: white !important;
+    }
+    .waitlistInput, .inputCont {
+       background-color: $inputDark !important;
 
        &::placeholder {
         color: white;
        }
+    }
+    .inputCont{
+        span, input{
+            color: white !important;
+        }
+        select{
+            color: white !important;
+        }
+        select option {
+        background: $inputDark;
+        } 
+        
     }
 
     .introduction {

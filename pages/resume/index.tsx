@@ -20,7 +20,7 @@ const Resume = ({isMobile}: FeedProps) => {
    ]
   return (
     <>
-      <AppHeader pageName={'Feed | Interna'} />
+      <AppHeader pageName={'Resume | Interna'} />
           <h2 className={styles.headText}>Top resume template for you</h2>
 
           {/* Top user resume */}
