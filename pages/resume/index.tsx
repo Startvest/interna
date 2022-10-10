@@ -29,11 +29,21 @@ const Resume = ({isMobile}: FeedProps) => {
                     <span><IoCreate size={20}/></span>
                     <img src="/assets/images/resume1.svg" alt="resume"/>
                </div>
-               <Button>Download <IoDownload size={15}/> </Button>
+               <Button><a href="/assets/images/resume1.svg" download="">Download</a> <IoDownload size={15}/> </Button>
           </section>  
 
-          <section>
-               
+
+          <section className={styles.smallresumes}>
+          <h2 className={styles.headText}>Other resume templates for you</h2>
+               <div>
+                {otherResumes.map((r,i)=> 
+                <div>
+                  <img key={i} src={r} alt={"resume"+i}/>
+                  <Button><a href={r} download="">Download</a> <IoDownload size={15}/> </Button>
+                </div>
+                
+                )}
+               </div>
           </section>        
       <NavBar />
     </>
