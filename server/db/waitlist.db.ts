@@ -32,7 +32,7 @@ waitlistDb.createWaitlistMember = async (data: {name: string, email: string, pos
         name: data.name,
         email: data.email,
         position: data.position,
-        created: Date(Date.now()).toString()
+        created: Date().toString()
       };
 
       let email_check = await client.db(db_name).collection("waitlist").findOne({email: member.email});
