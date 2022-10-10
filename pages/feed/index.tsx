@@ -6,10 +6,10 @@ import { NewPost, Post } from '../../components/Post';
 import { post } from '../../services/enums/post';
 import { RefreshIcon } from '../../components/RefreshIcon';
 
-type FeedProps = {
+interface FeedProps{
   isMobile: boolean;
 }
-const Feed: NextPage<FeedProps> = ({isMobile}) => {
+const Feed: NextPage = ({isMobile}: FeedProps) => {
   useEffect(() => {
     console.log(isMobile);
   }, []);

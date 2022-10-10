@@ -1,0 +1,86 @@
+$bglight: rgba(211, 226, 237, 0.7);
+$bgdark: rgba(77, 77, 77, 0.5);
+
+.headText{
+     text-align: center;
+     font-family: 'Montserrat';
+     font-style: normal;
+     font-weight: 600;
+     font-size: 16px;
+     color: var(--primary);
+     margin: 2rem;
+}
+
+.bigresume{
+     text-align: center;
+     position: relative;
+     margin-bottom: 5rem;
+     width: 40%;
+     margin: auto;
+     div{
+          background-color: $bglight;
+          padding: 1rem;
+          position: relative;
+          width: auto;
+          max-width: 90%;
+          img{
+               margin: auto;
+               height: auto;
+               width: 100%;
+               max-height: 90vh;  
+          }     
+          span{
+               position: absolute;
+               top: 0;
+               right: 0 !important;
+               margin-top: -15px;
+               margin-right: -15px;
+               cursor: pointer;
+               background-color: $bglight;
+               padding: 5px;
+               color: var(--primary);
+               border-radius: 5px;
+          }   
+          span:hover{
+               scale: 1.15;
+          } 
+     }
+     button{
+          margin: 2rem auto;
+          text-align: center;
+          padding: 0.5em 1em;
+          gap: 0.5em;
+          align-items: center;
+     }
+}
+
+[data-theme="dark"]{
+     .headText{
+          color: white;
+     }
+     .bigresume{
+
+          div{
+               background-color: $bgdark;
+               img{
+                    opacity: .8;
+               }
+               span{ 
+                    background-color: $bgdark;
+                    color: white;
+               }
+          }
+     }
+ }
+
+@media only screen and (max-width: 1000px) and (min-width: 701px) {
+     .bigresume{
+         width: 60%;
+     }
+ }
+ 
+ @media only screen and (max-width: 700px) {
+     .bigresume{
+         width: 90%;
+     }
+ }
