@@ -7,7 +7,7 @@
 }
 .headContainer{
      display: flex;
-     width: 30%;
+     width: 40%;
      justify-content: space-between;
      margin: 1rem auto;
      align-items: center;
@@ -25,7 +25,7 @@
      width: 50px;
      height: 50px;
      border-radius: 50%;
-    
+     cursor: pointer;
 }
 .icon{
      cursor: pointer;
@@ -38,6 +38,7 @@
      width: 50px;
      height: 50px;
      margin: 0;
+     cursor: pointer;
 }
 
 @media only screen and (max-width: 1000px) and (min-width: 701px) {

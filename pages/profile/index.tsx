@@ -9,6 +9,7 @@ import { post } from "../../services/enums/post";
 import { MdOutlineSchool, MdOutlineLocationOn, MdOutlineLink, MdArrowBack } from 'react-icons/md';
 import { Header } from '../../components/header';
 import { useRouter } from 'next/router'
+import {useState} from 'react';
 
 type ProfileProps = {
     isMobile: boolean,
@@ -18,6 +19,7 @@ const ProfilePage: React.FC<ProfileProps> = ({isMobile}) => {
     const profileHeaderStyle = {
         backgroundImage: `url('/assets/images/post.png')`,
     }
+    const [connected, setConnected] = useState(false);
     const router = useRouter()
     return(
     <main>
@@ -31,12 +33,12 @@ const ProfilePage: React.FC<ProfileProps> = ({isMobile}) => {
             </div>
             <div className={styles.actions}>
                 <IoMailOutline size={30}/>
-                <Button className={styles.connectBtn}>
-                    Connect
+                <Button className={`${(connected) ? styles.connectedBtn:styles.connectBtn}`} onClick={() => setConnected(!connected)}>
+                    {(connected) ? "Connected": "Connect"}
                 </Button>
             </div>
             <div className={styles.avatar}>
-                <Avatar src="/assets/images/user2.png"/>
+                <Avatar src="/assets/images/user2.svg"/>
             </div>
         </section>
         <section className={styles.profile}>
@@ -50,7 +52,7 @@ const ProfilePage: React.FC<ProfileProps> = ({isMobile}) => {
                     Aliquam nulla urna, gravida adipiscing odio.                
                 </p>
             </div>
-            <div className={styles.detailsRow}>
+            <div className={`${styles.detailsRow} ${styles.light}`}>
                 <span>
                     <BiBuildings/>
                     <p>Google</p>
@@ -60,7 +62,7 @@ const ProfilePage: React.FC<ProfileProps> = ({isMobile}) => {
                     <p>Nile University of Nigeria</p>
                 </span>
             </div>
-            <div className={styles.detailsRow}>
+            <div className={`${styles.detailsRow} ${styles.light}`}>
                 <span>
                     <MdOutlineLink/>
                     <a href='https://portfolio.com' className='secondary'>

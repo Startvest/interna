@@ -38,7 +38,7 @@ export const WaitlistForm: React.FC<FormProps> = ({ setHasSubmitted, hasSubmitte
                  </h2>
                  <p>
                      By joining you are one of the very first people to try our 
-                     product when it launches!
+                     product when we <span className='secondary'>lauch</span>!
                  </p>
              </div>
              
@@ -92,7 +92,7 @@ export const WaitlistForm: React.FC<FormProps> = ({ setHasSubmitted, hasSubmitte
 
             <p>
                 You will definetely be the first to get an email
-                from us when we first launch!! 🚀
+                from us when we first <span className='secondary'>launch</span>!! 🚀
             </p>
 
             <button className={styles.dismissButton} onClick={() =>{

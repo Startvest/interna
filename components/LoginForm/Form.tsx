@@ -2,7 +2,7 @@ import {useState} from 'react';
 import { useForm } from 'react-hook-form';
 import { Input } from '../Input';
 import { AltLogin } from './AltLogin';
-import styles from './login.module.css';
+import styles from './login.module.scss';
 import {useRouter} from 'next/router';
 import {CodeModal} from '../LoginForm';
 
@@ -49,7 +49,7 @@ export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'})
           />
         )}
 
-        {(['login','reset'].indexOf(type) > -1) && (
+        {(['signup','reset'].indexOf(type) > -1) && (
           <Input
             type="password"
             name="password"
@@ -64,7 +64,7 @@ export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'})
         )}
 
         {type == 'login' && (
-          <button className={styles.btnPrimary} onClick={(e) => handleRoute(e, '/complete-signup')}>Login</button>
+          <button className={styles.btnPrimary} onClick={(e) => handleRoute(e, '/feed')}>Login</button>
         )}
 
         {type == 'signup' && (

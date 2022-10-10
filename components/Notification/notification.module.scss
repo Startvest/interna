@@ -1,0 +1,43 @@
+.cancelled{
+    display: none;
+}
+
+.notification{
+    width: 30%;
+    height: 80px;
+    border-radius: 6px;
+    padding: 4px;
+    margin: 20px auto;
+    box-sizing: border-box;
+    background: var(--contrast);
+    color: var(--primary);
+    
+    h3 { font-size: 16px; }
+    p { font-size: 14px; }
+    span {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .end { margin-left: auto; }
+}
+
+[data-theme="dark"]{
+    .notification {
+        background: var(--altDark);
+        color: #fff;
+    }
+}
+
+@media only screen and (max-width: 1000px) and (min-width: 701px) {
+    .notification{
+        width: 60%;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .notification{
+        width: 100%;
+    }
+}

@@ -15,7 +15,6 @@ type HomeProps = {
 
 const Home: React.FC<HomeProps> = ({isMobile}) => {
   const [loading, setLoading] = useState<boolean>(true);
-  const [isWailist, setIsWaitlist] = useState<boolean>(true);
 
   const router = useRouter();
   
@@ -23,7 +22,7 @@ const Home: React.FC<HomeProps> = ({isMobile}) => {
       setTimeout(() => {
         //router.push('/login')
         setLoading(false)
-      }, 3000);
+      }, 2000);
   },[]);
 
   return (
@@ -32,9 +31,7 @@ const Home: React.FC<HomeProps> = ({isMobile}) => {
       <ThemeIcon/> */}
       {loading && <LoadingScreen/>}
       {!loading && 
-      // TODO: Fortune import the waitlist component here 
-        <LandingPage isWaitlist={isWailist} isMobile={isMobile}/>
-      
+        <LandingPage isWaitlist={true} isMobile={isMobile}/>
       } 
       
       {/* Script for push notification  [still testing, do not edit]*/}
