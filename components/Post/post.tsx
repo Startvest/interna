@@ -59,8 +59,8 @@ export const Post: React.FC<PostProps> = ({postData, isMobile}) => {
       </div>
 
       <div className={styles.postContent}>
-        {content.length < 100 && <span>{content}</span>}
-        {content.length >= 100 && 
+        {content.length < 300 && <span>{content}</span>}
+        {content.length >= 300 && 
         <>
         {(showMore) ? content : content.substring(0, 70) + '...'}
         <span className={styles.showMoreBtn} onClick={(e) => {e.stopPropagation(); setShowText(!showMore)}}>

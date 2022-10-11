@@ -82,7 +82,7 @@ export const PostDetail: React.FC<PostProps> = ({isMobile}) => {
             <h4>Post</h4>
           </Toolbar>
           <div className={styles.userInfo}>
-            <Avatar src="/assets/images/user.png" size="small" />
+            <Avatar src={currentPost.author.image} size="small" />
 
             <div>
               <span>
@@ -96,9 +96,11 @@ export const PostDetail: React.FC<PostProps> = ({isMobile}) => {
 
           <div className={styles.postContent}>{currentPost.content}</div>
 
+        {currentPost.image && currentPost.image?.length>0 &&
           <div className={styles.largeimageHolder}>
             <img src={currentPost.image} alt={`a post`} />
           </div>
+          }
 
           <div className={styles.postActions}>
             <span onClick={() => handleLike()}>

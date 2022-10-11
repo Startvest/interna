@@ -22,7 +22,7 @@ export const InterviewQuestions = () => {
                </div>}
                {
                     questions[type as keyof typeof questions].map((value, index) =>
-                         <Collapsible trigger={value} className={style.questionBox} key={String(index)} >
+                         <Collapsible trigger={<div className={style.questionTitle}>{value}</div>} className={style.questionBox} key={String(index)} >
                               <p>
                               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi enim, et iaculis tellus diam lectus massa consequat. Lorem at massa elementum vestibulum, non a egestas amet proin. Risus nulla venenatis, viverra nulla a. Nunc, consequat sagittis, id convallis dolor ipsum.
                               Sed tellus faucibus suscipit malesuada ut.
