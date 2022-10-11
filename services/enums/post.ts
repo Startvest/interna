@@ -50,7 +50,7 @@ export const post = [
                position: "Intern at Google",
                image: "/assets/images/user.png"
           },
-          content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget congue ornare consequat eget enim. Risus fringilla posuere amet sagittis habitant nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget congue ornare consequat eget enim. Risus fringilla posuere amet sagittis habitant nulla.",
+          content: "I'm really enjoying my time at Google, and I can't wait to share my experiences with you guys. If you have any questions about how I got my internship, feel free to dm.",
           image: "/assets/images/post.png",
           createdAt: "Mon Sep 12 2022 07:34:34 GMT+0100 (West Africa Standard Time)",
           comments:[
@@ -66,123 +66,6 @@ export const post = [
                     createdAt: "Mon Sep 11 2022 07:34:34 GMT+0100 (West Africa Standard Time)",
                     likes : ["456ydhh999j"]
                }
-          ],
-          likes : ["456ydhh999j"]
-     },
-     {
-          _id: "dfddf299933",
-          author: { 
-               id: "456ydhh999j",
-               name: "John Taiwo",
-               position: "Intern at Google",
-               image: "/assets/images/user.png"
-          },
-          content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget congue ornare consequat eget enim. Risus fringilla posuere amet sagittis habitant nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget congue ornare consequat eget enim. Risus fringilla posuere amet sagittis habitant nulla.",
-          image: "/assets/images/post.png",
-          createdAt: "Mon Sep 11 2022 07:34:34 GMT+0100 (West Africa Standard Time)",
-          comments:[
-               {
-                    _id: "testId5564",
-                    author: { 
-                         id: "456ydhh999j",
-                         name: "Bella Taiwo",
-                         position: "Student at Nile University",
-                         image: "/assets/images/user.png"
-                    },
-                    content: "You are doing a great job!",
-                    createdAt: "Mon Sep 11 2022 07:34:34 GMT+0100 (West Africa Standard Time)",
-                    likes : []
-               },
-               {
-                    _id: "testId4676",
-                    author: { 
-                         id: "456ydhh999j",
-                         name: "Bella See",
-                         position: "Intern at Google",
-                         image: "/assets/images/user.png"
-                    },
-                    content: "A new comment!",
-                    createdAt: "Mon Sep 12 2022 07:34:34 GMT+0100 (West Africa Standard Time)",
-                    likes : [],
-               },
-          ],
-          likes : ["456ydhh999j"]
-     },
-     {
-          _id: "dfddf299933",
-          author: { 
-               id: "456ydhh999j",
-               name: "John Taiwo",
-               position: "Intern at Google",
-               image: "/assets/images/user.png"
-          },
-          content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget congue ornare consequat eget enim. Risus fringilla posuere amet sagittis habitant nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget congue ornare consequat eget enim. Risus fringilla posuere amet sagittis habitant nulla.",
-          image: "/assets/images/post.png",
-          createdAt: "Mon Sep 11 2022 07:34:34 GMT+0100 (West Africa Standard Time)",
-          comments:[
-               {
-                    _id: "com4676",
-                    author: { 
-                         id: "456ydhh999j",
-                         name: "John Taiwo",
-                         position: "Intern at Google",
-                         image: "/assets/images/user2.svg"
-                    },
-                    content: "You are doing a great job!",
-                    createdAt: "Mon Sep 11 2022 07:34:34 GMT+0100 (West Africa Standard Time)",
-                    likes : ["456ydhh999j"]
-               },
-               {
-                    _id: "com4676",
-                    author: { 
-                         id: "456ydhh999j",
-                         name: "John Taiwo",
-                         position: "Intern at Google",
-                         image: "/assets/images/user2.svg"
-                    },
-                    content: "You are doing a great job!",
-                    createdAt: "Mon Sep 11 2022 07:34:34 GMT+0100 (West Africa Standard Time)",
-                    likes : ["456ydhh999j","12d999hj" ]
-               },
-          ],
-          likes : ["456ydhh999j","12d999hj" ]
-     },
-     {
-          _id: "dfddf299933",
-          author: { 
-               id: "456ydhh999j",
-               name: "John Taiwo",
-               position: "Intern at Google",
-               image: "/assets/images/user.png"
-          },
-          content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget congue ornare consequat eget enim. Risus fringilla posuere amet sagittis habitant nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget congue ornare consequat eget enim. Risus fringilla posuere amet sagittis habitant nulla.",
-          image: "/assets/images/post.png",
-          createdAt: "Mon Sep 11 2022 07:34:34 GMT+0100 (West Africa Standard Time)",
-          comments:[
-               {
-                    _id: "com4676",
-                    author: { 
-                         id: "456ydhh999j",
-                         name: "John Taiwo",
-                         position: "Intern at Google",
-                         image: "/assets/images/user.png"
-                    },
-                    content: "You are doing a great job!",
-                    createdAt: "Mon Sep 11 2022 07:34:34 GMT+0100 (West Africa Standard Time)",
-                    likes : []
-               },
-               {
-                    _id: "com4676",
-                    author: { 
-                         id: "456ydhh999j",
-                         name: "John Taiwo",
-                         position: "Intern at Google",
-                         image: "/assets/images/user2.svg"
-                    },
-                    content: "You are doing a great job!",
-                    createdAt: "Mon Sep 11 2022 07:34:34 GMT+0100 (West Africa Standard Time)",
-                    likes : ["12d999hj" ]
-               },
           ],
           likes : ["456ydhh999j"]
      },
@@ -228,5 +111,81 @@ export const post = [
                }
           ],
           likes: ["12d999hj"]
+     },
+     {
+          _id: "dfddf299933",
+          author: { 
+               id: "456ydhh999j",
+               name: "John Taiwo",
+               position: "Intern at Google",
+               image: "/assets/images/user.png"
+          },
+          content: "I am happy to announce that I just got an internship offer from Google. really excited and I can't wait to start.",
+          createdAt: "Mon Sep 11 2022 07:34:34 GMT+0100 (West Africa Standard Time)",
+          comments:[
+               {
+                    _id: "testId5564",
+                    author: { 
+                         id: "456ydhh999j",
+                         name: "Bella Taiwo",
+                         position: "Student at Nile University",
+                         image: "/assets/images/user.png"
+                    },
+                    content: "You are doing a great job!",
+                    createdAt: "Mon Sep 11 2022 07:34:34 GMT+0100 (West Africa Standard Time)",
+                    likes : []
+               },
+               {
+                    _id: "testId4676",
+                    author: { 
+                         id: "456ydhh999j",
+                         name: "Bella See",
+                         position: "Intern at Google",
+                         image: "/assets/images/user.png"
+                    },
+                    content: "A new comment!",
+                    createdAt: "Mon Sep 12 2022 07:34:34 GMT+0100 (West Africa Standard Time)",
+                    likes : [],
+               },
+          ],
+          likes : ["456ydhh999j"]
+     },
+     {
+          _id: "Ndy6H32bRFEA",
+          author: { 
+               id: "sd732gdg09F ",
+               name: "Mubarak Showole",
+               position: "Intern at uLesson",
+               image: "/assets/users/mubarak-showole.jpg"
+          },
+          content: "Today I learned about the VirtualDOM in React and how it helps to manage manipulating the actual DOM. #ulesson #webdeveloper",
+          createdAt: "Mon Sep 11 2022 07:34:34 GMT+0100 (West Africa Standard Time)",
+          comments:[
+               {
+                    _id: "com4676",
+                    author: { 
+                         id: "456ydhh999j",
+                         name: "John Taiwo",
+                         position: "Intern at Google",
+                         image: "/assets/images/user2.svg"
+                    },
+                    content: "You are doing a great job!",
+                    createdAt: "Mon Sep 11 2022 07:34:34 GMT+0100 (West Africa Standard Time)",
+                    likes : ["456ydhh999j"]
+               },
+               {
+                    _id: "com4676",
+                    author: { 
+                         id: "456ydhh999j",
+                         name: "John Taiwo",
+                         position: "Intern at Google",
+                         image: "/assets/images/user2.svg"
+                    },
+                    content: "You are doing a great job!",
+                    createdAt: "Mon Sep 11 2022 07:34:34 GMT+0100 (West Africa Standard Time)",
+                    likes : ["456ydhh999j","12d999hj" ]
+               },
+          ],
+          likes : ["456ydhh999j","12d999hj" ]
      },
 ];
