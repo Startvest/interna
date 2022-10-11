@@ -48,8 +48,8 @@ const ProfilePage: React.FC<ProfileProps> = ({isMobile}) => {
             </div>
             <div className={styles.detailsRow}>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                    Aliquam nulla urna, gravida adipiscing odio.                
+                    Fullstack Developer with the MERN stack. Looking to connect with like 
+                    minds and build great things.
                 </p>
             </div>
             <div className={`${styles.detailsRow} ${styles.light}`}>
@@ -66,7 +66,7 @@ const ProfilePage: React.FC<ProfileProps> = ({isMobile}) => {
                 <span>
                     <MdOutlineLink/>
                     <a href='https://portfolio.com' className='secondary'>
-                        portfolio.com
+                        johndoe.me
                     </a>
                 </span>
 
