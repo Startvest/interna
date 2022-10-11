@@ -51,6 +51,49 @@ $bgdark: rgba(77, 77, 77, 0.5);
           padding: 0.5em 1em;
           gap: 0.5em;
           align-items: center;
+
+          a{
+               text-decoration: none;
+               color: inherit;
+          }
+     }
+}
+
+.smallresumes{
+     width: 100%;
+     margin: 7rem auto;
+     div{
+          width: 100%;
+          background-color: $bglight;
+          display: flex;
+          align-items: center;
+          justify-content: space-evenly;
+          padding: 2rem auto !important;
+          div{
+               width: 30%;
+               margin: 2rem auto;
+               display: block;
+               background: transparent;
+               img{
+                    width: 100%;
+                    height: auto;
+               }
+          }
+          button{
+               margin: 1rem auto;
+               text-align: center;
+               padding: 0.5em 1em;
+               gap: 0.5em;
+               align-items: center;
+               a{
+                    text-decoration: none;
+                    color: inherit;
+               }
+          }
+          img:hover{
+               // scale: 1.2;
+               opacity: .8;
+          }
      }
 }
 
@@ -77,10 +120,25 @@ $bgdark: rgba(77, 77, 77, 0.5);
      .bigresume{
          width: 60%;
      }
+     .smallresumes{
+          div{
+               display: block;
+          }
+     }
  }
  
  @media only screen and (max-width: 700px) {
      .bigresume{
          width: 90%;
+     }
+     .smallresumes{
+          div{
+               display: block;
+               width: 100%;
+               padding: 2rem auto;
+               div{
+                    width: 90%;
+               }
+          }
      }
  }
