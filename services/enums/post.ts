@@ -1,6 +1,6 @@
 export const post = [
      {
-          _id: "yds62Ds8dx ",
+          _id: "yds62Ds8dx",
           author: {
                id: "Fjd65Bs8pwq6",
                name: "Elizabeth Akpan",
