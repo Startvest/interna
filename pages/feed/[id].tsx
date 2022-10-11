@@ -25,10 +25,10 @@ type PostProps = {
 export const PostDetail: React.FC<PostProps> = ({isMobile}) => {
   const { id } = useRouter().query;
   const [currentPost, setPost] = useState<IPost>();
-  const [liked, setLiked] = useState(currentPost?.likes.includes("12d999hj"));
+  const [liked, setLiked] = useState(false);
   const router = useRouter();
   const [shareModal, setShareModal] = useState(false);
-  const [noLikes, setNoLikes] = useState(currentPost?.likes.length || 0);
+  const [noLikes, setNoLikes] = useState(0);
   let heartIcon = liked ? <IoHeart size={25} /> : <IoHeartOutline size={25} />;
 
   const sharePost = () => {
@@ -47,6 +47,12 @@ export const PostDetail: React.FC<PostProps> = ({isMobile}) => {
   useEffect(() => {
     const curr = post.find((post) => post._id === id);
     setPost(curr);
+    if(curr){
+      setLiked(curr.likes.includes("12d999hj"));
+      setNoLikes(curr.likes.length);
+    }
+    
+
   }, []);
 
   const handleLike = () =>{
@@ -71,15 +77,21 @@ export const PostDetail: React.FC<PostProps> = ({isMobile}) => {
     <AppHeader pageName={'Feed | Interna'} />
     {currentPost && shareModal && <ShareModal isOpen={shareModal} closeModal={() => setShareModal(!shareModal)} postId={currentPost._id}/>}
     {!currentPost && (
+      <>
+      <Toolbar>
+        <MdChevronLeft size={30} onClick={() => router.back()} className={styles.backIcon}/>
+        <h4>Back</h4>
+      </Toolbar>
      <div className={styles.noPost}>
           Sorry, this post does not exist
      </div>
+     </>
     )}
       {currentPost && (
         <div className={styles.largePost}>
           <Toolbar>
-            <MdChevronLeft size={30} onClick={() => router.back()} className={styles.backIcon}/>
-            <h4>Post</h4>
+            <MdChevronLeft size={30} onClick={() => router.push('/feed')} className={styles.backIcon}/>
+            <h4>Feed</h4>
           </Toolbar>
           <div className={styles.userInfo}>
             <Avatar src={currentPost.author.image} size="small" />

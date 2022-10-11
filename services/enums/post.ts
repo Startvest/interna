@@ -2,6 +2,37 @@ export const post = [
      {
           _id: "yds62Ds8dx",
           author: {
+               id: "dgv52u87dgcx",
+               name: "Fortune Alebiosu",
+               position: "Intern at Microsoft",
+               image: "/assets/images/Fortune.jpg"
+          },
+          image: "/assets/images/interna.jpg",
+          content: `
+          Excited to announce that Interna has been selected as a finalists for PAADC 6.0 🎉
+
+          I want to thank all my team members and can't wait for what the fututre holds🚀
+          `,
+          createdAt: "Tue Oct 11 2022 21:34:34 GMT+0100 (West Africa Standard Time)",
+          comments: [
+               {
+                    _id: "s6y7ty2r23e2",
+                    author: {
+                         id: "h64yT2dsD",
+                         name: "Favour Adeyemi",
+                         position: "Frontend Developer Intern",
+                         image: "/assets/users/favour-adeyemi.jpg",
+                    },
+                    content: "Congratulations Team Interna!!",
+                    createdAt: "Mon Oct 10 2022 14:40:34 GMT+0100 (West Africa Standard Time)",
+                    likes: ["Fjd65Bs8pwq6"]
+               }
+          ],
+          likes: ["Fjd65Bs8pwq6", "456ydhh999j", "dgv52u87dgcx", "12d999hj"]
+     },
+     {
+          _id: "yds62Ds8dx",
+          author: {
                id: "Fjd65Bs8pwq6",
                name: "Elizabeth Akpan",
                position: "Frontend Intern at O-Pay",

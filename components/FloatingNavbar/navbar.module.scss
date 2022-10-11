@@ -1,3 +1,7 @@
+.navHolder{
+     display: flex;
+     justify-content: center;
+}
 .container{
      background-color: var(--primary);
      width: 30%;
@@ -62,11 +66,11 @@
           width: calc(100% - 50px);
      }
 
-     .navHolder {
-          display: flex;
-          justify-content: center;
-          margin-top: 85px; 
-     }
+     // .navHolder {
+     //      display: flex;
+     //      justify-content: center;
+     //      margin-top: 85px; 
+     // }
 }
 @keyframes bottom-in {
      from {

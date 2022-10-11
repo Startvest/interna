@@ -9,6 +9,13 @@ $smalltext: rgba(0, 0, 0, 0.5);
      color: var(--primary);
      margin: 2rem;
 }
+.subText{
+     font-weight: 500;
+     font-size: 16px;
+     color: var(--primary);
+     text-align: center;
+     margin: auto;
+}
 .boxes{
      width: 40%;
      margin: auto;
@@ -123,6 +130,6 @@ $smalltext: rgba(0, 0, 0, 0.5);
  }
  @media only screen and (max-width: 700px) {
      .boxes{
-         width: 90%;
+         width: 100%;
      }
  }
