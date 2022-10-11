@@ -16,12 +16,12 @@ export const Chats = [
         opened: true
     },
     {
-        profileURL: 'assets/users/favour-adeyemi-jpg',
+        profileURL: 'assets/users/favour-adeyemi.jpg',
         sender: 'Favour Adeyemi',
         message: 'What programming language do you work with?',
         dateCreated: new Date().toUTCString(),
         id: 3,
-        opened: true
+        opened: false
     }
 
 ]
