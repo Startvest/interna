@@ -1,17 +1,37 @@
+$small-circle: 10px;
+
 .chat {
     padding: 15px 10px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: 19% auto 5%;
+    gap: 3px;
 
+    .details {
+        margin: auto 0;
+    }
     span {
         display: flex;
         align-items: center;
         gap: 4px;
     }
+
 }
 
 .avatar {
     width: 60px;
     height: 60px;
+}
+
+.openedIndicator {
+    width: $small-circle;
+    height: $small-circle;
+    border-radius: 50%;
+    background-color: var(--primary);
+    margin: auto 0;
+}
+
+[data-theme="dark"]{
+    .openedIndicator {
+        background-color: var(--secondary);
+    }
 }
