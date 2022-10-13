@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
-
+// import { isMobile } from "../../services/isMobile";
 import { Modal } from "../Modal";
 import Image from "next/image";
 import { ThemeIcon } from "../ThemeIcon";
@@ -10,21 +10,22 @@ import { useTheme } from "next-themes"
 import { useRouter } from "next/router";
 import Footer from "../Footer";
 import {uniqueSellingPoints} from '../../services/enums/usp';
-import {WaitlistForm} from '../MainPage';
+import {WaitlistForm} from '.';
 
 type Props = {
     isWaitlist: boolean,
-    isMobile: boolean,
+    // isMobile: boolean,
 }
 
-export const LandingPage: React.FC<Props> = ({ isWaitlist, isMobile }) => {
-
+export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
+    const isMobile = window.document.body.clientWidth  <= 700;
+    // console.log(screen.availWidth);
     const [modalOpen, setModal] = useState<boolean>(false);
     const [hasSubmittedForm, setHasSubmitted] = useState(false);
     const [submitCount, setSubmitCount] = useState<number>(0);
     const { resolvedTheme } = useTheme();
     const router = useRouter();
-
+    
     const illustration = resolvedTheme === 'light' ? '/assets/illustration.svg' : '/assets/illustration-dark.svg';
 
     return(

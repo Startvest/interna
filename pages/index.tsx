@@ -31,7 +31,7 @@ const Home: React.FC<HomeProps> = ({isMobile}) => {
       <ThemeIcon/> */}
       {loading && <LoadingScreen/>}
       {!loading && 
-        <LandingPage isWaitlist={true} isMobile={isMobile}/>
+        <LandingPage isWaitlist={false} />
       } 
       
       {/* Script for push notification  [still testing, do not edit]*/}

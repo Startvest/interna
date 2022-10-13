@@ -1,2 +1,2 @@
-export * from './join-waitlist';
+export * from './landingPage';
 export * from './waitlistForm';

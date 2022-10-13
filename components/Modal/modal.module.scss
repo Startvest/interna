@@ -19,6 +19,7 @@ $shareText: rgba(33, 41, 92, 0.6);
     @include flex-center();
     
     .modalContainer{
+        z-index: 99 !important;
         background: white;
         position: relative;
         width: 40%; 

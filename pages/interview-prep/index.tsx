@@ -16,6 +16,7 @@ const InterviewPrep = ({isMobile}: FeedProps) => {
       <AppHeader pageName={'Interview Preparation | Interna'} />
           <h2 className={styles.headText}>Interview prep</h2>
           <section className={styles.boxes}>
+          <p className={styles.subText}>Ace your interviews after going through our specially  curated list of possible interview questions</p>
                <InterviewQuestions/>
                <Tips/>
           </section>

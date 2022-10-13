@@ -13,21 +13,31 @@ type NotificationProps = {
 export const Notification: React.FC<NotificationProps> = ({ title, dateCreated, content }) => {
     
     const [cancelled, setCancelled] = useState(false);
-    
+    const [cancelAnimation, setCancelAnimation] = useState(false);
+    const handleClose = () =>{
+        setCancelAnimation(true);
+        setTimeout(() => {
+            setCancelled(true);
+        },1000)
+    }
     return(
-        <div className={`${styles.notification} ${cancelled ? styles.cancelled : null}`}>
+        <>
+        {!cancelled &&
+        <div className={`${styles.notification} ${cancelAnimation ? styles.cancelled : null}`}>
             <span>
                 <h3>{title}</h3>
                 <IoEllipse size={5}/>
                 <DisplayDate date={dateCreated} show={'ago'}/>
                 
-                <span onClick={() => setCancelled(true)} className={styles.end}>
-                    <IoCloseCircleOutline size={20}/>
+                <span onClick={handleClose} className={styles.end}>
+                    <IoCloseCircleOutline size={25}/>
                 </span>
             </span>
             <div>
                 <p>{content}</p>
             </div>
         </div>
+    }
+    </>
     )
 } 

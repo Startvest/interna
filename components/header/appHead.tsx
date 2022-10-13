@@ -37,7 +37,7 @@ export function AppHeader({pageName}:{ pageName? : string}) {
 
     <header className={styles.headContainer}>
       <img onClick={() => router.push("/profile")} className={styles['icon-user']} src="/assets/images/user2.svg" />
-      <img onClick={() => router.push("/")} className={styles['icon-logo']} src="/icons/icon-256x256.png" />
+      <img onClick={() => router.push("/feed")} className={styles['icon-logo']} src="/icons/icon-256x256.png" />
       {(resolvedTheme === 'light') ? 
           <IoMoonOutline size={35} className={styles.icon} onClick={handleTheme}/>
           :
