@@ -12,7 +12,7 @@ const MessagesPage: React.FC = () => {
         <main>
             <AppHeader pageName="Messages"/>
             <Searchbar placeholder="Search for messages"/>
-            <div>
+            <div className={styles.chat}>
             {
                 Chats.map(chat => (
                     <Chat key={chat.id} {...chat} />

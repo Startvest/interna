@@ -28,11 +28,14 @@
         align-items: center;
         gap: 10px;
     }
+    .cancelBtn{
+        cursor: pointer;
+    }
     
     input {
         border: 0;
         background: transparent;
-
+        color: var(--primary);
         &:active, &:focus, &:focus-within {
             outline: none;
         }
@@ -43,6 +46,9 @@
     .searchbar {
         background-color: #333333;
         color: white;
+        input{
+            color: white;
+        }
     }
 }
 
