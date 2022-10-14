@@ -3,31 +3,30 @@ import { IoEllipse } from "react-icons/io5";
 import { Avatar } from "../Avatar";
 import DisplayDate from "../DisplayDate";
 import styles from './chat.module.scss';
+import {useRouter} from 'next/router';
+import {ChatProps} from '../../services/enums/chats';
 
-type ChatProps = {
-    id: string|number,
-    dateCreated: any,
-    profileURL: string,
-    sender: string,
-    message: string,
-    opened: boolean
-}
 export const Chat: React.FC<ChatProps> = (props) => {
-    const [opened, setOpened] = useState(props.opened);
-
+    const {id, dateCreated, profileURL, sender, message, opened} = props;
+    const [openedState, setOpened] = useState(opened);
+    const router = useRouter();
+    const handleChatClick =  () =>{
+        setOpened(true);
+        router.push(`/messages/${id}`)
+    }
     return(
-        <div onClick={() => setOpened(true)} className={styles.chat}>
-            <Avatar src={props.profileURL} size="small" className={styles.avatar} />
+        <div onClick={handleChatClick} className={styles.chat}>
+            <Avatar src={profileURL} size="small" className={styles.avatar} />
             <div className={styles.details}>
                 <span>
-                    <h3>{props.sender}</h3>
+                    <h3>{sender}</h3>
                     <IoEllipse size={5}/>
-                    <DisplayDate date={props.dateCreated} show={'ago'}/>
+                    <DisplayDate date={dateCreated} show={'ago'}/>
                 </span>
-                <p>{props.message.substring(0, 28)+"..."}</p>
+                {message[0] && <p>{(message[0].content.length > 28) ? message[0].content.substring(0, 28)+" ...": message[0].content}</p>}
             </div>
             {
-                !opened ? <span className={styles.openedIndicator}/> : null
+                !openedState ? <span className={styles.openedIndicator}/> : null
             }
         </div>
     )

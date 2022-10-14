@@ -1,5 +1,6 @@
 $postDark: rgba(77, 77, 77, 0.2);
 $smalltext: rgba(0, 0, 0, 0.5);
+$contrastDark: rgba(77, 77, 77, 1);
 .headText{
      text-align: center;
      font-family: 'Montserrat';
@@ -118,7 +119,16 @@ $smalltext: rgba(0, 0, 0, 0.5);
 [data-theme="dark"]{
      .container{
           background-color: $postDark;
-          h2{
+          h2, p, li{
+               color: white;
+          }
+     }
+     .headText, .container, .subText, .questionTitle{
+          color: white;
+     }
+     .categories{
+          background-color: $contrastDark;
+          h3{
                color: white;
           }
      }

@@ -34,7 +34,7 @@ export const Searchbar: React.FC<SearchbarProps> = ({ onBlur, value, onChange, o
                 </span>
                 
                 <span onClick={() => onBlur} className={styles.cancelBtn}>
-                    <IoCloseSharp size={25}/>
+                    <IoCloseSharp size={20}/>
                 </span>
             </div>
         </div>
