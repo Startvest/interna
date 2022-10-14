@@ -24,7 +24,7 @@ const ChatPage: React.FC = () => {
                 {/* chats section */}
                 <div className={styles.chatWindow}>
                     {/* {[...Array(50)].map(v => <h3>my name</h3>)} */}
-                    {chat.messages.map(message => <ChatMessage message={message}/>)}
+                    {chat.messages.map(message => <ChatMessage key={message._id} message={message}/>)}
                     {/*  */}
                 </div>
                
