@@ -84,7 +84,7 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-//For the pages visible on the tab bar
+/* For the pages visible on the tab bar */
 .page {
   display: flex;
   align-items: center;

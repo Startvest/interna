@@ -1,4 +1,5 @@
 $small-circle: 10px;
+$postDark: rgba(77, 77, 77, 0.2);
 
 .chat {
     margin: .5rem 0;
@@ -177,10 +178,46 @@ $small-circle: 10px;
     .openedIndicator {
         background-color: var(--secondary);
     }
+    .chat{
+        span{
+            h3{
+                color: white;
+            }
+        }
+    }
     .chathead{
         h3{
             color: white;
         }
+    }
+    .chatMessage{
+        opacity: .9;
+    }
+    .input{
+        .imgSpan{
+            color: white;
+            background-color: $postDark;
+        }
+        input{
+            color: white;
+            background-color: transparent;
+            border-bottom: 1px solid var(--contrast);
+
+            &::placeholder {
+                color: rgba(255, 255, 255, 0.5);
+            }
+            &:focus-visible, &:focus-within, &:focus {
+                border-radius: 2px;
+                border-bottom: 2px solid var(--contrast);
+            }
+        }
+        
+    }
+    .pickImg{
+        background-color: $postDark;
+    }
+    .date{
+        color: white;
     }
 }
 @media only screen and (max-width:700px){

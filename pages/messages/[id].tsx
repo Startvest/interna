@@ -3,7 +3,13 @@ import { Chats, ChatProps} from "../../services/enums/chats";
 import {useState, useEffect, useRef} from 'react';
 import styles from './messages.module.scss';
 import {useRouter} from "next/router";
-import {ChatMessage, AddChat} from "../../components/Chat"
+import {ChatMessage, AddChat,} from "../../components/Chat"
+interface IChats{
+    _id: string,
+    content: string,
+    createdAt: string,
+    me?: boolean,
+}
 const ChatPage: React.FC = () => {
     const { id } = useRouter().query;
     const [chat, setChat] = useState<ChatProps>();
@@ -11,9 +17,13 @@ const ChatPage: React.FC = () => {
     useEffect(() => {
         const curr = Chats.filter((c) => c.id === Number(id))[0];
         setChat(curr);
-        console.log(new Date())
     },[])
 
+    const addChat=(data: IChats)=>{
+        const newChats = chat; 
+        newChats?.messages.push(data);
+        setChat(newChats);
+      }
     return(
         <main>
             {!chat && 
@@ -23,12 +33,9 @@ const ChatPage: React.FC = () => {
                 <ChatHead image={chat.profileURL} name={chat.sender}/>
                 {/* chats section */}
                 <div className={styles.chatWindow}>
-                    {/* {[...Array(50)].map(v => <h3>my name</h3>)} */}
                     {chat.messages.map(message => <ChatMessage key={message._id} message={message}/>)}
-                    {/*  */}
                 </div>
-               
-                <AddChat/>
+                <AddChat addChat={addChat}/>
             </>}
             
         </main>
