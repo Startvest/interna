@@ -7,7 +7,7 @@ import {useRouter} from 'next/router';
 import {ChatProps} from '../../services/enums/chats';
 
 export const Chat: React.FC<ChatProps> = (props) => {
-    const {id, dateCreated, profileURL, sender, message, opened} = props;
+    const {id, dateCreated, profileURL, sender, messages, opened} = props;
     const [openedState, setOpened] = useState(opened);
     const router = useRouter();
     const handleChatClick =  () =>{
@@ -23,7 +23,7 @@ export const Chat: React.FC<ChatProps> = (props) => {
                     <IoEllipse size={5}/>
                     <DisplayDate date={dateCreated} show={'ago'}/>
                 </span>
-                {message[0] && <p>{(message[0].content.length > 28) ? message[0].content.substring(0, 28)+" ...": message[0].content}</p>}
+                {messages[0] && <p>{(messages[0].content.length > 28) ? messages[0].content.substring(0, 28)+" ...": messages[0].content}</p>}
             </div>
             {
                 !openedState ? <span className={styles.openedIndicator}/> : null

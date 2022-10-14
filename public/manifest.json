@@ -4,9 +4,9 @@
   "display": "standalone",
   "orientation": "portrait",
   "scope": "/",
-  "start_url": "/",
-  "name": "interna",
-  "short_name": "interna",
+  "start_url": "/feed",
+  "name": "Interna",
+  "short_name": "Interna",
   "description": "Interna is a community social platform that connect interns and opportunities, as well as a medium to share experiences among themselves",
   "icons": [
     {

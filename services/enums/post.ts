@@ -94,7 +94,7 @@ export const post = [
                          image: "/assets/images/user.png"
                     },
                     content: "You are doing a great job!",
-                    createdAt: "Mon Sep 11 2022 07:34:34 GMT+0100 (West Africa Standard Time)",
+                    createdAt: "Sun Sep 11 2022 07:34:34 GMT+0100 (West Africa Standard Time)",
                     likes : ["456ydhh999j"]
                }
           ],

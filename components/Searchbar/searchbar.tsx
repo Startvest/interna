@@ -1,6 +1,6 @@
 import { MdSearch } from "react-icons/md";
 import { IoCloseSharp } from "react-icons/io5";
-import { useEffect, useRef } from "react";
+import { useEffect, forwardRef } from "react";
 
 
 import styles from "./searchbar.module.scss";

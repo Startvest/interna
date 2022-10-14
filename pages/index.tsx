@@ -27,8 +27,7 @@ const Home: React.FC<HomeProps> = ({isMobile}) => {
 
   return (
     <div>
-      {/* <Header pageName='Login to interna' head/>
-      <ThemeIcon/> */}
+      <Header pageName='Interna | The official platform for interns' head/>
       {loading && <LoadingScreen/>}
       {!loading && 
         <LandingPage isWaitlist={false} />
