@@ -1,0 +1,40 @@
+.company {
+    width: 30%;
+    background: var(--contrast);
+    margin: 25px auto;
+    border-radius: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+
+    .companyDetails{
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 9px;
+
+        h2 {
+            margin: 0;
+        }
+    }
+}
+
+.secondary {
+    background-color: var(--secondary);
+    margin: 0 0 0 auto;
+    border-radius: 10px;
+    color: white;
+}
+
+@media screen and (min-width: 700px) and (max-width: 1000px){
+    .company{
+        width: 60%;
+    }
+    
+}
+
+@media only screen and (max-width:700px){
+    .company {
+        width: 95%;
+    }
+
+}
