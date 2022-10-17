@@ -3,6 +3,8 @@ import styles from './footer.module.scss';
 import Image from "next/image";
 
 const Footer:React.FC = () => {
+    const date = new Date();
+    let year:number = date.getFullYear();
     return(
     <footer className={styles.footer}>
         <Image src="/assets/logo-white.svg" height={'20px'} width={'93px'}/>
@@ -35,11 +37,11 @@ const Footer:React.FC = () => {
                     </li>
                 </ul>
             </div>
-            <Image src="/assets/Vector.svg" width={'170px'} height={'170px'}/>
+            <img src="/assets/Vector.svg" width={'200px'} height={'100px'} alt="Interna Logo"/>
 
         </div>
 
-        <p>Copyright © 2022 Startvest Solutions | All Rights reserved </p>
+        <p>Copyright © {year} Startvest Solutions | All Rights reserved </p>
     </footer>
     )
 }
