@@ -85,7 +85,7 @@ const ProfilePage: React.FC<ProfileProps> = ({isMobile}) => {
         </section>
         <section className={styles.userPosts}>
         {
-            post.map(post => (
+            post.filter(post => post.author.name === 'John Doe').map(post => (
                 <Post key={post._id} postData={post} isMobile={isMobile}/>
             ))
         }
