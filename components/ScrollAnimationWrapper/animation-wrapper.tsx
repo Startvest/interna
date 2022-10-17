@@ -14,7 +14,7 @@ export const ScrollAnimationWrapper: React.FC<AnimationWrapperProps> = ({ childr
     const fadeInAnimation: MotionStyle = {
         opacity: whileInView ? 1 : 0,
         translateY: whileInView ? 0 : "none",
-        transition: "all 0.9s ease-in 0.5s"
+        transition: "all 0.5s ease-in 0.5s"
     }
 
     const horizontalSlideInAnimation: MotionStyle = {
