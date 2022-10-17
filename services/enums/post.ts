@@ -219,4 +219,48 @@ export const post = [
           ],
           likes : ["456ydhh999j","12d999hj" ]
      },
+     {
+          _id: "l26rFjdsIL3",
+          author: {
+               id: "yftsdr9625",
+               name: "John Doe",
+               position: "Software Developer Intern at Microsoft",
+               image: "/assets/images/user2.svg"
+          },
+          content: `
+          Excited to announce that I have been accepted as Intern at Microsoft!🎉🎉
+
+          I'm thrilled and I can't to see what the future holds.🚀
+          `,
+          createdAt: "Sat Oct 8 2022 07:34:34 GMT+0100 (West Africa Standard Time)",
+          comments: [
+               {
+                    _id: "s6y7ty2r23e2",
+                    author: {
+                         id: "h64yT2dsD",
+                         name: "Favour Adeyemi",
+                         position: "Frontend Developer Intern",
+                         image: "/assets/users/favour-adeyemi.jpg",
+                    },
+                    content: "Congratulations John Doe",
+                    createdAt: "Mon Oct 10 2022 14:40:34 GMT+0100 (West Africa Standard Time)",
+                    likes: ["Fjd65Bs8pwq6"]
+               },
+               {
+                    _id: "ywvi8vs52t2",
+                    author: {
+                         id: "wq83g56q21",
+                         name: "O-Pay Nigeria",
+                         position: "Payment Service",
+                         image: "/assets/companies/o-pay.webp",
+                    },
+                    content: "Welcome to the team, Elizabeth",
+                    createdAt: "Tue Oct 11 2022 14:40:34 GMT+0100 (West Africa Standard Time)",
+                    likes: ["Fjd65Bs8pwq6"]
+               }
+
+          ],
+          likes: []
+     },
+
 ];
