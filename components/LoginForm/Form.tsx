@@ -55,7 +55,7 @@ export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'})
             name="password"
             onChange={(e: any) => console.log(e.target.value)}
             placeholder="Enter your password"
-            labelName="Password again"
+            labelName="Re-enter Password"
           />
         )}
 

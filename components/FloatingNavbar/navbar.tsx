@@ -45,7 +45,7 @@ export function NavBar(){
                {more && 
                <div className={styles.more}>
                     <Link href={'/companies'}><span>{ companiesIcon } Companies</span></Link>
-                    <Link href={'/resume'} ><span ><IoDocumentsOutline size={20} className={styles.icon}/> Resume </span></Link>
+                    <Link href={'/resume'} ><span ><IoDocumentsOutline size={20} className={styles.icon}/> CV Generator </span></Link>
                     <Link href={'/interview-prep'}><span><IoColorWand size={20} className={styles.icon}/> Interview Prep</span></Link>
                     <Link href={'/settings'}><span>{ settingsIcon } Settings</span></Link>
                </div>
@@ -53,7 +53,7 @@ export function NavBar(){
                <div className={styles.container}>
                     <Link href={'/feed'}>{ albumsIcon }</Link>
                     <Link href={'/search'}>{ searchIcon }</Link>
-                    <div onClick={handleMore}><IoLayersOutline size={30} className={styles.icon}/> </div>
+                    <div onClick={handleMore}><IoLayersOutline size={30} className={`${(more) ? styles.scale: ''} ${styles.icon}`}/> </div>
                     <Link href={'/messages'}>{ mailIcon }</Link>
                     <Link href={'/notifications'}>{ notificationsIcon }</Link>
                     {/* <Link href={'/settings'}>{ settingsIcon }</Link> */}
