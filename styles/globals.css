@@ -90,7 +90,7 @@ input[type=number] {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 0 10px;
+  padding: 12px 9px 0;
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -131,3 +131,7 @@ input[type=number] {
 .justify-center { justify-content: center; }
 .justify-end { justify-content: flex-end; }
 .justify-start { justify-content: flex-start; }
+.font-bold { font-weight: bold; }
+.heading-small { font-size: 18px; }
+.font-small { font-size: 14px; }
+.text-center { text-align: center; }
