@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 // import { isMobile } from "../../services/isMobile";
 import { Modal } from "../Modal";
 import Image from "next/image";
@@ -12,6 +12,9 @@ import Footer from "../Footer";
 import {uniqueSellingPoints} from '../../services/enums/usp';
 import {WaitlistForm} from '.';
 
+import { motion, useScroll } from "framer-motion";
+import { ScrollAnimationWrapper } from "../ScrollAnimationWrapper";
+
 type Props = {
     isWaitlist: boolean,
     // isMobile: boolean,
@@ -20,6 +23,18 @@ type Props = {
 export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
     const isMobile = window.document.body.clientWidth  <= 700;
     // console.log(screen.availWidth);
+
+    const slideshowRef = useRef(null);
+    const { scrollXProgress, scrollX } = useScroll({
+        container: slideshowRef,
+        target: slideshowRef,
+        axis: "x",
+    });
+
+    useEffect(() => {
+        console.log(scrollXProgress);
+    }, [scrollXProgress])
+
     const [modalOpen, setModal] = useState<boolean>(false);
     const [hasSubmittedForm, setHasSubmitted] = useState(false);
     const [submitCount, setSubmitCount] = useState<number>(0);
@@ -125,58 +140,70 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
                 
             </div>}
 
-                <section className={styles.landingPageWelcome}>
-                    <div className={styles.descriptionGroup}>
-                        <h4>What is Interna?</h4>
-                        <p>
-                            A social platfrom where you can easily share your internship experiences
-                            with other students in your community, as well as connect with them.
-                        </p>
-                    </div>
-                </section>
+                <motion.section className={styles.landingPageWelcome}>
+                    <ScrollAnimationWrapper type="horizontal-slide-in">
+                        <motion.div className={styles.descriptionGroup}>
+                            <h4>What is Interna?</h4>
+                            <p>
+                                A social platfrom where you can easily share your internship experiences
+                                with other students in your community, as well as connect with them.
+                            </p>
+                        </motion.div>
+                    </ScrollAnimationWrapper>
+                </motion.section>
 
             {/* Desktop View */}
             {!isMobile && 
-                <section className={styles.deskUsp}>
-                    {uniqueSellingPoints.map((usp, k) => 
-                    <div key={k} className={`${styles.box}`}>
-                        <div className={styles.iconCont}>
-                            <img src={usp.icon} alt="Icon"/>
-                        </div>
-                        <h2>{usp.title}</h2>
-                        <p>{usp.desc}</p>
-                    </div>)}
-                </section>
+                <ScrollAnimationWrapper>
+                    <section className={styles.deskUsp}>
+                        {uniqueSellingPoints.map((usp, k) => 
+                        <div key={k} className={`${styles.box}`}>
+                            <div className={styles.iconCont}>
+                                <img src={usp.icon} alt="Icon"/>
+                            </div>
+                            <h2>{usp.title}</h2>
+                            <p>{usp.desc}</p>
+                        </div>)}
+                    </section>
+                </ScrollAnimationWrapper>
             }
 
             {isMobile && 
-                <section className={styles.mobileUsp}>
-                    {uniqueSellingPoints.map((usp, k) => 
-                    <div key={k} className={`${styles.box}`}>
-                        <div  className={styles.iconCont}>
-                            <img src={usp.icon} alt="Icon"/>
-                        </div>
-                        <h2>{usp.title}</h2>
-                        <p>{usp.desc}</p>
-                    </div>)}
-                </section>
+                <ScrollAnimationWrapper>
+                    <section className={styles.mobileUsp}>
+                        {uniqueSellingPoints.map((usp, k) => 
+                        <div key={k} className={`${styles.box}`}>
+                            <div  className={styles.iconCont}>
+                                <img src={usp.icon} alt="Icon"/>
+                            </div>
+                            <h2>{usp.title}</h2>
+                            <p>{usp.desc}</p>
+                        </div>)}
+                    </section>
+                </ScrollAnimationWrapper>
             }
 
             <section>
-                <div className={`${styles.designHolder} ${styles.firstHolder}`}>
-                    <img src={'/assets/feed-mockup.svg'} alt="Feed mockup"/>
-                </div>
+                <ScrollAnimationWrapper performOnce>
+                    <div className={`${styles.designHolder} ${styles.firstHolder}`}>
+                        <img src={'/assets/feed-mockup.svg'} alt="Feed mockup"/>
+                    </div>
+                </ScrollAnimationWrapper>
 
-                <div className={styles.designHolder}>
-                    <img src={'/assets/profile-mockup.svg'} alt="Profile mockup"/>
-                </div>
+                <ScrollAnimationWrapper performOnce>
+                    <div className={styles.designHolder}>
+                        <img src={'/assets/profile-mockup.svg'} alt="Profile mockup"/>
+                    </div>
+                </ScrollAnimationWrapper>
             </section>
 
             <section className={styles.ourSponsors}>
                 <h3>Supported by</h3>
 
                 <div className={styles.carouselHolder}>
-                    <div className={styles.carousel} id="slideshow">
+                    <motion.div 
+                        ref={slideshowRef}
+                        className={styles.carousel}>
                         <span className={styles.carouselSlide}>
                             <Image src="/assets/nile-logo.svg" width={'200px'} height={'60px'} />
                         </span>
@@ -189,27 +216,29 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
                             <Image src="/assets/sc_logo.png" width={'200px'} height={'60px'} />
                         </span>
 
-                    </div>
+                    </motion.div>
                 </div>
 
-                <div className={styles.getStarted} >
-                    <h3>Gain valuable information</h3>
-                    <h5>
-                        Join the community of <span className="secondary">forward thinking students</span> taking
-                        a <span className="secondary">bold</span> step towards their career growth
-                    </h5>
-                    {
-                        isWaitlist ? (
-                        <Button onClick={() => setModal(true)}>
-                            Join the waitlist
-                        </Button>
-                        ) : (
-                        <Button onClick={() => router.push('/signup')}>
-                            Join the community
-                        </Button>
-                        )
-                    }
-                </div>
+                <ScrollAnimationWrapper performOnce>
+                    <div className={styles.getStarted} >
+                        <h3>Gain valuable information</h3>
+                        <h5>
+                            Join the community of <span className="secondary">forward thinking students</span> taking
+                            a <span className="secondary">bold</span> step towards their career growth
+                        </h5>
+                        {
+                            isWaitlist ? (
+                            <Button onClick={() => setModal(true)}>
+                                Join the waitlist
+                            </Button>
+                            ) : (
+                            <Button onClick={() => router.push('/signup')}>
+                                Join the community
+                            </Button>
+                            )
+                        }
+                    </div>
+                </ScrollAnimationWrapper>
             </section> 
         </main>
         <Footer/>
