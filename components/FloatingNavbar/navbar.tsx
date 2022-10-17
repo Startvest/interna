@@ -15,11 +15,13 @@ import {
      IoSettingsOutline,
      IoLayersOutline,
      IoDocumentsOutline,
-     IoColorWand
+     IoColorWand,
+     IoBusiness,
+     IoBusinessOutline
    } from 'react-icons/io5';
 import Link from 'next/link';
 
-type pathNames = '/feed' | '/search' |'/notifications' | '/messages' | '/settings'
+type pathNames = '/feed' | '/search' |'/notifications' | '/messages' | '/settings' | '/companies'
 
 export function NavBar(){
      const router = useRouter();
@@ -33,6 +35,8 @@ export function NavBar(){
      let notificationsIcon = path === '/notifications' ? <IoNotifications size={30} className={styles.icon}/> : <IoNotificationsOutline size={30} className={styles.icon}/>
      let mailIcon = path === '/messages' ? <IoMailUnread size={30} className={styles.icon}/> : <IoMailUnreadOutline size={30} className={styles.icon}/>
      let settingsIcon = path === '/settings' ? <IoSettings size={30} className={styles.icon}/> : <IoSettingsOutline size={20} className={styles.icon}/>
+     let companiesIcon = path === '/companies' ? <IoBusiness size={20} className={styles.icon}/> : <IoBusinessOutline size={20} className={styles.icon}/>
+     
      const handleMore = () =>{
           setMore(!more);
      }
@@ -40,6 +44,7 @@ export function NavBar(){
           <div className={styles.navHolder}>
                {more && 
                <div className={styles.more}>
+                    <Link href={'/companies'}><span>{ companiesIcon } Companies</span></Link>
                     <Link href={'/resume'} ><span ><IoDocumentsOutline size={20} className={styles.icon}/> Resume </span></Link>
                     <Link href={'/interview-prep'}><span><IoColorWand size={20} className={styles.icon}/> Interview Prep</span></Link>
                     <Link href={'/settings'}><span>{ settingsIcon } Settings</span></Link>
