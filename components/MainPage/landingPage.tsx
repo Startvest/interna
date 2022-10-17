@@ -24,16 +24,6 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
     const isMobile = window.document.body.clientWidth  <= 700;
     // console.log(screen.availWidth);
 
-    const slideshowRef = useRef(null);
-    const { scrollXProgress, scrollX } = useScroll({
-        container: slideshowRef,
-        target: slideshowRef,
-        axis: "x",
-    });
-
-    useEffect(() => {
-        console.log(scrollXProgress);
-    }, [scrollXProgress])
 
     const [modalOpen, setModal] = useState<boolean>(false);
     const [hasSubmittedForm, setHasSubmitted] = useState(false);
@@ -141,7 +131,7 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
             </div>}
 
                 <motion.section className={styles.landingPageWelcome}>
-                    <ScrollAnimationWrapper type="horizontal-slide-in">
+                    <ScrollAnimationWrapper type="horizontal-slide-in" performOnce>
                         <motion.div className={styles.descriptionGroup}>
                             <h4>What is Interna?</h4>
                             <p>
@@ -154,7 +144,7 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
 
             {/* Desktop View */}
             {!isMobile && 
-                <ScrollAnimationWrapper>
+                <ScrollAnimationWrapper performOnce>
                     <section className={styles.deskUsp}>
                         {uniqueSellingPoints.map((usp, k) => 
                         <div key={k} className={`${styles.box}`}>
@@ -169,7 +159,7 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
             }
 
             {isMobile && 
-                <ScrollAnimationWrapper>
+                <ScrollAnimationWrapper performOnce>
                     <section className={styles.mobileUsp}>
                         {uniqueSellingPoints.map((usp, k) => 
                         <div key={k} className={`${styles.box}`}>
@@ -202,7 +192,6 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
 
                 <div className={styles.carouselHolder}>
                     <motion.div 
-                        ref={slideshowRef}
                         className={styles.carousel}>
                         <span className={styles.carouselSlide}>
                             <Image src="/assets/nile-logo.svg" width={'200px'} height={'60px'} />
