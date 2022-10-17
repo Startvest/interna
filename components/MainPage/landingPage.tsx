@@ -27,7 +27,7 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
     const router = useRouter();
     
     const illustration = resolvedTheme === 'light' ? '/assets/illustration.svg' : '/assets/illustration-dark.svg';
-
+    
     return(
     <div className={styles.waitlistPage}>
          <Modal isOpen={modalOpen} closeModal={() => setModal(!modalOpen)}>
@@ -141,7 +141,7 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
                     {uniqueSellingPoints.map((usp, k) => 
                     <div key={k} className={`${styles.box}`}>
                         <div className={styles.iconCont}>
-                            <img src={usp.icon}/>
+                            <img src={usp.icon} alt="Icon"/>
                         </div>
                         <h2>{usp.title}</h2>
                         <p>{usp.desc}</p>
@@ -154,7 +154,7 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
                     {uniqueSellingPoints.map((usp, k) => 
                     <div key={k} className={`${styles.box}`}>
                         <div  className={styles.iconCont}>
-                            <img src={usp.icon}/>
+                            <img src={usp.icon} alt="Icon"/>
                         </div>
                         <h2>{usp.title}</h2>
                         <p>{usp.desc}</p>
@@ -176,7 +176,7 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
                 <h3>Supported by</h3>
 
                 <div className={styles.carouselHolder}>
-                    <div className={styles.carousel}>
+                    <div className={styles.carousel} id="slideshow">
                         <span className={styles.carouselSlide}>
                             <Image src="/assets/nile-logo.svg" width={'200px'} height={'60px'} />
                         </span>
