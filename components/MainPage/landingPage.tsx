@@ -144,33 +144,35 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
 
             {/* Desktop View */}
             {!isMobile && 
-                <ScrollAnimationWrapper performOnce>
                     <section className={styles.deskUsp}>
                         {uniqueSellingPoints.map((usp, k) => 
-                        <div key={k} className={`${styles.box}`}>
-                            <div className={styles.iconCont}>
-                                <img src={usp.icon} alt="Icon"/>
+                        <ScrollAnimationWrapper performOnce>
+                            <div key={k} className={`${styles.box}`}>
+                                <div className={styles.iconCont}>
+                                    <img src={usp.icon} alt="Icon"/>
+                                </div>
+                                <h2>{usp.title}</h2>
+                                <p>{usp.desc}</p>
                             </div>
-                            <h2>{usp.title}</h2>
-                            <p>{usp.desc}</p>
-                        </div>)}
+                        </ScrollAnimationWrapper>
+                        )}
                     </section>
-                </ScrollAnimationWrapper>
             }
 
             {isMobile && 
-                <ScrollAnimationWrapper performOnce>
                     <section className={styles.mobileUsp}>
                         {uniqueSellingPoints.map((usp, k) => 
-                        <div key={k} className={`${styles.box}`}>
-                            <div  className={styles.iconCont}>
-                                <img src={usp.icon} alt="Icon"/>
+                        <ScrollAnimationWrapper performOnce>
+                            <div key={k} className={`${styles.box}`}>
+                                <div  className={styles.iconCont}>
+                                    <img src={usp.icon} alt="Icon"/>
+                                </div>
+                                <h2>{usp.title}</h2>
+                                <p>{usp.desc}</p>
                             </div>
-                            <h2>{usp.title}</h2>
-                            <p>{usp.desc}</p>
-                        </div>)}
+                        </ScrollAnimationWrapper>
+                        )}
                     </section>
-                </ScrollAnimationWrapper>
             }
 
             <section>
