@@ -4,6 +4,21 @@
     align-items: center;
 }
 
+.avatar {
+    position: relative;
+
+    span {
+        border-radius: 50%;
+        background: var(--primary);
+        color: #fff;
+        padding: 7px;
+        position: absolute;
+        bottom: 0;
+        right: 5px;
+        @include flex-center;
+    }
+}
+
 .profileAvatar {
     border: 3px solid var(--primary);
 }
