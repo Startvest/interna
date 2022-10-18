@@ -1,0 +1,29 @@
+.container{
+     height: auto;
+     border-radius: 10px;
+     box-shadow: 3px 3px 10px 4px rgba(0, 0, 0, 0.15); 
+     margin: 2rem auto;
+     cursor: pointer;   
+
+     display: flex;
+}
+.text{
+     font-family: 'Montserrat';
+     color: var(--primary);
+     p{  
+          font-size: 12px;
+     }
+     h2{
+          font-weight: 600;
+          font-size: 11px;
+     }
+}
+.quote{
+     position: absolute;
+     top: 0;
+     right: 0;
+     img{
+          width: 50px;
+          height: auto;
+     }
+}

@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import Footer from "../Footer";
 import {uniqueSellingPoints} from '../../services/enums/usp';
 import {WaitlistForm} from '.';
+import {Testimonial} from '../Testimonial';
 
 import { motion, useScroll } from "framer-motion";
 import { ScrollAnimationWrapper } from "../ScrollAnimationWrapper";
@@ -79,7 +80,7 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
             <div className={styles.introContainer}>  
                <section className={styles.introduction}>
                     <h1>
-                        Where <span className="secondary">Students</span> and <span className="secondary">Interns</span> call home
+                        The <span className="secondary">Official</span> platform for <span className="secondary">Interns</span>
                     </h1>
 
                     <p>Welcome to the community of students and interns!</p>
@@ -110,7 +111,7 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
 
                <section className={styles.introduction}>
                     <h1>
-                        Where <span className="secondary">Students</span> and <span className="secondary">Interns</span> call home
+                        The <span className="secondary">Oficial</span> platform for <span className="secondary">Interns</span>
                     </h1>
 
                     <p>Welcome to the community of students and interns!</p>
@@ -125,10 +126,19 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
                         </Button>
                         )
                     }
-                </section>
-
-                
+                </section> 
             </div>}
+
+            <div>
+                <Testimonial content={
+                    text: "string",
+                    author:{
+                         name: "John Doe",
+                         icon: "/assets/images/user2.svg",
+                         position: "Intern at Google",
+                    }
+                }/>
+            </div>
 
                 <motion.section className={styles.landingPageWelcome}>
                     <ScrollAnimationWrapper type="horizontal-slide-in" performOnce>
@@ -141,6 +151,8 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
                         </motion.div>
                     </ScrollAnimationWrapper>
                 </motion.section>
+
+
 
             {/* Desktop View */}
             {!isMobile && 
