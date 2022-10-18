@@ -7,21 +7,23 @@ import { AppHeader } from "../../components/header";
 import { Searchbar } from "../../components/Searchbar"
 
 import { users } from "../../services/enums/users";
+import { companies } from "../../services/enums/companies";
 
+const SEARCH_DATA = [
+    ...users,
+    ...companies
+]
 
 import styles from './search.module.scss';
 const SearchPage: React.FC = () => {
-
     const [searchText, setSearchText] = useState({ text: '', searching: false });
     const [focused, setFocused] = useState(false);
     const [filters, setFilters] = useState(false);
 
+    const [filterParams, setFilterParams] = useState<'interns'|'companies'|undefined>(undefined)
+
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if(!searchText.text){
-            setFocused(true);
-        } else {
-            setFocused(false);
-        }
+        setFocused(false)
         setSearchText({ text: e.target.value, searching: true });
     }
     return(
@@ -46,10 +48,10 @@ const SearchPage: React.FC = () => {
             {!filters && 
             <div className={` ${styles.filterBox}`}>
                 <div className="container">
-                    <span className="chip primary">
+                    <span className={`chip ${filterParams === 'interns' ? 'primary' : 'contrast'}`} onClick={() => setFilterParams('interns')}>
                         Interns
                     </span>
-                    <span className="chip contrast">
+                    <span className={`chip ${filterParams === 'companies' ? 'primary' : 'contrast'}`} onClick={() => setFilterParams('companies')}>
                         Companies
                     </span>
                 </div>
@@ -102,7 +104,8 @@ const SearchPage: React.FC = () => {
 
             <section className={`${!searchText.searching ? styles.invisible : null}`}>
                 {
-                    users.filter(user => user.name.toLowerCase().includes(searchText.text.toLowerCase())).map(user => (
+                    !filterParams ? (
+                        SEARCH_DATA.filter(item => item.name.toLowerCase().includes(searchText.text.toLowerCase())).map(data => (
                         <div className="container space-between">
                             <div className="flex gap">
                                 <Avatar src={user.image} size="small"/>
@@ -111,11 +114,48 @@ const SearchPage: React.FC = () => {
                                     <p>{user.position}</p>
                                 </span>
                             </div>
-                            <Button className={user.connected ? styles.connected : ''}>
-                                {user.connected ? 'Connected' : 'Connect'}
-                            </Button>
                         </div>
-                    ))
+                        ))
+                    ) : 
+                    filterParams === 'interns' ? (
+                        <div className={styles.searchResults}>
+                            <h2>Interns</h2>
+                            {
+                                users.filter(user => user.name.toLowerCase().includes(searchText.text.toLowerCase())).map(user => (
+                                    <div className="container space-between">
+                                        <div className="flex gap">
+                                            <Avatar src={user.image} size="small"/>
+                                            <span>
+                                                <h3>{user.name}</h3>
+                                                <p>{user.position}</p>
+                                            </span>
+                                        </div>
+                                        <Button className={user.connected ? styles.connected : ''}>
+                                            {user.connected ? 'Connected' : 'Connect'}
+                                        </Button>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    ) : (
+                        <div className={styles.searchResults}>
+                            <h2>Interns</h2>
+                            {
+                                companies.filter(company => company.name.toLowerCase().includes(searchText.text.toLowerCase())).map(company => (
+                                    <div className="container space-between">
+                                        <div className="flex gap">
+                                            <Avatar src={company.image} size="small"/>
+                                            <span>
+                                                <h3>{company.name}</h3>
+                                                <p>{company.position}</p>
+                                            </span>
+                                        </div>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    )
+                    
                 }
             </section>
             
