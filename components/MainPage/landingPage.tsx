@@ -146,8 +146,8 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
             {!isMobile && 
                     <section className={styles.deskUsp}>
                         {uniqueSellingPoints.map((usp, k) => 
-                        <ScrollAnimationWrapper performOnce>
-                            <div key={k} className={`${styles.box}`}>
+                        <ScrollAnimationWrapper key={k} performOnce>
+                            <div className={`${styles.box}`}>
                                 <div className={styles.iconCont}>
                                     <img src={usp.icon} alt="Icon"/>
                                 </div>
@@ -162,8 +162,8 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
             {isMobile && 
                     <section className={styles.mobileUsp}>
                         {uniqueSellingPoints.map((usp, k) => 
-                        <ScrollAnimationWrapper performOnce>
-                            <div key={k} className={`${styles.box}`}>
+                        <ScrollAnimationWrapper key={k} performOnce>
+                            <div className={`${styles.box}`}>
                                 <div  className={styles.iconCont}>
                                     <img src={usp.icon} alt="Icon"/>
                                 </div>
