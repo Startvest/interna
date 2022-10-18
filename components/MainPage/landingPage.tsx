@@ -129,15 +129,10 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
                 </section> 
             </div>}
 
-            <div>
-                <Testimonial content={
-                    text: "string",
-                    author:{
-                         name: "John Doe",
-                         icon: "/assets/images/user2.svg",
-                         position: "Intern at Google",
-                    }
-                }/>
+            <h2 className={styles.h2}>Hear from our interns</h2>
+            <div className={styles.testimonial}>
+            <Testimonial />
+                <Testimonial />
             </div>
 
                 <motion.section className={styles.landingPageWelcome}>
