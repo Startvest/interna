@@ -35,6 +35,12 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+.connected {
+    border: 1px solid var(--secondary);
+    background-color: transparent;
+    color: var(--secondary);
+}
+
 .filterBtn {
     border-radius: 15px;
     width: 80px;

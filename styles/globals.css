@@ -135,3 +135,4 @@ input[type=number] {
 .heading-small { font-size: 18px; }
 .font-small { font-size: 14px; }
 .text-center { text-align: center; }
+.gap { gap: 10px; }
