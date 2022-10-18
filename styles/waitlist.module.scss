@@ -81,7 +81,7 @@ $inputDark: #333333;
     
         h1 {
             color: var(--primary);
-            font-family: 'Mont Blanc-Trial';
+            font-family: 'Mont Blanc-Trial', 'Work Sans', sans-serif;
             font-style: normal;
             font-weight: 700;
             font-size: 60px;
@@ -205,6 +205,7 @@ section.landingPageWelcome{
         margin: 4rem auto;
     }
 }
+
 .box{
     width: 40%;
     background-color: var(--primary);
