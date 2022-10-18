@@ -8,11 +8,18 @@ import { MdArrowForward } from "react-icons/md";
 import { Input } from "../../components/Input";
 import { Toggle } from "../../components/Toggle";
 
+import { TbEdit } from "react-icons/tb";
+
 const SettingsPage: React.FC = () => {
     return(
     <main className={styles.settingsPage}>
         <Header/>
-        <Avatar className={styles.profileAvatar} size="large" src="/assets/images/user2.png"/>
+        <div className={styles.avatar}>
+            <Avatar className={styles.profileAvatar} size="large" src="/assets/images/user2.svg"/>
+            <span>
+                <TbEdit size={20} />
+            </span>
+        </div>
         <div className={styles.userInfo}>
             <h1>John Doe</h1>
             <p>@johndoe</p>
