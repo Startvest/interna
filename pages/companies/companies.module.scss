@@ -38,3 +38,11 @@
     }
 
 }
+
+/* dark mode styles */
+[data-theme="dark"] {
+    .company {
+        background-color: var(--altDark);
+        color: white;
+    }
+}
