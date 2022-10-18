@@ -27,10 +27,13 @@
      cursor: pointer;
      scale: 1.2;
 }
+.scale{
+     scale: 1.2;
+}
 .more{
      position: fixed;
      bottom: 100px;
-     
+     padding: .5rem;
      background-color: var(--primary);
      width: fit-content;
      height: fit-content;

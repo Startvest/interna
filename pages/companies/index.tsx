@@ -1,6 +1,6 @@
 import { AppHeader } from "../../components/header"; 
 import { Searchbar } from "../../components/Searchbar";
-
+import {NavBar} from "../../components/FloatingNavbar";
 import styles from './companies.module.scss';
 
 const CompaniesPage: React.FC = () => {
@@ -52,7 +52,7 @@ const CompaniesPage: React.FC = () => {
                 </p>
             </div>
 
-
+        <NavBar/>
         </main>
     )
 }
