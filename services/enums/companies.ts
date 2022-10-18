@@ -17,4 +17,4 @@ export const companies = [
         image: "/assets/companies/ncc.png",
         type: 'company'
     }
-] as const;{}
+] as const;
