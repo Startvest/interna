@@ -1,0 +1,39 @@
+.container{
+     height: auto;
+     border-radius: 10px;
+     box-shadow: 3px 3px 10px 4px rgba(0, 0, 0, 0.15); 
+     margin: 2rem auto;
+     cursor: pointer;   
+     width: 40%;
+     display: flex;
+     position:relative;
+     padding: 1rem 2rem;
+}
+.text{
+     margin-left: 2rem;
+     font-family: 'Montserrat';
+     color: var(--primary);
+     p{  
+          font-size: 14px;
+     }
+     h2{
+          font-weight: 600;
+          font-size: 12px;
+     }
+     span{
+          font-size: 11px;
+     }
+}
+.quote{
+     position: absolute;
+     top: 0;
+     right: 0;
+     margin-top: .5rem;
+     margin-right: .5rem;
+     img{
+          width: 50px;
+          height: auto;
+          opacity: .4;
+          
+     }
+}

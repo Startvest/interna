@@ -115,10 +115,12 @@
 }
 .connectedBtn {
     border-radius: 15px;
-    background-color: var(--secondary) !important;
+    background-color: transparent;
+    border: 2px solid var(--secondary);
     cursor: pointer;
     font-weight: bold;
     padding: auto 2rem !important;
+    color: var(--secondary) !important;
 }
 
 [data-theme="dark"]{

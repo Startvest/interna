@@ -57,7 +57,14 @@ $inputDark: #333333;
         }
     }
 }
-
+.h2{
+    color: var(--primary);
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: bolder;
+    font-size: 20px;
+    text-align: center;
+}
 .introContainer{
     display: flex;
     height: 100%;
@@ -135,7 +142,13 @@ $inputDark: #333333;
          }
      }
 }
-
+.testimonial{
+    display: flex;
+    justify-content: space-between;
+    gap: 4rem;
+    overflow-x: auto !important;
+    margin: auto;
+}
 .internaDetails{
     background: var(--secondary);
     padding: 20px 10px;
