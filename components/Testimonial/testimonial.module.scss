@@ -4,15 +4,16 @@
      box-shadow: 3px 3px 10px 4px rgba(0, 0, 0, 0.15); 
      margin: 2rem auto;
      cursor: pointer;   
-     width: 40%;
+     width: 100%;
      display: flex;
-     position:relative;
+     position: relative;
      padding: 1rem 2rem;
 }
 .text{
      margin-left: 2rem;
      font-family: 'Montserrat';
      color: var(--primary);
+     width: 70%;
      p{  
           font-size: 14px;
      }

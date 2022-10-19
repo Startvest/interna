@@ -108,10 +108,9 @@ const SearchPage: React.FC = () => {
                         SEARCH_DATA.filter(item => item.name.toLowerCase().includes(searchText.text.toLowerCase())).map(data => (
                         <div className="container space-between">
                             <div className="flex gap">
-                                <Avatar src={user.image} size="small"/>
+                                <Avatar src={data.image} size="small"/>
                                 <span>
-                                    <h3>{user.name}</h3>
-                                    <p>{user.position}</p>
+                                    <h3>{data.name}</h3>
                                 </span>
                             </div>
                         </div>
@@ -147,7 +146,6 @@ const SearchPage: React.FC = () => {
                                             <Avatar src={company.image} size="small"/>
                                             <span>
                                                 <h3>{company.name}</h3>
-                                                <p>{company.position}</p>
                                             </span>
                                         </div>
                                     </div>
