@@ -131,7 +131,7 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
 
             <h2 className={styles.h2}>Hear from our interns</h2>
             <div className={styles.testimonial}>
-            <Testimonial />
+                <Testimonial />
                 <Testimonial />
             </div>
 
