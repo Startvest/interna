@@ -232,7 +232,7 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
                                 Join the waitlist
                             </Button>
                             ) : (
-                            <Button onClick={() => router.push('/signup')}>
+                            <Button onClick={() => router.push('/login')}>
                                 Join the community
                             </Button>
                             )
