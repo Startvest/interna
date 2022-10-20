@@ -3,14 +3,16 @@ import { Button } from "../../components/Button";
 import { Header } from "../../components/header";
 import { NavBar } from '../../components/FloatingNavbar';
 import styles from './settings.module.scss';
-
+import {useRouter} from 'next/router';
 import { MdArrowForward } from "react-icons/md";
 import { Input } from "../../components/Input";
 import { Toggle } from "../../components/Toggle";
-
+import {useState} from "react";
 import { TbEdit } from "react-icons/tb";
 
 const SettingsPage: React.FC = () => {
+    const router = useRouter();
+    const [saved, setSaved] = useState(false);
     return(
     <main className={styles.settingsPage}>
         <Header/>
@@ -24,12 +26,12 @@ const SettingsPage: React.FC = () => {
             <h1>John Doe</h1>
             <p>@johndoe</p>
 
-            <Button className={styles.save}>
-                Save Settings
+            <Button className={`${styles.save} ${(saved) ? styles.saved: null}`} onClick={() => setSaved(true)}>
+                {(saved) ? "Saved": "Save Settings"}
             </Button>
         </div>
 
-        <div className={styles.banner}>
+        <div className={styles.banner} onClick={() => router.push("pricing")}>
             Upgrade to Premium!
             <MdArrowForward size={25}/>
         </div>

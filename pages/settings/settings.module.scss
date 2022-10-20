@@ -3,7 +3,14 @@
     justify-content: center;
     align-items: center;
 }
-
+.settingsPage {
+    @include flex-center;
+    flex-direction: column;
+    padding: 12px 9px 0;
+    font-family: 'Montserrat', sans-serif;
+    width: 40%;
+    margin: auto;
+}
 .avatar {
     position: relative;
 
@@ -16,6 +23,7 @@
         bottom: 0;
         right: 5px;
         @include flex-center;
+        cursor: pointer;
     }
 }
 
@@ -26,8 +34,11 @@
 .save{
     border-radius: 15px;
     padding: 0 12px;
+    font-weight: 600;
 }
-
+.saved{
+    background-color: var(--secondary);
+}
 .userInfo {
     @include flex-center;
     flex-direction: column;
@@ -46,12 +57,7 @@
     margin-bottom: 5px;
 }
 
-.settingsPage {
-    @include flex-center;
-    flex-direction: column;
-    padding: 12px 9px 0;
-    font-family: 'Montserrat', sans-serif;
-}
+
 
 .banner {
     width: 100%;
@@ -62,6 +68,8 @@
     @include flex-center;
     font-weight: bold;
     gap: 15px;
+    margin: 2rem auto;
+    cursor: pointer;
 }
 
 .form {

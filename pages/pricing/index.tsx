@@ -31,7 +31,7 @@ const PricingPage: React.FC = () => {
                 </Button>
             </div>
 
-            <div className={` ${styles.plan} ${styles.freePlan}`}>
+            <div className={` ${styles.plan}`}>
                 <h3>Premium Plan</h3>
                 <span className={styles.recommended}>
                     <MdStar size={16}/>

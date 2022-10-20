@@ -1,12 +1,17 @@
+$fadedContrast: #d3e2ed6e;
+
 .pricingPage {
     padding: 22px 10px 0;
     font-family: 'Inter', sans-serif;
+    width: 40%;
+    margin: auto;
 }
 
 .heading {
     h2{
         font-size: 30px;
         margin: 15px 0 5px 0;
+        color: var(--primary);
     }
 
     p{
@@ -23,12 +28,13 @@
     display: flex;
     align-items: center;
     font-size: 12px;
-    padding: 1px 3px;
+    padding: .5rem 1rem;
     margin: 10px;
+    gap: .5rem;
 }
 
 .plan {
-    width: 30%;
+    width: 100%;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -38,32 +44,41 @@
     margin: 15px auto;
     box-shadow: 0px 1px 5px -1px rgba(0, 0, 0, 0.1);
 
+    h3{ 
+        color: var(--primary);
+    }
     p{
         margin: 7px 0;
     }
 
 }
-
+.freePlan{
+    background-color: $fadedContrast;
+}
 .selectBtn {
-    width: 100%;
+    width: 90%;
     border-radius: 10px;
-    height: 45px
+    height: max-content;
+    padding: .5rem 1rem;
+    font-weight: 700;
+    font-size: 16px;
+    margin-top: 1rem;
 }
 
 .selected {
-    background-color: transparent;
+    background-color: transparent !important;
     border: 2px solid var(--secondary);
-    color: var(--secondary);
+    color: var(--secondary) !important;
 }
 
 @media only screen and (max-width: 1000px) and (min-width: 701px) {
-    .plan {
+    .pricingPage {
         width: 60%;
     }
 }
 
 @media only screen and (max-width: 700px) {
-    .plan {
+    .pricingPage {
         width: 95%;
     }
 
