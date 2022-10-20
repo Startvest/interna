@@ -23,7 +23,7 @@ const Feed = ({isMobile}: FeedProps) => {
     <>
       <AppHeader pageName={'Feed | Interna'} />
       <NewPost addPost={addPost}/>
-      {showToast && <RefreshIcon setToast={setShowToast}/>}
+      {/* {showToast && <RefreshIcon setToast={setShowToast}/>} */}
       <div>
         {posts.map((post) => (
           <Post key={post._id} postData={post} isMobile={isMobile}/>
