@@ -105,8 +105,8 @@ const SearchPage: React.FC = () => {
             <section className={`${!searchText.searching ? styles.invisible : null}`}>
                 {
                     !filterParams ? (
-                        SEARCH_DATA.filter(item => item.name.toLowerCase().includes(searchText.text.toLowerCase())).map(data => (
-                        <div className="container space-between">
+                        SEARCH_DATA.filter(item => item.name.toLowerCase().includes(searchText.text.toLowerCase())).map((data,i) => (
+                        <div className="container space-between" key={i}>
                             <div className="flex gap">
                                 <Avatar src={data.image} size="small"/>
                                 <span>
@@ -120,8 +120,8 @@ const SearchPage: React.FC = () => {
                         <div className={styles.searchResults}>
                             <h2>Interns</h2>
                             {
-                                users.filter(user => user.name.toLowerCase().includes(searchText.text.toLowerCase())).map(user => (
-                                    <div className="container space-between">
+                                users.filter(user => user.name.toLowerCase().includes(searchText.text.toLowerCase())).map((user,i) => (
+                                    <div className="container space-between" key={i}>
                                         <div className="flex gap">
                                             <Avatar src={user.image} size="small"/>
                                             <span>
@@ -140,8 +140,8 @@ const SearchPage: React.FC = () => {
                         <div className={styles.searchResults}>
                             <h2>Interns</h2>
                             {
-                                companies.filter(company => company.name.toLowerCase().includes(searchText.text.toLowerCase())).map(company => (
-                                    <div className="container space-between">
+                                companies.filter(company => company.name.toLowerCase().includes(searchText.text.toLowerCase())).map((company,i) => (
+                                    <div className="container space-between" key={i}>
                                         <div className="flex gap">
                                             <Avatar src={company.image} size="small"/>
                                             <span>
