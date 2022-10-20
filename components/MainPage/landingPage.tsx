@@ -202,17 +202,18 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
                 <div className={styles.carouselHolder}>
                     <motion.div 
                         className={styles.carousel}>
-                        <span className={styles.carouselSlide}>
+                        <motion.span                         
+                            className={styles.carouselSlide}>
                             <Image src="/assets/nile-logo.svg" width={'200px'} height={'60px'} />
-                        </span>
+                        </motion.span>
 
-                        <span className={styles.carouselSlide}>
+                        <motion.span className={styles.carouselSlide}>
                             <Image src="/assets/gdsc_logo.svg" width={'200px'} height={'60px'} />
-                        </span>
+                        </motion.span>
                         
-                        <span className={styles.carouselSlide}>
+                        <motion.span className={styles.carouselSlide}>
                             <Image src="/assets/sc_logo.png" width={'200px'} height={'60px'} />
-                        </span>
+                        </motion.span>
 
                     </motion.div>
                 </div>

@@ -1,3 +1,6 @@
+$contrast: #d3e2ed98;
+$shadow: rgba(0, 0, 0, 0.15);
+
 @mixin flex-center {
     display: flex;
     justify-content: center;
@@ -35,13 +38,19 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+.connected {
+    border: 1px solid var(--secondary);
+    background-color: transparent;
+    color: var(--secondary);
+}
+
 .filterBtn {
     border-radius: 15px;
     width: 80px;
 }
 
 .filterBox{
-    background-color: #d3e2ed98;
+    background-color: $contrast;
     color: var(--primary);
     border-radius: 5px;
     height: 140px;
@@ -54,6 +63,12 @@
     width: 60%;
 }
 
+.searchResults {
+    border-radius: 10px;
+    width: 30%;
+    box-shadow: 2px 1px 6px -1px $shadow;
+}
+
 [data-theme="dark"] {
     .filterBox {
         background-color: var(--altDark);
@@ -64,10 +79,14 @@
     .container{
         width: 50%;
     }
+
+    .searchResults{
+        width: 50%;
+    }
 }
 
 @media only screen and (max-width: 700px) {
-    .container{
+    .container, .searchResults{
         width: 95%;
     }
 }

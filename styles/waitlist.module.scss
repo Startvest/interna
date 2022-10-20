@@ -84,6 +84,8 @@ $inputDark: #333333;
         width: 50%;
         height: 100%;
         background-image: url('/assets/grid.png');
+        background-size: cover;
+        opacity: 0.3;
         padding: 20px 10px;
     
         h1 {
