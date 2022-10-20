@@ -19,8 +19,9 @@ $inputDark: #333333;
 
         h2{
             color: var(--primary);
-            font-family: 'Montserrat';
+            font-family: 'Work Sans';
             font-style: normal;
+            font-weight: 600;
             font-weight: bolder;
             font-size: 20px;
             text-align: center;
@@ -85,14 +86,13 @@ $inputDark: #333333;
         height: 100%;
         background-image: url('/assets/grid.png');
         background-size: cover;
-        opacity: 0.3;
         padding: 20px 10px;
     
         h1 {
             color: var(--primary);
-            font-family: 'Mont Blanc-Trial', 'Work Sans', sans-serif;
+            font-family: 'Work Sans';
             font-style: normal;
-            font-weight: 700;
+            font-weight: 600;
             font-size: 60px;
         }
 
@@ -131,9 +131,9 @@ $inputDark: #333333;
      
          h1 {
              color: var(--primary);
-             font-family: 'Mont Blanc-Trial', 'Work Sans', sans-serif;
+             font-family: 'Work Sans';
              font-style: normal;
-             font-weight: 700;
+             font-weight: 600;
              font-size: 32px;
          }
  
@@ -146,11 +146,15 @@ $inputDark: #333333;
 }
 .testimonial{
     display: flex;
-    justify-content: space-between;
-    gap: 4rem;
+    gap: 10%;
     overflow-x: auto !important;
     margin: auto;
+    scrollbar-width: none !important;
 }
+.testimonial::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
 .internaDetails{
     background: var(--secondary);
     padding: 20px 10px;
@@ -300,20 +304,19 @@ section.landingPageWelcome{
 }
 .carousel {
     display: flex;
+    justify-content: center;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
-    padding-left: 25%;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;
     
-    // animation: slide 15s linear infinite;
 
     .carouselSlide {
         width: 200px;
         flex-shrink: 0;
         height: auto;
-        margin-right: 20%;
+        margin: 0 50px;
         background-color: #fff;
     }
 }
@@ -321,12 +324,32 @@ section.landingPageWelcome{
     display: none;
 }
 
-@keyframes slide {
+.carouselSlide::before,
+.carouselSlide::after {
+//   background: linear-gradient(to right, white 0%, rgba(255, 255, 255, 0) 100%);
+  content: "";
+  height: 100px;
+  position: absolute;
+  width: 200px;
+  z-index: 2;
+}
+
+.carouselSlide::after {
+  right: 0;
+  top: 0;
+  transform: rotateZ(180deg);
+}
+
+.carouselSlide::before {
+  left: 0;
+  top: 0;
+}
+@keyframes scroll {
     0% {
-      transform: translate3d(0, 0, 0);
+      transform: translateX(0);
     }
     100% {
-      transform: translate3d(-100%, 0, 0); /* The image width */
+      transform: translateX(calc(-200px * 3));
     }
   }
 
@@ -543,6 +566,9 @@ section.landingPageWelcome{
 }
 
 @media only screen and (max-width: 600px) {
+    .carouselSlide{
+        animation: scroll 10s linear infinite;
+    }
     .illustrationHolder {    
         img{
             width: 80%;
