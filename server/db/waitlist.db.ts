@@ -2,7 +2,7 @@ const uuid = require('uuid');
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri: string = `${process.env.DB_URL}`;
-const db_name: string = process.env.DB_NAME || "interna_db";
+const db_name: string = `${process.env.DB_NAME}`;
 
 const waitlistDb: any = {};
 

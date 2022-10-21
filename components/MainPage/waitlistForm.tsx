@@ -2,31 +2,51 @@ import styles from '../../styles/waitlist.module.scss';
 import { useForm } from "react-hook-form";
 import { Input } from "../Input";
 import Image from "next/image";
+import {getUsers, addUser} from "../../services/waitlist";
+import {useMutation} from "react-query";
+import {useEffect, useState} from "react";
 
 type FormProps = {
     setHasSubmitted: (val:boolean) => void,
     hasSubmittedForm: boolean,
     submitCount: number,
     setSubmitCount: (count:number) => void,
-    setModal: () => void
+    setModal: () => void,
+    setError: () => void
  }
  
-export const WaitlistForm: React.FC<FormProps> = ({ setHasSubmitted, hasSubmittedForm, submitCount, setSubmitCount, setModal }) => {
-    const { getValues, setValue, handleSubmit } = useForm({
+export const WaitlistForm: React.FC<FormProps> = ({ setHasSubmitted, hasSubmittedForm, submitCount, setSubmitCount, setModal, setError }) => {
+    const [userExists, setuserExists] = useState<boolean>(false);
+    const { getValues, setValue, handleSubmit, formState: { errors }, register } = useForm({
          defaultValues: {
              name: '',
              email: '',
              position: {
-                type: 'intern',
+                type: 'student',
                 company_name: ''
              }
          }
      });
+     const waitlistMutation = useMutation(addUser);
  
-     function submitForm(){
-         console.log(getValues())
-         setHasSubmitted(true)
-     }
+     async function submitForm(){
+        waitlistMutation.mutateAsync(getValues());
+        }
+
+     useEffect(() => {
+        if (waitlistMutation.isSuccess) {
+            setuserExists(false);
+            setHasSubmitted(true);
+        }
+        if(waitlistMutation.isError){
+            if(waitlistMutation.error?.response.status == 400){
+                setHasSubmitted(true);
+                setuserExists(true);
+            }else{
+                setError();
+            }
+        }
+      }, [waitlistMutation.isSuccess, waitlistMutation.isError]);
  
      return(
         <>
@@ -36,31 +56,42 @@ export const WaitlistForm: React.FC<FormProps> = ({ setHasSubmitted, hasSubmitte
                  <h2>
                      Join our <span className={styles.important}>waitlist!</span>
                  </h2>
-                 <p>
+                 {/* <p>
                      By joining you are one of the very first people to try our 
-                     product when we <span className='secondary'>lauch</span>!
+                     product when we <span className='secondary'>launch</span>!
+                 </p> */}
+                 <p>
+                     Join to be notified when we <span className='secondary'>launch</span>! 
                  </p>
              </div>
              
              <Input 
                  onChange={(e:any) => setValue("name", e.target.value)}
-                 labelName="Enter your full name"
+                 labelName="Full name"
                  name="name" 
                  placeholder="eg. John Doe" 
                  inputClassName={styles.waitlistInput}
+                 reg={register(`name`, {
+                    required: `Full name is required`,
+                  })}
+                  error={errors.name?.message}
              />
  
              <Input 
                  onChange={(e:any) => setValue("email", e.target.value)}
-                 labelName="Enter your email address"
+                 labelName="Email address"
                  name="email" 
                  placeholder="eg. example@abc.com"
                  inputClassName={styles.waitlistInput}
+                 reg={register(`email`, {
+                    required: `Your email is required`,
+                  })}
+                  error={errors.email?.message}
              />
              
              <div className={styles.customInputGroup}>
                 <label htmlFor={'position'} className={styles.inputLabel}>
-                    Enter your school/place of work
+                    School or place of work
                 </label>
                 <div className={styles.inputCont}>
                     <select onChange={(e:any) => setValue("position.type", e.target.value)}>
@@ -73,13 +104,13 @@ export const WaitlistForm: React.FC<FormProps> = ({ setHasSubmitted, hasSubmitte
              </div>
  
              <button className={styles.waitlistButton} type="submit">
-                 Join!
+                {(waitlistMutation.isLoading ? "Loading...": "Join!")}
              </button>
 
          </form>
         }
 
-        {hasSubmittedForm  && submitCount < 1 && <> 
+        {hasSubmittedForm  && !userExists && <> 
             <div className={styles.formHeader}>
                 <h2>
                     You are <span className={styles.important}>in!</span> 
@@ -97,14 +128,13 @@ export const WaitlistForm: React.FC<FormProps> = ({ setHasSubmitted, hasSubmitte
 
             <button className={styles.dismissButton} onClick={() =>{
                 setModal()
-                setSubmitCount(submitCount+1)
             }}>
                 Dismiss
             </button>
         </>
         }
 
-        {hasSubmittedForm  && submitCount >= 1 && <>
+        {hasSubmittedForm && userExists && <>
               <div className={styles.formHeader}>
                     <h2>
                         You are <span className={styles.important}>already</span> in!

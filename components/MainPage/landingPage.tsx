@@ -12,7 +12,7 @@ import Footer from "../Footer";
 import {uniqueSellingPoints} from '../../services/enums/usp';
 import {WaitlistForm} from '.';
 import {Testimonial} from '../Testimonial';
-
+import {ErrorModal} from '../Modal';
 import { motion, useScroll } from "framer-motion";
 import { ScrollAnimationWrapper } from "../ScrollAnimationWrapper";
 
@@ -27,6 +27,7 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
 
 
     const [modalOpen, setModal] = useState<boolean>(false);
+    const [errorModal, setErrorModal] = useState<boolean>(false);
     const [hasSubmittedForm, setHasSubmitted] = useState(false);
     const [submitCount, setSubmitCount] = useState<number>(0);
     const { resolvedTheme } = useTheme();
@@ -43,8 +44,11 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
                 submitCount={submitCount}
                 setSubmitCount={(count) => setSubmitCount(count)}
                 setModal={() => setModal(!modalOpen)}
+                setError={() => {setModal(false); setErrorModal(true)}}
             /> 
         </Modal>
+
+        <ErrorModal isOpen={errorModal} closeModal={() => setErrorModal(!errorModal)}/>
 
         <header className={styles.landingPageHeader}>
             <span className={styles.headerLogo}>

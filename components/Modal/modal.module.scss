@@ -17,9 +17,10 @@ $shareText: rgba(33, 41, 92, 0.6);
     bottom: 0;
     background-color: rgba(0, 0, 0, .9);
     @include flex-center();
+    z-index: 0;
     
     .modalContainer{
-        z-index: 99 !important;
+        z-index: 1000 !important;
         background: white;
         position: relative;
         width: 40%; 
@@ -106,7 +107,19 @@ $shareText: rgba(33, 41, 92, 0.6);
         margin: 2rem auto 1rem auto;
     }
 }
-
+// Error ModalProps
+.errorText{
+    color: var(--primary);
+    opacity: .9;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+.errorIcon{
+    color: red;
+    margin: 2rem auto;
+}
 [data-theme='dark']{
     .modalBackdrop {
         // background-color: lighten($color:#212121, $amount:2);

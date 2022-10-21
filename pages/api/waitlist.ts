@@ -1,6 +1,18 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { waitlistService } from '../../server/services';
 
+export interface IUser {
+  waitlist_id: string;
+  name: string;
+  email: string;
+  position: {
+       type: string, 
+       company_name: string
+  };
+  created: string
+}
+
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
     let serRes = await waitlistService.getMembers();
@@ -13,7 +25,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
   
   else if (req.method === 'POST') {
-    let serRes = await waitlistService.createWaitlistMember(req.body);
+    const data = req.body as IUser;
+
+    if(data.email.length < 0){
+      return res.status(500).json({"error": "An error occured. Please try again"});
+    }
+    let serRes = await waitlistService.createWaitlistMember(data);
     // console.log(serRes);
 
     if (serRes) { 
