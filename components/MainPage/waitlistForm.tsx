@@ -14,7 +14,11 @@ type FormProps = {
     setModal: () => void,
     setError: () => void
  }
- 
+ interface TError{
+    response: {
+        status: number
+    }
+ }
 export const WaitlistForm: React.FC<FormProps> = ({ setHasSubmitted, hasSubmittedForm, submitCount, setSubmitCount, setModal, setError }) => {
     const [userExists, setuserExists] = useState<boolean>(false);
     const { getValues, setValue, handleSubmit, formState: { errors }, register } = useForm({
@@ -27,7 +31,9 @@ export const WaitlistForm: React.FC<FormProps> = ({ setHasSubmitted, hasSubmitte
              }
          }
      });
-     const waitlistMutation = useMutation(addUser);
+     const waitlistMutation = useMutation(addUser, { 
+        onError(error: TError){}
+     });
  
      async function submitForm(){
         waitlistMutation.mutateAsync(getValues());
@@ -128,6 +134,7 @@ export const WaitlistForm: React.FC<FormProps> = ({ setHasSubmitted, hasSubmitte
 
             <button className={styles.dismissButton} onClick={() =>{
                 setModal()
+                setHasSubmitted(false);
             }}>
                 Dismiss
             </button>
@@ -153,6 +160,7 @@ export const WaitlistForm: React.FC<FormProps> = ({ setHasSubmitted, hasSubmitte
 
                 <button className={styles.dismissButton} onClick={() =>{
                     setModal()
+                    setHasSubmitted(false);
                 }}>
                 Dismiss
             </button>
