@@ -30,7 +30,7 @@ const Home: React.FC<HomeProps> = ({isMobile}) => {
       <Header pageName='Interna | The official platform for interns'/>
       {loading && <LoadingScreen/>}
       {!loading && 
-        <LandingPage isWaitlist={false} />
+        <LandingPage isWaitlist={true} />
       } 
       
       {/* Script for push notification  [still testing, do not edit]*/}
@@ -43,7 +43,10 @@ export default Home;
 
 import { GetServerSideProps } from 'next';
 import { getDevice } from '../server/getDevice';
+import { sendMail } from '../server/mail';
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  // const email = await sendMail();
+  // console.log(email);
   return {
     props: {
       isMobile: Boolean(getDevice(req))

@@ -1,6 +1,14 @@
+$contrastLight: rgba(211, 226, 237, 0.5);
+
+.companiesPage{
+    h3{
+        margin-top: 2rem;
+        color: var(--primary);
+    }
+}
 .company {
     width: 30%;
-    background: var(--contrast);
+    background: $contrastLight;
     margin: 25px auto;
     border-radius: 10px;
     padding: 10px;
@@ -23,8 +31,13 @@
     margin: 0 0 0 auto;
     border-radius: 10px;
     color: white;
+    font-size: 12px;
+    font-weight: 600;
 }
-
+.RecommendText{
+    font-weight: 500;
+    font-size: 14px;
+}
 @media screen and (min-width: 700px) and (max-width: 1000px){
     .company{
         width: 60%;

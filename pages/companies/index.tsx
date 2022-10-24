@@ -20,7 +20,7 @@ const CompaniesPage: React.FC = () => {
                         <p className="font-small">Maitama, Abuja</p>
                     </span>
                 </div>
-                <p>
+                <p className={styles.RecommendText}>
                     <span className="secondary">Steven</span>  and <span className="secondary">Joshua</span> work here
                 </p>
             </div>
@@ -34,7 +34,7 @@ const CompaniesPage: React.FC = () => {
                     </span>
                     <span className={`chip ${styles.secondary}`}>Recruiting</span>
                 </div>
-                <p>
+                <p className={styles.RecommendText}>
                     <span className="secondary">Fortune</span> worked here in 2018
                 </p>
             </div>
@@ -47,7 +47,7 @@ const CompaniesPage: React.FC = () => {
                         <p className="font-small">Maitama, Abuja</p>
                     </span>
                 </div>
-                <p>
+                <p className={styles.RecommendText}>
                     <span className="secondary">Steven</span>  and <span className="secondary">Joshua</span> work here
                 </p>
             </div>
