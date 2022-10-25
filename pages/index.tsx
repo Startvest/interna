@@ -30,7 +30,7 @@ const Home: React.FC<HomeProps> = ({isMobile}) => {
       <Header pageName='Interna | The official platform for interns'/>
       {loading && <LoadingScreen/>}
       {!loading && 
-        <LandingPage isWaitlist={true} />
+        <LandingPage isWaitlist={false} />
       } 
       
       {/* Script for push notification  [still testing, do not edit]*/}
