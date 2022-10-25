@@ -38,10 +38,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         res.status(400).json({"response": "Email has already been used."})
       }
       else {
-        await sendMail({
+        const email = await sendMail({
           to: data.email, 
           name: data.name
         })
+        console.log(email);
         return res.status(201).json({"response": "Member created successfully"});
       }
     }

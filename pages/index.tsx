@@ -45,8 +45,6 @@ import { GetServerSideProps } from 'next';
 import { getDevice } from '../server/getDevice';
 import { sendMail } from '../server/mail';
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  // const email = await sendMail();
-  // console.log(email);
   return {
     props: {
       isMobile: Boolean(getDevice(req))

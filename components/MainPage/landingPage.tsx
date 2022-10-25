@@ -59,10 +59,11 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
 
             <span className={styles.headerCta}>
                     {
-                        isWaitlist ? (
+                        isWaitlist ? (<>
                         <Button onClick={() => setModal(true)}>
                             Join the waitlist
                         </Button>
+                        </>
                         ) : (
                         <>
                         <Button className={styles.altButton} onClick={() => router.push('/login')}>
@@ -133,12 +134,15 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
                 </section> 
             </div>}
 
-            <h2 className={styles.h2}>Hear from our interns</h2>
-            <div className={styles.testimonial}>
-                <Testimonial />
-                <Testimonial />
-                <Testimonial />
-            </div>
+            {!isWaitlist && 
+            <>
+                <h2 className={styles.h2}>Hear from our interns</h2>
+                <div className={styles.testimonial}>
+                    <Testimonial />
+                    <Testimonial />
+                    <Testimonial />
+                </div>
+            </>}
 
                 <motion.section className={styles.landingPageWelcome}>
                     <ScrollAnimationWrapper type="horizontal-slide-in" performOnce>
