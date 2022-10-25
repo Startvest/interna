@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { waitlistService } from '../../server/services';
-
+import {sendMail} from "../../server/mail";
 export interface IUser {
   waitlist_id: string;
   name: string;
@@ -38,6 +38,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         res.status(400).json({"response": "Email has already been used."})
       }
       else {
+        await sendMail({
+          to: data.email, 
+          name: data.name
+        })
         return res.status(201).json({"response": "Member created successfully"});
       }
     }
