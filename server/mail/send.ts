@@ -11,7 +11,7 @@ interface MailData{
 }
 export const sendMail = async (props:MailData) => {
      const {to, name, subject, text} = props;
-     const source = fs.readFileSync('./public/templates/email.html', 'utf-8').toString();
+     const source = fs.readFileSync(process.cwd() + "/public/templates/email.html", 'utf-8').toString();
      const template = handlebars.compile(source);
      const replacements = {
           name: name
@@ -30,5 +30,5 @@ export const sendMail = async (props:MailData) => {
      }
      let info = await transporter.sendMail(mailData);
 
-     return info;
+     return "info";
 }

@@ -392,8 +392,8 @@ section.landingPageWelcome{
         * {
             margin: 10px 0;
         }
-
-        p {font-weight: 500; font-size: 14px; color: var(--primary);}
+        // h2{font-weight: 500;}
+        p {font-weight: 600; font-size: 14px; color: var(--primary);}
     }
 
     h2{
@@ -452,6 +452,9 @@ section.landingPageWelcome{
                 border: 0;
                 font-size: 16px;
                 outline: none !important;
+                &::placeholder {
+                    opacity: .7;
+                }
             }
         }
     }
@@ -461,8 +464,10 @@ section.landingPageWelcome{
     border: 0 !important;
     background-color: #d3e2ed77;
     font-size: 16px !important;
+    font-weight: 500 !important;
+    outline: none !important;
     &::placeholder {
-        color: var(--primary);
+        opacity: .7;
     }
    
 }
