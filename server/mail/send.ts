@@ -30,5 +30,5 @@ export const sendMail = async (props:MailData) => {
      }
      let info = await transporter.sendMail(mailData);
 
-     return "info";
+     return info;
 }
