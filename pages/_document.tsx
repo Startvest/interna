@@ -37,7 +37,7 @@ class MyDocument extends Document {
           <meta property="og:url" content="https://getinterna.com" />
           <meta
             property="og:image"
-            content="https://getinterna.com/apple-touch-icon.png"
+            content="https://getinterna.com/assets/banner.png"
           />
 
           <meta name="application-name" content="interna" />
