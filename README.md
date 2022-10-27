@@ -5,7 +5,7 @@
  ---
 ## What is interna?
 
-Interna is a solution designed to bridge the gap between students who have undergone internships and students who are looking for internships by giving them a social community where previous interns can share their internship experiences with interested students and guide them through the internship process.
+Interna is a solution designed to provide internship opportunities to every student, equip them with professional tools and provide a community of students who have undergone internships and students who are looking for internships. 
 
 ### Mission
 
@@ -17,7 +17,7 @@ To be the go-to platform for students looking to gain practical experiences in t
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+To learn more about interna:
 
 - [support@getinterna.com](mailto:support@getinterna.com) - Send us a quick mail if you have any questions.
 
