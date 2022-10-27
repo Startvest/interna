@@ -21,6 +21,7 @@ type FormProps = {
  }
 export const WaitlistForm: React.FC<FormProps> = ({ setHasSubmitted, hasSubmittedForm, submitCount, setSubmitCount, setModal, setError }) => {
     const [userExists, setuserExists] = useState<boolean>(false);
+    const [launched, setLaunched] = useState<boolean>(false);
     const { getValues, setValue, handleSubmit, formState: { errors }, register } = useForm({
          defaultValues: {
              name: '',
@@ -56,7 +57,28 @@ export const WaitlistForm: React.FC<FormProps> = ({ setHasSubmitted, hasSubmitte
  
      return(
         <>
-        {!hasSubmittedForm && 
+
+        {!launched && <>
+            <div className={styles.formHeader}>
+                <h2>
+                    Coming <span className={styles.important}>soon!</span> 
+                </h2>
+            </div>
+
+            <div className={styles.gifHolder}>
+                <Image className={styles.gif} src="/waiting.gif" layout="fill" alt="minions excited"/>
+            </div>
+
+            <h4>We are <span className='secondary'>launching</span> the waitlist in a bit &#8987;</h4>
+
+            {/* <button className={styles.dismissButton} onClick={() =>{
+                setModal();
+            }}>
+                Dismiss
+            </button> */}
+        </>}
+
+        {launched && !hasSubmittedForm && 
          <form className={styles.waitlistForm} onSubmit={handleSubmit(submitForm)}>
              <div className={styles.formHeading}>
                  <h2>
@@ -116,7 +138,7 @@ export const WaitlistForm: React.FC<FormProps> = ({ setHasSubmitted, hasSubmitte
          </form>
         }
 
-        {hasSubmittedForm  && !userExists && <> 
+        {launched && hasSubmittedForm  && !userExists && <> 
             <div className={styles.formHeader}>
                 <h2>
                     You are <span className={styles.important}>in!</span> 
@@ -141,7 +163,7 @@ export const WaitlistForm: React.FC<FormProps> = ({ setHasSubmitted, hasSubmitte
         </>
         }
 
-        {hasSubmittedForm && userExists && <>
+        {launched && hasSubmittedForm && userExists && <>
               <div className={styles.formHeader}>
                     <h2>
                         You are <span className={styles.important}>already</span> in!
