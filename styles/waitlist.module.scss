@@ -10,7 +10,7 @@ $inputDark: #333333;
     align-items: center;
     position: relative;
     width: 100%;
-
+    z-index: 10 !important;
     .headerLogo{
         display: flex;
         justify-content:center;
@@ -140,7 +140,8 @@ $inputDark: #333333;
          button{
              margin-top: 2em;
              padding: .5em 1em;
-             font-size: 20px;
+             font-size: 16px;
+             font-weight: 500;
          }
      }
 }
@@ -553,6 +554,10 @@ section.landingPageWelcome{
         h1 {
             color: white;
         }
+        button{
+            background-color: var(--secondary);
+            color: white;
+        }
     }
 
     .headerCta {
@@ -561,7 +566,7 @@ section.landingPageWelcome{
             color: var(--secondary);
         }
         button{
-            background-color: #04de00b3;
+            background-color: var(--secondary);
             color: white;
         }
     }
