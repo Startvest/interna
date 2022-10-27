@@ -115,22 +115,27 @@ export const PostDetail: React.FC<PostProps> = ({isMobile}) => {
           }
 
           <div className={styles.postActions}>
-            <span onClick={() => handleLike()}>
-              {heartIcon}
-              <p>{noLikes}</p>
-            </span>
-            <span>
-              <IoChatboxOutline size={25} />
-              <p>{currentPost.comments.length}</p>
-            </span>
-            <span>
-              <IoSendOutline size={25} />
-              <p>Send</p>
-            </span>
+          
             <span onClick={sharePost}>
               <IoShareSocialOutline size={25} className={styles.icon} />
               <p>Share</p>
             </span>
+
+            <span>
+              <IoChatboxOutline size={25} />
+              <p>{currentPost.comments.length}</p>
+            </span>
+
+            <span onClick={() => handleLike()}>
+              {heartIcon}
+              <p>{noLikes}</p>
+            </span>
+
+            <span>
+              <IoSendOutline size={25} />
+              <p>Send</p>
+            </span>
+            
           </div>
           <div className={styles.comments}>
             <span>Comments</span>
