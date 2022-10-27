@@ -570,7 +570,11 @@ section.landingPageWelcome{
 
         p { color: var(--primary); }
     }
-
+    .ourSponsors{
+        h3{
+            color: white;
+        }
+    }
 }
 
 @media only screen and (max-width: 600px) {

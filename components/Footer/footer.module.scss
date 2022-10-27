@@ -20,6 +20,7 @@
 
     .footerLinks {
         li{
+           
             &:first-of-type {
                 font-weight: bold;
             }
@@ -35,6 +36,7 @@
         *{
             font-size: 25px;
         }
+        a { color: inherit; } 
         li:hover{
             cursor: pointer;
             scale: 1.2;
