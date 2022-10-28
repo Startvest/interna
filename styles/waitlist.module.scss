@@ -10,7 +10,7 @@ $inputDark: #333333;
     align-items: center;
     position: relative;
     width: 100%;
-
+    z-index: 10 !important;
     .headerLogo{
         display: flex;
         justify-content:center;
@@ -140,7 +140,8 @@ $inputDark: #333333;
          button{
              margin-top: 2em;
              padding: .5em 1em;
-             font-size: 20px;
+             font-size: 16px;
+             font-weight: 500;
          }
      }
 }
@@ -392,8 +393,8 @@ section.landingPageWelcome{
         * {
             margin: 10px 0;
         }
-
-        p {font-weight: 500; font-size: 14px; color: var(--primary);}
+        // h2{font-weight: 500;}
+        p {font-weight: 600; font-size: 14px; color: var(--primary);}
     }
 
     h2{
@@ -452,6 +453,9 @@ section.landingPageWelcome{
                 border: 0;
                 font-size: 16px;
                 outline: none !important;
+                &::placeholder {
+                    opacity: .7;
+                }
             }
         }
     }
@@ -461,8 +465,10 @@ section.landingPageWelcome{
     border: 0 !important;
     background-color: #d3e2ed77;
     font-size: 16px !important;
+    font-weight: 500 !important;
+    outline: none !important;
     &::placeholder {
-        color: var(--primary);
+        opacity: .7;
     }
    
 }
@@ -488,7 +494,7 @@ section.landingPageWelcome{
 
 .gifHolder {
     width: 100%;
-    height: 190px;
+    height: 250px;
     position: relative;
     transform: scale(0.8);
 
@@ -548,6 +554,10 @@ section.landingPageWelcome{
         h1 {
             color: white;
         }
+        button{
+            background-color: var(--secondary);
+            color: white;
+        }
     }
 
     .headerCta {
@@ -556,7 +566,7 @@ section.landingPageWelcome{
             color: var(--secondary);
         }
         button{
-            background-color: #04de00b3;
+            background-color: var(--secondary);
             color: white;
         }
     }
@@ -565,7 +575,11 @@ section.landingPageWelcome{
 
         p { color: var(--primary); }
     }
-
+    .ourSponsors{
+        h3{
+            color: white;
+        }
+    }
 }
 
 @media only screen and (max-width: 600px) {
@@ -597,6 +611,9 @@ section.landingPageWelcome{
     }
     .waitlistForm {
        width: 95%;
+    }
+    .gifHolder {
+        height: 230px;
     }
 }
 

@@ -14,6 +14,11 @@ export interface IUser {
 
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if(req.headers.authorization !== process.env.NEXT_PUBLIC_AUTH){
+    console.log(process.env.NEXT_PUBLIC_AUTH);
+    console.log(req.headers.authorization);
+    return res.status(401).json({"error": "You are not allowed to view this page"});
+  }
   if (req.method === 'GET') {
     let serRes = await waitlistService.getMembers();
     if (serRes) {

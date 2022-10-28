@@ -3,11 +3,9 @@ import type { NextPage } from 'next';
 import styles from '../styles/Home.module.css';
 import { Header } from '../components/header';
 import { LandingPage } from '../components/MainPage';
-import Script from 'next/script'
 import {LoadingScreen} from '../components/loadScreen';
 import showNotification from '../public/client';
 import { useRouter } from 'next/router';
-import {ThemeIcon} from '../components/ThemeIcon';
 
 type HomeProps = {
   isMobile: boolean,
@@ -15,15 +13,14 @@ type HomeProps = {
 
 const Home: React.FC<HomeProps> = ({isMobile}) => {
   const [loading, setLoading] = useState<boolean>(true);
-
   const router = useRouter();
-  
     useEffect(() => {
       setTimeout(() => {
         //router.push('/login')
         setLoading(false)
       }, 2000);
   },[]);
+
 
   return (
     <div>
@@ -35,6 +32,7 @@ const Home: React.FC<HomeProps> = ({isMobile}) => {
       
       {/* Script for push notification  [still testing, do not edit]*/}
       {/* <Script src='/client.js' /> */}
+
     </div>
   );
 };

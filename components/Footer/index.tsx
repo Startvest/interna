@@ -24,16 +24,24 @@ const Footer:React.FC = () => {
 
                 <ul className={styles.socials}>
                     <li>
-                        <IoLogoLinkedin />
+                        <a href="https://www.linkedin.com/company/startvest" target={"_blank"}   rel="noreferrer">
+                            <IoLogoLinkedin />
+                        </a>
                     </li>
                     <li>
-                        <IoLogoTwitter/>
+                        <a href="https://twitter.com/getinterna" target={"_blank"}   rel="noreferrer">
+                            <IoLogoTwitter/>
+                        </a>
                     </li>
                     <li>
-                        <IoLogoInstagram/>
+                        <a href="https://getinterna.com" target={"_blank"}  rel="noreferrer">
+                            <IoLogoInstagram/>
+                        </a>
                     </li>
                     <li>
-                        <IoLogoYoutube/>
+                        <a href="https://www.youtube.com/channel/UC-fTdIZ0-hk6YqbP6camF4w" target={"_blank"}   rel="noreferrer">
+                            <IoLogoYoutube/>
+                        </a>
                     </li>
                 </ul>
             </div>
