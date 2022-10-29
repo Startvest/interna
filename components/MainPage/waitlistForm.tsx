@@ -21,7 +21,7 @@ type FormProps = {
  }
 export const WaitlistForm: React.FC<FormProps> = ({ setHasSubmitted, hasSubmittedForm, submitCount, setSubmitCount, setModal, setError }) => {
     const [userExists, setuserExists] = useState<boolean>(false);
-    const [launched, setLaunched] = useState<boolean>(true);
+    const [launched, setLaunched] = useState<boolean>(false);
     const { getValues, setValue, handleSubmit, formState: { errors }, register } = useForm({
          defaultValues: {
              name: '',
