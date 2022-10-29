@@ -30,7 +30,7 @@ const Offline: NextPage = () => {
           : null
         }
 
-        <h3>Seems you're offline</h3>
+        <h3>Seems you are offline</h3>
 
         <p>Please check your internet connection and refresh this page</p>
 
