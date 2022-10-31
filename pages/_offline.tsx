@@ -11,7 +11,7 @@ const Offline: NextPage = () => {
   return (
     <>
       <AppHeader pageName='You are Offline'/>
-      <main className={styles.mainContent}>
+      <main className={styles.pageContent}>
         {
           resolvedTheme == 'light' ?
           <Image 
