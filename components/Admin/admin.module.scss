@@ -1,0 +1,50 @@
+.navbar{
+     background-color: var(--primary);
+     width: 20%;
+     margin: 0 !important;
+     height: 100vh;
+     font-family: 'Work sans';
+     text-align: center;
+     .logo{
+          margin-top: 4rem;
+     }
+     h3{
+          color: white;
+          font-weight: 500;
+          font-size: 25px;
+          margin: 4rem auto;
+     }
+}
+.navItems{
+     
+     span{
+          text-align: left;
+          color: white;
+          text-decoration: none;
+          font-size: 17px;
+          cursor: pointer;
+          display: block;
+          margin: 2rem 0 0 2rem;
+     }
+
+     .span:hover{
+          transform: translateX(10px);
+     }
+
+     .navItemsLogo{
+          margin-right: .5rem;
+     }
+     .navItemsLogoActive{
+          color: var(--secondary);
+          
+     }
+}
+.logOut{
+     text-align: left;
+     margin: 6rem 0 0 2rem;
+     color: white;
+}
+.logOut:hover  {
+     scale: 0.9;
+     cursor: pointer;
+}

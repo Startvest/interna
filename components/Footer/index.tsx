@@ -39,7 +39,7 @@ const Footer:React.FC = () => {
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.youtube.com/channel/UC-fTdIZ0-hk6YqbP6camF4w" target={"_blank"}   rel="noreferrer">
+                        <a href="https://www.youtube.com/@getinterna" target={"_blank"}   rel="noreferrer">
                             <IoLogoYoutube/>
                         </a>
                     </li>
