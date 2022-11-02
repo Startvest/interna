@@ -27,8 +27,8 @@ export function UserContent ({users}:{users: IUser[]}){
                <div>
                {users && users.length > 0 && 
                     <>
-                         {users.map(user =>
-                              <span>{user.name}</span>
+                         {users.map((user,i) =>
+                              <span key={i}>{user.name}</span>
                          )}
                          
                     </>
