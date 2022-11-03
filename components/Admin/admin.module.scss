@@ -6,7 +6,8 @@
      background-color: var(--primary);
      width: 20%;
      margin: 0 !important;
-     height: 100vh;
+     min-height: 100vh;
+     height: max-content;
      font-family: 'Work sans';
      text-align: center;
      .logoContainer{
