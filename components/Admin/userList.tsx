@@ -3,37 +3,53 @@ import styles from './admin.module.scss';
 import {useEffect, useState} from "react";
 import {getUsers} from "../../services/waitlist";
 import {IUser} from '../../pages/api/waitlist';
+import DisplayDate from '../DisplayDate';
 
 export function UserContent ({users}:{users: IUser[]}){
-     // const [users, setUsers] = useState<IUser[]>([]);
-     // // const [users, setUsers] = useState<Promise<IUser[]>>(getUsers());
-     // useEffect(() =>{
-     //      renderUsers();
-     //      console.log(users);
-     // },[])
-
-     // const renderUsers = async () =>{
-     //      const c = await getUsers();
-     //      console.log(users);
-     //      setUsers(c);
-     // }
      return(
           <div className={styles.userContent}>
              <h1>Hey Admin!</h1>
+             <h3>These are our current users</h3>
                <Searchbar 
                     placeholder="Search for anything"
                     onChange={(e) =>console.log(e)}
                /> 
-               <div>
+               
                {users && users.length > 0 && 
                     <>
+                    <table className={styles.userContainer}>
+                              <tr>
+                                   <th> </th>
+                                   <th>Name</th>
+                                   <th>Email</th>
+                                   <th>Position</th>
+                                   <th>Date joined</th>
+                              </tr>
                          {users.map((user,i) =>
-                              <span key={i}>{user.name}</span>
+                              // <div className={styles.userContainer} key={i}>
+                              //      <span>{user.name}</span>
+                              //      <span>{user.email}</span>
+                              //      <span>{user.position.type} at {user.position.company_name}</span>
+                              //      <span><DisplayDate date={user.created} show={'datetime'} /></span>
+                              // </div>
+                              <tr key={i}>
+                                   <td>{i+1}</td>
+                                   <td>{user.name}</td>
+                                   <td>{user.email}</td>
+                                   <td>{user.position.type} at {user.position.company_name}</td>
+                                   <td><DisplayDate date={user.created} show={'datetime'} /></td>
+                              </tr>
                          )}
-                         
+                     
+                    </table>
+                    <div className={styles.userCount}>
+                         Showing {users.length} users
+                    </div>
                     </>
                }
-               </div>               
+               
+
+                            
           </div>
 
      )     

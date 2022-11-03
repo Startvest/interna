@@ -3,14 +3,18 @@ import { Button } from '../components/Button';
 import { AppHeader, Header } from '../components/header';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
-
-
+import { useState , useEffect} from 'react';
 import styles from '../styles/offline.module.scss';
 
-const Offline: NextPage = () => {
+const Four: NextPage = () => {
+  const { resolvedTheme , setTheme} = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-  const { resolvedTheme } = useTheme();
+  useEffect(() => {
+      setMounted(true);
+  }, []);
 
+  if (!mounted) return null;
   return (
     <>
       <AppHeader pageName='Something Went Wrong'/>
@@ -47,4 +51,4 @@ const Offline: NextPage = () => {
     </>
   );
 };
-export default Offline;
+export default Four;

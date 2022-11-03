@@ -29,9 +29,9 @@ export function NavigationBar(){
      
      let dashIcon= path === '/admin/dashboard' ? <IoTrendingUpOutline size={16} className={`${styles.navItemsLogo} ${styles.navItemsLogoActive}`}/> : <IoTrendingUpOutline size={16} className={styles.navItemsLogo}/>
      let usersIcon = path === '/admin/users' ? <IoPeople size={16} className={`${styles.navItemsLogo} ${styles.navItemsLogoActive}`}/> : <IoPeopleOutline size={16} className={styles.navItemsLogo}/>
-     let flagIcon= path === '/admin/moderation' ? <IoFlag size={16} className={styles.navItemsLogo}/> : <IoFlagOutline size={16} className={styles.navItemsLogo}/>
-     let docsIcon= path === '/admin/logs' ? <IoDocumentText size={16} className={styles.navItemsLogo}/> : <IoDocumentTextOutline size={16} className={styles.navItemsLogo}/>
-     let settingsIcon= path === '/admin/settings' ? <IoSettingsOutline size={16} className={styles.navItemsLogo}/> : <IoSettingsOutline size={16} className={styles.navItemsLogo}/>
+     let flagIcon= path === '/admin/moderation' ? <IoFlag size={16} className={`${styles.navItemsLogo} ${styles.navItemsLogoActive}`}/> : <IoFlagOutline size={16} className={styles.navItemsLogo}/>
+     let docsIcon= path === '/admin/logs' ? <IoDocumentText size={16} className={`${styles.navItemsLogo} ${styles.navItemsLogoActive}`}/> : <IoDocumentTextOutline size={16} className={styles.navItemsLogo}/>
+     let settingsIcon= path === '/admin/settings' ? <IoSettingsOutline size={16} className={`${styles.navItemsLogo} ${styles.navItemsLogoActive}`}/> : <IoSettingsOutline size={16} className={styles.navItemsLogo}/>
 
      return(
           <div className={styles.navbar}>

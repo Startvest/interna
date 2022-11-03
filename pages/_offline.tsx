@@ -3,11 +3,18 @@ import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import { Button } from '../components/Button';
 import { AppHeader } from '../components/header';
-
+import { useState , useEffect} from 'react';
 import styles from '../styles/offline.module.scss';
 
 const Offline: NextPage = () => {
-  const { resolvedTheme } = useTheme();
+  const { resolvedTheme , setTheme} = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+      setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
   return (
     <>
       <AppHeader pageName='You are Offline'/>

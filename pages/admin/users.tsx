@@ -1,32 +1,46 @@
 import {NavigationBar} from '../../components/Admin';
 import {Header} from '../../components/header';
 import {useEffect, useState} from "react";
-import {AdminContent} from '../../components/Admin';
+import {AdminContent, UserContent} from '../../components/Admin';
 import {getUsers} from "../../services/waitlist";
 import {IUser} from '../../pages/api/waitlist';
+import { useTheme } from 'next-themes';
 
-const Users = () => {
-     const [users, setUsers] = useState<IUser[]>([]);
-     // const [users, setUsers] = useState<Promise<IUser[]>>(getUsers());
-     useEffect(() =>{
-          // renderUsers();
-          console.log("users");
-     },[]);
-     const renderUsers = async () =>{
-          const c = await getUsers();
-          console.log(users);
-          setUsers(c);
-     }
+type UsersProps = {
+     users: IUser[],
+}
+const Users: React.FC<UsersProps> = ({users}) => {
+     const { resolvedTheme , setTheme} = useTheme();
+     const [mounted, setMounted] = useState(false);
+   
+     useEffect(() => {
+         setMounted(true);
+     }, []);
+   
+     if (!mounted) return null;
      return(
-          <>
+          <div>
                <Header pageName='Admin Users | Interna'/>
                <AdminContent>
                     <NavigationBar/>
-                    {/* <UserContent users={users}/> */}
+                    <UserContent users={users}/>
                </AdminContent>
-          </>
+          </div>
      )
 
 }
 
 export default Users;
+
+import { GetServerSideProps } from 'next';
+import { waitlistDb } from '../../server/db';
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+     const u = await waitlistDb.getMembers();
+     const users = u.map((u:IUser) => JSON.parse(JSON.stringify(u)))
+  
+   return {
+    props: {
+     users
+    }, // will be passed to the page component as props
+  };
+};
