@@ -26,17 +26,11 @@ export function UserContent ({users}:{users: IUser[]}){
                                    <th>Date joined</th>
                               </tr>
                          {users.map((user,i) =>
-                              // <div className={styles.userContainer} key={i}>
-                              //      <span>{user.name}</span>
-                              //      <span>{user.email}</span>
-                              //      <span>{user.position.type} at {user.position.company_name}</span>
-                              //      <span><DisplayDate date={user.created} show={'datetime'} /></span>
-                              // </div>
                               <tr key={i}>
                                    <td>{i+1}</td>
                                    <td>{user.name}</td>
                                    <td>{user.email}</td>
-                                   <td>{user.position.type} at {user.position.company_name}</td>
+                                   <td><span className="secondary">{user.position.type.toString()}</span> at {user.position.company_name}</td>
                                    <td><DisplayDate date={user.created} show={'datetime'} /></td>
                               </tr>
                          )}

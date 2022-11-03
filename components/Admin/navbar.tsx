@@ -16,7 +16,7 @@ import {
      IoPeople
 } from 'react-icons/io5';
 
-type pathNames = '/admin/dashboard' | '/admin/moderation' | '/admin/logs' | '/admin/settings' | '/admin/users';
+type pathNames = '/admin/dashboard1101' | '/admin/moderation' | '/admin/logs' | '/admin/settings' | '/admin/users1101';
 
 
 export function NavigationBar(){
@@ -27,8 +27,8 @@ export function NavigationBar(){
           setTheme('light');
      },[])
      
-     let dashIcon= path === '/admin/dashboard' ? <IoTrendingUpOutline size={16} className={`${styles.navItemsLogo} ${styles.navItemsLogoActive}`}/> : <IoTrendingUpOutline size={16} className={styles.navItemsLogo}/>
-     let usersIcon = path === '/admin/users' ? <IoPeople size={16} className={`${styles.navItemsLogo} ${styles.navItemsLogoActive}`}/> : <IoPeopleOutline size={16} className={styles.navItemsLogo}/>
+     let dashIcon= path === '/admin/dashboard1101' ? <IoTrendingUpOutline size={16} className={`${styles.navItemsLogo} ${styles.navItemsLogoActive}`}/> : <IoTrendingUpOutline size={16} className={styles.navItemsLogo}/>
+     let usersIcon = path === '/admin/users1101' ? <IoPeople size={16} className={`${styles.navItemsLogo} ${styles.navItemsLogoActive}`}/> : <IoPeopleOutline size={16} className={styles.navItemsLogo}/>
      let flagIcon= path === '/admin/moderation' ? <IoFlag size={16} className={`${styles.navItemsLogo} ${styles.navItemsLogoActive}`}/> : <IoFlagOutline size={16} className={styles.navItemsLogo}/>
      let docsIcon= path === '/admin/logs' ? <IoDocumentText size={16} className={`${styles.navItemsLogo} ${styles.navItemsLogoActive}`}/> : <IoDocumentTextOutline size={16} className={styles.navItemsLogo}/>
      let settingsIcon= path === '/admin/settings' ? <IoSettingsOutline size={16} className={`${styles.navItemsLogo} ${styles.navItemsLogoActive}`}/> : <IoSettingsOutline size={16} className={styles.navItemsLogo}/>

@@ -3,7 +3,7 @@ import {Header} from '../../components/header';
 import {useEffect, useState} from "react";
 import {AdminContent, UserContent} from '../../components/Admin';
 import {getUsers} from "../../services/waitlist";
-import {IUser} from '../../pages/api/waitlist';
+import {IUser} from '../api/waitlist';
 import { useTheme } from 'next-themes';
 
 type UsersProps = {
