@@ -16,7 +16,7 @@ export function UserContent ({users}:{users: IUser[]}){
                /> 
                
                {users && users.length > 0 && 
-                    <>
+                    <div className={styles.scrollTable}>
                     <table className={styles.userContainer}>
                               <tr>
                                    <th> </th>
@@ -39,11 +39,8 @@ export function UserContent ({users}:{users: IUser[]}){
                     <div className={styles.userCount}>
                          Showing {users.length} users
                     </div>
-                    </>
-               }
-               
-
-                            
+                    </div>
+               }             
           </div>
 
      )     

@@ -67,6 +67,10 @@
           color: var(--primary);
      }
 }
+.scrollTable{
+     max-height: 70vh;
+     overflow-y: auto;
+}
 .userContainer{
      background-color: #d3e2ed6d;
      border-radius: 10px;
@@ -74,6 +78,7 @@
      margin: 1rem 0;
      border-collapse: collapse;
      padding: 1rem 0.5rem;
+     
      
      th{
           color: var(--primary);
