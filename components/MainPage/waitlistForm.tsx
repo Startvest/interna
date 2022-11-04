@@ -19,6 +19,7 @@ type FormProps = {
         status: number
     }
  }
+
 export const WaitlistForm: React.FC<FormProps> = ({ setHasSubmitted, hasSubmittedForm, submitCount, setSubmitCount, setModal, setError }) => {
     const [userExists, setuserExists] = useState<boolean>(false);
     const [launched, setLaunched] = useState<boolean>(true);
@@ -66,7 +67,12 @@ export const WaitlistForm: React.FC<FormProps> = ({ setHasSubmitted, hasSubmitte
             </div>
 
             <div className={styles.gifHolder}>
-                <Image className={styles.gif} src="/waiting.gif" layout="fill" alt="minions excited"/>
+                <Image 
+                    priority
+                    className={styles.gif} 
+                    src="/waiting.gif" 
+                    layout="fill" 
+                    alt="minions excited"/>
             </div>
 
             <h4>We are <span className='secondary'>launching</span> the waitlist in a bit &#8987;</h4>
@@ -146,7 +152,7 @@ export const WaitlistForm: React.FC<FormProps> = ({ setHasSubmitted, hasSubmitte
             </div>
 
             <div className={styles.gifHolder}>
-                <Image className={styles.gif} src="/minions.gif" layout="fill" alt="minions excited"/>
+                <Image className={styles.gif} priority src="/minions.gif" layout="fill" alt="minions excited"/>
             </div>
 
             <p>
@@ -171,7 +177,7 @@ export const WaitlistForm: React.FC<FormProps> = ({ setHasSubmitted, hasSubmitte
                 </div>
 
                 <div className={styles.gifHolder}>
-                    <Image className={styles.gif} src="/assets/sassy.gif" layout="fill" alt="minions excited"/>
+                    <Image className={styles.gif} priority src="/assets/sassy.gif" layout="fill" alt="minions excited"/>
                 </div>
                 
                 <h4>We know you are exicited, we are too!</h4>

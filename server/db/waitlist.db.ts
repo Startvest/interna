@@ -1,3 +1,5 @@
+import { IUser } from "../../pages/api/waitlist";
+
 const uuid = require('uuid');
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
@@ -60,26 +62,18 @@ waitlistDb.createWaitlistMember = async (data: {name: string, email: string, pos
 waitlistDb.getMembers = async () => {
     try {
       await client.connect();
-      let response: any[] = [];
       
       const results = await client.db(db_name).collection("waitlist").find({}).toArray();
-      console.log(results);
-
-      for (let result of results) {
-        response.push(new WaitlistMember(result.waitlist_id, result.name, result.email, result.position, result.created));
-      }
 
       client.close();
 
-      console.log(response);
-
-      return response;
+      return results;
 
     }
 
     catch (err) {
         console.log(err);
-        return false;
+        return [];
     }
 }
 
