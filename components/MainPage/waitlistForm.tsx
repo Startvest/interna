@@ -137,7 +137,7 @@ export const WaitlistForm: React.FC<FormProps> = ({ setHasSubmitted, hasSubmitte
                 </div>
              </div>
  
-             <button className={styles.waitlistButton} type="submit">
+             <button className={`${styles.waitlistButton} ${(waitlistMutation.isLoading) ? styles.waitlistButtonLoading: ''}`} type="submit">
                 {(waitlistMutation.isLoading ? "Loading...": "Join!")}
              </button>
 

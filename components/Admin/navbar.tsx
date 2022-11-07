@@ -38,8 +38,8 @@ export function NavigationBar(){
                <div className={styles.logoContainer}><Image src="/assets/logo-white.svg" className={styles.logo} height={'50px'} width={'222px'}/></div>
                <h3>Admin Panel</h3>
                <div className={styles.navItems}>
-                    <Link href={'/admin/dashboard'}><span>{dashIcon} User Analytics</span></Link>
-                    <Link href={'/admin/users'}><span>{usersIcon} Users</span></Link>
+                    <Link href={'/admin/dashboard1101'}><span>{dashIcon} User Analytics</span></Link>
+                    <Link href={'/admin/users1101'}><span>{usersIcon} Users</span></Link>
                     <Link href={'/admin/moderation'}><span>{flagIcon} Moderation</span></Link>
                     <Link href={'/admin/logs'}><span>{docsIcon} Logs</span></Link>
                     <Link href={'/admin/settings'}><span>{settingsIcon} Settings</span></Link>

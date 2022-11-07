@@ -19,7 +19,7 @@ const Footer:React.FC = () => {
                     <li>RESOURCES</li>
                     <li>Privacy Policy</li>
                     <li>Terms and Conditions</li>
-                    <li>Contact us</li>
+                    <li><a href="mailto:support@getinterna.com">Contact us</a></li>
                 </ul>
 
                 <ul className={styles.socials}>
@@ -34,7 +34,7 @@ const Footer:React.FC = () => {
                         </a>
                     </li>
                     <li>
-                        <a href="https://getinterna.com" target={"_blank"}  rel="noreferrer">
+                        <a href="https://instagram.com/get_interna" target={"_blank"}  rel="noreferrer">
                             <IoLogoInstagram/>
                         </a>
                     </li>

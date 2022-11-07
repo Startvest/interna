@@ -14,6 +14,7 @@ export interface IUser {
 
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  res.setHeader('Cache-Control', 's-maxage=10'); 
   if(req.headers.authorization !== process.env.NEXT_PUBLIC_AUTH){
     console.log(process.env.NEXT_PUBLIC_AUTH);
     console.log(req.headers.authorization);
