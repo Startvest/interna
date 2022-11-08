@@ -2,6 +2,11 @@ $inputDark: #333333;
 .waitlistPage {
     height: 100vh;
     overflow-y: scroll;
+    a{ 
+        text-decoration: none;
+        color: inherit;
+    }
+    scroll-behavior: smooth;
 }
 
 .landingPageHeader {
@@ -43,11 +48,7 @@ $inputDark: #333333;
         justify-content: center;
         align-items: center;
         gap: 2rem;
-        .altButton{
-            background: none;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
+        
         button{
             padding: .5em 1em;
             border-radius: 5px;
@@ -58,71 +59,42 @@ $inputDark: #333333;
         }
     }
 }
+
+.altButton{
+    background: none;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+}
 .h2{
     color: var(--primary);
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: bolder;
-    font-size: 20px;
+    font-size: 32px;
     text-align: center;
 }
-.introContainer{
-    display: flex;
-    height: 100%;
-    justify-content: space-between;
-    margin: 2rem auto;
-    align-items: center;
 
-    .illustrationHolder {
-       width: 50%;
-        img{
-            width: 100%;
-            height: auto;
-        }
-    }
-
-    .introduction{
-        width: 50%;
-        height: 100%;
-        background-image: url('/assets/grid.png');
-        background-size: cover;
-        padding: 20px 10px;
-    
-        h1 {
-            color: var(--primary);
-            font-family: 'Work Sans';
-            font-style: normal;
-            font-weight: 600;
-            font-size: 60px;
-        }
-
-        p{ 
-            font-size: 24px;
-        }
-
-        button{
-            font-size: 20px;
-            margin-top: 2em;
-            padding: 1.5rem 2rem;
-        }
-    }
-
-}
-
-// For mobile
 .mobileIntroContainer{
     height: max-content;
     width: 100%;
     margin: 2rem auto;
     align-items: center;
+    display: flex;
+    flex-direction: row-reverse;
 
     .illustrationHolder {
-        width: 90%;
+        width: 80%;
         margin: auto;
          img{
              width: 100%;
              height: auto;
          }
+     }
+
+     .buttonsCont{
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
      }
  
      .introduction{
@@ -134,16 +106,28 @@ $inputDark: #333333;
              font-family: 'Work Sans';
              font-style: normal;
              font-weight: 600;
-             font-size: 32px;
+             font-size: 60px;
          }
  
          button{
              margin-top: 2em;
-             padding: .5em 1em;
-             font-size: 16px;
+             padding: 1em 1em;
              font-weight: 500;
+             border-radius: 5px;
+             font-size: 16px;
+         }
+         .primaryButton {
+            animation: bounce 3s infinite;
+         }
+         p{
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 24px;
          }
      }
+}
+.testimonialCont{
+    margin: 4rem 0;
 }
 .testimonial{
     display: flex;
@@ -179,22 +163,30 @@ $inputDark: #333333;
 section.landingPageWelcome{
     background-color: var(--primary);
     padding: 2rem 10px;
-    min-height: 10rem;
+    min-height: 20rem;
+    margin: 4rem 0;
+    
+    a{ 
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
 
     .descriptionGroup {
         display: flex;
         flex-direction: column;
         gap: 15px;
-        font-size: 20px;
+        width: 50%;
+        font-family: 'Work Sans';
         h4, p { 
             color: #fff !important;
             margin: 0;
         }
         h4{
-            font-size: 20px;
+            font-size: 32px;
         }
         p{
-            font-size: 16px;
+            font-size: 20px;
         }
         button{
             background-color: white;
@@ -206,29 +198,27 @@ section.landingPageWelcome{
             padding: .5em 2em;
         }
     }
+    .imgLogo{
+        opacity: .8;
+    }
 
-}
-.deskUsp{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    margin: 8rem auto;
-    width: 95%;
 }
 .mobileUsp{
     display: block;
-    margin: 4rem auto;
+    margin: 7rem auto;
     width: 90%;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
 
     .box{
-        width: 90%;
+        width: 80%;
         margin: 4rem auto;
     }
 }
 
 .box{
-    width: 40%;
+    // width: 40%;
     background-color: var(--primary);
     border-radius: 10px;
     color: white;
@@ -381,6 +371,8 @@ section.landingPageWelcome{
         font-weight: 600;
         font-size: 16px;
         padding: 0.5rem 1rem;
+        border-radius: 5px;
+        animation: bounce 3s infinite;
     }
 }
 .waitlistForm {
@@ -587,10 +579,48 @@ section.landingPageWelcome{
     }
 }
 
+@media only screen and (max-width: 700px) {
+    .mobileIntroContainer{
+        flex-direction: column;
+
+        .introduction{
+            h1{
+                font-size: 32px;
+            }
+            p{
+                font-size: 16px;
+            }
+            button{
+                font-size: 16px;
+            }
+        }
+        .illustrationHolder {
+            width: 90%;
+        }
+    }
+    .mobileUsp{
+        flex-direction: column;
+        gap: 1rem;
+    }
+    section.landingPageWelcome{
+        a{ 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .descriptionGroup{
+            width: 100%;
+        }
+        .imgLogo{
+            display: none;
+        }
+    }
+}
 @media only screen and (max-width: 600px) {
     .carouselSlide{
         animation: scroll 10s linear infinite;
     }
+ 
     .illustrationHolder {    
         img{
             width: 80%;
@@ -621,6 +651,16 @@ section.landingPageWelcome{
         height: 230px;
     }
 }
-
+@keyframes bounce{
+    0%{
+         transform: translateY(-.5rem);
+    }
+    50%{
+         transform: translateY(.5rem);
+    }
+    100%{
+         transform: translateY(-.5rem);
+    }
+}
 
 
