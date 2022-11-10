@@ -9,6 +9,9 @@ class MyDocument extends Document {
             name="description"
             content="Interna is a community social platform that connect students with internship opportunities, as well as a medium to share experiences among themselves"
           />
+          <meta 
+          name="keywords"
+          content="interna, internship, community, get interna, students, cv generator"/>
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <link rel="manifest" href="/manifest.json" />
           <link rel="shortcut icon" href="/favicon.ico" />
