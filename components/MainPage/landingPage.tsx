@@ -128,8 +128,10 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
                             <motion.div className={styles.descriptionGroup}>
                                 <h4>What is Interna?</h4>
                                 <p>
-                                    A social platfrom where you can easily share your internship experiences
-                                    with other students in your community, as well as connect with them.
+                                Interna is a solution designed to provide internship opportunities
+                                to every student, equip them with professional tools and provide a community
+                                of students who have undergone internships and students who are looking 
+                                for internships. 
                                 </p>
                             </motion.div>
 
