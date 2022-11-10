@@ -14,6 +14,7 @@ import {Testimonial} from '../Testimonial';
 import {ErrorModal} from '../Modal';
 import { motion, useScroll } from "framer-motion";
 import { ScrollAnimationWrapper } from "../ScrollAnimationWrapper";
+import {tools} from "../../services/enums/tools";
 
 type Props = {
     isWaitlist: boolean,
@@ -21,10 +22,6 @@ type Props = {
 }
 
 export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
-    const isMobile = window.document.body.clientWidth  <= 700;
-    // console.log(screen.availWidth);
-
-
     const [modalOpen, setModal] = useState<boolean>(false);
     const [errorModal, setErrorModal] = useState<boolean>(false);
     const [hasSubmittedForm, setHasSubmitted] = useState(false);
@@ -51,7 +48,6 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
 
         <header className={styles.landingPageHeader}>
             <span className={styles.headerLogo}>
-                {/* <img src="/assets/logohead.svg" /> */}
                 <Image src="/fav.ico" width={'70px'} height={'70px'} alt="interna logo"/>
                 <h2 className={styles.h2}>Interna</h2>
             </span>
@@ -128,18 +124,38 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
                             <motion.div className={styles.descriptionGroup}>
                                 <h4>What is Interna?</h4>
                                 <p>
-                                Interna is a solution designed to provide internship opportunities
-                                to every student, equip them with professional tools and provide a community
-                                of students who have undergone internships and students who are looking 
-                                for internships. 
+                                    Interna is a solution designed to provide internship opportunities
+                                    to every student, equip them with professional tools and provide a community
+                                    of students who have undergone internships and students who are looking 
+                                    for internships. 
                                 </p>
                             </motion.div>
 
                             <div className={styles.imgLogo}>
-                                <Image src="/icons/white.svg" width={'70px'} height={'70px'} alt="interna logo"/>
+                                <Image src="/icons/white.svg" width={'80px'} height={'80px'} alt="interna logo"/>
                             </div>
 
                         </a>
+
+                        {/* <div className={styles.features}>
+                            <div>
+                                {tools.slice(0,tools.length/2).map((tool, i) => 
+                                <div className={styles.featureCover}>
+                                    <span className={styles.featureIcon}></span> 
+                                    <span className={styles.featureText}>{tool.text}</span>
+                                </div>
+                                )}
+                            </div>
+
+                            <div>
+                                {tools.slice(tools.length/2,tools.length).map((tool, i) => 
+                                <div className={styles.featureCover}>
+                                    <span className={styles.featureIcon}></span> 
+                                    <span className={styles.featureText}>{tool.text}</span>
+                                </div>
+                                )}
+                            </div>
+                        </div> */}
                     </ScrollAnimationWrapper>
                 </motion.section>
 
@@ -206,7 +222,7 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
 
                 <ScrollAnimationWrapper performOnce>
                     <div className={styles.getStarted} >
-                        <h3>Gain valuable information</h3>
+                        <h3>Gain experience early!</h3>
                         <h5>
                             Join the community of <span className="secondary">forward thinking students</span> taking
                             a <span className="secondary">bold</span> step towards their career growth

@@ -141,25 +141,6 @@ $inputDark: #333333;
     display: none;  /* Safari and Chrome */
 }
 
-.internaDetails{
-    background: var(--secondary);
-    padding: 20px 10px;
-    
-    h4 { 
-        color: white;
-        margin: 0;
-    }
-    p { margin: 0; }
-    
-    .descriptionGroup {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        margin-bottom: 25px;
-        font-family: 'Montserrat', Verdana, Geneva, Tahoma, sans-serif , 'sans-serif';
-    }
-}
-
 section.landingPageWelcome{
     background-color: var(--primary);
     padding: 2rem 10px;
@@ -170,13 +151,15 @@ section.landingPageWelcome{
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        width: 95%;
+        margin: auto 1rem;
     }
 
     .descriptionGroup {
         display: flex;
         flex-direction: column;
         gap: 15px;
-        width: 50%;
+        width: 70%;
         font-family: 'Work Sans';
         h4, p { 
             color: #fff !important;
@@ -199,13 +182,39 @@ section.landingPageWelcome{
         }
     }
     .imgLogo{
-        opacity: .8;
+        opacity: .9;
     }
 
+    .features{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 95%;
+        margin: auto 1rem;
+        .featureCover{
+            display: flex;
+            gap: 1rem;
+            margin: 3rem 0;
+        }
+        .featureIcon{
+            background-color: var(--secondary);
+            padding: .2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            border-radius: 5px;
+        }
+        .featureText{
+            font-size: 20px;
+            color: white;
+        }
+    }
 }
 .mobileUsp{
     display: block;
-    margin: 7rem auto;
+    margin: 4rem auto;
     width: 90%;
     display: flex;
     align-items: center;
@@ -218,7 +227,6 @@ section.landingPageWelcome{
 }
 
 .box{
-    // width: 40%;
     background-color: var(--primary);
     border-radius: 10px;
     color: white;
@@ -346,11 +354,12 @@ section.landingPageWelcome{
   }
 
 .getStarted{
-    width: 90%;
+    width: 60%;
     margin: 4rem auto;
     text-align: center;
     background: var(--primary) url('/assets/wavyBbg.svg') no-repeat scroll center;
-    background-size: 100%;
+    background-size: 50%;
+    background-repeat: repeat;
     color: white;
     padding: 1rem 0;
     border-radius: 15px;
@@ -358,14 +367,15 @@ section.landingPageWelcome{
     h3{
         color: white;
         font-weight: 600;
-        font-size: 25px;
+        font-size: 32px;
     }
     h5{
         font-weight: 500;
-        font-size: 16px;
+        font-size: 20px;
     }
     button{
         margin: 0 auto;
+        margin-bottom: 1rem;
         background-color: white;
         color: var(--primary);
         font-weight: 600;
@@ -605,12 +615,15 @@ section.landingPageWelcome{
     }
     section.landingPageWelcome{
         a{ 
-            display: flex;
             flex-direction: column;
-            justify-content: space-between;
         }
         .descriptionGroup{
             width: 100%;
+
+            .features{
+                flex-direction: column !important;
+                width: 100%;
+            }
         }
         .imgLogo{
             display: none;
@@ -637,12 +650,15 @@ section.landingPageWelcome{
             text-align: center;
         }
     }
+    
     .getStarted{
-        h5{
-            text-align: left;
-        }
+        width: 90%;
+        padding: .5rem 0;
         h3{
             font-size: 20px;
+        }
+        h5{
+            font-size: 16px;
         }
     }
     .waitlistForm {
