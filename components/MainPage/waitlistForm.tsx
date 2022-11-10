@@ -51,7 +51,7 @@ export const WaitlistForm: React.FC<FormProps> = ({
   });
 
   async function submitForm() {
-    // waitlistMutation.mutateAsync(getValues());
+    waitlistMutation.mutateAsync(getValues());
   }
 
   useEffect(() => {
