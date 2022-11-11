@@ -190,11 +190,12 @@ section.landingPageWelcome{
         flex-direction: row;
         justify-content: space-between;
         width: 95%;
-        margin: auto 1rem;
+        margin: 0 1rem;
+        padding-top: 3rem;
         .featureCover{
             display: flex;
-            gap: 1rem;
-            margin: 3rem 0;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
         }
         .featureIcon{
             background-color: var(--secondary);
@@ -618,15 +619,13 @@ section.landingPageWelcome{
             flex-direction: column;
         }
         .descriptionGroup{
-            width: 100%;
-
-            .features{
-                flex-direction: column !important;
-                width: 100%;
-            }
+            width: 100%;  
         }
         .imgLogo{
             display: none;
+        }
+        .features{
+            flex-direction: column;
         }
     }
 }

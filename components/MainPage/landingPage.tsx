@@ -137,7 +137,7 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
 
                         </a>
 
-                        {/* <div className={styles.features}>
+                        <div className={styles.features}>
                             <div>
                                 {tools.slice(0,tools.length/2).map((tool, i) => 
                                 <div className={styles.featureCover}>
@@ -155,7 +155,7 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
                                 </div>
                                 )}
                             </div>
-                        </div> */}
+                        </div>
                     </ScrollAnimationWrapper>
                 </motion.section>
 
