@@ -140,7 +140,7 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
                         <div className={styles.features}>
                             <div>
                                 {tools.slice(0,tools.length/2).map((tool, i) => 
-                                <div className={styles.featureCover}>
+                                <div className={styles.featureCover} key={i}>
                                     <span className={styles.featureIcon}></span> 
                                     <span className={styles.featureText}>{tool.text}</span>
                                 </div>
@@ -149,7 +149,7 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
 
                             <div>
                                 {tools.slice(tools.length/2,tools.length).map((tool, i) => 
-                                <div className={styles.featureCover}>
+                                <div className={styles.featureCover} key={i}>
                                     <span className={styles.featureIcon}></span> 
                                     <span className={styles.featureText}>{tool.text}</span>
                                 </div>
