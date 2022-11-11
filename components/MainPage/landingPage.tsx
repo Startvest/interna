@@ -176,19 +176,22 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
 
             <section>
                 <ScrollAnimationWrapper performOnce>
-                    <div className={`${styles.designHolder} ${styles.firstHolder}`}>
+                    <div className={`${styles.designHolder}`}>
+                        <h2>Get access to our <span className="secondary">community</span> of students</h2>
                         <img src={'/assets/feed-mockup.svg'} alt="Feed mockup"/>
                     </div>
                 </ScrollAnimationWrapper>
 
                 <ScrollAnimationWrapper performOnce>
-                    <div className={styles.designHolder}>
+                    <div className={`${styles.designHolder} ${styles.altHolder}`}>
+                        <h2>See profiles of interns and <span className="primaryText">connect</span> with them easily</h2>
                         <img src={'/assets/profile-mockup.svg'} alt="Profile mockup"/>
                     </div>
                 </ScrollAnimationWrapper>
 
                 <ScrollAnimationWrapper performOnce>
-                    <div className={`${styles.designHolder} ${styles.firstHolder}`}>
+                    <div className={`${styles.designHolder} `}>
+                        <h2>Prepare for your next <span className="secondary">interview!</span></h2>
                         <img src={'/assets/interview-mockup.svg'} alt="Profile mockup"/>
                     </div>
                 </ScrollAnimationWrapper>
