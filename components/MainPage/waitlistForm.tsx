@@ -51,6 +51,7 @@ export const WaitlistForm: React.FC<FormProps> = ({
     async function submitForm() {
         waitlistMutation.mutateAsync(getValues());
     }
+    
 
     useEffect(() => {
         getSuggestions(query)
@@ -147,28 +148,29 @@ export const WaitlistForm: React.FC<FormProps> = ({
              />
  
              <Input 
-                 onChange={(e:any) => setValue("email", e.target.value)}
-                 labelName="Email address"
-                 name="email" 
-                 placeholder="eg. example@abc.com"
-                 inputClassName={styles.waitlistInput}
-                 reg={register(`email`, {
+                onChange={(e:any) => setValue("email", e.target.value)}
+                labelName="Email address"
+                name="email" 
+                placeholder="eg. example@abc.com"
+                inputClassName={styles.waitlistInput}
+                reg={register(`email`, {
                     required: `Your email is required`,
-                  })}
-                  error={errors.email?.message}
+                })}
+                error={errors.email?.message}
              />
              
              <div className={styles.customInputGroup}>
-                <label htmlFor={'position'} className={styles.inputLabel}>
+                <label id="school-and-work" htmlFor={'position'} className={styles.inputLabel}>
                     School or place of work
                 </label>
-                <div className={styles.inputCont}>
+                <div aria-describedby='school-and-work' className={styles.inputCont}>
                     <select onChange={(e:any) => setValue("position.type", e.target.value)} name="Title" title='Your Title'>
                         <option value="student">Student</option>
                         <option value="intern">Intern</option>
                     </select>
                     <span>at</span>
                     <input 
+                        aria-placeholder='The name of the institution you work or study in'
                         value={query} 
                         onChange={(e:any) => setQueryText(e.target.value)} 
                         type={'text'} title={'position'} placeholder={'eg Nile University of Nigeria'}  />
@@ -180,12 +182,6 @@ export const WaitlistForm: React.FC<FormProps> = ({
                             setValue('position.company_name', companyName)
                             setQueryText(companyName); //Changes the Value of the input field as well
 
-                            const names = suggestions?.map(item => {
-                                return item.name
-                            })
-                            if(names?.includes(query)){
-                                setSuggestions(undefined)
-                            }
                         }}
                         />
                 </div>
