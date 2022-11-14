@@ -1,4 +1,4 @@
-import React, {useState } from "react";
+import React, {useRef, useState } from "react";
 // import { isMobile } from "../../services/isMobile";
 import { Modal } from "../Modal";
 import Image from "next/image";
@@ -12,7 +12,7 @@ import {uniqueSellingPoints} from '../../services/enums/usp';
 import {WaitlistForm} from '.';
 import {Testimonial} from '../Testimonial';
 import {ErrorModal} from '../Modal';
-import { motion, useScroll } from "framer-motion";
+import { useInView, useScroll } from "framer-motion";
 import { ScrollAnimationWrapper } from "../ScrollAnimationWrapper";
 import {tools} from "../../services/enums/tools";
 
@@ -28,6 +28,10 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
     const [submitCount, setSubmitCount] = useState<number>(0);
     const { resolvedTheme } = useTheme();
     const router = useRouter();
+
+    const joinWaitlistButtonRef = useRef<HTMLDivElement>(null);
+
+    const isInView = useInView(joinWaitlistButtonRef);
     
     const illustration = resolvedTheme === 'light' ? '/assets/illustration.svg' : '/assets/illustration-dark.svg';
     
@@ -53,28 +57,37 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
             </span>
 
             <span className={styles.headerCta}>
-                    {
-                        isWaitlist ? (<>
-                        <Button onClick={() => setModal(true)}>
-                            Join the waitlist
-                        </Button>
-                        </>
-                        ) : (
-                        <>
-                        <Button className={styles.altButton} onClick={() => router.push('/login')}>
-                            Login
-                        </Button>
-                        <Button onClick={() => router.push('/signup')}>
-                            Signup
-                        </Button>
-                        </>
-                        
-                        )
-                    }
                 <ThemeIcon size={30} absolute={false}/>
             </span>
-           
         </header>
+        
+        {/* Second Header shows up when Join waitlist Button is out of View */}
+        <header className={styles.secondHeader} style={{ display: isInView ? 'none' : 'flex' }}>
+            <span 
+                aria-label="Click here to join the waitlist"
+                className={styles.headerCta}>
+                {
+                    isWaitlist ? (<>
+                    <Button onClick={() => setModal(true)}>
+                        Join the waitlist
+                    </Button>
+                    </>
+                    ) : (
+                    <>
+                    <Button className={styles.altButton} onClick={() => router.push('/login')}>
+                        Login
+                    </Button>
+                    <Button onClick={() => router.push('/signup')}>
+                        Signup
+                    </Button>
+                    </>
+                    
+                    )
+                }
+                <ThemeIcon size={30} absolute={false}/>
+            </span>
+        </header>
+
         <main> 
             <div className={styles.mobileIntroContainer}>  
                 <section className={styles.illustrationHolder}>
@@ -87,7 +100,7 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
                     </h1>
 
                     <p>Welcome to the community of students and interns!</p>
-                    <div className={styles.buttonsCont}>
+                    <div ref={joinWaitlistButtonRef} className={styles.buttonsCont}>
                         <a href={'#interna_description'}>
                             <Button className={styles.altButton}>
                                 Learn More
@@ -118,10 +131,10 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
                 </div>
             </section>}
 
-                <motion.section className={styles.landingPageWelcome}>
+                <section className={styles.landingPageWelcome}>
                     <ScrollAnimationWrapper type="fade-in" performOnce>
                         <a id="interna_description">
-                            <motion.div className={styles.descriptionGroup}>
+                            <div className={styles.descriptionGroup}>
                                 <h4>What is Interna?</h4>
                                 <p>
                                     Interna is a solution designed to provide internship opportunities
@@ -129,7 +142,7 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
                                     of students who have undergone internships and students who are looking 
                                     for internships. 
                                 </p>
-                            </motion.div>
+                            </div>
 
                             <div className={styles.imgLogo}>
                                 <Image src="/icons/white.svg" width={'80px'} height={'80px'} alt="interna logo"/>
@@ -157,7 +170,7 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
                             </div>
                         </div>
                     </ScrollAnimationWrapper>
-                </motion.section>
+                </section>
 
                 {/* <h2 className={styles.h2}>You get these on Interna</h2> */}
                 <section className={styles.mobileUsp}>
@@ -201,26 +214,26 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
                 <h3>Supported by</h3>
 
                 <div className={styles.carouselHolder}>
-                    <motion.div 
+                    <div 
                         className={styles.carousel}>
-                        <motion.span                         
+                        <span                         
                             className={styles.carouselSlide}>
                             <Image src="/assets/nile-logo.svg" width={'200px'} height={'60px'} alt="Nile University of Nigeria"/>
-                        </motion.span>
+                        </span>
 
-                        <motion.span className={styles.carouselSlide}>
+                        <span className={styles.carouselSlide}>
                             <Image src="/assets/gdsc_logo.svg" width={'200px'} height={'60px'} alt="GDSC logo"/>
-                        </motion.span>
+                        </span>
                         
-                        <motion.span className={styles.carouselSlide}>
+                        <span className={styles.carouselSlide}>
                             <Image src="/assets/sc_logo.png" width={'200px'} height={'60px'} alt="Startup Campus"/>
-                        </motion.span>
+                        </span>
 
-                        <motion.span className={styles.carouselSlide}>
+                        <span className={styles.carouselSlide}>
                             <Image src="/assets/companies/honoris.jpg" width={'200px'} height={'60px'} alt="Honoris United Universities"/>
-                        </motion.span>
+                        </span>
 
-                    </motion.div>
+                    </div>
                 </div>
 
                 <ScrollAnimationWrapper performOnce>
