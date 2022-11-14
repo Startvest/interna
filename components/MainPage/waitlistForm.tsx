@@ -1,53 +1,54 @@
-import styles from '../../styles/waitlist.module.scss';
-import { useForm } from "react-hook-form";
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useMutation } from 'react-query';
 import { Input } from "../Input";
-import Image from "next/image";
 import { addUser, getSuggestions } from "../../services/waitlist";
-import {useMutation} from "react-query";
-import {useEffect, useState} from "react";
-
+import styles from '../../styles/waitlist.module.scss';
 import { AutocompleteName } from '../AutocompleteName/autocomplete';
 
 type FormProps = {
-    setHasSubmitted: (val:boolean) => void,
-    hasSubmittedForm: boolean,
-    submitCount: number,
-    setSubmitCount: (count:number) => void,
-    setModal: () => void,
-    setError: () => void
- }
- interface TError{
-    response: {
-        status: number
-    }
- }
+  setHasSubmitted: (val: boolean) => void;
+  hasSubmittedForm: boolean;
+  submitCount: number;
+  setSubmitCount: (count: number) => void;
+  setModal: () => void;
+  setError: () => void;
+};
+interface TError {
+  response: {
+    status: number;
+  };
+}
 
-
-export const WaitlistForm: React.FC<FormProps> = ({ setHasSubmitted, hasSubmittedForm, submitCount, setSubmitCount, setModal, setError }) => {
+export const WaitlistForm: React.FC<FormProps> = ({
+  setHasSubmitted,
+  hasSubmittedForm,
+  submitCount,
+  setSubmitCount,
+  setModal,
+  setError,
+}) => 
+{
     const [userExists, setuserExists] = useState<boolean>(false);
     const [launched, setLaunched] = useState<boolean>(true);
     const [suggestions, setSuggestions] = useState<any[]|undefined>(undefined);
     const [query, setQueryText] = useState<string>('');
-
     const { getValues, setValue, handleSubmit, formState: { errors }, register } = useForm({
-         defaultValues: {
-             name: '',
-             email: '',
-             position: {
-                type: 'student',
-                company_name: ''
-             }
-         }
-     });
-
-    const waitlistMutation = useMutation(addUser, { 
-        onError(error: TError){}
+        defaultValues: {
+        name: '',
+        email: '',
+        position: {
+            type: 'student',
+            company_name: '',
+        },
+        },
+    });
+    const waitlistMutation = useMutation(addUser, {
+        onError(error: TError) {},
     });
 
-    
-      
- 
-    async function submitForm(){
+    async function submitForm() {
         waitlistMutation.mutateAsync(getValues());
     }
 
@@ -197,55 +198,78 @@ export const WaitlistForm: React.FC<FormProps> = ({ setHasSubmitted, hasSubmitte
          </form>
         }
 
-        {launched && hasSubmittedForm  && !userExists && <> 
-            <div className={styles.formHeader}>
-                <h2>
-                    You are <span className={styles.important}>in!</span> 
-                </h2>
-            </div>
+      {hasSubmittedForm && !userExists && (
+        <>
+          <div className={styles.formHeader}>
+            <h2>
+              You are <span className={styles.important}>in!</span>
+            </h2>
+          </div>
 
-            <div className={styles.gifHolder}>
-                <Image className={styles.gif} priority src="/minions.gif" layout="fill" alt="minions excited"/>
-            </div>
+          <div className={styles.gifHolder}>
+            <Image
+              className={styles.gif}
+              priority
+              src="/minions.gif"
+              layout="fill"
+              alt="minions excited"
+            />
+          </div>
 
-            <p>
-                You will definetely be the first to get an email
-                from us when we first <span className='secondary'>launch</span>!! 🚀
-            </p>
+          <p>
+            You will definetely be the first to get an email from us when we
+            first <span className="secondary">launch</span>!! 🚀
+          </p>
 
-            <button className={styles.dismissButton} onClick={() =>{
-                setModal()
-                setHasSubmitted(false);
-            }}>
-                Dismiss
-            </button>
+          <button
+            className={styles.dismissButton}
+            onClick={() => {
+              setModal();
+              setHasSubmitted(false);
+            }}
+          >
+            Dismiss
+          </button>
         </>
-        }
+      )}
 
-        {launched && hasSubmittedForm && userExists && <>
-              <div className={styles.formHeader}>
-                    <h2>
-                        You are <span className={styles.important}>already</span> in!
-                    </h2>
-                </div>
+      {hasSubmittedForm && userExists && (
+        <>
+          <div className={styles.formHeader}>
+            <h2>
+              You are <span className={styles.important}>already</span> in!
+            </h2>
+          </div>
 
-                <div className={styles.gifHolder}>
-                    <Image className={styles.gif} priority src="/assets/sassy.gif" layout="fill" alt="minions excited"/>
-                </div>
-                
-                <h4>We know you are exicited, we are too!</h4>
-                <p>
-                    You will definetely be the first to get an email
-                    from us when we first launch!! 🚀
-                </p>
+          <div className={styles.gifHolder}>
+            <Image
+              className={styles.gif}
+              priority
+              src="/assets/sassy.gif"
+              layout="fill"
+              alt="minions excited"
+            />
+          </div>
 
-                <button className={styles.dismissButton} onClick={() =>{
-                    setModal()
-                    setHasSubmitted(false);
-                }}>
-                Dismiss
-            </button>
-        </>}
-         </>
-    )
-}
+          <h4>We know you are exicited, we are too!</h4>
+          <p>
+            You will definetely be the first to get an email from us when we
+            first launch!! 🚀
+          </p>
+
+          <button
+            title='Dismiss'
+            aria-label='Dismiss Button'
+            className={styles.dismissButton}
+            onClick={() => {
+              setModal();
+              setHasSubmitted(false);
+            }}
+          >
+            Dismiss
+          </button>
+        </>
+      )}
+    </>
+  );
+};
