@@ -2,9 +2,11 @@ import styles from '../../styles/waitlist.module.scss';
 import { useForm } from "react-hook-form";
 import { Input } from "../Input";
 import Image from "next/image";
-import {getUsers, addUser} from "../../services/waitlist";
+import { addUser, getSuggestions } from "../../services/waitlist";
 import {useMutation} from "react-query";
 import {useEffect, useState} from "react";
+
+import { AutocompleteName } from '../AutocompleteName/autocomplete';
 
 type FormProps = {
     setHasSubmitted: (val:boolean) => void,
@@ -20,9 +22,13 @@ type FormProps = {
     }
  }
 
+
 export const WaitlistForm: React.FC<FormProps> = ({ setHasSubmitted, hasSubmittedForm, submitCount, setSubmitCount, setModal, setError }) => {
     const [userExists, setuserExists] = useState<boolean>(false);
     const [launched, setLaunched] = useState<boolean>(true);
+    const [suggestions, setSuggestions] = useState<any[]|undefined>(undefined);
+    const [query, setQueryText] = useState<string>('');
+
     const { getValues, setValue, handleSubmit, formState: { errors }, register } = useForm({
          defaultValues: {
              name: '',
@@ -33,30 +39,58 @@ export const WaitlistForm: React.FC<FormProps> = ({ setHasSubmitted, hasSubmitte
              }
          }
      });
-     const waitlistMutation = useMutation(addUser, { 
-        onError(error: TError){}
-     });
- 
-     async function submitForm(){
-        waitlistMutation.mutateAsync(getValues());
-        }
 
-     useEffect(() => {
-        if (waitlistMutation.isSuccess) {
-            setuserExists(false);
-            setHasSubmitted(true);
-        }
-        if(waitlistMutation.isError){
-            if(waitlistMutation.error?.response.status == 400){
-                setHasSubmitted(true);
-                setuserExists(true);
-            }else{
-                setError();
-            }
-        }
-      }, [waitlistMutation.isSuccess, waitlistMutation.isError]);
+    const waitlistMutation = useMutation(addUser, { 
+        onError(error: TError){}
+    });
+
+    
+      
  
-     return(
+    async function submitForm(){
+        waitlistMutation.mutateAsync(getValues());
+    }
+
+    useEffect(() => {
+        getSuggestions(query)
+        .then((res:any[]) => {
+            if(!res || res.length === 0){
+                setValue('position.company_name', query);
+            } 
+
+            //Once suggestion has been tapped it removes all the previous suggestions
+            //Until the user starts typing again
+            //May want to refactor this code to make it look cleaner though
+            const names = res?.map(item => {
+                return item.name
+            })
+            if(names?.includes(query)){
+                return setSuggestions(undefined)
+            }
+
+            setSuggestions(res)
+        })
+    }, [query])
+
+
+    useEffect(() => {
+    if (waitlistMutation.isSuccess) {
+        setuserExists(false);
+        setHasSubmitted(true);
+    }
+    if(waitlistMutation.isError){
+        if(waitlistMutation.error?.response.status == 400){
+            setHasSubmitted(true);
+            setuserExists(true);
+        } else {
+            setError();
+        }
+    }
+    }, [waitlistMutation.isSuccess, waitlistMutation.isError]);
+
+
+ 
+    return(
         <>
 
         {!launched && <>
@@ -128,16 +162,35 @@ export const WaitlistForm: React.FC<FormProps> = ({ setHasSubmitted, hasSubmitte
                     School or place of work
                 </label>
                 <div className={styles.inputCont}>
-                    <select onChange={(e:any) => setValue("position.type", e.target.value)}>
+                    <select onChange={(e:any) => setValue("position.type", e.target.value)} name="Title" title='Your Title'>
                         <option value="student">Student</option>
                         <option value="intern">Intern</option>
                     </select>
                     <span>at</span>
-                    <input onChange={(e:any) => setValue("position.company_name", e.target.value)} type={'text'} title={'position'} placeholder={'eg Nile University of Nigeria'}  />
+                    <input 
+                        value={query} 
+                        onChange={(e:any) => setQueryText(e.target.value)} 
+                        type={'text'} title={'position'} placeholder={'eg Nile University of Nigeria'}  />
+                    <AutocompleteName 
+                        suggestions={suggestions} 
+                        setSelected={(e) => {
+                            setSuggestions(undefined);
+                            const companyName = e.currentTarget.title
+                            setValue('position.company_name', companyName)
+                            setQueryText(companyName); //Changes the Value of the input field as well
+
+                            const names = suggestions?.map(item => {
+                                return item.name
+                            })
+                            if(names?.includes(query)){
+                                setSuggestions(undefined)
+                            }
+                        }}
+                        />
                 </div>
              </div>
  
-             <button className={`${styles.waitlistButton} ${(waitlistMutation.isLoading) ? styles.waitlistButtonLoading: ''}`} type="submit">
+             <button disabled={waitlistMutation.isLoading} className={`${styles.waitlistButton} ${(waitlistMutation.isLoading) ? styles.waitlistButtonLoading: ''}`} type="submit">
                 {(waitlistMutation.isLoading ? "Loading...": "Join!")}
              </button>
 
@@ -194,5 +247,5 @@ export const WaitlistForm: React.FC<FormProps> = ({ setHasSubmitted, hasSubmitte
             </button>
         </>}
          </>
-     )
- }
+    )
+}
