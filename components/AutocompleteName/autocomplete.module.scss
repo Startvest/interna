@@ -1,0 +1,46 @@
+.suggestionList {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    background-color: #fff;
+    position: absolute;
+    top: -30%;
+    width: 100%;
+    left: 0;
+    border: 1px solid var(--primary);
+
+}
+
+.suggestionListItem {
+    padding: 5px 10px;
+    cursor: pointer;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    &:hover, &:focus {
+        background-color: darken($color: #fff, $amount: 5);
+    }
+
+    img {
+        height: 80%;
+        aspect-ratio: 1;
+        width: 60px;
+    }
+}
+
+[data-theme="dark"] {
+    .suggestionList {
+        background-color: #212121;
+        box-shadow: 2px 1px 7px -1px #121212;
+        border: 0.5px solid #fff;    
+    }
+    
+    .suggestionListItem {
+        
+        &:hover, &:focus {
+            background-color: #343434;
+        }
+    }
+}
