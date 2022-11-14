@@ -91,7 +91,12 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
         <main> 
             <div className={styles.mobileIntroContainer}>  
                 <section className={styles.illustrationHolder}>
-                    <img alt="3-students" src={illustration} />
+                    <Image 
+                        alt="3-students" 
+                        src={illustration} 
+                        width="500px" height={'250px'}
+                        priority={true}
+                    />
                 </section>
 
                <section className={styles.introduction}>
