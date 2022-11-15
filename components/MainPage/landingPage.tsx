@@ -66,6 +66,9 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
             <span 
                 aria-label="Click here to join the waitlist"
                 className={styles.headerCta}>
+                <span className={styles.headerLogo}>
+                <Image src="/fav.ico" width={'70px'} height={'70px'} alt="interna logo"/>
+                </span>
                 {
                     isWaitlist ? (<>
                     <Button onClick={() => setModal(true)}>
@@ -176,6 +179,15 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
                         </div>
                     </ScrollAnimationWrapper>
                 </section>
+
+                <section className={styles.midSection}>
+                    <ScrollAnimationWrapper type="horizontal-slide-in" performOnce>
+                        <img src="/assets/mid-section.png" className={styles.img}  alt="interna logo"/> 
+                    </ScrollAnimationWrapper>
+                    <h2>Join to gain acesss to a <span className="secondary">community</span> of like minded students! </h2>                   
+                </section>
+                
+
 
                 {/* <h2 className={styles.h2}>You get these on Interna</h2> */}
                 <section className={styles.mobileUsp}>

@@ -47,25 +47,33 @@ $inputDark: #333333;
 
 .secondHeader {
     top: 0;
+    right: 0;
     width: 100%;
     height: 70px;
-    background: rgba(255, 255, 255, 1);
+    background: rgba(255, 255, 255, .7);
     backdrop-filter: saturate(100%) blur(10px);   
     z-index: 10;
     position: fixed;
-    justify-content: flex-end;
-    // box-shadow: 0px 0.3px 7px -1px #616161;
 
+    .headerLogo{
+        position: absolute;
+        left: 2rem;
+        top:0;
+    }
     .headerCta {
         display: flex;
-        justify-content: center;
+        justify-content: flex-end;
         align-items: center;
         gap: 2rem;
+        width: 100%;
+        margin-right: 1rem;
+        
         
         button{
             padding: .5em 1em;
             border-radius: 5px;
             font-weight: 550;
+            animation: bounce 4s infinite;
         }
         button:hover{
             transform: translateY(-.1rem);
@@ -153,12 +161,34 @@ $inputDark: #333333;
 .testimonial::-webkit-scrollbar { 
     display: none;  /* Safari and Chrome */
 }
+.midSection{
+    background-color: #D3E2ED;
+    display: flex;
+    padding: 0 !important;
+    gap: 10%;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row-reverse;
+    margin-bottom: 4rem;
+    min-height: 40rem;
 
+    .img{
+        margin: 4rem 0 0 0;
+        width: 80%;
+        height: auto;
+    }
+    h2{
+        color: var(--primary);
+        font-size: 36px;
+        max-width: 40%;
+        text-align:center;
+    }
+}
 section.landingPageWelcome{
     background-color: var(--primary);
     padding: 2rem 10px;
     min-height: 20rem;
-    margin: 4rem 0;
+    margin-top: 4rem;
     
     a{ 
         display: flex;
@@ -544,10 +574,15 @@ section.landingPageWelcome{
     }
 
     .secondHeader {
-        background-color: var(--background);
+        background-color: #2121216f;
         box-shadow: 0px 0.3px 7px -1px #333333;
     }
-
+    .midSection{
+        background: transparent;
+        h2{
+            color: white;
+        }
+    }
     .waitlistPage {
         background-color: var(--background);
     }
@@ -635,6 +670,24 @@ section.landingPageWelcome{
             width: 90%;
         }
     }
+    .midSection{
+        flex-direction: column-reverse;
+        gap: 1rem;
+        justify-content: center;
+        align-items: center;
+        h2{
+            max-width: 90%;
+            margin-top: 2rem;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .img{
+            width: 99%;
+            height: auto;
+            text-align: center;
+            margin: 0 0 0 0;
+        }
+    }
     .mobileUsp{
         flex-direction: column;
         gap: 1rem;
@@ -666,6 +719,9 @@ section.landingPageWelcome{
             text-align: center;
             margin: 0 0 0 0;
         }
+    }
+    .secondHeader {
+        width: 100%;
     }
 }
 @media only screen and (max-width: 600px) {
