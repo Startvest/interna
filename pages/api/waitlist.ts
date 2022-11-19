@@ -46,7 +46,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       else {
         const email = await sendMail({
           to: data.email, 
-          name: data.name
+          subject: `Welcome to the family ${data.name}`,
+          name: data.name,
+          email: "email"
         })
         console.log(email);
         return res.status(201).json({"response": "Member created successfully"});
