@@ -29,6 +29,10 @@ body {
   font-family: 'Montserrat', sans-serif, Droid Sans, Helvetica Neue;
 }
 
+body.backdrop-no-scroll {
+  overflow: hidden;
+}
+
 .adminFont {
   font-family: 'Work Sans';
 }
