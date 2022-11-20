@@ -30,6 +30,14 @@
     }
 }
 
+.desktopMenu {
+    width: 20%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+}
+
 .icon{
     color: var(--primary);
 }
@@ -66,4 +74,29 @@
 }
 .scale{
     transform: scale(1.2); //Fallback for browsers that don't support scale
+}
+
+@media screen and (min-width: 768px){
+    .backdrop {
+        background-color: transparent;
+        width: 320px;
+
+        section {
+            width: 100%;
+            border-right: 0.5px solid #bbbbbb;
+        }
+    }
+    .dismissArea {
+        display: none;
+    }
+
+
+    [data-theme="dark"] {
+        .backdrop {
+
+            section {
+                border-right: 0;
+            }
+        }
+    }
 }
