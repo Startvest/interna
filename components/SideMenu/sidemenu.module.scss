@@ -1,0 +1,69 @@
+.backdrop {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, .9);
+    display: grid;
+    grid-template-columns: 80% auto;
+
+    section {
+        width: 100%;
+        background-color: var(--background);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 2em;
+        box-sizing: border-box;
+        color: var(--primary);
+        z-index: 200;
+
+        div {
+            width: 100%;
+        }
+    }
+
+    .dismissArea {
+        width: auto;
+        height: 100%;
+    }
+}
+
+.icon{
+    color: var(--primary);
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+
+    span {
+        display: flex;
+        align-items: center;
+        margin: 10px 0;
+        gap: 1.5em;
+        height: 50px;
+        font-weight: 600;
+    }
+}
+
+
+
+[data-theme="dark"] {
+
+    .backdrop {
+
+        section, .icon {
+            color: #fff;
+        }
+    }
+}
+
+.icon:hover{
+    cursor: pointer;
+    transform: scale(1.2); //Fallback for browsers that don't support scale
+}
+.scale{
+    transform: scale(1.2); //Fallback for browsers that don't support scale
+}
