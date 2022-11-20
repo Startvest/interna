@@ -7,11 +7,16 @@ import { useEffect } from 'react';
 
 interface SideMenuProps {
     isOpen: boolean,
-    hasBeenDismissed: any
+    hasBeenDismissed: any,
 }
+
 
 export const SideMenu: React.FC<SideMenuProps> = ({ isOpen, hasBeenDismissed }) => {
     useEffect(() => {
+        if(window.innerWidth >= 768){
+            return
+        }
+        
         if(isOpen){
             document.body.setAttribute('class', 'backdrop-no-scroll')
         } else {
@@ -20,7 +25,6 @@ export const SideMenu: React.FC<SideMenuProps> = ({ isOpen, hasBeenDismissed }) 
     }, [isOpen])
     
     if(!isOpen) return null;
-
     return(
         <div className={styles.backdrop}>
             <section>
@@ -55,4 +59,5 @@ export const SideMenu: React.FC<SideMenuProps> = ({ isOpen, hasBeenDismissed }) 
             <div className={styles.dismissArea} onClick={hasBeenDismissed}></div>          
         </div>
     )
+    
 }
