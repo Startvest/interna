@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Image from "next/image";
 import styles from './header.module.css';
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useLayoutEffect} from 'react';
 import { useTheme } from 'next-themes';
 import {useRouter} from 'next/router';
 import {
@@ -13,6 +13,7 @@ import { SideMenu } from '../SideMenu';
 export function AppHeader({pageName}:{ pageName? : string}) {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
 
@@ -21,7 +22,14 @@ export function AppHeader({pageName}:{ pageName? : string}) {
   };
 
   useEffect(() => {
-       setMounted(true);
+    if(window.innerWidth >= 768){
+      setMenuOpen(true)
+      document.body.removeAttribute('class')
+    }
+
+  }, [])
+  useEffect(() => {
+      setMounted(true);
   }, []);
 
   if (!mounted) return null;
@@ -47,7 +55,10 @@ export function AppHeader({pageName}:{ pageName? : string}) {
           <IoSunnyOutline size={35} className={styles.icon} onClick={handleTheme}/>
           }
     </header>
-    <SideMenu isOpen={menuOpen} hasBeenDismissed={() => setMenuOpen(false)}/>
+    <SideMenu 
+      isOpen={menuOpen} 
+      hasBeenDismissed={() => setMenuOpen(false)}
+    />
   </>
   );
 }
