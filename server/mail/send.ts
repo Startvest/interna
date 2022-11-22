@@ -8,10 +8,11 @@ interface MailData{
      name: string,
      subject?: string,
      text?: string,
+     email: "email" | "waitlist1"
 }
 export const sendMail = async (props:MailData) => {
-     const {to, name, subject, text} = props;
-     const source = fs.readFileSync(process.cwd() + "/public/templates/email.html", 'utf-8').toString();
+     const {to, name, subject, text, email} = props;
+     const source = fs.readFileSync(process.cwd() + `/public/templates/${email}.html`, 'utf-8').toString();
      const template = handlebars.compile(source);
      const replacements = {
           name: name
@@ -24,8 +25,8 @@ export const sendMail = async (props:MailData) => {
           from: from,
           to: to,
           // to: 'hanif.adedotun@gmail.com, steven.oshoke@gmail.com, dusiere40@gmail.com, obriggs03@gmail.com, fortunealebiosu710@gmail.com',
-          subject: `Welcome to the family ${name}`,
-          text: "Welcome to the family...",
+          subject: subject,
+          text: subject,
           html: htmlToSend
      }
      let info = await transporter.sendMail(mailData);

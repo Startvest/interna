@@ -32,7 +32,7 @@ waitlistDb.createWaitlistMember = async (data: {name: string, email: string, pos
       let member: {waitlist_id: string, name: string, email: string, position: {type: "string", company_name: "string"}, created: string} = {
         waitlist_id: uuid.v4(),
         name: data.name,
-        email: data.email,
+        email: data.email.toLowerCase(),
         position: data.position,
         created: Date().toString()
       };

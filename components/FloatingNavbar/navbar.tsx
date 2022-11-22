@@ -53,7 +53,6 @@ export function NavBar(){
                <div className={styles.container}>
                     <Link href={'/feed'}>{ albumsIcon }</Link>
                     <Link href={'/search'}>{ searchIcon }</Link>
-                    <div onClick={handleMore}><IoLayersOutline size={30} className={`${(more) ? styles.scale: ''} ${styles.icon}`}/> </div>
                     <Link href={'/messages'}>{ mailIcon }</Link>
                     <Link href={'/notifications'}>{ notificationsIcon }</Link>
                     {/* <Link href={'/settings'}>{ settingsIcon }</Link> */}

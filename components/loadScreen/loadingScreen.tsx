@@ -33,7 +33,8 @@ export function LoadingScreen(){
 
                <div className={styles.footer}>
                     <p>by</p>
-                    <div><Image className={styles.startvest} src={resolvedTheme=== 'light'? '/assets/startvest.png' : '/assets/startvestalt.png'}  width='80' height='13'/></div>
+                    <div>Ntrna technologies Ltd</div>
+                    {/* <div><Image className={styles.startvest} src={resolvedTheme=== 'light'? '/assets/startvest.png' : '/assets/startvestalt.png'}  width='80' height='13'/></div> */}
                </div>
           </div>
      )

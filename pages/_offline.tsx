@@ -42,7 +42,7 @@ const Offline: NextPage = () => {
         <p>Please check your internet connection and refresh this page</p>
 
         <Button className={`${styles.mainButton} flex items-center justify-center`}>
-          Back to Homepage
+          Explore our Homepage
         </Button>
       </main>
       

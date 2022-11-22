@@ -29,12 +29,19 @@ body {
   font-family: 'Montserrat', sans-serif, Droid Sans, Helvetica Neue;
 }
 
+body.backdrop-no-scroll {
+  overflow: hidden;
+}
+
 .adminFont {
   font-family: 'Work Sans';
 }
 
 .secondary {
   color: var(--secondary);
+}
+.primaryText {
+  color: var(--primary);
 }
 
 h3, p { margin: 0; }

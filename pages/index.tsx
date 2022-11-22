@@ -1,12 +1,9 @@
 import {useState, useEffect} from 'react';
-import type { NextPage } from 'next';
-import styles from '../styles/Home.module.css';
 import { Header } from '../components/header';
 import { LandingPage } from '../components/MainPage';
 import {LoadingScreen} from '../components/loadScreen';
-import showNotification from '../public/client';
+// import showNotification from '../public/client';
 import { useRouter } from 'next/router';
-
 type HomeProps = {
   isMobile: boolean,
 }
@@ -41,8 +38,11 @@ export default Home;
 
 import { GetServerSideProps } from 'next';
 import { getDevice } from '../server/getDevice';
-import { sendMail } from '../server/mail';
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59'
+  )
   return {
     props: {
       isMobile: Boolean(getDevice(req))

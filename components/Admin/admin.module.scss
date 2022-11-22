@@ -107,3 +107,59 @@
      color: var(--primary);
      opacity: 0.5;
 }
+
+// 
+.emailContent{
+     max-height: 100vh;
+     overflow-y: hidden;
+
+     button{
+          padding: .5rem 1rem;
+     }
+}
+.emailListCont{
+     display: flex;
+     width: 80%;
+     align-items: center;
+     justify-content: space-between;
+     padding: 1rem 2rem;
+     border: 1px solid var(--primary);
+     background-color: var(--contrast);
+     margin: 2rem 0;
+     border-radius: 10px;
+     .h2{
+          font-size: 18px;
+          color: var(--primary);
+          margin-right: 2rem;
+          font-weight: 600;
+     }
+     .select{
+          font-size: 16px;
+          padding: .25rem .5rem;
+          background-color: white;
+          border: 0;
+          border-radius: 5px;
+          color: var(--primary);
+          font-weight: 500;
+          cursor: pointer;
+     }
+    
+}
+.deviceType{
+     margin-top: 1rem;
+     span{
+          margin-right: 1rem;
+          color: var(--primary);
+          cursor: pointer;
+     }
+}
+.deviceActive{
+     font-weight: 900;
+}
+.frame{
+     border: 3px solid var(--primary);
+     border-radius: 10px;
+     margin: 2rem 0;
+     text-align: center;
+     justify-self: center;
+}

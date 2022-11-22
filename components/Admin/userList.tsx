@@ -9,12 +9,15 @@ export function UserContent ({users}:{users: IUser[]}){
      return(
           <div className={styles.userContent}>
              <h1>Hey Admin!</h1>
-             <h3>These are our current users</h3>
+             <h3>These are our current users <span className='secondary'>{users.length} Users</span></h3>
                <Searchbar 
                     placeholder="Search for anything"
                     onChange={(e) =>console.log(e)}
                /> 
+               {!users &&
+               <>
                
+               </>}
                {users && users.length > 0 && 
                     <div className={styles.scrollTable}>
                     <table className={styles.userContainer}>
