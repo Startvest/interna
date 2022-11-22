@@ -7,7 +7,7 @@ const Footer:React.FC = () => {
     let year:number = date.getFullYear();
     return(
     <footer className={styles.footer}>
-        <Image src="/assets/logo-white.svg" height={'20px'} width={'93px'}/>
+        <Image src="/assets/logo-white.svg" height={'30px'} width={'106px'}/>
         <div className={styles.footerContent}>
             <div>
                 <h4>
@@ -49,7 +49,7 @@ const Footer:React.FC = () => {
 
         </div>
 
-        <p>Copyright © {year} Ntrna technologies Ltd | All Rights reserved </p>
+        <p>Copyright © {year} Ntrna technologies Ltd. <br/>All Rights reserved </p>
     </footer>
     )
 }
