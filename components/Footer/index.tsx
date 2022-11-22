@@ -49,7 +49,7 @@ const Footer:React.FC = () => {
 
         </div>
 
-        <p>Copyright © {year} Startvest Solutions | All Rights reserved </p>
+        <p>Copyright © {year} Ntrna technologies Ltd | All Rights reserved </p>
     </footer>
     )
 }
