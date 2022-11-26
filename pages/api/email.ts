@@ -31,7 +31,7 @@ export default async function handler(
   } else if (req.method === 'POST') {
     const data = req.body as IEmail;
 
-    let serRes = await waitlistService.getMembers(data);
+    let serRes = await waitlistService.getMembers();
 
     if (serRes) {
         serRes.slice(0,30).forEach(async (element: any, index: number) => {
