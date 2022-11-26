@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { waitlistService } from '../../server/services';
+import {waitlistService} from '../../server/services';
 import {sendMail} from "../../server/mail";
 export interface IUser {
   waitlist_id: string;
@@ -37,7 +37,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(500).json({"error": "An error occured. Please try again"});
     }
     let serRes = await waitlistService.createWaitlistMember(data);
-    // console.log(serRes);
+    
 
     if (serRes) { 
       if (serRes === "User with that email exists already.") {

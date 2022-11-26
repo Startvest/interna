@@ -8,7 +8,7 @@ type HomeProps = {
   isMobile: boolean,
 }
 
-const Home: React.FC<HomeProps> = ({isMobile}) => {
+const Home: React.FC<HomeProps> = ({}) => {
   const [loading, setLoading] = useState<boolean>(true);
   const router = useRouter();
     useEffect(() => {
@@ -37,7 +37,6 @@ const Home: React.FC<HomeProps> = ({isMobile}) => {
 export default Home;
 
 import { GetServerSideProps } from 'next';
-import { getDevice } from '../server/getDevice';
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   res.setHeader(
     'Cache-Control',
@@ -45,7 +44,6 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   )
   return {
     props: {
-      isMobile: Boolean(getDevice(req))
     }, // will be passed to the page component as props
   };
 };
