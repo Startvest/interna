@@ -34,15 +34,16 @@ export default async function handler(
     let serRes = await waitlistService.getMembers(data);
 
     if (serRes) {
-        serRes.slice(0,1).forEach(async (element: any) => {
-          console.log(element.email);
-          console.log(element.name);
+        serRes.slice(0,30).forEach(async (element: any, index: number) => {
           await sendMail({
-               to: 'hanif.adedotun@gmail.com, steven.oshoke@gmail.com, dusiere40@gmail.com, obriggs03@gmail.com, fortunealebiosu710@gmail.com',
-               name: "Team Test",
+              to: element.email,
+              // to: 'tamunowanatebriggs@yahoo.com', ''
+              //  to: 'hanif.adedotun@gmail.com, steven.oshoke@gmail.com, dusiere40@gmail.com, obriggs03@gmail.com, fortunealebiosu710@gmail.com',
+               name: element.name,
                subject: data.subject,
                email: "waitlist1"
              })
+             console.log(`${index} Sent to ${element.name} : ${element.email}`);
         });
       return res.status(201).json({ response: 'Successfull' });
 
