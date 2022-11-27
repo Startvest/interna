@@ -10,17 +10,18 @@
 
     section {
         width: 100%;
-        background-color: var(--background);
+        background-color: var(--primary);
         height: 100%;
         display: flex;
         flex-direction: column;
-        padding: 2em;
         box-sizing: border-box;
-        color: var(--primary);
+        color: #fff;
         z-index: 200;
-
+        
         div {
             width: 100%;
+            box-sizing: border-box;
+
         }
     }
 
@@ -28,6 +29,10 @@
         width: auto;
         height: 100%;
     }
+}
+
+.profile {
+    padding: 2em 2em 0 2em;
 }
 
 .desktopMenu {
@@ -45,6 +50,7 @@
 .links {
     display: flex;
     flex-direction: column;
+    padding: 0 2em 2em 2em;
 
     span {
         display: flex;
@@ -53,6 +59,10 @@
         gap: 1.5em;
         height: 50px;
         font-weight: 600;
+
+        &:focus, &:hover {
+            filter: brightness(0.8);
+        }
     }
 }
 
@@ -66,12 +76,23 @@
             color: #fff;
         }
     }
+
+    .links {
+    
+        span {    
+            &:focus, &:hover {
+                filter: brightness(1.2);
+            }
+        }
+    }
+    
 }
 
 .icon:hover{
     cursor: pointer;
     transform: scale(1.2); //Fallback for browsers that don't support scale
 }
+
 .scale{
     transform: scale(1.2); //Fallback for browsers that don't support scale
 }
