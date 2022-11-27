@@ -33,11 +33,10 @@ const Users: React.FC<UsersProps> = ({users}) => {
 export default Users;
 
 import { GetServerSideProps } from 'next';
-import { waitlistDb } from '../../server/db';
+import { waitlistDB } from '../../server/db';
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-     const u = await waitlistDb.getMembers();
-     const users = u.map((u:IUser) => JSON.parse(JSON.stringify(u)))
-  
+     const users:IUser[] = await waitlistDB.getMembers();
+
    return {
     props: {
      users

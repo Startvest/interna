@@ -7,7 +7,7 @@ const Footer:React.FC = () => {
     let year:number = date.getFullYear();
     return(
     <footer className={styles.footer}>
-        <Image src="/assets/logo-white.svg" height={'20px'} width={'93px'}/>
+        <Image src="/assets/logo-white.svg" height={'30px'} width={'106px'}/>
         <div className={styles.footerContent}>
             <div>
                 <h4>
@@ -19,7 +19,7 @@ const Footer:React.FC = () => {
                     <li>RESOURCES</li>
                     <li>Privacy Policy</li>
                     <li>Terms and Conditions</li>
-                    <li>Contact us</li>
+                    <li><a href="mailto:support@getinterna.com">Contact us</a></li>
                 </ul>
 
                 <ul className={styles.socials}>
@@ -34,7 +34,7 @@ const Footer:React.FC = () => {
                         </a>
                     </li>
                     <li>
-                        <a href="https://getinterna.com" target={"_blank"}  rel="noreferrer">
+                        <a href="https://instagram.com/get_interna" target={"_blank"}  rel="noreferrer">
                             <IoLogoInstagram/>
                         </a>
                     </li>
@@ -49,7 +49,7 @@ const Footer:React.FC = () => {
 
         </div>
 
-        <p>Copyright © {year} Startvest Solutions | All Rights reserved </p>
+        <p>Copyright © {year} Ntrna technologies Ltd. <br/>All Rights reserved </p>
     </footer>
     )
 }

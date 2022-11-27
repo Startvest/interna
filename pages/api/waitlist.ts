@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { waitlistService } from '../../server/services';
+import {waitlistService} from '../../server/services';
 import {sendMail} from "../../server/mail";
 export interface IUser {
   waitlist_id: string;
@@ -14,6 +14,7 @@ export interface IUser {
 
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  res.setHeader('Cache-Control', 's-maxage=10'); 
   if(req.headers.authorization !== process.env.NEXT_PUBLIC_AUTH){
     console.log(process.env.NEXT_PUBLIC_AUTH);
     console.log(req.headers.authorization);
@@ -36,7 +37,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(500).json({"error": "An error occured. Please try again"});
     }
     let serRes = await waitlistService.createWaitlistMember(data);
-    // console.log(serRes);
+    
 
     if (serRes) { 
       if (serRes === "User with that email exists already.") {
@@ -45,7 +46,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       else {
         const email = await sendMail({
           to: data.email, 
-          name: data.name
+          subject: `Welcome to the family ${data.name}`,
+          name: data.name,
+          email: "email"
         })
         console.log(email);
         return res.status(201).json({"response": "Member created successfully"});

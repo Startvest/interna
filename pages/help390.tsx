@@ -74,3 +74,18 @@ const Help: NextPage = () => {
 };
 
 export default Help;
+
+import { GetServerSideProps } from 'next';
+import {addlog} from "../server/db/Logs";
+
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59'
+  )
+    // console.log(await addlog("A test error", "pages/help390.tsx", "info"))
+  return {
+    props: {
+    }, // will be passed to the page component as props
+  };
+};

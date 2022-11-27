@@ -1,3 +1,1 @@
-const { waitlistService } = require('./waitlist.service');
-
-export { waitlistService };
+export * from './waitlist.service';

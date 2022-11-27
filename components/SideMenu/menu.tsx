@@ -29,6 +29,7 @@ export const SideMenu: React.FC<SideMenuProps> = ({ isOpen, hasBeenDismissed }) 
     return(
         <div className={styles.backdrop}>
             <section>
+
                 <div className={styles.profile}>
                     <Avatar src="/assets/images/user2.svg" />
                     <h2>John Doe</h2>

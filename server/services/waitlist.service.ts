@@ -1,13 +1,12 @@
-import { waitlistDb } from "../db";
+import { waitlistDB } from "../db";
 
-const waitlistService: any = {};
 
-waitlistService.createWaitlistMember = async (data: any) => {
-    return await waitlistDb.createWaitlistMember(data);
+export const waitlistService = {
+    async createWaitlistMember(data: any) {
+        return await waitlistDB.createWaitlistMember(data);
+    },
+
+    async getMembers()  {
+        return await waitlistDB.getMembers();
+    }
 }
-
-waitlistService.getMembers = async () => {
-    return await waitlistDb.getMembers();
-}
-
-export { waitlistService };
