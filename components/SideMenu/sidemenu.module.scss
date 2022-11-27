@@ -1,0 +1,123 @@
+.backdrop {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, .9);
+    display: grid;
+    grid-template-columns: 80% auto;
+
+    section {
+        width: 100%;
+        background-color: var(--primary);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        color: #fff;
+        z-index: 200;
+        
+        div {
+            width: 100%;
+            box-sizing: border-box;
+
+        }
+    }
+
+    .dismissArea {
+        width: auto;
+        height: 100%;
+    }
+}
+
+.profile {
+    padding: 2em 2em 0 2em;
+}
+
+.desktopMenu {
+    width: 20%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+}
+
+.icon{
+    color: var(--primary);
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    padding: 0 2em 2em 2em;
+
+    span {
+        display: flex;
+        align-items: center;
+        margin: 10px 0;
+        gap: 1.5em;
+        height: 50px;
+        font-weight: 600;
+
+        &:focus, &:hover {
+            filter: brightness(0.8);
+        }
+    }
+}
+
+
+
+[data-theme="dark"] {
+
+    .backdrop {
+
+        section, .icon {
+            color: #fff;
+        }
+    }
+
+    .links {
+    
+        span {    
+            &:focus, &:hover {
+                filter: brightness(1.2);
+            }
+        }
+    }
+    
+}
+
+.icon:hover{
+    cursor: pointer;
+    transform: scale(1.2); //Fallback for browsers that don't support scale
+}
+
+.scale{
+    transform: scale(1.2); //Fallback for browsers that don't support scale
+}
+
+@media screen and (min-width: 768px){
+    .backdrop {
+        background-color: transparent;
+        width: 320px;
+
+        section {
+            width: 100%;
+            border-right: 0.5px solid #bbbbbb;
+        }
+    }
+    .dismissArea {
+        display: none;
+    }
+
+
+    [data-theme="dark"] {
+        .backdrop {
+
+            section {
+                border-right: 0;
+            }
+        }
+    }
+}
