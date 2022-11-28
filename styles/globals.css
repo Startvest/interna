@@ -32,7 +32,9 @@ body {
 body.backdrop-no-scroll {
   overflow: hidden;
 }
-
+.global_container{
+  background: var(--background);
+}
 .adminFont {
   font-family: 'Work Sans';
 }

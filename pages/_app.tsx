@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <ThemeProvider>
         <QueryClientProvider client={queryClient}>
-          <Component {...pageProps} />
+            <Component {...pageProps} />
           <Analytics />
         </QueryClientProvider>
       </ThemeProvider>

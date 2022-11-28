@@ -1,5 +1,5 @@
 $contrastLight: rgba(211, 226, 237, 0.4);
-$contrastDark: rgba(100, 100, 100, 0.5);
+$contrastDark: rgba(100, 100, 100, 0.2);
 $postDark: rgba(77, 77, 77, 0.2);
 $shareText: rgba(33, 41, 92, 0.6);
 
@@ -79,7 +79,7 @@ $shareText: rgba(33, 41, 92, 0.6);
     justify-content: center;
     align-items: center;
     gap: .5rem;
-    padding: 0 .5rem;
+    padding: 0 1rem;
 }
 .copylogo{
     color: white;
@@ -125,7 +125,7 @@ $shareText: rgba(33, 41, 92, 0.6);
         // background-color: lighten($color:#212121, $amount:2);
         
         .modalContainer {
-            box-shadow: 0px 0px 5px 2px darken($color:#212121, $amount:2);
+            box-shadow: 0px 0px 1px 2px darken($color:#212121, $amount:2);
             background: var(--altDark);
         }
     

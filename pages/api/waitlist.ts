@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import {waitlistService} from '../../server/services';
 import {sendMail} from "../../server/mail";
+// import {}
 export interface IUser {
   waitlist_id: string;
   name: string;
@@ -55,6 +56,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
     }
     else {
+      // await addlog("A test error", "pages/help390.tsx", "info")
       return res.status(500).json({"error": "An error occured. Please try again"});
     }
   }
