@@ -253,7 +253,7 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
                         }}
                         modules={[Autoplay]}>
                             {sponsors.map((v,i) =>
-                                <SwiperSlide>
+                                <SwiperSlide key={i}>
                                     <span  className={styles.carouselSlide}>
                                     <Image src={v} width={'200px'} height={'80px'} alt={v}/>
                                     </span>
