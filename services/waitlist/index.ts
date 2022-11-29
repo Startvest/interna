@@ -11,5 +11,6 @@ export async function addUser(data: Partial<IUser>) {
 
 export async function getUsers() {
      const res = await axios.get<IUser[]>('/waitlist',{ headers: {"Authorization" : `${process.env.NEXT_PUBLIC_AUTH}`} });
+     console.log(res.data);
      return res.data;
 }

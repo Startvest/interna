@@ -24,7 +24,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method === 'GET') {
     let serRes = await waitlistService.getMembers();
     if (serRes) {
-      return res.status(200).json({"response": serRes});
+      return res.status(200).json(serRes);
     }
     else {
       return res.status(500).json({"error": "An error occured. Please try again"});

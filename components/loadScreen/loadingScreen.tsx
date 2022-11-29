@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import styles from './loading.module.css';
+import styles from './loading.module.scss';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import {ProgressBar} from '../progressBar';

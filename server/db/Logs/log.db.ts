@@ -1,6 +1,6 @@
 import {connect, collections} from '../config.db'
 
-interface Log{ 
+export interface Log{ 
      message: string,
      location: string,
      time: string,

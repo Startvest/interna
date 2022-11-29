@@ -19,10 +19,15 @@
      font-weight: bolder;
      color: var(--primary);
 }
-[data-theme="dark"] .text{
-     color: var(--contrast);
-}
 
+.loadIcon{
+     text-align: center;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 80%;
+     animation: rotate ease-in-out 1s infinite;
+}
 .footer{
      position: absolute;
      bottom: 24px;
@@ -31,11 +36,17 @@
      font-size: 13px;
      color: var(--primary)
 }
-[data-theme="dark"] .footer{
-     color: white;
-}
 .startvest{
      margin-right: 2rem;
+}
+[data-theme="dark"] {
+     .footer{
+          color: white;
+     }
+     .text{
+          color: var(--contrast);
+     }
+
 }
 @keyframes bounce{
      0%{
@@ -46,5 +57,15 @@
      }
      100%{
           transform: translateY(-1.2rem);
+     }
+}
+@keyframes rotate{
+     0%
+     {
+       transform:rotate(0deg);
+     }
+     100%
+     {
+       transform:rotate(360deg);
      }
 }
