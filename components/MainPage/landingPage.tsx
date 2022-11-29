@@ -15,12 +15,21 @@ import {ErrorModal} from '../Modal';
 import { useInView, useScroll } from "framer-motion";
 import { ScrollAnimationWrapper } from "../ScrollAnimationWrapper";
 import {tools} from "../../services/enums/tools";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay,} from "swiper";
+import 'swiper/css';
+import 'swiper/css/autoplay';
 
 type Props = {
     isWaitlist: boolean,
     // isMobile: boolean,
 }
-
+const sponsors =[
+    "/assets/nile-logo.svg",
+    "/assets/gdsc_logo.svg",
+    "/assets/sc_logo.png",
+    "/assets/companies/paadc2.jpg"
+]
 export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
     const [modalOpen, setModal] = useState<boolean>(false);
     const [errorModal, setErrorModal] = useState<boolean>(false);
@@ -229,8 +238,56 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
 
             <section className={styles.ourSponsors}>
                 <h3>Supported by</h3>
+                
+                <div>
+                    <Swiper
+                        spaceBetween={50}
+                        grabCursor={true}
+                        loop={true}
+                        centeredSlides={true}
+                        slidesOffsetBefore={0}
+                        slidesPerView={3}
+                        autoplay={{
+                        delay: 2000,
+                        disableOnInteraction: false
+                        }}
+                        modules={[Autoplay]}>
+                            {sponsors.map((v,i) =>
+                                <SwiperSlide>
+                                    <span  className={styles.carouselSlide}>
+                                    <Image src={v} width={'200px'} height={'80px'} alt={v}/>
+                                    </span>
+                                </SwiperSlide>
+                            )}
+                         
+                            {/* <SwiperSlide>
+                            <span                         
+                            className={styles.carouselSlide}>
+                            <Image src="/assets/nile-logo.svg" width={'200px'} height={'60px'} alt="Nile University of Nigeria"/>
+                            </span>
+                            </SwiperSlide>
 
-                <div className={styles.carouselHolder}>
+                            <SwiperSlide>
+                            <span className={styles.carouselSlide}>
+                                <Image src="/assets/gdsc_logo.svg" width={'200px'} height={'60px'} alt="GDSC logo"/>
+                            </span>
+                            </SwiperSlide>
+                            
+                            <SwiperSlide>
+                            <span className={styles.carouselSlide}>
+                                <Image src="/assets/sc_logo.png" width={'200px'} height={'60px'} alt="Startup Campus"/>
+                            </span>
+                            </SwiperSlide>
+
+                            <SwiperSlide>
+                            <span className={styles.carouselSlide}>
+                                <Image src="/assets/companies/honoris.jpg" width={'200px'} height={'60px'} alt="Honoris United Universities"/>
+                            </span>
+                                </SwiperSlide> */}
+                        </Swiper>
+                    </div>
+
+                {/* <div className={styles.carouselHolder}>
                     <div 
                         className={styles.carousel}>
                         <span                         
@@ -251,7 +308,7 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
                         </span>
 
                     </div>
-                </div>
+                </div> */}
 
                 <ScrollAnimationWrapper performOnce>
                     <div className={styles.getStarted} >
