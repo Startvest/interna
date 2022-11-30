@@ -17,7 +17,7 @@ import { ScrollAnimationWrapper } from "../ScrollAnimationWrapper";
 import {tools} from "../../services/enums/tools";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay,} from "swiper";
-import 'swiper/css';
+import "swiper/css/bundle";
 import 'swiper/css/autoplay';
 
 type Props = {
