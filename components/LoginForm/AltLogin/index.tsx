@@ -1,7 +1,7 @@
 import {
   IoLogoGoogle,
   IoLogoLinkedin,
-  IoLogoMicrosoft,
+  IoLogoGithub,
   IoLogoTwitter,
 } from 'react-icons/io5';
 import styles from './altlogin.module.css';
@@ -19,7 +19,7 @@ export const AltLogin = () => {
         <IoLogoLinkedin className={styles.icon} />
       </div>
       <div className={styles.box}>
-        <IoLogoMicrosoft className={styles.icon} />
+        <IoLogoGithub className={styles.icon} />
       </div>
     </div>
   );

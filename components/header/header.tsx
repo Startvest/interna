@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Image from "next/image";
 import styles from './header.module.css';
+import Link from 'next/link';
 
 export function Header({ pageName, head }: { pageName?: string , head? : boolean}) {
   return (<>
@@ -16,8 +17,12 @@ export function Header({ pageName, head }: { pageName?: string , head? : boolean
     </Head>
 
     {head && <header className={styles.header}>
-      <Image src="/fav.ico" width={'70px'} height={'70px'}/>
-      <h2 className={styles.h2}>Interna</h2>
+      <Link href={'/'}>
+        <>
+          <Image src="/fav.ico" width={'70px'} height={'70px'}/>
+          <h2 className={styles.h2}>Interna</h2>
+        </>
+      </Link>
     </header>}
     </>
   );

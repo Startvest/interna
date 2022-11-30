@@ -5,6 +5,7 @@ import { Header } from '../components/header';
 import { Form } from '../components/LoginForm';
 import styles from '../components/LoginForm/login.module.scss';
 import { ThemeIcon } from '../components/ThemeIcon';
+import { signIn } from "next-auth/react";
 
 const Login: NextPage = () => {
   const { resolvedTheme, setTheme } = useTheme();
@@ -29,7 +30,7 @@ const Login: NextPage = () => {
         alt="welcome icon"
       />
       <h1 className={styles.header}>Welcome Back!</h1>
-      {/* <DisplayDate date={"Mon Sep 9 2022 17:55:34 GMT+0100 (West Africa Standard Time)"} show={"ago"}/> */}
+      
       <Form type="login" />
     </div>
   );

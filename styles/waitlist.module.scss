@@ -367,41 +367,12 @@ section.landingPageWelcome{
         flex-shrink: 0;
         height: auto;
         margin: 0 50px;
-        background-color: #fff;
+        background-color: #fff; 
     }
 }
 .carousel::-webkit-scrollbar {
     display: none;
 }
-
-.carouselSlide::before,
-.carouselSlide::after {
-//   background: linear-gradient(to right, white 0%, rgba(255, 255, 255, 0) 100%);
-  content: "";
-  height: 100px;
-  position: absolute;
-  width: 200px;
-  z-index: 2;
-}
-
-.carouselSlide::after {
-  right: 0;
-  top: 0;
-  transform: rotateZ(180deg);
-}
-
-.carouselSlide::before {
-  left: 0;
-  top: 0;
-}
-@keyframes scroll {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(calc(-200px * 3));
-    }
-  }
 
 .getStarted{
     width: 60%;

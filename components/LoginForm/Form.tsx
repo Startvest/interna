@@ -13,11 +13,17 @@ export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'})
      e.preventDefault();
      setCodeModal(true);
    }
+   const handleLogin = (e:any) =>{
+      e.preventDefault();
+    //  setCodeModal(true);
+   }
    const handleRoute = ( e: any, route : string) =>{
     e.preventDefault();
     (route) ? router.push(route) : null;
    }
    const {
+    getValues, 
+    setValue, 
     register,
     formState: { errors },
   } = useForm();
@@ -30,11 +36,15 @@ export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'})
       <form className={styles.form}>
         {(['login','forgot','signup'].indexOf(type) > -1) && (
           <Input
+            onChange={(e:any) => setValue("email", e.target.value)}
             type="text"
             name="email"
-            onChange={(e: any) => console.log(e.target.value)}
             placeholder="Enter your email address"
             labelName={type === 'forgot' ? '' : 'Email'}
+            reg={register(`email`, {
+              required: `Email is required`,
+            })}
+            // error={errors.email?.message}
           />
         )}
         {/* {errors.email && <span>{errors.email?.message}</span>} */}
@@ -64,7 +74,7 @@ export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'})
         )}
 
         {type == 'login' && (
-          <button className={styles.btnPrimary} onClick={(e) => handleRoute(e, '/feed')}>Login</button>
+          <button className={styles.btnPrimary} onClick={handleLogin}>Login</button>
         )}
 
         {type == 'signup' && (
