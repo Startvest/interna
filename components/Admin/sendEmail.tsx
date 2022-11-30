@@ -27,6 +27,7 @@ export const SendEmail = () =>{
                          <select title="Email" name="email" className={styles.select} onChange={(e) => setcurrPage(e.target.value)}>
                               <option value="/waitlist1">Waitlist Email</option>
                               <option value="/email">Welcome Email</option>
+                              <option value="/code">Create Code</option>
                          </select>
                     </div>
                     <Button type="button" onClick={() => submitForm()}>
