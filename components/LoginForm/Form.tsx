@@ -5,28 +5,79 @@ import { AltLogin } from './AltLogin';
 import styles from './login.module.scss';
 import {useRouter} from 'next/router';
 import {CodeModal} from '../LoginForm';
+import { signIn } from "next-auth/react";
 
 export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'}) {
    const [codeModal, setCodeModal] = useState(false);
+   const [PasswordMessage, setPassMessage] = useState("");
+   const [emailMessage, setEmailMessage] = useState("");
+   const [validEmail, setValidEmail] = useState(false);
+   const [validPasssword, setValidPassword] = useState(false);
 
    const handleSignUp = (e:any) =>{
      e.preventDefault();
      setCodeModal(true);
+    //  Mutation to sign in a user, and send email to verifiy
    }
-   const handleLogin = (e:any) =>{
+   const handleLogin = async (e:any) =>{
       e.preventDefault();
-    //  setCodeModal(true);
+        await signIn(`credentials`, {
+          email: getValues().email,
+          password: getValues().password,
+          callbackUrl: "/feed"
+        });
    }
+   const verifyPassword = (str:string) => {
+    const rExp: boolean = /((?=.*[a-z])|(?=.*[A-Z]))((?=.*[0-9])|(?=.*\W))/.test(str);
+    if (rExp && str.length < 8) {
+      setValidPassword(false);
+      setPassMessage("Password is too short");
+      return;
+    }
+    if (str !== getValues().password1) {
+      setValidPassword(false);
+      setPassMessage("Password is not the same");
+      return;
+    }
+    if (rExp) {
+      setPassMessage("Excellent!");
+      setTimeout(() => setPassMessage(""), 1000);
+    } else {
+      setPassMessage(
+        "Password must contain at least one uppercase letter and numbers or special characters"
+      );
+    }
+    setValidPassword(rExp);
+  };
+
+  const verifyEmail = (str:string) => {
+    console.log(str);
+    const rExp: boolean = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(str);
+    if (rExp) {
+      setEmailMessage("Excellent!");
+      setTimeout(() => setEmailMessage(""), 1000);
+    } else {
+      setEmailMessage("Not a valid email");
+    }
+    setValidEmail(rExp);
+  };
    const handleRoute = ( e: any, route : string) =>{
     e.preventDefault();
     (route) ? router.push(route) : null;
    }
+
    const {
     getValues, 
     setValue, 
     register,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      email: '',
+      password1: '',
+      password: ''
+      },
+  });
 
   const router = useRouter();
 
@@ -34,9 +85,16 @@ export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'})
     <div>
       {codeModal && <CodeModal handleModal={() => setCodeModal(!CodeModal)}/>}
       <form className={styles.form}>
+        {(['login', 'signup', ].indexOf(type) > -1) && <AltLogin />}
+
+        {(['login', 'signup', ].indexOf(type) > -1) && (
+            <div className={styles.altLoginText}>Or Login with</div>
+          )}
+
         {(['login','forgot','signup'].indexOf(type) > -1) && (
           <Input
-            onChange={(e:any) => setValue("email", e.target.value)}
+            value={getValues().email}
+            onChange={(e:any) => {setValue("email", e.target.value); verifyEmail(e.target.value); console.log(e.target.value)}}
             type="text"
             name="email"
             placeholder="Enter your email address"
@@ -44,18 +102,20 @@ export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'})
             reg={register(`email`, {
               required: `Email is required`,
             })}
-            // error={errors.email?.message}
+            error={emailMessage}
           />
         )}
-        {/* {errors.email && <span>{errors.email?.message}</span>} */}
 
         {(['login','reset','signup'].indexOf(type) > -1) && (
           <Input
             type="password"
-            name="password"
-            onChange={(e: any) => console.log(e.target.value)}
+            name="password1"
+            onChange={(e: any) => {setValue("password1", e.target.value); setValue("password1", e.target.value)}}
             placeholder="Enter your password"
             labelName="Password"
+            reg={register(`password1`, {
+              required: `Password is required`,
+            })}
           />
         )}
 
@@ -63,18 +123,23 @@ export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'})
           <Input
             type="password"
             name="password"
-            onChange={(e: any) => console.log(e.target.value)}
+            onChange={(e: any) => {verifyPassword(e.target.value); setValue("password", e.target.value)}}
             placeholder="Enter your password"
             labelName="Re-enter Password"
+            reg={register(`password`, {
+              required: `Password is required`,
+            })}
+            error={PasswordMessage}
           />
         )}
+        {/* {!validPasssword && <span>{PasswordMessage}</span>} */}
 
         {type == 'login' && (
           <div className={styles.forgot} onClick={(e) => handleRoute(e, '/forgot-password')}>Forgot password?</div>
         )}
 
         {type == 'login' && (
-          <button className={styles.btnPrimary} onClick={handleLogin}>Login</button>
+          <button type="submit" className={styles.btnPrimary} disabled={!validPasssword || !validEmail} onClick={handleLogin}>Login</button>
         )}
 
         {type == 'signup' && (
@@ -84,12 +149,6 @@ export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'})
         {(['reset','forgot'].indexOf(type) > -1) && (
           <button className={styles.btnPrimary} onClick={(e) => {e.preventDefault(); (type === 'forgot') ? router.push('/reset'):router.push('/signup')}}>Submit</button>
         )}
-
-        {(['login', 'signup', ].indexOf(type) > -1) && (
-          <div className={styles.altLoginText}>Or Login with</div>
-        )}
-
-        {(['login', 'signup', ].indexOf(type) > -1) && <AltLogin />}
 
         {type == 'login' && (
          <div className={styles.altLoginText}>Do not have an account? <span onClick={(e) => handleRoute(e, '/signup')}>Sign up!</span></div>

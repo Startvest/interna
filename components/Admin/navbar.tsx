@@ -16,7 +16,7 @@ import {
      IoPeople
 } from 'react-icons/io5';
 
-type pathNames = '/admin/dashboard1101' | '/admin/moderation1101' | '/admin/logs' | '/admin/settings' | '/admin/users1101';
+type pathNames = '/admin/dashboard' | '/admin/emails' | '/admin/logs' | '/admin/settings' | '/admin/users';
 
 
 export function NavigationBar(){
@@ -27,9 +27,9 @@ export function NavigationBar(){
           setTheme('light');
      },[])
      
-     let dashIcon= path === '/admin/dashboard1101' ? <IoTrendingUpOutline size={16} className={`${styles.navItemsLogo} ${styles.navItemsLogoActive}`}/> : <IoTrendingUpOutline size={16} className={styles.navItemsLogo}/>
-     let usersIcon = path === '/admin/users1101' ? <IoPeople size={16} className={`${styles.navItemsLogo} ${styles.navItemsLogoActive}`}/> : <IoPeopleOutline size={16} className={styles.navItemsLogo}/>
-     let flagIcon= path === '/admin/moderation1101' ? <IoFlag size={16} className={`${styles.navItemsLogo} ${styles.navItemsLogoActive}`}/> : <IoFlagOutline size={16} className={styles.navItemsLogo}/>
+     let dashIcon= path === '/admin/dashboard' ? <IoTrendingUpOutline size={16} className={`${styles.navItemsLogo} ${styles.navItemsLogoActive}`}/> : <IoTrendingUpOutline size={16} className={styles.navItemsLogo}/>
+     let usersIcon = path === '/admin/users' ? <IoPeople size={16} className={`${styles.navItemsLogo} ${styles.navItemsLogoActive}`}/> : <IoPeopleOutline size={16} className={styles.navItemsLogo}/>
+     let flagIcon= path === '/admin/emails' ? <IoFlag size={16} className={`${styles.navItemsLogo} ${styles.navItemsLogoActive}`}/> : <IoFlagOutline size={16} className={styles.navItemsLogo}/>
      let docsIcon= path === '/admin/logs' ? <IoDocumentText size={16} className={`${styles.navItemsLogo} ${styles.navItemsLogoActive}`}/> : <IoDocumentTextOutline size={16} className={styles.navItemsLogo}/>
      let settingsIcon= path === '/admin/settings' ? <IoSettingsOutline size={16} className={`${styles.navItemsLogo} ${styles.navItemsLogoActive}`}/> : <IoSettingsOutline size={16} className={styles.navItemsLogo}/>
 
@@ -38,10 +38,10 @@ export function NavigationBar(){
                <div className={styles.logoContainer}><Image src="/assets/logo-white.svg" className={styles.logo} height={'50px'} width={'222px'}/></div>
                <h3>Admin Panel</h3>
                <div className={styles.navItems}>
-                    <Link href={'/admin/dashboard1101'}><span>{dashIcon} User Analytics</span></Link>
-                    <Link href={'/admin/users1101'}><span>{usersIcon} Users</span></Link>
-                    <Link href={'/admin/moderation1101'}><span>{flagIcon} Moderation</span></Link>
-                    <Link href={'/admin/logs1101'}><span>{docsIcon} Logs</span></Link>
+                    <Link href={'/admin/dashboard'}><span>{dashIcon} User Analytics</span></Link>
+                    <Link href={'/admin/users'}><span>{usersIcon} Users</span></Link>
+                    <Link href={'/admin/emails'}><span>{flagIcon} Emails</span></Link>
+                    <Link href={'/admin/logs'}><span>{docsIcon} Logs</span></Link>
                     <Link href={'/admin/settings'}><span>{settingsIcon} Settings</span></Link>
                </div>
 

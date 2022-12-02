@@ -4,7 +4,7 @@ import {
   IoLogoGithub,
   IoLogoTwitter,
 } from 'react-icons/io5';
-import styles from './altlogin.module.css';
+import styles from './altlogin.module.scss';
 
 export const AltLogin = () => {
   return (

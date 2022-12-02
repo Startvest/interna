@@ -1,0 +1,50 @@
+.container{
+     display: flex !important;
+     justify-content: space-between;
+     align-items: center;
+     width: 100%;
+}
+
+.box{
+     width: 50px;
+     height: 50px;
+     border-radius: 5px;
+     background-color: white;
+     border: 1px solid var(--primary);
+     cursor: pointer;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+.box:hover{
+     background-color: var(--primary);
+     transition: background-color .5s ease-in-out;
+     .icon{
+          color: white;
+          transition: color .5s;
+     }
+}
+.icon{
+     color: var(--primary);
+     width: 30px;
+     height: 30px;
+}
+
+[data-theme="dark"] {
+     .icon{
+          color: white;
+     }
+     .box{
+          background-color:transparent;
+          border: 1px solid white;
+     }
+     .box:hover{
+          border-color: var(--secondary);
+          transition: border-color .5s linear;
+          .icon{
+               color: var(--secondary);
+               transition: color .5s;
+          }
+     }     
+}
+

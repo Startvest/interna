@@ -6,7 +6,7 @@ type InputProps = {
     labelName: string,
     type?: string;
     inputClassName?: string,
-    onChange?: any,
+    onChange?: Function,
     value?: string|number,
     reg?: any,
     error?: string,
