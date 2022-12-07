@@ -31,7 +31,7 @@ const sponsors =[
     "/assets/companies/paadc2.jpg"
 ]
 export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
-    const [modalOpen, setModal] = useState<boolean>(false);
+    const [modalOpen, setModal] = useState<boolean>(isWaitlist);
     const [errorModal, setErrorModal] = useState<boolean>(false);
     const [hasSubmittedForm, setHasSubmitted] = useState(false);
     const [submitCount, setSubmitCount] = useState<number>(0);

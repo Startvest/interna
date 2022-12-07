@@ -8,15 +8,18 @@ export default NextAuth({
      CredentialsProvider({
           name: 'Credentials',
           credentials: {
-            username: { label: "email", type: "text", placeholder: "Enter your email address" },
+            email: { label: "email", type: "text", placeholder: "Enter your email address" },
             password: {  label: "password", type: "password" }
           },
           async authorize(credentials, req) {
-            const user:any = {}
-               console.log(credentials);
-               console.log(req.query);
+            const user:any = {
+              email: credentials?.email,
+              password: credentials?.password
+            }
+              //  console.log(req.query);
             // If no error and we have user data, return it
             if (user) {
+              console.log(user);
               return user
             }
             // Return null if user data could not be retrieved
@@ -25,11 +28,21 @@ export default NextAuth({
         })
   ],
   callbacks: {
-     async session({ session, token, user }:{session:any, token:any, user:any}) {
-       // Send properties to the client, like an access_token and user id from a provider.
-     console.log(session);
-       return session
-     }
+    async jwt({ token, user }) {
+      if (user) {
+        token.role = 1;
+      }
+
+      return token;
+    },
+    async session({ session, token }) {
+      if (token) {
+        console.log(token);
+        // session.role = token.role;
+      }
+      console.log(session);
+      return session;
+    }
      },
      pages: {
           signIn: "/login",

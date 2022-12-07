@@ -6,7 +6,7 @@ const Moderation = () => {
      
      return(
           <>
-               <Header pageName='Moderation | Interna'/>
+               <Header pageName='Emails | Interna'/>
                <AdminContent>
                     <NavigationBar/>
                     <SendEmail/>

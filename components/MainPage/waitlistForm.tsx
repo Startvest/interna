@@ -136,7 +136,7 @@ export const WaitlistForm: React.FC<FormProps> = ({
              </div>
              
              <Input 
-                 onChange={(e:any) => setValue("name", e.target.value)}
+                 onChange={(e:any) => {setValue("name", e.target.value); console.log("name")}}
                  labelName="Full name"
                  name="name" 
                  placeholder="eg. John Doe" 

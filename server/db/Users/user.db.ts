@@ -9,6 +9,7 @@ interface User{
      user_id: string;
      email: string;
      password: string;
+     verified: boolean;
      role: "Administrator" | "Basic User" | "Premium" | "Premium Plus";
 }
 

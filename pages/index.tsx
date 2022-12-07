@@ -24,7 +24,7 @@ const Home: React.FC<HomeProps> = ({}) => {
       <Header pageName='Interna | The official platform for interns'/>
       {loading && <LoadingScreen/>}
       {!loading && 
-        <LandingPage isWaitlist={false} />
+        <LandingPage isWaitlist={true} />
       } 
       
       {/* Script for push notification  [still testing, do not edit]*/}

@@ -23,8 +23,8 @@ export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'})
       e.preventDefault();
         await signIn(`credentials`, {
           email: getValues().email,
-          password: getValues().password,
-          callbackUrl: "/feed"
+          password: getValues().password1,
+          callbackUrl: "http://localhost:3001/feed"
         });
    }
    const verifyPassword = (str:string) => {
@@ -51,7 +51,7 @@ export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'})
   };
 
   const verifyEmail = (str:string) => {
-    console.log(str);
+    if(str.length < 0) setEmailMessage("");
     const rExp: boolean = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(str);
     if (rExp) {
       setEmailMessage("Excellent!");
@@ -93,18 +93,18 @@ export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'})
 
         {(['login','forgot','signup'].indexOf(type) > -1) && (
           <Input
-            value={getValues().email}
-            onChange={(e:any) => {setValue("email", e.target.value); verifyEmail(e.target.value); console.log(e.target.value)}}
             type="text"
             name="email"
             placeholder="Enter your email address"
             labelName={type === 'forgot' ? '' : 'Email'}
             reg={register(`email`, {
               required: `Email is required`,
+              onChange: (v) => verifyEmail(v.target.value)
             })}
             error={emailMessage}
           />
         )}
+        {/* {!validEmail && <span>{emailMessage}</span>} */}
 
         {(['login','reset','signup'].indexOf(type) > -1) && (
           <Input
@@ -128,18 +128,19 @@ export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'})
             labelName="Re-enter Password"
             reg={register(`password`, {
               required: `Password is required`,
+              onChange: (v) => verifyPassword(v.target.value)
             })}
             error={PasswordMessage}
           />
         )}
-        {/* {!validPasssword && <span>{PasswordMessage}</span>} */}
+        {!validPasssword && <span>{PasswordMessage}</span>}
 
         {type == 'login' && (
           <div className={styles.forgot} onClick={(e) => handleRoute(e, '/forgot-password')}>Forgot password?</div>
         )}
 
         {type == 'login' && (
-          <button type="submit" className={styles.btnPrimary} disabled={!validPasssword || !validEmail} onClick={handleLogin}>Login</button>
+          <button type="submit" className={styles.btnPrimary} disabled={!validEmail} onClick={handleLogin}>Login</button>
         )}
 
         {type == 'signup' && (

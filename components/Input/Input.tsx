@@ -19,7 +19,7 @@ export const Input:React.FC<InputProps> = ({ value, type, name, onChange, inputC
             <label htmlFor={name} className={styles.inputLabel}>
                 {labelName}
             </label>
-            <input value={value} onChange={onChange} className={inputClassName} id={name} type={type} title={name} placeholder={placeholder}  {...reg}/>
+            <input value={value} onChange={() => onChange} className={inputClassName} id={name} type={type} title={name} placeholder={placeholder}  {...reg}/>
             {error && <span className={styles.errorText}>{error}</span>}
         </div>
     )
