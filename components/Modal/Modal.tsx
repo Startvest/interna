@@ -5,10 +5,11 @@ type ModalProps = {
     isOpen: boolean, //State to open the modal
     children?: JSX.Element | JSX.Element[],
     closeModal: Function | any,
+    fixed?: boolean
 }
 
 
-export const Modal: React.FC<ModalProps> = ({ isOpen, children, closeModal }) => {    
+export const Modal: React.FC<ModalProps> = ({ isOpen, children, closeModal, fixed=false }) => {    
     useEffect(() => {
         if(isOpen)
             document.body.setAttribute('class', 'backdrop-no-scroll')
@@ -18,7 +19,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, children, closeModal }) =>
     
     if(!isOpen) return null
     return(
-        <div className={styles.modalBackdrop} onClick={closeModal}>
+        <div className={styles.modalBackdrop} onClick={(fixed) ? (e) => {e.stopPropagation()}:closeModal}>
             <div className={styles.modalContainer} onClick={(e) => e.stopPropagation()}>
                 <span className={styles.cancelIcon} onClick={closeModal}><IoCloseOutline size={30}/></span>
                 { children }

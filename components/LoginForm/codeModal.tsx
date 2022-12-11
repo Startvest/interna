@@ -38,7 +38,7 @@ export const CodeModal = ({ handleModal }: { handleModal: any }) => {
     }
   };
   return (
-    <Modal isOpen={true} closeModal={handleModal}>
+    <Modal isOpen={true} closeModal={handleModal} fixed={true}>
       {!verified ? (
         <div>
           <div className={styles.header}>Verification Code</div>

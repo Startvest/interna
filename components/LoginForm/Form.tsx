@@ -12,7 +12,7 @@ import {SigninPasswordUser} from '../../services/authentication';
 import {ErrorModal} from '../Modal';
 
 export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'}) {
-   const [codeModal, setCodeModal] = useState<boolean>(false);
+   const [codeModal, setCodeModal] = useState<boolean>(true);
    const [errorModal, setErrorModal] = useState<boolean>(false);
    const [PasswordMessage, setPassMessage] = useState("");
    const [emailMessage, setEmailMessage] = useState("");

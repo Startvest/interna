@@ -18,5 +18,5 @@ export async function addCode(data: ICode){
 }
 
 export function checkCode(){
-
+     // For code expiry, minus seconds of db time and current time, to not be less than 1 hour
 }
