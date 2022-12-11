@@ -1,6 +1,7 @@
 import NextAuth from "next-auth"
 import GithubProvider from "next-auth/providers/github"
 import CredentialsProvider from "next-auth/providers/credentials"
+import {CustomSession} from "../../_app";
 
 export default NextAuth({
   // Configure one or more authentication providers

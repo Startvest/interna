@@ -1,15 +1,15 @@
 import {connect, collections} from '../config.db'
 
-export interface Log{ 
+export interface ILog{ 
      message: string,
      location: string,
      time: string,
      type: 'error' | 'info',
 }
 
-export async function addlog(message:Log["message"], location:Log["location"], type:Log["type"]){
+export async function addlog(message:ILog["message"], location:ILog["location"], type:ILog["type"]){
      const client = connect();
-     let log:Log ={
+     let log:ILog ={
           message,
           location,
           time: Date(),

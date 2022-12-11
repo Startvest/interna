@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import { useForm } from 'react-hook-form';
 import { Input } from '../Input';
 import { AltLogin } from './AltLogin';
@@ -6,19 +6,45 @@ import styles from './login.module.scss';
 import {useRouter} from 'next/router';
 import {CodeModal} from '../LoginForm';
 import { signIn } from "next-auth/react";
+import {useMutation} from "react-query";
+import {TError} from '../../services';
+import {SigninPasswordUser} from '../../services/authentication';
+import {ErrorModal} from '../Modal';
 
 export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'}) {
-   const [codeModal, setCodeModal] = useState(false);
+   const [codeModal, setCodeModal] = useState<boolean>(false);
+   const [errorModal, setErrorModal] = useState<boolean>(false);
    const [PasswordMessage, setPassMessage] = useState("");
    const [emailMessage, setEmailMessage] = useState("");
    const [validEmail, setValidEmail] = useState(false);
    const [validPasssword, setValidPassword] = useState(false);
+   const signupMutation = useMutation(SigninPasswordUser, {
+    onError(error: TError) {},
+  });
 
    const handleSignUp = (e:any) =>{
      e.preventDefault();
-     setCodeModal(true);
+     signupMutation.mutateAsync({
+      email: getValues().email,
+      password: getValues().password,
+      verified: false
+     })
     //  Mutation to sign in a user, and send email to verifiy
    }
+   useEffect(() => {
+    if (signupMutation.isSuccess) {
+        setCodeModal(true);
+    }
+    if(signupMutation.isError){
+        // if(waitlistMutation.error?.response.status == 400){
+        //     setHasSubmitted(true);
+        // } else {
+        //     setErrorModal();
+        // }
+        setErrorModal(true);
+    }
+    }, [signupMutation.isSuccess, signupMutation.isError]);
+
    const handleLogin = async (e:any) =>{
       e.preventDefault();
         await signIn(`credentials`, {
@@ -83,6 +109,7 @@ export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'})
 
   return (
     <div>
+      <ErrorModal isOpen={errorModal} closeModal={() => setErrorModal(!errorModal)}/>
       {codeModal && <CodeModal handleModal={() => setCodeModal(!CodeModal)}/>}
       <form className={styles.form}>
         {(['login', 'signup', ].indexOf(type) > -1) && <AltLogin />}
@@ -133,7 +160,7 @@ export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'})
             error={PasswordMessage}
           />
         )}
-        {!validPasssword && <span>{PasswordMessage}</span>}
+        {<span>{"Test passowrd: H@nif1001"}</span>}
 
         {type == 'login' && (
           <div className={styles.forgot} onClick={(e) => handleRoute(e, '/forgot-password')}>Forgot password?</div>
@@ -144,7 +171,7 @@ export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'})
         )}
 
         {type == 'signup' && (
-          <button className={styles.btnPrimary} onClick={handleSignUp}>Sign Up</button>
+          <button className={styles.btnPrimary} disabled={!validEmail || !validPasssword || signupMutation.isLoading} onClick={handleSignUp}>{(signupMutation.isLoading) ? "...":"Sign Up"}</button>
         )}
 
         {(['reset','forgot'].indexOf(type) > -1) && (

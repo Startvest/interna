@@ -1,9 +1,12 @@
 // Configure monog Db server and connected
 import * as mongoDB from "mongodb";
 
+// NOTE: These are all the collections in our MongoDB, edit them with care
 export const collections = {
      waitlist: "waitlist",
-     log: "logs"
+     log: "logs",
+     users: "users",
+     code: "code"
 }
 export function connect(){
      const { MongoClient, ServerApiVersion } = require('mongodb');
