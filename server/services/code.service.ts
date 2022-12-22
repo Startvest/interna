@@ -4,10 +4,9 @@ import {sendMail} from "../mail";
 export const codeService = {
 
   async sendCode(email: string){
-
-    const generatedCode = '2321';
+    const generatedCode = String(Math.floor(1000 + Math.random() * 9000));
     const code = await getCode(email);
-    console.log(code);
+
 
     if(code!==null) {
       await updateCode({
