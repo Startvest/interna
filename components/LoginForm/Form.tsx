@@ -12,7 +12,7 @@ import {SigninPasswordUser} from '../../services/authentication';
 import {ErrorModal} from '../Modal';
 
 export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'}) {
-   const [codeModal, setCodeModal] = useState<boolean>(true);
+   const [codeModal, setCodeModal] = useState<boolean>(false);
    const [errorModal, setErrorModal] = useState<boolean>(false);
    const [PasswordMessage, setPassMessage] = useState("");
    const [emailMessage, setEmailMessage] = useState("");
@@ -110,7 +110,7 @@ export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'})
   return (
     <div>
       <ErrorModal isOpen={errorModal} closeModal={() => setErrorModal(!errorModal)}/>
-      {codeModal && <CodeModal handleModal={() => setCodeModal(!CodeModal)}/>}
+      {codeModal && <CodeModal handleModal={() => setCodeModal(!CodeModal)} email={getValues().email}/>}
       <form className={styles.form}>
         {(['login', 'signup', ].indexOf(type) > -1) && <AltLogin />}
 
