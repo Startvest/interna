@@ -1,8 +1,19 @@
 .footer {
     background-color: var(--primary);
     color: white;
-    padding: 25px 10px 10px 10px;
+    padding: 50px 3% 10px;
+    position: relative;
 
+    .wavyLine{
+        position: absolute;
+        right: 0;
+        top: 40%;
+    }
+
+    hr {
+        border: 0;
+        border-bottom: 0.5px solid #969696;
+    }
 
 
     p { 
@@ -31,10 +42,10 @@
             color: inherit;
             text-decoration: none;
         }
-        margin: 2rem 0;
     }
     .socials {
         display: flex;
+        align-items: center;
         gap: 2rem;
 
         *{
@@ -43,15 +54,31 @@
         a { color: inherit; } 
         li:hover{
             cursor: pointer;
-            scale: 1.2;
+            transform: scale(1.2);
         }
     }
     
 }
 
 .footerContent {
-    display: flex;
-    justify-content: space-between;
+    .firstLevel {
+        display: grid;
+        grid-template-columns: 35% auto 30%;
+        margin: 1.5rem 0;
+
+        div {
+            width: 70%;
+        }
+    }
+
+    .secondLevel {
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 2rem;
+        p{ margin: 0;}
+    }
 
     h4{
         font-family: 'Montserrat';

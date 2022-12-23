@@ -7,21 +7,31 @@ const Footer:React.FC = () => {
     let year:number = date.getFullYear();
     return(
     <footer className={styles.footer}>
-        <Image src="/assets/logo-white.svg" height={'30px'} width={'106px'}/>
         <div className={styles.footerContent}>
-            <div>
-                <h4>
-                    Interna is a community social platfom that connects 
-                    interns with students looking for internship placements.
-                </h4>
 
+            <div className={styles.firstLevel}>
+                <div>
+                    <Image src="/assets/logo-white.svg" height={'30px'} width={'106px'}/>
+                    <h4>
+                        Interna is a community social platfom that connects 
+                        interns with students looking for internship placements.
+                    </h4>
+                </div>
                 <ul className={styles.footerLinks}>
-                    <li>RESOURCES</li>
+                    <li>Resources</li>
                     <li>Privacy Policy</li>
                     <li>Terms and Conditions</li>
-                    <li><a href="mailto:support@getinterna.com">Contact us</a></li>
+                    <li title='Send Us an Email'>
+                        <a href="mailto:support@getinterna.com">Contact us</a>
+                    </li>
                 </ul>
+            </div>
 
+            <hr />
+
+            <div className={styles.secondLevel}>
+                <p>Copyright © {year} Ntrna technologies Ltd.</p>
+                
                 <ul className={styles.socials}>
                     <li>
                         <a href="https://www.linkedin.com/company/startvest" target={"_blank"}   rel="noreferrer">
@@ -44,12 +54,11 @@ const Footer:React.FC = () => {
                         </a>
                     </li>
                 </ul>
+
             </div>
-            <img src="/assets/Vector.svg" width={'200px'} height={'100px'} alt="Interna Logo"/>
 
         </div>
-
-        <p>Copyright © {year} Ntrna technologies Ltd. <br/>All Rights reserved </p>
+        <img className={styles.wavyLine} src="/assets/footer-wavy-line.svg" width={'200px'} height={'100px'} alt="Interna Logo"/>
     </footer>
     )
 }

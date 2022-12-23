@@ -1,4 +1,10 @@
 $inputDark: #333333;
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .waitlistPage {
     height: 100vh;
     overflow-y: scroll;
@@ -7,6 +13,16 @@ $inputDark: #333333;
         color: inherit;
     }
     scroll-behavior: smooth;
+}
+
+.main {
+    position: relative;
+
+    .blob {
+        position: absolute;
+        top: 12%;
+        right: 0;
+    }
 }
 
 .landingPageHeader {
@@ -51,7 +67,8 @@ $inputDark: #333333;
     width: 100%;
     height: 70px;
     background: rgba(255, 255, 255, .7);
-    backdrop-filter: saturate(100%) blur(10px);   
+    -webkit-backdrop-filter: saturate(100%) blur(10px);  
+    backdrop-filter: saturate(100%) blur(10px); 
     z-index: 10;
     position: fixed;
 
@@ -81,11 +98,6 @@ $inputDark: #333333;
     }
 }
 
-.altButton{
-    background: none;
-    border: 2px solid var(--primary);
-    color: var(--primary);
-}
 .h2{
     color: var(--primary);
     font-family: 'Montserrat';
@@ -96,39 +108,68 @@ $inputDark: #333333;
 }
 
 .mobileIntroContainer{
-    height: max-content;
     width: 100%;
-    margin: 2rem auto;
-    align-items: center;
-    display: flex;
-    flex-direction: row-reverse;
+    height: 700px;
+    position: relative;
+    background: linear-gradient(0deg, rgba(4, 4, 4, 0.48), rgba(4, 4, 4, 0.48)), url('/assets/landing-background.webp');
+    background-size: cover;
+    background-position: top;
 
-    .illustrationHolder {
-        width: 80%;
-        margin: auto;
-         img{
-             width: 100%;
-             height: auto;
-         }
-     }
+    .curve {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        line-height: 0;
+        transform: rotate(180deg);
 
-     .buttonsCont{
+        svg{
+            position: relative;
+            display: block;
+            width: calc(156% + 1.3px);
+            height: 93px;
+        }
+
+        .fill{
+            fill: #fff;
+        }
+    }
+
+    .ellipses{
+        position: absolute;
+        right: -5px;
+        top: 30%;
+        
+    }
+
+
+    .buttonsCont{
         display: flex;
-        flex-direction: row;
         gap: 2rem;
-     }
+    }
  
-     .introduction{
-         background-image: url('/assets/grid.png');
-         padding: 20px 10px;
-     
-         h1 {
-             color: var(--primary);
-             font-family: 'Work Sans';
-             font-style: normal;
-             font-weight: 600;
-             font-size: 60px;
-         }
+    .introduction{
+        padding: 20px 10px;
+        position: absolute;
+        z-index: 50;
+        top: 10%;
+        left: 50%;
+        transform: translate(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1em;
+        color: #fff;
+        text-align: center;
+
+        h1 {
+            font-family: 'Work Sans';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 60px;
+            margin: 10px;
+        }
  
          button{
              margin-top: 2em;
@@ -137,16 +178,29 @@ $inputDark: #333333;
              border-radius: 5px;
              font-size: 16px;
          }
-         .primaryButton {
-            animation: bounce 3s infinite;
-         }
-         p{
-            color: var(--primary);
-            font-weight: 500;
+        
+        .altButton, .primaryButton {
+            padding: 15px 25px;
+            @include flex-center;
+            width: 240px;
+            font-size: 20px;
+            height: 54px;
+        }
+        
+        .altButton {
+            background: var(--secondary);
+            color: #222222;
+        }
+
+
+        p{
+            font-weight: 600;
             font-size: 24px;
-         }
+            text-align: center;
+        }
      }
 }
+
 .testimonialCont{
     margin: 4rem 0;
 }
@@ -178,34 +232,47 @@ $inputDark: #333333;
         height: auto;
     }
     h2{
-        color: var(--primary);
+        color: #1E1E1E;
         font-size: 36px;
         max-width: 40%;
         text-align:center;
     }
 }
-section.landingPageWelcome{
-    background-color: var(--primary);
+
+.landingPageWelcome{
+    color: #101828;
     padding: 2rem 10px;
     min-height: 20rem;
     margin-top: 4rem;
+    position: relative;
     
-    a{ 
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        width: 95%;
-        margin: auto 1rem;
+    .internaDescription {
+        margin: 0 auto;
+        width: 85%;
+
+        .handFist, .handRock {
+            position: absolute;
+        }
+
+        .handFist {
+            left: 0;
+            bottom: 20%;
+        }
+
+        .handRock {
+            right: 0;
+            top: 20%;
+        }
     }
 
     .descriptionGroup {
         display: flex;
         flex-direction: column;
         gap: 15px;
-        width: 70%;
         font-family: 'Work Sans';
+        text-align: center;
+
         h4, p { 
-            color: #fff !important;
             margin: 0;
         }
         h4{
@@ -229,66 +296,101 @@ section.landingPageWelcome{
     }
 
     .features{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        width: 95%;
-        margin: 0 1rem;
-        padding-top: 3rem;
-        .featureCover{
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-        .featureIcon{
-            background-color: var(--secondary);
-            padding: .2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 20px;
-            height: 20px;
-            border-radius: 5px;
-        }
-        .featureText{
-            font-size: 20px;
-            color: white;
-        }
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        margin: 20% 0;
+
     }
+    .internaFeature {
+        height: 90%;
+        background:rgba(0, 62, 222, 0.04);
+        border-radius: 14px;
+        aspect-ratio: 11/10;
+        row-gap: 20px;
+        column-gap: 35px;
+
+        div {
+            text-align: center;
+            width: 70%;
+            @include flex-center();
+            flex-direction: column;
+            margin: 0 auto;
+            height: 100%;
+
+            .iconWrapper {
+                --size: 66px;
+    
+                background: rgba(4, 222, 0, 0.14);
+                border-radius: 50%;
+                width: var(--size);
+                height: var(--size);
+                @include flex-center();
+            }
+        }
+
+    }
+
 }
 .mobileUsp{
-    display: block;
     margin: 4rem auto;
-    width: 90%;
-    display: flex;
-    align-items: center;
-    gap: 2rem;
+    width: 100%;
+    height: 500px;
+    background-image: url('/assets/wavy-line.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
 
+    .topLevel {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+        .box {
+            width: 60%;
+        }
+
+        #box-3{
+            margin: 20px 0 0 0;
+        }
+    }
+    
     .box{
-        width: 80%;
+        margin-left: 1rem; 
+        width: 30%;
         margin: 4rem auto;
     }
+    
 }
 
+//Selling Points Styles
 .box{
-    background-color: var(--primary);
+    background-color: #fff;
     border-radius: 10px;
     color: white;
     padding: 1rem;
-    box-shadow: 4px 4px 7px 5px rgba(0, 0, 0, 0.17);
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.08), 0px 2px 24px rgba(0, 0, 0, 0.08);
+    position: relative;
 
-    .iconCont{
-        background-color: rgba(211, 226, 237, 0.2);
-        padding: .7rem;
+    .container{
         display: flex;
         align-items: center;
-        justify-content: center;
-        width: max-content;
-        border-radius: 5px;
+        justify-content: flex-start;
+        flex-direction: column;
+        width: 100%;
+        z-index: 100;
+        color: var(--dark-text);
+        
+        .containerLevel1 {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 100%;
+            gap: 7px;
+        }
 
         img{
             height:30px;
             width:30px;
+            color: var(--primary);
         }
         p{ 
             font-weight: 400;
@@ -299,12 +401,25 @@ section.landingPageWelcome{
             font-size: 20px;
         }
     }
+
+    .number {
+        position: absolute;
+        right: 0;
+        bottom: 20px;
+        z-index: 0;
+        color: rgba(45, 102, 238, 0.04);;
+        font-family: 'Inter', sans-serif;
+        font-weight: 700;
+        font-size: 8.2rem;
+        margin: 0;
+        height: 100%;
+    }
 }
 
 
 .designHolder{
     width: 90%;
-    background-color: var(--primary);
+    background-color: var(--secondary);
     margin: 4rem auto;
     border-radius: 10px;
     padding: 0 !important;
@@ -315,7 +430,8 @@ section.landingPageWelcome{
     justify-content: space-evenly;
 
     h2{
-        color: white;
+        --color: #1E1E1E;
+        color: var(--color);
         font-size: 36px;
         max-width: 40%;
         text-align:center;
@@ -375,35 +491,54 @@ section.landingPageWelcome{
 }
 
 .getStarted{
-    width: 60%;
+    position: relative;
+    width: 70%;
     margin: 4rem auto;
     text-align: center;
-    background: var(--primary) url('/assets/wavyBbg.svg') no-repeat scroll center;
-    background-size: 50%;
-    background-repeat: repeat;
+    background: var(--primary) url('../public/assets/banner-overlay.svg') no-repeat scroll center;
+    background-size: cover;
+    background-position: center;
     color: white;
-    padding: 1rem 0;
+    padding: 1.5rem;
     border-radius: 15px;
+
+    .container{
+        width: 60%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        *{ margin: 0; }
+    }
 
     h3{
         color: white;
         font-weight: 600;
         font-size: 32px;
     }
-    h5{
+
+    p{
         font-weight: 500;
-        font-size: 20px;
+        font-size: 18px;
+        text-align: center;
+        margin: 2rem 0 !important;
     }
+
     button{
-        margin: 0 auto;
-        margin-bottom: 1rem;
-        background-color: white;
-        color: var(--primary);
+        color: white;
+        background-color: var(--secondary);
         font-weight: 600;
         font-size: 16px;
-        padding: 0.5rem 1rem;
-        border-radius: 5px;
-        animation: bounce 3s infinite;
+        border-radius: 7.9px;
+        width: 70%;
+        height: 50px;
+    }
+
+    img {
+        position: absolute;
+        bottom: 5%;
+        left: 20px;
     }
 }
 .waitlistForm {
@@ -536,6 +671,29 @@ section.landingPageWelcome{
 }
 //Dark Mode Styles
 [data-theme='dark'] {
+    .main {
+        h2, h3, h4, p{
+            color: #FFF !important;
+        }
+    }
+
+    .box{
+        background-color: #3F4145;
+
+        .number{
+            color: rgba(4, 222, 0, 0.14);;
+        }
+    }
+
+    .internaFeature {
+        background: rgba(25, 81, 223, 0.4);
+        color: #fff;
+
+        .iconWrapper {
+            background: rgba(129, 255, 126, 0.3);
+            color: #fff;
+        }
+    }
     .landingPageHeader {    
         .headerLogo{
             h2{
@@ -547,12 +705,6 @@ section.landingPageWelcome{
     .secondHeader {
         background-color: #2121216f;
         box-shadow: 0px 0.3px 7px -1px #333333;
-    }
-    .midSection{
-        background: transparent;
-        h2{
-            color: white;
-        }
     }
     .waitlistPage {
         background-color: var(--background);
@@ -586,16 +738,21 @@ section.landingPageWelcome{
         
     }
 
-    .introduction {
-        background-image: none;
-        background-color: var(--background);
+    .midSection{
+        h2{
+            color: #1E1E1E !important;
+        }
+    }
 
+    .mobileIntroContainer {
         h1,p {
             color: white;
         }
-        button{
-            background-color: var(--secondary);
-            color: white;
+
+        .curve{
+            .fill{
+                fill: #1E1E1E;
+            }
         }
     }
 
@@ -605,12 +762,7 @@ section.landingPageWelcome{
             color: white;
         }
     }
-    .altButton{
-        background: none !important;
-        border: 2px solid var(--secondary) !important;
-        color: var(--secondary) !important;
-    }
-
+    
     .descriptionGroup {
 
         p { color: var(--primary); }
@@ -623,6 +775,10 @@ section.landingPageWelcome{
 }
 
 @media only screen and (max-width: 700px) {
+    .features {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     .mobileIntroContainer{
         flex-direction: column;
 
@@ -695,6 +851,7 @@ section.landingPageWelcome{
         width: 100%;
     }
 }
+
 @media only screen and (max-width: 600px) {
     .carouselSlide{
         animation: scroll 10s linear infinite;
@@ -725,6 +882,12 @@ section.landingPageWelcome{
     }
     .gifHolder {
         height: 230px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .features{
+        grid-template-columns: repeat(1, 1fr);
     }
 }
 @keyframes bounce{

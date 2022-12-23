@@ -30,6 +30,34 @@ const sponsors =[
     "/assets/sc_logo.png",
     "/assets/companies/paadc2.jpg"
 ]
+
+const services: Array<{ icon: string, title: string }> = [
+    {
+        icon: '/assets/tools-icons/file-light.svg',
+        title: 'CV Generator'
+    },
+    {
+        icon: '/assets/tools-icons/breifcase-light.svg',
+        title: 'Remote Jobs'
+    },
+    {
+        icon: '/assets/tools-icons/mentorship-light.svg',
+        title: 'Mentorship Sessions'
+    },
+    {
+        icon: '/assets/tools-icons/interview-light.svg',
+        title: 'Interview Prep'
+    },
+    {
+        icon: '/assets/tools-icons/jobs-light.svg',
+        title: 'Jobs with our partner firms'
+    },
+    {
+        icon: '/assets/tools-icons/messaging-light.svg',
+        title: 'Secure Private Messaging'
+    },
+
+]
 export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
     const [modalOpen, setModal] = useState<boolean>(isWaitlist);
     const [errorModal, setErrorModal] = useState<boolean>(false);
@@ -92,20 +120,16 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
             </span>
         </header>
 
-        <main> 
-            <div className={styles.mobileIntroContainer}>  
-                <section className={styles.illustrationHolder}>
-                    <Image 
-                        alt="3-students" 
-                        src={illustration} 
-                        width="500px" height={'250px'}
-                        priority={true}
-                    />
-                </section>
+        <main className={styles.main}> 
 
-               <section className={styles.introduction}>
+            <img className={styles.blob} src="/assets/blob-with-ellipses.svg" alt="blob-with-ellipses" />
+            {/* First Div Is Intro Container */}
+            <section className={styles.mobileIntroContainer}>  
+                
+
+               <div className={styles.introduction}>
                     <h1>
-                        The <span className="secondary">Official</span> platform for <span className="secondary">Interns</span>
+                        The official platform for <span className="secondary">Interns</span>
                     </h1>
 
                     <p>Welcome to the community of students and interns!</p>
@@ -116,14 +140,29 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
                             </Button>
                         </a>
                         {
+                            isWaitlist ?
+                            <Button className={styles.primaryButton} onClick={() => setModal(true)}>
+                                Join the waitlist
+                            </Button>
+                            :(
                             <Button className={styles.primaryButton} onClick={() => router.push('/signup')}>
                                 Join the community
                             </Button>
+                            )  
+
                         }
                     </div>
-                </section> 
-            </div>
-
+                </div> 
+                <div className={styles.curve}>
+                    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className={styles.fill}></path>
+                    </svg>
+                </div>
+                <img className={styles.ellipses} src="/assets/ellipses-white.svg" alt="ellipses"/>
+            </section>
+            
+            {/*
+            
             <section className={styles.testimonialCont}>
                 <h2 className={styles.h2}>Hear from our interns</h2>
                 <div className={styles.testimonial}>
@@ -155,93 +194,125 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
                 </Swiper>
                 </div>                
             </section>
+                        
+            */}
 
-                <section className={styles.landingPageWelcome}>
-                    <ScrollAnimationWrapper type="fade-in" performOnce>
-                        <a id="interna_description">
-                            <div className={styles.descriptionGroup}>
-                                <h4>What is Interna?</h4>
-                                <p>
-                                    Interna is a solution designed to provide internship opportunities
-                                    to every student, equip them with professional tools and provide a community
-                                    of students who have undergone internships and students who are looking 
-                                    for internships. 
-                                </p>
-                            </div>
+            <section id="interna_description" className={styles.landingPageWelcome}>
+                <div className={styles.internaDescription}>
+                    <ScrollAnimationWrapper
+                        type="fade-in"
+                        className={styles.descriptionGroup}
+                        performOnce>
+                        <h4>
+                            What is <span className="secondary">Interna?</span>
+                        </h4>
+                        <p>
+                            Interna is a solution designed to provide internship opportunities
+                            to every student, equip them with professional tools and provide a community
+                            of students who have undergone internships and students who are looking 
+                            for internships. 
+                        </p>
+                    </ScrollAnimationWrapper>
 
-                            <div className={styles.imgLogo}>
-                                <Image src="/icons/white.svg" width={'80px'} height={'80px'} alt="interna logo"/>
-                            </div>
+                    <img className={styles.handFist} src="/assets/icons/hand_fist.svg" alt="hand-fist"/>
+                    <img className={styles.handRock} src="/assets/icons/hand_rock.svg" alt="hand-rock"/>
 
-                        </a>
-
-                        <div className={styles.features}>
-                            <div>
-                                {tools.slice(0,tools.length/2).map((tool, i) => 
-                                <div className={styles.featureCover} key={i}>
-                                    <span className={styles.featureIcon}></span> 
-                                    <span className={styles.featureText}>{tool.text}</span>
+                    <div className={styles.features}>
+                        {
+                            services.map(service => (
+                                <div key={service.title} className={styles.internaFeature}>
+                                    <div>
+                                        <span className={styles.iconWrapper}>
+                                            <Image 
+                                                width={'30px'} height={'30px'}
+                                                src={service.icon}
+                                                alt={service.title}
+                                            />
+                                        </span>
+                                        <h5>{service.title}</h5>
+                                    </div>
                                 </div>
-                                )}
-                            </div>
+                            ))
+                        }
+                    </div>
 
-                            <div>
-                                {tools.slice(tools.length/2,tools.length).map((tool, i) => 
-                                <div className={styles.featureCover} key={i}>
-                                    <span className={styles.featureIcon}></span> 
-                                    <span className={styles.featureText}>{tool.text}</span>
+                </div>
+            </section>
+
+            <section className={styles.midSection}>
+                <ScrollAnimationWrapper performOnce>
+                    <img src="/assets/mid-section.png" className={styles.img}  alt="interna logo"/> 
+                </ScrollAnimationWrapper>
+                <h2>Join to gain acesss to a <span className="secondary">community</span> of like minded students! </h2>                   
+            </section>
+
+
+            {/* <h2 className={styles.h2}>You get these on Interna</h2> */}
+            <section className={styles.mobileUsp}>
+                <div className={styles.topLevel}>
+                    <div className={styles.box}>
+                            <div className={styles.container}>
+                                <div className={styles.containerLevel1}>
+                                    <img src="/assets/icons/tick.svg" alt="Icon"/>
+                                    <h2>Connect with other interns</h2>
                                 </div>
-                                )}
+                                <p>You can connect with like minded people within your vicinity</p>
                             </div>
+                            <h1 className={styles.number}>{1}</h1>
+                    </div>
+
+
+                    <div className={styles.box}>
+                        <div className={styles.container}>
+                            <div className={styles.containerLevel1}>
+                                <img src="/assets/icons/share.svg" alt="Icon"/>
+                                <h2>Share your experiences</h2>
+                            </div>
+                            <p>Share what you have gained from an internship to guide others</p>
                         </div>
-                    </ScrollAnimationWrapper>
-                </section>
-
-                <section className={styles.midSection}>
-                    <ScrollAnimationWrapper type="horizontal-slide-in" performOnce>
-                        <img src="/assets/mid-section.png" className={styles.img}  alt="interna logo"/> 
-                    </ScrollAnimationWrapper>
-                    <h2>Join to gain acesss to a <span className="secondary">community</span> of like minded students! </h2>                   
-                </section>
+                        <h1 className={styles.number}>{3}</h1>
+                    </div>
+                </div>
+                
+                <div className={styles.box}>
+                    <div className={styles.container}>
+                        <div className={styles.containerLevel1}>
+                            <img src="/assets/icons/search.svg" alt="Icon"/>
+                            <h2>See companies hiring near you</h2>
+                        </div>
+                        <p>See internship friendly companies aroud you, and make your choice</p>
+                    </div>
+                    <h1 className={styles.number}>{2}</h1>
+                </div>
+                
+            </section>
                 
 
+            <section>
+                <ScrollAnimationWrapper className={styles.designHolder} performOnce>
+                    <img src={'/assets/feed-mockup.svg'} alt="Feed mockup"/>
+                    <h2>Get access to our community of students</h2>
+                </ScrollAnimationWrapper>
 
-                {/* <h2 className={styles.h2}>You get these on Interna</h2> */}
-                <section className={styles.mobileUsp}>
-                    {uniqueSellingPoints.map((usp, k) => 
-                    <ScrollAnimationWrapper key={k} performOnce type="horizontal-slide-in">
-                        <div className={`${styles.box}`}>
-                            <div  className={styles.iconCont}>
-                                <img src={usp.icon} alt="Icon"/>
-                            </div>
-                            <h2>{usp.title}</h2>
-                            <p>{usp.desc}</p>
+                
+                {
+                    /*
+                    <ScrollAnimationWrapper performOnce>
+                        <div className={`${styles.designHolder} ${styles.altHolder}`}>
+                            <h2>See profiles of interns and <span className="primaryText">connect</span> with them easily</h2>
+                            <img src={'/assets/profile-mockup.svg'} alt="Profile mockup"/>
                         </div>
                     </ScrollAnimationWrapper>
-                    )}
-                </section>
-
-            <section>
-                <ScrollAnimationWrapper performOnce>
-                    <div className={`${styles.designHolder}`}>
-                        <h2>Get access to our <span className="secondary">community</span> of students</h2>
-                        <img src={'/assets/feed-mockup.svg'} alt="Feed mockup"/>
-                    </div>
-                </ScrollAnimationWrapper>
-
-                <ScrollAnimationWrapper performOnce>
-                    <div className={`${styles.designHolder} ${styles.altHolder}`}>
-                        <h2>See profiles of interns and <span className="primaryText">connect</span> with them easily</h2>
-                        <img src={'/assets/profile-mockup.svg'} alt="Profile mockup"/>
-                    </div>
-                </ScrollAnimationWrapper>
-
-                <ScrollAnimationWrapper performOnce>
-                    <div className={`${styles.designHolder} `}>
-                        <h2>Prepare for your next <span className="secondary">interview!</span></h2>
-                        <img src={'/assets/interview-mockup.svg'} alt="Profile mockup"/>
-                    </div>
-                </ScrollAnimationWrapper>
+                    
+                    <ScrollAnimationWrapper performOnce>
+                        <div className={`${styles.designHolder} `}>
+                            <h2>Prepare for your next <span className="secondary">interview!</span></h2>
+                            <img src={'/assets/interview-mockup.svg'} alt="Profile mockup"/>
+                        </div>
+                    </ScrollAnimationWrapper>
+                    
+                    */
+                }
             </section>
 
             <section className={styles.ourSponsors}>
@@ -270,17 +341,19 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
                         </Swiper>
                     </div>
 
-                <ScrollAnimationWrapper performOnce>
-                    <div className={styles.getStarted} >
+                <ScrollAnimationWrapper 
+                    className={styles.getStarted} 
+                    performOnce>
+                    <div className={styles.container}>
                         <h3>Gain experience early!</h3>
-                        <h5>
+                        <p>
                             Join the community of <span className="secondary">forward thinking students</span> taking
                             a <span className="secondary">bold</span> step towards their career growth
-                        </h5>
+                        </p>
                         <Button onClick={() => router.push('/signup')}>
-                            Join the community
+                            Join waitlist
                         </Button>
-                        
+                        <img src={'/assets/ellipses.svg'} alt="ellipses"/>
                     </div>
                 </ScrollAnimationWrapper>
             </section> 
