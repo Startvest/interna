@@ -15,10 +15,11 @@
   --background: #ffffff;
   --foreground: #21295c;
   --altDark:   #1E1E1E;
+  --dark-text: #101828;
 }
 
 [data-theme='dark'] {
-  --background: #07080E;
+  --background: #1E1E1E;
   --foreground: white;
 }
 

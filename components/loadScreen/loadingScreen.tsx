@@ -24,7 +24,7 @@ export function LoadingScreen(){
      if (!mounted) return null;
      return(
           <div className={styles.main}>
-               <ThemeIcon/>
+               <ThemeIcon absolute={true}/>
                <div className={styles.cont}>
                     <Image  className={styles.logo} src={'/icons/icon-512x512.png'}  width='100' height='100'/>
                     <div className={`${styles.text} ${styles.adminFont}`}>Interna</div>
