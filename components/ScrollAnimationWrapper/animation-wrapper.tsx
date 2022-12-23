@@ -6,9 +6,10 @@ type AnimationWrapperProps = {
     type?: 'horizontal-slide-in'|'fade-in', //Fade in is default
     performOnce?: boolean,
     className?: string,
+    id?:string,
 }
 
-export const ScrollAnimationWrapper: React.FC<AnimationWrapperProps> = ({ children, type, performOnce, className }) => {
+export const ScrollAnimationWrapper: React.FC<AnimationWrapperProps> = ({ children, type, performOnce, className, id }) => {
     const ref = useRef(null);
     const whileInView = useInView(ref, { once: performOnce ? true : false });
 
@@ -19,7 +20,7 @@ export const ScrollAnimationWrapper: React.FC<AnimationWrapperProps> = ({ childr
     }
 
     const horizontalSlideInAnimation: MotionStyle = {
-        transform: whileInView ? "none" : "translateX(-200px)",
+        transform: whileInView ? "none" : "translateX(200px)",
         opacity: whileInView ? 1 : 0,
         transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
     }
@@ -27,6 +28,7 @@ export const ScrollAnimationWrapper: React.FC<AnimationWrapperProps> = ({ childr
     
     return(
         <motion.div 
+            id={id}
             className={className}
             style={type === "horizontal-slide-in" ? horizontalSlideInAnimation : fadeInAnimation}
             ref={ref}>
