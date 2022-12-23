@@ -6,6 +6,7 @@ import { Form } from '../components/LoginForm';
 import styles from '../components/LoginForm/login.module.scss';
 import { ThemeIcon } from '../components/ThemeIcon';
 import { signIn } from "next-auth/react";
+import Head from 'next/head';
 
 const Login: NextPage = () => {
   const { resolvedTheme, setTheme } = useTheme();
@@ -18,7 +19,9 @@ const Login: NextPage = () => {
   if (!mounted) return null;
   return (
     <div className={styles.container}>
-      <Header pageName="Login to interna" head />
+      <Head>
+        <title>Login to Interna</title>
+      </Head>
       <ThemeIcon />
       <img
         className={styles.headImage}
