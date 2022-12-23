@@ -6,6 +6,7 @@ import { Input } from "../Input";
 import { addUser, getSuggestions } from "../../services/waitlist";
 import styles from '../../styles/waitlist.module.scss';
 import { AutocompleteName } from '../AutocompleteName/autocomplete';
+import {TError} from '../../services';
 
 type FormProps = {
   setHasSubmitted: (val: boolean) => void;
@@ -15,11 +16,6 @@ type FormProps = {
   setModal: () => void;
   setError: () => void;
 };
-interface TError {
-  response: {
-    status: number;
-  };
-}
 
 export const WaitlistForm: React.FC<FormProps> = ({
   setHasSubmitted,

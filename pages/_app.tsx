@@ -4,15 +4,25 @@ import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
 import { ThemeProvider } from 'next-themes';
 import { Analytics } from '@vercel/analytics/react';
 import { SessionProvider } from "next-auth/react";
+import { Session } from "next-auth";
 
 const queryClient = new QueryClient();
 
+export interface CustomSession extends Session {
+  role: "Administrator" | "Basic User" | "Premium" | "Premium Plus";
+}
+
 export default function App({ Component, 
-  pageProps: { session, ...pageProps },
- }: AppProps) {
+  pageProps: { 
+    session, 
+  ...pageProps 
+},
+ }: AppProps<{
+  session: CustomSession;
+}>) {
   return (
     <>
-     <SessionProvider session={session}>
+     <SessionProvider session={pageProps.session}>
       <ThemeProvider>
         <QueryClientProvider client={queryClient}>
             <Component {...pageProps} />

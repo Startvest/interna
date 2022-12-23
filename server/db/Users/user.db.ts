@@ -5,7 +5,7 @@ const authDb: any = {};
 const client = connect();
 
 
-interface User{ 
+export interface IUser{ 
      user_id: string;
      email: string;
      password: string;
@@ -14,7 +14,10 @@ interface User{
 }
 
 export function addUser(){
-
+     // Set userId 
+     // mask password (import bcrypt from "bcryptjs";)
+     // Set role
+     // and save
 }
 
 export function getUserbyId(){
@@ -22,5 +25,9 @@ export function getUserbyId(){
 }
 
 export function getUserbyUsername(){
+
+}
+
+export function updateUser(){
 
 }

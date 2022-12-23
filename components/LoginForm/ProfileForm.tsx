@@ -30,7 +30,7 @@ export const ProfileForm = ({image, setImage}:{image: string, setImage: Function
              <Input
                type="text"
                name="name"
-               onChanged={(e: any) => console.log(e.target.value)}
+               onChange={(e: any) => console.log(e.target.value)}
                placeholder="Enter your full name"
                labelName={'Full name'}
                />
