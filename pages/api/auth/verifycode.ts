@@ -1,8 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { codeService } from '../../../server/services';
-import {sendMail} from "../../../server/mail";
-import { IUser } from '../../../server/db';
-import {addCode} from '../../../server/db/Code';
+import { codeService, userService } from '../../../server/services';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
      res.setHeader('Cache-Control', 's-maxage=10'); 
@@ -22,6 +19,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
        if (checkCode == "codeExp") return res.status(409).json("Code has expired");
        if (checkCode == "codeInc") return res.status(410).json("Code is incorrect");
 
+       await userService.updateUser({
+          email: data.email,
+          verified: true,
+       })
        return res.status(200).json("Code correct");
       }catch(e){
         return res.status(500).json("Server Error");

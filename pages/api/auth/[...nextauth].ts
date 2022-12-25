@@ -13,27 +13,38 @@ export default NextAuth({
             password: {  label: "password", type: "password" }
           },
           async authorize(credentials, req) {
-            const user:any = {
-              email: credentials?.email,
-              password: credentials?.password
-            }
-              //  console.log(req.query);
+            const {email, password} = credentials as {email: string, password: string}
+            const user = {
+              id: '1', 
+              email
+          }
             // If no error and we have user data, return it
-            if (user) {
-              console.log(user);
-              return user
+            if (email) {
+              return user;
             }
             // Return null if user data could not be retrieved
-            return null
+            return user;
           }
         })
   ],
   callbacks: {
+    async signIn({ user, account, profile, email, credentials }) {
+      const isAllowedToSignIn = true;
+      console.log(user);
+      if (isAllowedToSignIn) {
+        return true
+      } else {
+        // Return false to display a default error message
+        return false
+        // Or you can return a URL to redirect to:
+        // return '/unauthorized'
+      }
+    },
     async jwt({ token, user }) {
       if (user) {
         token.role = 1;
       }
-
+      console.log(user);
       return token;
     },
     async session({ session, token }) {
@@ -53,5 +64,4 @@ export default NextAuth({
      session: {
           strategy: "jwt"
      }
-
 })

@@ -59,7 +59,7 @@ const services: Array<{ icon: string, title: string }> = [
 
 ]
 export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
-    const [modalOpen, setModal] = useState<boolean>(isWaitlist);
+    const [modalOpen, setModal] = useState<boolean>(false);
     const [errorModal, setErrorModal] = useState<boolean>(false);
     const [hasSubmittedForm, setHasSubmitted] = useState(false);
     const [submitCount, setSubmitCount] = useState<number>(0);

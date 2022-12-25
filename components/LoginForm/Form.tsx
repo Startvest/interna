@@ -34,6 +34,7 @@ export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'})
    useEffect(() => {
     if (signupMutation.isSuccess) {
         setCodeModal(true);
+        handleLogin();
     }
     if(signupMutation.isError){
         // if(waitlistMutation.error?.response.status == 400){
@@ -45,13 +46,15 @@ export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'})
     }
     }, [signupMutation.isSuccess, signupMutation.isError]);
 
-   const handleLogin = async (e:any) =>{
+   const handleLogin = async (e?:any) =>{
       e.preventDefault();
-        await signIn(`credentials`, {
+        const res = await signIn(`credentials`, {
           email: getValues().email,
           password: getValues().password1,
-          callbackUrl: "http://localhost:3001/feed"
+          callbackUrl: "/feed",
+          redirect: false
         });
+        console.log(res);
    }
    const verifyPassword = (str:string) => {
     const rExp: boolean = /((?=.*[a-z])|(?=.*[A-Z]))((?=.*[0-9])|(?=.*\W))/.test(str);

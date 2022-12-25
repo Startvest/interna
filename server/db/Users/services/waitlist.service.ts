@@ -1,4 +1,4 @@
-import { waitlistDB } from "../db";
+import { waitlistDB } from "../..";
 
 
 export const waitlistService = {

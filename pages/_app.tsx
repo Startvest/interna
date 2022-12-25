@@ -13,23 +13,20 @@ export interface CustomSession extends Session {
 }
 
 export default function App({ Component, 
-  pageProps: { 
-    session, 
-  ...pageProps 
-},
- }: AppProps<{
-  session: CustomSession;
-}>) {
+  pageProps
+ }: AppProps) {
   return (
     <>
-     <SessionProvider session={pageProps.session}>
+    
       <ThemeProvider>
         <QueryClientProvider client={queryClient}>
-            <Component {...pageProps} />
+            <SessionProvider session={pageProps.session}>
+              <Component {...pageProps} />
+            </SessionProvider>
           <Analytics />
         </QueryClientProvider>
       </ThemeProvider>
-      </SessionProvider>
+      
     </>
   );
 }

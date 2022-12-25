@@ -1,12 +1,11 @@
-import {addCode, getCode, updateCode} from '../db/Code';
-import {sendMail} from "../mail";
+import {addCode, getCode, updateCode} from '.';
+import {sendMail} from "../../mail";
 
 export const codeService = {
 
   async sendCode(email: string){
     const generatedCode = String(Math.floor(1000 + Math.random() * 9000));
     const code = await getCode(email);
-
 
     if(code!==null) {
       await updateCode({
@@ -40,8 +39,8 @@ export const codeService = {
     const currDate = new Date();
     const diff = Math.round((currDate.getTime() - codeDate.getTime()) / 60000);
     
-    if (diff > time || diff < 0) return "codeExp";
-    if (codeObj.code !== code) return "codeInc";
+    if (diff > time || diff < 0) throw "codeExp";
+    if (codeObj.code !== code) throw "codeInc";
 
     // For code expiry, minus seconds of db time and current time, to not be less than 1 hour
     return "good";
