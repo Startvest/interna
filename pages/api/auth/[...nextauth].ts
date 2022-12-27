@@ -1,10 +1,15 @@
 import NextAuth from "next-auth"
-import GithubProvider from "next-auth/providers/github"
+import { JWT } from "next-auth/jwt"
+// import GithubProvider from "next-auth/providers/github"
 import CredentialsProvider from "next-auth/providers/credentials"
-import {CustomSession} from "../../_app";
+// import {CustomSession} from "../../_app";
+import {Session} from "next-auth";
 
+interface ExtendedSession extends Session {
+  role?: string;
+}
 export default NextAuth({
-  // Configure one or more authentication providers
+//   // Configure one or more authentication providers
   providers: [
      CredentialsProvider({
           name: 'Credentials',
@@ -42,17 +47,23 @@ export default NextAuth({
     },
     async jwt({ token, user }) {
       if (user) {
-        token.role = 1;
-      }
-      console.log(user);
-      return token;
+        token.roles = "user.roles";
+        token.usercode =" user.usercode";
+        token.email = user.email;
+        token.name = user.name;
+
+        if ("user.token") {
+          token.accessToken = "user.token";
+        }
+      } 
+      return token; 
     },
-    async session({ session, token }) {
+    async session({ session, token }:{session:ExtendedSession ,token:JWT}) {
       if (token) {
         console.log(token);
         // session.role = token.role;
       }
-      console.log(session);
+
       return session;
     }
      },
@@ -62,6 +73,10 @@ export default NextAuth({
           error: "/signup"
      },
      session: {
-          strategy: "jwt"
+      strategy: "jwt"
      }
 })
+
+
+
+

@@ -12,21 +12,17 @@ export interface CustomSession extends Session {
   role: "Administrator" | "Basic User" | "Premium" | "Premium Plus";
 }
 
-export default function App({ Component, 
-  pageProps
- }: AppProps) {
+export default function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
     <>
-    
+    <SessionProvider session={session}>
       <ThemeProvider>
         <QueryClientProvider client={queryClient}>
-            <SessionProvider session={pageProps.session}>
               <Component {...pageProps} />
-            </SessionProvider>
           <Analytics />
         </QueryClientProvider>
       </ThemeProvider>
-      
+      </SessionProvider>
     </>
   );
 }

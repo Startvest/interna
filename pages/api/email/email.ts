@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { waitlistService } from '../../server/services';
-import {sendMail} from "../../server/mail";
+import { waitlistService } from '../../../server/services';
+import {sendMail} from "../../../server/mail";
 
 export interface IEmail {
   subject: string;
@@ -32,14 +32,14 @@ export default async function handler(
     let serRes = await waitlistService.getMembers();
 
     if (serRes) {
-        serRes.slice(0,30).forEach(async (element: any, index: number) => {
+        serRes.slice(76,80).forEach(async (element: any, index: number) => {
           await sendMail({
               to: element.email,
               // to: 'tamunowanatebriggs@yahoo.com', ''
               //  to: 'hanif.adedotun@gmail.com, steven.oshoke@gmail.com, dusiere40@gmail.com, obriggs03@gmail.com, fortunealebiosu710@gmail.com',
                name: element.name,
                subject: data.subject,
-               email: "waitlist1"
+               email: "blog"
              })
              console.log(`${index} Sent to ${element.name} : ${element.email}`);
         });

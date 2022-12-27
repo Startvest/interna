@@ -1,8 +1,7 @@
 import styles from './admin.module.scss';
 import {useEffect, useState} from "react";
 import {Button} from "../../components/Button";
-import {Input} from "../Input"
-import {sendAllEmail} from "../../services/email";
+import {sendAllEmail, sendPreview} from "../../services/email";
 import { useMutation } from 'react-query';
 import {IoRefreshCircleOutline} from 'react-icons/io5';
 
@@ -12,11 +11,21 @@ export const SendEmail = () =>{
      const [currPage, setcurrPage]  = useState("/waitlist1");
      const [deviceType, setdeviceType] = useState<DeviceWidth>("400px");
      const waitlistMutation = useMutation(sendAllEmail);
+     const previewMutation = useMutation(sendPreview);
      async function submitForm() {
           waitlistMutation.mutateAsync({
                subject: "You are the real MVP 💙"
           });
-      }
+     }
+     async function submitPreview() {
+          previewMutation.mutateAsync({
+               subject: "Our special gift for you 💙"
+          });
+     }
+     const reloadFrame = () =>{
+          var f = document.getElementById('iframe') as HTMLIFrameElement | null;;
+          if (f) f.src += '';
+     }
      return(
           <div className={`${styles.userContent} ${styles.emailContent}`}>
              <h1>Hey Admin!</h1>
@@ -28,12 +37,22 @@ export const SendEmail = () =>{
                               <option value="/waitlist1">Waitlist Email</option>
                               <option value="/email">Welcome Email</option>
                               <option value="/code">Create Code</option>
+                              <option value="/blog">Blog Email</option>
                          </select>
                     </div>
+                    <>
+                    <Button type="button" onClick={() => submitPreview()}>
+                         {(previewMutation.isIdle) && <>Send to core team</>} 
+                         {(previewMutation.isLoading) && <>Loading...</>}
+                         {(previewMutation.isSuccess) &&  <>Sent to Core team members!</>}
+                    </Button>
+
                     <Button type="button" onClick={() => submitForm()}>
-                         {(waitlistMutation.isLoading) ? "Loading...":"Send email"}
+                         {(waitlistMutation.isIdle) && <>Send email</>} 
+                         {(waitlistMutation.isLoading) && <>Loading...</>}
                          {(waitlistMutation.isSuccess) &&  <>Sent to all users!</>}
                     </Button>
+                    </>
                </div>
                
                <section className={styles.secButtons}>
@@ -41,7 +60,7 @@ export const SendEmail = () =>{
                          Preview
                     </Button>
 
-                    <Button type="button" onClick={() => {setPreview(true)}}>
+                    <Button type="button" onClick={reloadFrame}>
                         Refresh <IoRefreshCircleOutline size={20}/>
                     </Button>
                </section>
