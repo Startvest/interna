@@ -49,7 +49,7 @@ export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'})
 
    const handleLogin = async (e?:any) =>{
       e.preventDefault();
-        const res = await signIn(`credentials`, {
+        const res = await signIn('credentials', {
           email: getValues().email,
           password: getValues().password1,
           callbackUrl: "/feed",
@@ -58,12 +58,13 @@ export function Form({ type }: { type: 'login' | 'forgot' | 'reset' | 'signup'})
         setLoginMutation(res);
    }
    useEffect(() => {
+    console.log(loginMutation)
     if (loginMutation?.ok) {
-      const url = new URL(loginMutation.url);
-      const searchParams = url.searchParams;
-      const callbackUrl = searchParams.get("callbackUrl");
-      const redirectUrl = callbackUrl || "/feed";
-      router.replace(redirectUrl);
+      // const url = new URL(loginMutation.url);
+      // const searchParams = url.searchParams;
+      // const callbackUrl = searchParams.get("callbackUrl");
+      // const redirectUrl = callbackUrl || "/feed";
+      // router.replace(redirectUrl);
     }
    },[loginMutation])
    

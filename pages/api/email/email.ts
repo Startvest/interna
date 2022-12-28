@@ -32,7 +32,7 @@ export default async function handler(
     let serRes = await waitlistService.getMembers();
 
     if (serRes) {
-        serRes.slice(76,80).forEach(async (element: any, index: number) => {
+        serRes.slice(0,20).forEach(async (element: any, index: number) => {
           await sendMail({
               to: element.email,
               // to: 'tamunowanatebriggs@yahoo.com', ''

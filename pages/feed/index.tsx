@@ -17,10 +17,12 @@ const Feed = ({isMobile}:FeedProps) => {
   const addPost=(data: IPost)=>{
     setPosts([data, ...posts]);
   }
-  const {status, data} = useSession();
+  const {status, data:session} = useSession();
   
   useEffect(() => {
-    if(status === "unauthenticated") Router.replace("/login");
+    // if(status === "unauthenticated") Router.replace("/login");
+    console.log(status);
+    console.log(session);
   }, [status])
   return (
     <>
