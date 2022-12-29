@@ -6,6 +6,7 @@ export const collections = {
      waitlist: "waitlist",
      log: "logs",
      users: "users",
+     profile: "profile",
      code: "code"
 }
 export function connect(){
