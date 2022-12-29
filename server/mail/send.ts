@@ -8,7 +8,7 @@ interface MailData{
      name?: string,
      subject?: string,
      text?: string,
-     email: "email" | "waitlist1" | "code",
+     email: "email" | "waitlist1" | "code" | "blog",
      replacement?: Object
 }
 export const sendMail = async (props:MailData) => {

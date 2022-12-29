@@ -1,10 +1,15 @@
 import NextAuth from "next-auth"
-import GithubProvider from "next-auth/providers/github"
+import { JWT } from "next-auth/jwt"
+// import GithubProvider from "next-auth/providers/github"
 import CredentialsProvider from "next-auth/providers/credentials"
-import {CustomSession} from "../../_app";
+// import {CustomSession} from "../../_app";
+import {Session} from "next-auth";
 
+interface ExtendedSession extends Session {
+  role?: string;
+}
 export default NextAuth({
-  // Configure one or more authentication providers
+//   // Configure one or more authentication providers
   providers: [
      CredentialsProvider({
           name: 'Credentials',
@@ -13,37 +18,43 @@ export default NextAuth({
             password: {  label: "password", type: "password" }
           },
           async authorize(credentials, req) {
-            const user:any = {
-              email: credentials?.email,
-              password: credentials?.password
-            }
-              //  console.log(req.query);
+            const {email, password} = credentials as {email: string, password: string}
+            const user = {
+              id: '1', 
+              email: email,
+              name: 'John',
+          }
             // If no error and we have user data, return it
-            if (user) {
-              console.log(user);
-              return user
-            }
+            // if (email) {
+            //   return user;
+            // }
             // Return null if user data could not be retrieved
-            return null
+            return null;
           }
         })
   ],
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.role = 1;
-      }
-
-      return token;
+        token.user = user;
+      } 
+      return token; 
     },
-    async session({ session, token }) {
+    async session({ session, token }:{session:ExtendedSession ,token:JWT}) {
       if (token) {
         console.log(token);
-        // session.role = token.role;
+        session.user = {
+          name: token.name,
+          email: token.email
+        };
+        session.role = "user";
       }
-      console.log(session);
       return session;
-    }
+    },
+    async signIn({ user }) {
+      console.log(user);
+      return false;
+    },
      },
      pages: {
           signIn: "/login",
@@ -51,7 +62,10 @@ export default NextAuth({
           error: "/signup"
      },
      session: {
-          strategy: "jwt"
+      strategy: "jwt"
      }
-
 })
+
+
+
+

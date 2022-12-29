@@ -14,7 +14,6 @@ export async function addCode(data: ICode){
      }
      // db.members.createIndex( { "user_id": 1 }, { unique: true } )
      const response = await client.collection(collections.code).insertOne(code);
-     console.log(response);
      return response;
 }
 
@@ -29,7 +28,7 @@ export async function getCode(email: string){
 export async function deleteCode(email: string){
      const client = connect();
 
-     const response = await client.collection(collections.code).findOne({ email : email });
+     const response = await client.collection(collections.code).deleteOne({ email : email });
      if(response) return JSON.parse(JSON.stringify(response));
      return null;
 }

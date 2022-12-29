@@ -55,33 +55,43 @@
           }
 
           .logo {
-               width: 200px;
+               width: 600px;
                height: auto;
                text-align: center;
+               margin: auto;
+               border-radius: 10px;
           }
 
           .headText {
-               font-size: 20px;
+               font-size: 16px;
                font-weight: 700;
                margin-bottom: 20px;
                color: #21295c;
           }
 
           .text-body {
-               margin: 40px 0;
+               margin: 30px 0;
+               font-size: 15px;
+               color: #606467;
           }
 
           .text-body>p {
-               margin: 20px 0;
+               margin: 30px 0;
           }
-          .text-body>h1{
-               font-size: 60px;
-               letter-spacing: 20px;
-               color: #21295c;
+          .blog-btn{
+               background-color: #04de00;
+               padding: 15px 0;
                text-align: center;
+               border: 0;
+               border-radius: 10px;
+               color: white;
+               font-size: 16px;
+               text-decoration: none;
+               width: 100%;
           }
           .withLove {
                margin-top: 30px;
+               color: #21295c;
           }
 
           .withLove>p {
@@ -113,18 +123,12 @@
           }
 
           .social_icon {
-               margin: 5px 15px;
+               margin: 5px 20px;
           }
 
           .social_icon>img {
-               width: 30px;
-               height: 30px;
-          }
-
-          .list>p {
-               margin-left: 20px;
-               margin-bottom: 10px;
-               font-weight: 500;
+               width: 35px;
+               height: 35px;
           }
 
           @media screen and (max-width: 600px) {
@@ -138,6 +142,11 @@
                     max-width: 95%;
                     width: auto;
                }
+
+               .logo {
+                    max-width: 100%;
+                    width: auto;
+               }
           }
      </style>
 </head>
@@ -146,16 +155,45 @@
      <div class="backdrop">
           <div class="main">
                <p class="img-container">
-                    <img class="logo" src="https://getinterna.com/banner2.png" alt="interna_banner" />
+                    <img class="logo" src="https://getinterna.com/assets/bloglaunched.png" alt="interna_banner" />
                </p>
                <div class="text-body">
                     <h2 class="headText">Hello {{name}}!</h2>
-                    <p>Your Sign in Code is</p>
-                    <h1>{{code}}</h1>
+
+                    <p>We are excited to announce our blog!!! 🚀</p>
+
+                    <p>
+                         We know that waiting can be tough, but we want to make the experience as enjoyable as possible. 
+                         
+                    </p>
+
+                    <p> 
+                         That's why we've created this blog as a way for you to get a sneak peek of what we have to offer you, even while our platform is still under contruction. 
+                    </p>
+
+                    <p>
+                         We'll be posting updates on our progress, sharing tips and tricks for getting the most out of our service, and featuring guest posts from some of our talented team members. 
+                         
+                    </p>
+
+                    <a class="link" href="https://blog.getinterna.com"><button class="blog-btn">Visit the blog!</button></a>
+
+                    <p>
+                         Thank you for your patience and support. We can't wait to release our platform for beta test!
+                    </p>
+
+                    
+
+                    <div class="withLove">
+                         <p class="">With love,</p>
+                         <p>The founding team 💙</p>
+                    </div>
+
                </div>
 
                <p class="followText">Follow us on our socials!</p>
                <p class="img-container">
+                    <table width="100%">
                     <tr>
                          <td>
                               <a class="social_icon" href="https://www.linkedin.com/company/ntrna-technologies-ltd/"
@@ -179,6 +217,7 @@
                                         alt="instagram icon" /></a>
                          </td>
                     </tr>
+               </table>
                </p>
           </div>
 
