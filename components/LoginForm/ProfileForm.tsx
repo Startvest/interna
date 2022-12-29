@@ -1,19 +1,27 @@
 import {useRef, useState} from 'react';
-import styles from '../../components/LoginForm/login.module.scss';
+import styles from './login.module.scss';
 import {Input} from '../../components/Input';
+import { Swiper } from 'swiper/types'
 
-export const ProfileForm = ({image, setImage}:{image: string, setImage: Function}) =>{
+interface ProfileFormProps {
+     image: string;
+     setImage: Function;
+}
+
+export const ProfileForm: React.FC<ProfileFormProps> = ({ image, setImage }) =>{
      const imageInputRef = useRef<HTMLInputElement>(null);
      return(
-          <>
+          <section className={styles.formContainer}>
+          <h2>Personal Information</h2>
           <div className={styles.imageContainer}>
-                    <img className={styles.pickImage} src={image} alt="profile"/>
+               <img className={styles.pickImage} src={image} alt="profile"/>
                     <button
                     onClick={(e) => {e.preventDefault(); imageInputRef.current?.click()}}
                     className={styles.imageBtn}>
                     Upload
                     </button>
-                    <input  
+                    <input
+                         title='Profile Picture Upload'  
                          type="file"
                          accept="image/*"
                          className={styles.hidden}
@@ -32,24 +40,25 @@ export const ProfileForm = ({image, setImage}:{image: string, setImage: Function
                name="name"
                onChange={(e: any) => console.log(e.target.value)}
                placeholder="Enter your full name"
-               labelName={'Full name'}
+               labelName={'Your full name'}
                />
 
                <Input
-               type="tel"
-               name="description"
-               onChange={(e: any) => console.log(e.target.value)}
-               placeholder="Enter a brief description of yourself"
-               labelName={'Description'}
+                    type="text"
+                    name="username"
+                    onChange={(e: any) => console.log(e.target.value)}
+                    placeholder="@username"
+                    labelName={'Username'}
                />
 
                <Input
-               type="select"
-               name="description"
-               onChange={(e: any) => console.log(e.target.value)}
-               placeholder="Pick one of the following"
-               labelName={'How do you plan on using interna?'}
+                    className={styles.profileInput}
+                    type="email"
+                    name="email"
+                    onChange={(e: any) => console.log(e.target.value)}
+                    placeholder="example@getinterna.com"
+                    labelName={'Email Address'}
                />
-          </>
+          </section>
      )
 }

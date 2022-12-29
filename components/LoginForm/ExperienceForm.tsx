@@ -1,41 +1,30 @@
 import {useRef, useState} from 'react';
-import styles from '../components/LoginForm/login.module.scss';
-import {Input} from '../../components/Input';
+import styles from './login.module.scss';
+import {Input, TagInput} from '../../components/Input';
+import { TagsInput } from 'react-tag-input-component';
 
 export const WorkExperienceForm = () =>{
      return(
-          <>
+          <section className={styles.formContainer}>
+               <h2>Experience</h2>
                <Input
-               type="select"
-               name="interest"
-               onChange={(e: any) => console.log(e.target.value)}
-               placeholder="Enter your fields of specialiazation"
-               labelName={'Area of Interests'}
+                    type="text"
+                    name="headline"
+                    onChange={(e: any) => console.log(e.target.value)}
+                    placeholder="Write a short description of yourself"
+                    labelName={'Your headline'}
+               />
+
+               <TagsInput
                />
 
                <Input
-               type="text"
-               name="location"
-               onChange={(e: any) => console.log(e.target.value)}
-               placeholder="Enter your location"
-               labelName={'Location'}
+                    type="text"
+                    name="portfolio"
+                    onChange={(e: any) => console.log(e.target.value)}
+                    placeholder="www.portfolio.com"
+                    labelName={'Link'}
                />
-
-               <Input
-               type="text"
-               name="school"
-               onChange={(e: any) => console.log(e.target.value)}
-               placeholder="Enter the name of your school"
-               labelName={'School Name'}
-               />
-
-               <Input
-               type="text"
-               name="employment"
-               onChange={(e: any) => console.log(e.target.value)}
-               placeholder="Current place of employment"
-               labelName={'Company name'}
-               />
-          </>
+          </section>
      )
 }
