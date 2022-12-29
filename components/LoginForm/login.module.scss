@@ -1,3 +1,30 @@
+.bullet {
+     width: 60px;
+     height: 10px;
+     border-radius: 10px;
+     background-color: var(--primary);
+}
+
+.formContainer{
+     padding: 0 10px;
+}
+
+.swiperSlide {
+
+     .nextBtn {
+          width: 25%;
+          height: 35px;
+          border-radius: 5px;
+     }
+
+     .buttonContainer {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin: 1rem 0;
+     }
+}
+
 .container{
      margin: auto;
      text-align: center;
@@ -110,7 +137,7 @@
 }
 
 .imageContainer{
-     margin: 3rem auto;
+     margin: 1rem auto;
      display: flex;
      justify-content: center;
      align-items: center;

@@ -1,4 +1,5 @@
 $inputDark: #333333;
+
 @mixin flex-center {
     display: flex;
     align-items: center;
@@ -332,6 +333,7 @@ $inputDark: #333333;
 
 }
 .mobileUsp{
+    --box-width: 60%;
     margin: 4rem auto;
     width: 100%;
     height: 500px;
@@ -345,7 +347,7 @@ $inputDark: #333333;
         grid-template-columns: repeat(2, 1fr);
 
         .box {
-            width: 60%;
+            width: var(--box-width);
         }
 
         #box-3{
@@ -418,6 +420,8 @@ $inputDark: #333333;
 
 
 .designHolder{
+    --color: #1E1E1E;
+
     width: 90%;
     background-color: var(--secondary);
     margin: 4rem auto;
@@ -430,7 +434,6 @@ $inputDark: #333333;
     justify-content: space-evenly;
 
     h2{
-        --color: #1E1E1E;
         color: var(--color);
         font-size: 36px;
         max-width: 40%;
@@ -491,19 +494,27 @@ $inputDark: #333333;
 }
 
 .getStarted{
+    --big-text: 32px;
+    --small-text: 18px;
+    --container-width: 70%;
+    --padding: 1.5rem;
+    --button-text: 16px;
+
     position: relative;
-    width: 70%;
+    width: var(--container-width);
     margin: 4rem auto;
     text-align: center;
     background: var(--primary) url('../public/assets/banner-overlay.svg') no-repeat scroll center;
     background-size: cover;
     background-position: center;
     color: white;
-    padding: 1.5rem;
+    padding: var(--padding);
     border-radius: 15px;
+    font-weight: 600;
 
     .container{
-        width: 60%;
+        --width: 60%;
+        width: var(--width);
         margin: 0 auto;
         display: flex;
         flex-direction: column;
@@ -514,25 +525,24 @@ $inputDark: #333333;
 
     h3{
         color: white;
-        font-weight: 600;
-        font-size: 32px;
+        font-size: var(--big-text);
     }
 
     p{
         font-weight: 500;
-        font-size: 18px;
+        font-size: var(--small-text);
         text-align: center;
         margin: 2rem 0 !important;
     }
 
     button{
-        color: white;
         background-color: var(--secondary);
         font-weight: 600;
-        font-size: 16px;
+        font-size: var(--button-text);
         border-radius: 7.9px;
         width: 70%;
         height: 50px;
+        z-index: 200;
     }
 
     img {
@@ -691,7 +701,13 @@ $inputDark: #333333;
 
         .iconWrapper {
             background: rgba(129, 255, 126, 0.3);
-            color: #fff;
+
+            svg, img {
+                color: #fff;
+                path {
+                    fill: #fff;
+                }
+            }
         }
     }
     .landingPageHeader {    
@@ -756,6 +772,10 @@ $inputDark: #333333;
         }
     }
 
+    .designHolder {
+        --color: #ffffff;
+    }
+
     .headerCta {
         button{
             background-color: var(--secondary);
@@ -778,6 +798,7 @@ $inputDark: #333333;
     .features {
         grid-template-columns: repeat(2, 1fr);
     }
+    
 
     .mobileIntroContainer{
         flex-direction: column;
@@ -834,17 +855,15 @@ $inputDark: #333333;
         }
     }
     .designHolder{
-        flex-direction: column;
+        flex-direction: column-reverse;
         h2{
             max-width: 90%;
             margin-top: 2rem;
             font-size: 20px;
-            font-weight: 600;
         }
         img{
             width: 60%;
-            text-align: center;
-            margin: 0 0 0 0;
+            margin: 0;
         }
     }
     .secondHeader {
@@ -863,18 +882,44 @@ $inputDark: #333333;
             height: auto;
         }
     }
+    .mobileIntroContainer {
+        .introduction{
+            button{
+                margin-top: 0;
+            }
+        }
+    }
+
+    .mobileUsp {
+        --box-width: 80%;
+
+        .topLevel {
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        .box {
+            width: var(--box-width);
+            margin: 1rem auto;
+        }
+        
+    }
+
+    .buttonsCont {
+        flex-direction: column;
+    }
     .headerCta {
         gap: 1rem !important;
     }
     
     .getStarted{
-        width: 90%;
-        padding: .5rem 0;
-        h3{
-            font-size: 20px;
-        }
-        h5{
-            font-size: 16px;
+        --small-text: 14px;
+        --big-text: 20px;
+        --container-width: 90%;
+        --padding: .5rem 0;
+        --button-text: 14px;
+
+        .container{
+            --width: 90%;
         }
     }
     .waitlistForm {
@@ -887,7 +932,13 @@ $inputDark: #333333;
 
 @media screen and (max-width: 450px) {
     .features{
-        grid-template-columns: repeat(1, 1fr);
+        display: flex !important;
+        flex-direction: column;
+        gap: 1em;
+    }
+
+    .internaDescription{
+        width: 90% !important;
     }
 }
 @keyframes bounce{
