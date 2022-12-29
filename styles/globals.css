@@ -128,12 +128,23 @@ input[type=number] {
 }
 
 .primary { 
-  background: var(--primary); 
+  background: var(--primary) !important; 
   color: white;
 }
 
 .contrast {
   background: var(--contrast)
+}
+
+.swiper-pagination {
+  position: absolute;
+  top: 0%;
+}
+
+.swiper-pagination-bullet {
+  width: 60px !important; 
+  height: 10px !important;
+  border-radius: 10px !important;
 }
 
 /* Utility Classes for simple styling solutions */
@@ -149,3 +160,8 @@ input[type=number] {
 .gap { gap: 10px; }
 
 .font-large { font-size: 20px; }
+
+.rti--container{
+  --rti-border: var(--primary);
+  
+}
