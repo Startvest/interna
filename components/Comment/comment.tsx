@@ -7,10 +7,10 @@ import {
 import { Avatar } from '../Avatar';
 import DisplayDate from '../DisplayDate';
 import styles from './comment.module.scss';
-import {IPost, IComment} from '../../services/enums/types';
+import {IPost, IComment} from '../../server/db/Feed';
 
 export const Comment = ({ comment, likeComment }: { comment: IComment, likeComment: Function}) => {
-const { _id, author, content, createdAt, likes} = comment;
+const { _id, content, createdAt, likes} = comment;
 const [liked, setLiked] = useState(likes.includes("12d999hj"));
 const [noLikes, setNoLikes] = useState(likes.length);
 
@@ -22,16 +22,16 @@ const handleLike = () => {
 } 
   return (
     <div className={styles.container}>
-      <Avatar src={author.image} size="small" />
+      <Avatar src={"/assets/images/user.png"} size="small" />
 
       <div className={styles.commentBox}>
           <div className={styles.userInfo}>
                <span>
-                    <h3>{author.name}</h3>
+                    <h3>{"author.name"}</h3>
                     <IoEllipse size={5} />
                     <DisplayDate date={createdAt} show={'ago'} />
                </span>
-               <p>{author.position}</p>
+               <p>{"author.position"}</p>
           </div>
 
           

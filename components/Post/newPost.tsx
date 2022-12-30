@@ -4,7 +4,7 @@ import {
      IoVideocamOutline,
      IoCloseCircle
 } from 'react-icons/io5';
-import { IPost } from '../../services/enums/types';
+import { IPost } from '../../server/db/Feed';
 import {useState, useRef} from 'react';
 import Image from 'next/image';
 
@@ -15,18 +15,20 @@ export const NewPost = ({addPost}:{addPost : (post:IPost) => void}) =>{
      const videoInputRef = useRef<HTMLInputElement>(null);
      const handlePost = () => {
           const data = {           
-            _id: `testId${Math.floor(Math.random() * 100)}`,
-            author: {
-               id: "12d999hj",
-               name: "John Taiwo",
-               position: "Intern at Google",
-               image: "/assets/images/user2.svg",
-             },
+          //   _id: `testId${Math.floor(Math.random() * 100)}`,
+            authorId: "test",
             content: newPost,
             createdAt: Date(),
             image: media,
-            likes: [],
-            comments: [],
+            likes: ["test"],
+            comments: [
+               {
+                    authorId: "test",
+                    content: "This is a test comment on a test post",
+                    createdAt: Date().toString(),
+                    likes:[]
+               }
+            ],
           }
           addPost(data);
           setNewPost("");

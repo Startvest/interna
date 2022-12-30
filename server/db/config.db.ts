@@ -7,7 +7,8 @@ export const collections = {
      log: "logs",
      users: "users",
      profile: "profile",
-     code: "code"
+     code: "code",
+     post: "post"
 }
 export function connect(){
      const { MongoClient, ServerApiVersion } = require('mongodb');

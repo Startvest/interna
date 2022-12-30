@@ -11,7 +11,7 @@ import {
 import { Avatar } from '../Avatar';
 import DisplayDate from '../DisplayDate';
 import styles from './post.module.scss';
-import {IPost} from '../../services/enums/types';
+import {IPost} from '../../server/db/Feed';
 import { ShareModal } from '../../components/Modal/ShareModal';
 
 type PostProps =  {
@@ -19,7 +19,7 @@ type PostProps =  {
     isMobile: boolean;
 }
 export const Post: React.FC<PostProps> = ({postData, isMobile}) => {
-  const { _id, author, content, createdAt, image, likes , comments} = postData;
+  const { _id, content, createdAt, image, likes , comments} = postData; //author
   const [showMore, setShowText] = useState(false);
   const router = useRouter();
   const [liked, setLiked] = useState(likes.includes("12d999hj"));
@@ -31,7 +31,7 @@ export const Post: React.FC<PostProps> = ({postData, isMobile}) => {
     (!isMobile) ? 
     setShareModal(true)
     : navigator.share({
-     title: `Check out this post by ${author.name}`,
+     title: `Check out this post by ${"author.name"}`,
      text: content,
      url: `https://getinterna.com/feed/${_id}`,
    }); 
@@ -43,18 +43,17 @@ export const Post: React.FC<PostProps> = ({postData, isMobile}) => {
   }
   return (
     <div className={styles.post} >
-        {shareModal && <ShareModal isOpen={shareModal} closeModal={() => setShareModal(!shareModal)} postId={_id}/>}
-      <div onClick={() => router.push(`/feed/${_id}`)}>
+        {shareModal && <ShareModal isOpen={shareModal} closeModal={() => setShareModal(!shareModal)} postId={_id.toString()}/>}
+      <div onClick={() => router.push(`/feed/${_id.toString()}`)}>
       <div className={styles.userInfo}>
-        <Avatar size="small" src={author.image} />
-
+        <Avatar size="small" src={"/assets/images/user.png"} />
         <div>
           <span>
-            <h3>{author.name}</h3>
+            <h3>{"author.name"}</h3>
             <IoEllipse size={5} />
             <DisplayDate date={createdAt} show={'ago'} />
           </span>
-          <p>{author.position}</p>
+          <p>{"author.position"}</p>
         </div>
       </div>
 

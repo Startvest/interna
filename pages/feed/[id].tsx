@@ -14,10 +14,11 @@ import { CommentList } from '../../components/Comment/commentList';
 import DisplayDate from '../../components/DisplayDate';
 import styles from '../../components/Post/post.module.scss';
 import { Toolbar } from '../../components/Toolbar';
-import { post } from '../../services/enums/post';
-import { IComment, IPost } from '../../services/enums/types';
+import { IComment, IPost } from '../../server/db/Feed';
 import { ShareModal } from '../../components/Modal/ShareModal';
 import { AppHeader } from '../../components/header';
+import {getPostbyId} from '../../services/feed';
+import {LoadingIcon} from '../../components/loadScreen';
 
 type PostProps = {
      isMobile: boolean,
@@ -31,13 +32,14 @@ export const PostDetail: React.FC<PostProps> = ({isMobile}) => {
   const [noLikes, setNoLikes] = useState(0);
   let heartIcon = liked ? <IoHeart size={25} /> : <IoHeartOutline size={25} />;
 
+  const postMutation = useMutation(getPostbyId);
   const sharePost = () => {
     if (!currentPost) return;
 
     (!isMobile) ? 
     setShareModal(true)
     : navigator.share({
-     title: `Check out this post by ${currentPost.author}`,
+     title: `Check out this post by ${"currentPost.author"}`,
      text: currentPost.content,
      url: `https://getinterna.com/feed/${currentPost._id}`,
    }); 
@@ -45,15 +47,23 @@ export const PostDetail: React.FC<PostProps> = ({isMobile}) => {
   };
 
   useEffect(() => {
-    const curr = post.find((post) => post._id === id);
-    setPost(curr);
-    if(curr){
-      setLiked(curr.likes.includes("12d999hj"));
-      setNoLikes(curr.likes.length);
-    }
-    
-
+    // const curr = post.find((post) => post._id === id);
+    postMutation.mutate(id as string);    
   }, []);
+
+  useEffect(() => {
+    if(postMutation.isSuccess){
+      const curr = postMutation.data;
+      console.log(curr);
+      setPost(curr);
+      if(curr){
+        setLiked(curr.likes.includes("test"));
+        setNoLikes(curr.likes.length);
+      }
+    }else{
+      console.log(postMutation.error);
+    }
+  }, [postMutation.isError, postMutation.isSuccess])
 
   const handleLike = () =>{
     setLiked(!liked);
@@ -75,8 +85,9 @@ export const PostDetail: React.FC<PostProps> = ({isMobile}) => {
   return (
     <>
     <AppHeader pageName={'Feed | Interna'} />
-    {currentPost && shareModal && <ShareModal isOpen={shareModal} closeModal={() => setShareModal(!shareModal)} postId={currentPost._id}/>}
-    {!currentPost && (
+    {postMutation.isLoading && <LoadingIcon size="35"/>}
+    {currentPost && shareModal && <ShareModal isOpen={shareModal} closeModal={() => setShareModal(!shareModal)} postId={currentPost._id?.toString()}/>}
+    {postMutation.isSuccess && !currentPost && (
       <>
       <Toolbar>
         <MdChevronLeft size={30} onClick={() => router.back()} className={styles.backIcon}/>
@@ -87,22 +98,22 @@ export const PostDetail: React.FC<PostProps> = ({isMobile}) => {
      </div>
      </>
     )}
-      {currentPost && (
+      {postMutation.isSuccess && currentPost && (
         <div className={styles.largePost}>
           <Toolbar>
             <MdChevronLeft size={30} onClick={() => router.push('/feed')} className={styles.backIcon}/>
             <h4>Feed</h4>
           </Toolbar>
           <div className={styles.userInfo}>
-            <Avatar src={currentPost.author.image} size="small" />
+            <Avatar src={"/assets/images/user.png"} size="small" />
 
             <div>
               <span>
-                <h3>{currentPost.author.name}</h3>
+                <h3>{"currentPost.author.name"}</h3>
                 <IoEllipse size={7} />
                 <DisplayDate date={currentPost.createdAt} show={'ago'} />
               </span>
-              <p>{currentPost.author.position}</p>
+              <p>{"currentPost.author.position"}</p>
             </div>
           </div>
 
@@ -152,6 +163,7 @@ export const PostDetail: React.FC<PostProps> = ({isMobile}) => {
 export default PostDetail;
 import { GetServerSideProps } from 'next';
 import { getDevice } from '../../server/getDevice';
+import { useMutation } from 'react-query';
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   return {
     props: {
