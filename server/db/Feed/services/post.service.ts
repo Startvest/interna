@@ -1,17 +1,19 @@
-import { IPost, getPosts, getPostById, addPost } from "..";
+import { ICreatePost, getPosts, getPostsComplete, getPostById, addPost } from "..";
+import { ObjectId } from 'mongodb';
 
 export const postService = {
      async getPosts(){
-          return await getPosts();
+          return await getPostsComplete();
      },
      async getPost(id: string){
           return await getPostById(id);
      },
-     async addPost(post: IPost){
-          const p : IPost = {
+     async addPost(post: ICreatePost){
+          const p : ICreatePost = {
                ...post,
                createdAt: Date.toString(),
+               authorId: new ObjectId(post.authorId)
           }
-          return await addPost(post);
+          return await addPost(p);
      },
 }

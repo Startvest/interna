@@ -5,7 +5,7 @@ import { AppHeader } from '../../components/header';
 import { NewPost, Post } from '../../components/Post';
 import { post } from '../../services/enums/post';
 import { useMutation } from 'react-query';
-import { IPost } from '../../server/db/Feed';
+import { ICreatePost, ICompletePost } from '../../server/db/Feed';
 import {useSession} from "next-auth/react";
 import {LoadingIcon} from '../../components/loadScreen';
 import {getPosts, addPost} from '../../services/feed';
@@ -15,7 +15,7 @@ interface FeedProps{
 }
 const Feed = ({isMobile}:FeedProps) => {
   const [showToast, setShowToast] = useState(false);
-  const [posts, setPosts] = useState<IPost[]>([]);
+  const [posts, setPosts] = useState<ICompletePost[]>([]);
   const postsMutation = useMutation(getPosts);
   const addPostMutation = useMutation(addPost);
   const [toastData, setToastData] = useState<Itoast>({
@@ -39,10 +39,9 @@ const Feed = ({isMobile}:FeedProps) => {
     if(postsMutation.isSuccess){
       setPosts(postsMutation.data);
     }
-    console.log(postsMutation.data);
   }, [postsMutation.isError, postsMutation.isSuccess])
 
-  const addPostHandler=(data: IPost)=>{
+  const addPostHandler=(data: ICreatePost)=>{
     // setPosts([data, ...posts]);
     addPostMutation.mutate(data);
 
@@ -70,10 +69,11 @@ const Feed = ({isMobile}:FeedProps) => {
       {posts && posts.length > 0 &&
         <div>
           {posts.map((post) => (
-            <Post key={post.authorId} postData={post} isMobile={isMobile}/>
+            <Post key={post._id.toString()} postData={post} isMobile={isMobile}/>
           ))}
         </div>
       }
+      {posts.length <= 0 && <div>Sorry no posts to show...</div>}
       <NavBar />
     </>
   );

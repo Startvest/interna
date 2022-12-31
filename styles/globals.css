@@ -46,6 +46,10 @@ body.backdrop-no-scroll {
 .primaryText {
   color: var(--primary);
 }
+.disabled{
+  opacity: .5;
+  cursor:not-allowed;
+}
 
 h3, p { margin: 0; }
 

@@ -4,11 +4,11 @@ import {
      IoVideocamOutline,
      IoCloseCircle
 } from 'react-icons/io5';
-import { IPost } from '../../server/db/Feed';
+import { ICreatePost, IPost } from '../../server/db/Feed';
 import {useState, useRef} from 'react';
-import Image from 'next/image';
+import { ObjectId } from 'mongodb';
 
-export const NewPost = ({addPost}:{addPost : (post:IPost) => void}) =>{
+export const NewPost = ({addPost}:{addPost : (post:ICreatePost) => void}) =>{
      const [newPost, setNewPost] = useState("");
      const imageInputRef = useRef<HTMLInputElement>(null);
      const [media, setMedia] = useState("");
@@ -16,19 +16,12 @@ export const NewPost = ({addPost}:{addPost : (post:IPost) => void}) =>{
      const handlePost = () => {
           const data = {           
           //   _id: `testId${Math.floor(Math.random() * 100)}`,
-            authorId: "test",
+            authorId: "63b030c13a37647b2079a2ce",
             content: newPost,
-            createdAt: Date(),
+            createdAt: Date().toString(),
             image: media,
-            likes: ["test"],
-            comments: [
-               {
-                    authorId: "test",
-                    content: "This is a test comment on a test post",
-                    createdAt: Date().toString(),
-                    likes:[]
-               }
-            ],
+            likes: [],
+            comments: [],
           }
           addPost(data);
           setNewPost("");
@@ -57,11 +50,11 @@ export const NewPost = ({addPost}:{addPost : (post:IPost) => void}) =>{
                          name="user_image"
                          ref={imageInputRef}/>
                          </span>
-                         <span><IoVideocamOutline size={30}/></span>
+                         <span className='disabled'><IoVideocamOutline size={30}/></span>
                     </div>
 
                     <div className={styles.buttonContainer}>
-                         <button onClick={() => handlePost()}>Post</button>
+                         <button disabled={newPost.length<=0} onClick={() => handlePost()}>Post</button>
                     </div>
                </div>
           </div>

@@ -1,3 +1,4 @@
+import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import {
@@ -6,19 +7,21 @@ import {
   IoHeart,
   IoHeartOutline,
   IoSendOutline,
-  IoShareSocialOutline,
+  IoShareSocialOutline
 } from 'react-icons/io5';
 import { MdChevronLeft } from 'react-icons/md';
+import { useMutation } from 'react-query';
 import { Avatar } from '../../components/Avatar';
 import { CommentList } from '../../components/Comment/commentList';
 import DisplayDate from '../../components/DisplayDate';
+import { AppHeader } from '../../components/header';
+import { LoadingIcon } from '../../components/loadScreen';
+import { ShareModal } from '../../components/Modal/ShareModal';
 import styles from '../../components/Post/post.module.scss';
 import { Toolbar } from '../../components/Toolbar';
 import { IComment, IPost } from '../../server/db/Feed';
-import { ShareModal } from '../../components/Modal/ShareModal';
-import { AppHeader } from '../../components/header';
-import {getPostbyId} from '../../services/feed';
-import {LoadingIcon} from '../../components/loadScreen';
+import { getDevice } from '../../server/getDevice';
+import { getPostbyId } from '../../services/feed';
 
 type PostProps = {
      isMobile: boolean,
@@ -121,7 +124,10 @@ export const PostDetail: React.FC<PostProps> = ({isMobile}) => {
 
         {currentPost.image && currentPost.image?.length>0 &&
           <div className={styles.largeimageHolder}>
-            <img src={currentPost.image} alt={`a post`} />
+            <img src={currentPost.image} alt={`a post`} onError={({ currentTarget }) => {
+              currentTarget.onerror = null; // prevents looping
+              currentTarget.src="/assets/illustrations/noImage.svg";
+            }}/>
           </div>
           }
 
@@ -161,9 +167,6 @@ export const PostDetail: React.FC<PostProps> = ({isMobile}) => {
 };
 
 export default PostDetail;
-import { GetServerSideProps } from 'next';
-import { getDevice } from '../../server/getDevice';
-import { useMutation } from 'react-query';
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   return {
     props: {

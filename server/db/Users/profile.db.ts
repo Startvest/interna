@@ -1,30 +1,54 @@
 const uuid = require('uuid');
+import { ObjectId } from 'mongodb';
 import {connect, collections} from '../config.db'
 
 const client = connect();
 
 export interface IProfile{ 
-     id: string;
+     _id: ObjectId;
      name: string;
      email: string;
+     gender: "male" | "female" | "none";
+     username: string;
+     image: string;
+     headline: string;
+     skills: string[];
+     link: string;
+     position: {
+          type: string, 
+          company_name: string,
+          start: string,
+          end: string
+          current: boolean
+     }[];
+     last_login: string;
+     connections: string[];
+     createdAt: string;
+}
+
+export interface ICreateProfile{ 
+     _id?: ObjectId;
+     name: string;
+     email: string;
+     image: string;
      gender: "male" | "female" | "none";
      username: string;
      headline: string;
      skills: string[];
      link: string;
      position: {
-          type: "string", 
-          company_name: "string",
-          start: "string",
-          end: "string"
+          type: string, 
+          company_name: string,
+          start: string,
+          end: string
           current: boolean
      }[];
      last_login: string;
      connections: string[];
-     created: string;
+     createdAt: string;
 }
 
-export async function addProfile(data: IProfile){
+export async function addProfile(data: ICreateProfile){
      const response = await client.collection(collections.profile).insertOne(data);
      return response;
 }
@@ -46,7 +70,7 @@ export async function updateProfile(user : Partial<IProfile>){
      const client = connect();
 
      const response = await client.collection(collections.users).updateOne(
-          { id: user.id},      
+          { id: user._id},      
                { $set: { 
                     ...user,
                } }                
