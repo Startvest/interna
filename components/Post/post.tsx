@@ -13,6 +13,7 @@ import DisplayDate from '../DisplayDate';
 import styles from './post.module.scss';
 import {ICompletePost} from '../../server/db/Feed';
 import { ShareModal } from '../../components/Modal/ShareModal';
+import {likePost, unlikePost} from '../../services/feed';
 
 type PostProps =  {
     postData: ICompletePost;
@@ -37,9 +38,15 @@ export const Post: React.FC<PostProps> = ({postData, isMobile}) => {
    }); 
   };
   
-  const handleLike = () =>{
+  const handleLike = async () =>{
     setLiked(!liked);
-    (liked) ? setNoLikes(noLikes-1) : setNoLikes(noLikes+1);
+    if (liked) {
+      setNoLikes(noLikes-1);
+      await unlikePost({id: _id.toString(), likeId: "63b030c13a37647b2079a2ce"});
+    } else{
+      setNoLikes(noLikes+1);
+      await likePost({id: _id.toString(), likeId: "63b030c13a37647b2079a2ce"});
+    }
   }
   return (
     <div className={styles.post} >

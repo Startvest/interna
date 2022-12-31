@@ -104,14 +104,20 @@ export async function getPostById(id: string){
 }
 
 
-export async function addLike(id: string){
-     const response = await client.collection(collections.post).findOne({ _id : new ObjectId(id) });
+export async function addLike(id: string, likeId: string){
+     const response = await client.collection(collections.post).updateOne(
+          { _id: new ObjectId(id) },
+          { $push: { likes:  likeId} }
+       )
      if(response) return JSON.parse(JSON.stringify(response));
      return null;
 }
 
-export async function unLike(id: string){
-     const response = await client.collection(collections.post).findOne({ _id : new ObjectId(id) });
+export async function unLike(id: string, likeId: string){
+     const response = await client.collection(collections.post).updateOne(
+          { _id: new ObjectId(id) },
+          { $pull: { likes:  likeId} }
+       )
      if(response) return JSON.parse(JSON.stringify(response));
      return null;
 }
