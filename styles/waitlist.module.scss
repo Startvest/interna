@@ -314,6 +314,7 @@ $inputDark: #333333;
             text-align: center;
             width: 70%;
             @include flex-center();
+            justify-content: center !important;
             flex-direction: column;
             margin: 0 auto;
             height: 100%;
