@@ -1,25 +1,77 @@
 const uuid = require('uuid');
-import {connect} from '../config.db'
+import { ObjectId } from 'mongodb';
+import {connect, collections} from '../config.db'
 
-// const client = connect();
+const client = connect();
 
-interface Profile{ 
-     user_id: string;
+export interface IProfile{ 
+     _id: ObjectId;
      name: string;
      email: string;
-     gender: "male" | "female" | "None";
+     gender: "male" | "female" | "none";
+     username: string;
+     image: string;
+     headline: string;
+     skills: string[];
+     link: string;
+     position: {
+          type: string, 
+          company_name: string,
+          start: string,
+          end: string
+          current: boolean
+     }[];
+     last_login: string;
+     connections: string[];
+     createdAt: string;
+}
+
+export interface ICreateProfile{ 
+     _id?: ObjectId;
+     name: string;
+     email: string;
+     image: string;
+     gender: "male" | "female" | "none";
      username: string;
      headline: string;
      skills: string[];
      link: string;
      position: {
-          type: "string", 
-          company_name: "string",
-          start: "string",
-          end: "string"
+          type: string, 
+          company_name: string,
+          start: string,
+          end: string
           current: boolean
      }[];
      last_login: string;
      connections: string[];
-     created: string;
+     createdAt: string;
+}
+
+export async function addProfile(data: ICreateProfile){
+     const response = await client.collection(collections.profile).insertOne(data);
+     return response;
+}
+
+
+export async function getProfileById(id: string){
+     const response = await client.collection(collections.profile).findOne({ _id : new ObjectId(id) });
+     if(response) return JSON.parse(JSON.stringify(response));
+     return null;
+}
+
+export async function getProfileByEmail(email: string){
+     const response = await client.collection(collections.profile).findOne({ email : email });
+     if(response) return JSON.parse(JSON.stringify(response));
+     return null;
+}
+
+export async function updateProfile(user : Partial<IProfile>){
+     const response = await client.collection(collections.profile).updateOne(
+          { id: user._id},      
+               { $set: { 
+                    ...user,
+               } }                
+       )
+          return response;
 }

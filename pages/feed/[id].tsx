@@ -1,3 +1,4 @@
+import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import {
@@ -6,18 +7,22 @@ import {
   IoHeart,
   IoHeartOutline,
   IoSendOutline,
-  IoShareSocialOutline,
+  IoShareSocialOutline
 } from 'react-icons/io5';
 import { MdChevronLeft } from 'react-icons/md';
+import { useMutation } from 'react-query';
 import { Avatar } from '../../components/Avatar';
 import { CommentList } from '../../components/Comment/commentList';
 import DisplayDate from '../../components/DisplayDate';
+import { AppHeader } from '../../components/header';
+import { LoadingIcon } from '../../components/loadScreen';
+import { ShareModal } from '../../components/Modal/ShareModal';
 import styles from '../../components/Post/post.module.scss';
 import { Toolbar } from '../../components/Toolbar';
-import { post } from '../../services/enums/post';
-import { IComment, IPost } from '../../services/enums/types';
-import { ShareModal } from '../../components/Modal/ShareModal';
-import { AppHeader } from '../../components/header';
+import { ICreateComment, IPost } from '../../server/db/Feed';
+import { getDevice } from '../../server/getDevice';
+import { getPostbyId, addComment, likePost, unlikePost } from '../../services/feed';
+import { Itoast, Toast } from '../../components/toast';
 
 type PostProps = {
      isMobile: boolean,
@@ -29,7 +34,16 @@ export const PostDetail: React.FC<PostProps> = ({isMobile}) => {
   const router = useRouter();
   const [shareModal, setShareModal] = useState(false);
   const [noLikes, setNoLikes] = useState(0);
+  const [showToast, setShowToast] = useState(false);
+  const [toastData, setToastData] = useState<Itoast>({
+    message: "", 
+    type: 'primary'
+  })
+
   let heartIcon = liked ? <IoHeart size={25} /> : <IoHeartOutline size={25} />;
+
+  const postMutation = useMutation(getPostbyId);
+  const commentMutation = useMutation(addComment);
 
   const sharePost = () => {
     if (!currentPost) return;
@@ -37,7 +51,7 @@ export const PostDetail: React.FC<PostProps> = ({isMobile}) => {
     (!isMobile) ? 
     setShareModal(true)
     : navigator.share({
-     title: `Check out this post by ${currentPost.author}`,
+     title: `Check out this post by ${"currentPost.author"}`,
      text: currentPost.content,
      url: `https://getinterna.com/feed/${currentPost._id}`,
    }); 
@@ -45,29 +59,53 @@ export const PostDetail: React.FC<PostProps> = ({isMobile}) => {
   };
 
   useEffect(() => {
-    const curr = post.find((post) => post._id === id);
-    setPost(curr);
-    if(curr){
-      setLiked(curr.likes.includes("12d999hj"));
-      setNoLikes(curr.likes.length);
-    }
-    
-
+    // const curr = post.find((post) => post._id === id);
+    postMutation.mutate(id as string);    
   }, []);
 
-  const handleLike = () =>{
-    setLiked(!liked);
-    (liked) ? setNoLikes(noLikes-1) : setNoLikes(noLikes+1);
-  }
+  useEffect(() => {
+    if(postMutation.isSuccess){
+      const curr = postMutation.data;
+      console.log(curr);
+      setPost(curr);
+      if(curr){
+        setLiked(curr.likes.includes("test"));
+        setNoLikes(curr.likes.length);
+      }
+    }else{
+      console.log(postMutation.error);
+    }
+  }, [postMutation.isError, postMutation.isSuccess])
 
-  const addComment = (data: IComment) =>{
-    console.log(data);
-    if(currentPost){
-      const post = currentPost; 
-      post.comments = [...post.comments, data];
-      setPost(post);
+  const handleLike = async () =>{
+    setLiked(!liked);
+    if (liked) {
+      setNoLikes(noLikes-1);
+      await unlikePost({id: id as string, likeId: "63b030c13a37647b2079a2ce"});
+    } else{
+      setNoLikes(noLikes+1);
+      await likePost({id: id as string, likeId: "63b030c13a37647b2079a2ce"});
     }
   }
+
+  const addcomment = async (data: ICreateComment) =>{
+    console.log(data);
+    // if(currentPost){
+    //   const post = currentPost; 
+    //   post.comments = [...post.comments, data];
+    //   setPost(post);
+    // }
+    commentMutation.mutateAsync({postId: id as string, comment:data});
+  }
+
+  // useEffect(() =>{
+  //   setToastData({
+  //     message: "Comment addedd successfully",
+  //     type: 'success'
+  //   });
+  //   setShowToast(true);
+  //   postMutation.mutate(id as string);  
+  // },[commentMutation, commentMutation.isSuccess]);
 
   const likeComment = (id:string) =>{
     console.log(`Comment ${id} liked`)
@@ -75,8 +113,10 @@ export const PostDetail: React.FC<PostProps> = ({isMobile}) => {
   return (
     <>
     <AppHeader pageName={'Feed | Interna'} />
-    {currentPost && shareModal && <ShareModal isOpen={shareModal} closeModal={() => setShareModal(!shareModal)} postId={currentPost._id}/>}
-    {!currentPost && (
+    {showToast && <Toast data={toastData} setToast={setShowToast} position='top-right'/>}
+    {postMutation.isLoading && <LoadingIcon size="35"/>}
+    {currentPost && shareModal && <ShareModal isOpen={shareModal} closeModal={() => setShareModal(!shareModal)} postId={currentPost._id?.toString()}/>}
+    {postMutation.isSuccess && !currentPost && (
       <>
       <Toolbar>
         <MdChevronLeft size={30} onClick={() => router.back()} className={styles.backIcon}/>
@@ -87,22 +127,22 @@ export const PostDetail: React.FC<PostProps> = ({isMobile}) => {
      </div>
      </>
     )}
-      {currentPost && (
+      {postMutation.isSuccess && currentPost && (
         <div className={styles.largePost}>
           <Toolbar>
             <MdChevronLeft size={30} onClick={() => router.push('/feed')} className={styles.backIcon}/>
             <h4>Feed</h4>
           </Toolbar>
           <div className={styles.userInfo}>
-            <Avatar src={currentPost.author.image} size="small" />
+            <Avatar src={"/assets/images/user.png"} size="small" />
 
             <div>
               <span>
-                <h3>{currentPost.author.name}</h3>
+                <h3>{"currentPost.author.name"}</h3>
                 <IoEllipse size={7} />
                 <DisplayDate date={currentPost.createdAt} show={'ago'} />
               </span>
-              <p>{currentPost.author.position}</p>
+              <p>{"currentPost.author.position"}</p>
             </div>
           </div>
 
@@ -110,7 +150,10 @@ export const PostDetail: React.FC<PostProps> = ({isMobile}) => {
 
         {currentPost.image && currentPost.image?.length>0 &&
           <div className={styles.largeimageHolder}>
-            <img src={currentPost.image} alt={`a post`} />
+            <img src={currentPost.image} alt={`a post`} onError={({ currentTarget }) => {
+              currentTarget.onerror = null; // prevents looping
+              currentTarget.src="/assets/illustrations/noImage.svg";
+            }}/>
           </div>
           }
 
@@ -140,6 +183,7 @@ export const PostDetail: React.FC<PostProps> = ({isMobile}) => {
           <div className={styles.comments}>
             <span>Comments</span>
             <CommentList 
+            addComment={addcomment}
             comments={currentPost.comments} 
             likeComment={likeComment} />
           </div>
@@ -150,8 +194,6 @@ export const PostDetail: React.FC<PostProps> = ({isMobile}) => {
 };
 
 export default PostDetail;
-import { GetServerSideProps } from 'next';
-import { getDevice } from '../../server/getDevice';
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   return {
     props: {

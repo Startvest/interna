@@ -6,7 +6,9 @@ export const collections = {
      waitlist: "waitlist",
      log: "logs",
      users: "users",
-     code: "code"
+     profile: "profile",
+     code: "code",
+     post: "post"
 }
 export function connect(){
      const { MongoClient, ServerApiVersion } = require('mongodb');

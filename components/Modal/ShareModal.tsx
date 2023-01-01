@@ -13,7 +13,7 @@ import{
 type ModalProps = {
      isOpen: boolean, //State to open the modal
      closeModal: Function | any,
-     postId: string,
+     postId?: string,
  }
 export const ShareModal: React.FC<ModalProps> = ({isOpen, closeModal, postId}) => {    
      const Sharelink = `https://getinterna.com/feed/${postId}`;

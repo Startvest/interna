@@ -5,11 +5,15 @@ import { NavBar } from '../../components/FloatingNavbar'
 import styles from './profile.module.scss';
 import { BiBuildings } from 'react-icons/bi';
 import { Post } from "../../components/Post";
-import { post } from "../../services/enums/post";
+import { ICreatePost, ICompletePost } from '../../server/db/Feed';
 import { MdOutlineSchool, MdOutlineLocationOn, MdOutlineLink, MdArrowBack } from 'react-icons/md';
 import { Header } from '../../components/header';
 import { useRouter } from 'next/router'
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
+import {LoadingIcon} from '../../components/loadScreen';
+import { useMutation } from 'react-query';
+import {getPosts} from '../../services/feed';
+
 
 type ProfileProps = {
     isMobile: boolean,
@@ -20,7 +24,19 @@ const ProfilePage: React.FC<ProfileProps> = ({isMobile}) => {
         backgroundImage: `url('/assets/images/post.png')`,
     }
     const [connected, setConnected] = useState(false);
-    const router = useRouter()
+    const router = useRouter();
+    const [posts, setPosts] = useState<ICompletePost[]>([]);
+    const postsMutation = useMutation(getPosts);
+
+    useEffect(() => {
+        postsMutation.mutate();
+      }, [])
+
+    useEffect(() => {
+        if(postsMutation.isSuccess){
+          setPosts(postsMutation.data);
+        }
+      }, [postsMutation.isError, postsMutation.isSuccess])
     return(
     <main>
         <Header pageName={"John Doe's Profile"}/>
@@ -83,11 +99,15 @@ const ProfilePage: React.FC<ProfileProps> = ({isMobile}) => {
             </div>
         </section>
         </section>
+
         <section className={styles.userPosts}>
-        {
-            post.filter(post => post.author.name === 'John Doe').map(post => (
-                <Post key={post._id} postData={post} isMobile={isMobile}/>
-            ))
+        {postsMutation.isLoading && <LoadingIcon size="35"/>}
+        {posts && posts.length > 0 &&
+            <div>
+            {posts.map((post) => (
+                <Post key={post._id.toString()} postData={post} isMobile={isMobile}/>
+            ))}
+            </div>
         }
         </section>
         <NavBar/>

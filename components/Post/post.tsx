@@ -11,18 +11,19 @@ import {
 import { Avatar } from '../Avatar';
 import DisplayDate from '../DisplayDate';
 import styles from './post.module.scss';
-import {IPost} from '../../services/enums/types';
+import {ICompletePost} from '../../server/db/Feed';
 import { ShareModal } from '../../components/Modal/ShareModal';
+import {likePost, unlikePost} from '../../services/feed';
 
 type PostProps =  {
-    postData: IPost;
+    postData: ICompletePost;
     isMobile: boolean;
 }
 export const Post: React.FC<PostProps> = ({postData, isMobile}) => {
-  const { _id, author, content, createdAt, image, likes , comments} = postData;
+  const { _id, content, author, createdAt, image, likes , comments} = postData; //author
   const [showMore, setShowText] = useState(false);
   const router = useRouter();
-  const [liked, setLiked] = useState(likes.includes("12d999hj"));
+  const [liked, setLiked] = useState(likes.includes("63b030c13a37647b2079a2ce"));
   const [noLikes, setNoLikes] = useState(likes.length);
   const [shareModal, setShareModal] = useState(false);
   let heartIcon = (liked) ? <IoHeart size={25}/> : <IoHeartOutline size={25} />; 
@@ -31,30 +32,35 @@ export const Post: React.FC<PostProps> = ({postData, isMobile}) => {
     (!isMobile) ? 
     setShareModal(true)
     : navigator.share({
-     title: `Check out this post by ${author.name}`,
+     title: `Check out this post by ${author[0].name}`,
      text: content,
      url: `https://getinterna.com/feed/${_id}`,
    }); 
   };
   
-  const handleLike = () =>{
+  const handleLike = async () =>{
     setLiked(!liked);
-    (liked) ? setNoLikes(noLikes-1) : setNoLikes(noLikes+1);
+    if (liked) {
+      setNoLikes(noLikes-1);
+      await unlikePost({id: _id.toString(), likeId: "63b030c13a37647b2079a2ce"});
+    } else{
+      setNoLikes(noLikes+1);
+      await likePost({id: _id.toString(), likeId: "63b030c13a37647b2079a2ce"});
+    }
   }
   return (
     <div className={styles.post} >
-        {shareModal && <ShareModal isOpen={shareModal} closeModal={() => setShareModal(!shareModal)} postId={_id}/>}
-      <div onClick={() => router.push(`/feed/${_id}`)}>
+        {shareModal && <ShareModal isOpen={shareModal} closeModal={() => setShareModal(!shareModal)} postId={_id.toString()}/>}
+      <div onClick={() => router.push(`/feed/${_id.toString()}`)}>
       <div className={styles.userInfo}>
-        <Avatar size="small" src={author.image} />
-
+        <Avatar size="small" src={author[0].image} />
         <div>
           <span>
-            <h3>{author.name}</h3>
+            <h3>{author[0].name}</h3>
             <IoEllipse size={5} />
             <DisplayDate date={createdAt} show={'ago'} />
           </span>
-          <p>{author.position}</p>
+          <p>{author[0].username}</p>
         </div>
       </div>
 
@@ -73,7 +79,11 @@ export const Post: React.FC<PostProps> = ({postData, isMobile}) => {
       <div
         className={styles.imageHolder}
       >
-         <img src={image} alt={`a post`} />
+         <img src={image} alt={`a post`} 
+         onError={({ currentTarget }) => {
+          currentTarget.onerror = null; // prevents looping
+          currentTarget.src="/assets/illustrations/noImage.svg";
+        }}/>
       </div>
       }
     </div>

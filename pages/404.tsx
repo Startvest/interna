@@ -17,7 +17,7 @@ const Four: NextPage = () => {
   if (!mounted) return null;
   return (
     <>
-      <AppHeader pageName='Something Went Wrong'/>
+      <Header pageName='Something Went Wrong'/>
       <main className={styles.pageContent}>
         {
           resolvedTheme == 'light' ? 

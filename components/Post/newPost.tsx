@@ -4,26 +4,21 @@ import {
      IoVideocamOutline,
      IoCloseCircle
 } from 'react-icons/io5';
-import { IPost } from '../../services/enums/types';
+import { ICreatePost, IPost } from '../../server/db/Feed';
 import {useState, useRef} from 'react';
-import Image from 'next/image';
+import { ObjectId } from 'mongodb';
 
-export const NewPost = ({addPost}:{addPost : (post:IPost) => void}) =>{
+export const NewPost = ({addPost}:{addPost : (post:ICreatePost) => void}) =>{
      const [newPost, setNewPost] = useState("");
      const imageInputRef = useRef<HTMLInputElement>(null);
      const [media, setMedia] = useState("");
      const videoInputRef = useRef<HTMLInputElement>(null);
      const handlePost = () => {
           const data = {           
-            _id: `testId${Math.floor(Math.random() * 100)}`,
-            author: {
-               id: "12d999hj",
-               name: "John Taiwo",
-               position: "Intern at Google",
-               image: "/assets/images/user2.svg",
-             },
+          //   _id: `testId${Math.floor(Math.random() * 100)}`,
+            authorId: "63b030c13a37647b2079a2ce",
             content: newPost,
-            createdAt: Date(),
+            createdAt: Date().toString(),
             image: media,
             likes: [],
             comments: [],
@@ -55,11 +50,11 @@ export const NewPost = ({addPost}:{addPost : (post:IPost) => void}) =>{
                          name="user_image"
                          ref={imageInputRef}/>
                          </span>
-                         <span><IoVideocamOutline size={30}/></span>
+                         <span className='disabled'><IoVideocamOutline size={30}/></span>
                     </div>
 
                     <div className={styles.buttonContainer}>
-                         <button onClick={() => handlePost()}>Post</button>
+                         <button disabled={newPost.length<=0} onClick={() => handlePost()}>Post</button>
                     </div>
                </div>
           </div>

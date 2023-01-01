@@ -3,9 +3,22 @@ import { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css';
 import { AppHeader } from '../components/header';
 import { useSession, signIn, signOut } from "next-auth/react"
+import { useMutation } from 'react-query';
+import {LocationLookup} from '../services/external/ip';
 
 const Help: NextPage = () => {
-  const { data: session } = useSession()
+  const IpMutation = useMutation(LocationLookup);
+  const { data: session } = useSession();
+  const [ipdata, setIpdata] = useState<any>({});
+
+  useEffect(()=>{
+    IpMutation.mutate()
+  },[])
+  useEffect(() =>{
+    console.log(IpMutation.data);
+    setIpdata(IpMutation.data);
+  },[IpMutation.isSuccess])
+
   if (session) {
     return (
       <>
@@ -21,6 +34,10 @@ const Help: NextPage = () => {
           Not signed in <br />
           <button onClick={() => signIn()}>Sign in</button>
         </>
+        {(ipdata) && 
+        <p>Your ip address is {ipdata.ip}, from {ipdata.city}, {ipdata.country}</p>
+}
+
       </div>
     </>
   );
