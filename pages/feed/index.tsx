@@ -52,7 +52,7 @@ const Feed = ({isMobile}:FeedProps) => {
       postsMutation.mutate();
       setToastData({
         message: "Post addedd successfully",
-        type: toastData.type
+        type: 'success'
       });
       setShowToast(true);
     }else{

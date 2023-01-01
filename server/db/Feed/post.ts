@@ -5,8 +5,15 @@ import {connect, collections} from '../config.db'
 const client = connect();
 
 export interface IComment{
-     _id?: ObjectId;
+     _id: ObjectId;
      authorId: string;
+     content: string;
+     createdAt: string;
+     likes: string[]; //emails array
+}
+export interface ICreateComment{
+     _id?: ObjectId;
+     authorId: string | ObjectId;
      content: string;
      createdAt: string;
      likes: string[]; //emails array
@@ -122,8 +129,11 @@ export async function unLike(id: string, likeId: string){
      return null;
 }
 
-export async function addComment(id: string){
-     const response = await client.collection(collections.post).findOne({ _id : new ObjectId(id) });
+export async function addComment(id: string, data:ICreateComment){
+     const response = await client.collection(collections.post).updateOne(
+          { _id: new ObjectId(id) },
+          { $push: { comments:  data} }
+       )
      if(response) return JSON.parse(JSON.stringify(response));
      return null;
 }

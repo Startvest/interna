@@ -9,7 +9,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
      }
      if (req.method === 'GET') {
           const id = req.query.id as string;
-          console.log(id);
           const posts = await postService.getPost(id);
           return res.status(200).json(posts);
      }

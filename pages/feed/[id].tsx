@@ -19,9 +19,10 @@ import { LoadingIcon } from '../../components/loadScreen';
 import { ShareModal } from '../../components/Modal/ShareModal';
 import styles from '../../components/Post/post.module.scss';
 import { Toolbar } from '../../components/Toolbar';
-import { IComment, IPost } from '../../server/db/Feed';
+import { ICreateComment, IPost } from '../../server/db/Feed';
 import { getDevice } from '../../server/getDevice';
-import { getPostbyId } from '../../services/feed';
+import { getPostbyId, addComment, likePost, unlikePost } from '../../services/feed';
+import { Itoast, Toast } from '../../components/toast';
 
 type PostProps = {
      isMobile: boolean,
@@ -33,9 +34,17 @@ export const PostDetail: React.FC<PostProps> = ({isMobile}) => {
   const router = useRouter();
   const [shareModal, setShareModal] = useState(false);
   const [noLikes, setNoLikes] = useState(0);
+  const [showToast, setShowToast] = useState(false);
+  const [toastData, setToastData] = useState<Itoast>({
+    message: "", 
+    type: 'primary'
+  })
+
   let heartIcon = liked ? <IoHeart size={25} /> : <IoHeartOutline size={25} />;
 
   const postMutation = useMutation(getPostbyId);
+  const commentMutation = useMutation(addComment);
+
   const sharePost = () => {
     if (!currentPost) return;
 
@@ -68,19 +77,35 @@ export const PostDetail: React.FC<PostProps> = ({isMobile}) => {
     }
   }, [postMutation.isError, postMutation.isSuccess])
 
-  const handleLike = () =>{
+  const handleLike = async () =>{
     setLiked(!liked);
-    (liked) ? setNoLikes(noLikes-1) : setNoLikes(noLikes+1);
-  }
-
-  const addComment = (data: IComment) =>{
-    console.log(data);
-    if(currentPost){
-      const post = currentPost; 
-      post.comments = [...post.comments, data];
-      setPost(post);
+    if (liked) {
+      setNoLikes(noLikes-1);
+      await unlikePost({id: id as string, likeId: "63b030c13a37647b2079a2ce"});
+    } else{
+      setNoLikes(noLikes+1);
+      await likePost({id: id as string, likeId: "63b030c13a37647b2079a2ce"});
     }
   }
+
+  const addcomment = async (data: ICreateComment) =>{
+    console.log(data);
+    // if(currentPost){
+    //   const post = currentPost; 
+    //   post.comments = [...post.comments, data];
+    //   setPost(post);
+    // }
+    commentMutation.mutateAsync({postId: id as string, comment:data});
+  }
+
+  // useEffect(() =>{
+  //   setToastData({
+  //     message: "Comment addedd successfully",
+  //     type: 'success'
+  //   });
+  //   setShowToast(true);
+  //   postMutation.mutate(id as string);  
+  // },[commentMutation, commentMutation.isSuccess]);
 
   const likeComment = (id:string) =>{
     console.log(`Comment ${id} liked`)
@@ -88,6 +113,7 @@ export const PostDetail: React.FC<PostProps> = ({isMobile}) => {
   return (
     <>
     <AppHeader pageName={'Feed | Interna'} />
+    {showToast && <Toast data={toastData} setToast={setShowToast} position='top-right'/>}
     {postMutation.isLoading && <LoadingIcon size="35"/>}
     {currentPost && shareModal && <ShareModal isOpen={shareModal} closeModal={() => setShareModal(!shareModal)} postId={currentPost._id?.toString()}/>}
     {postMutation.isSuccess && !currentPost && (
@@ -157,6 +183,7 @@ export const PostDetail: React.FC<PostProps> = ({isMobile}) => {
           <div className={styles.comments}>
             <span>Comments</span>
             <CommentList 
+            addComment={addcomment}
             comments={currentPost.comments} 
             likeComment={likeComment} />
           </div>

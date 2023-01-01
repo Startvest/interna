@@ -2,18 +2,13 @@ import { IComment } from '../../services/enums/types';
 import styles from './comment.module.scss';
 import {Avatar} from '../Avatar';
 import {useState} from 'react';
+import { ICreateComment } from '../../server/db/Feed';
 
-export const NewComment = ({addComment}:{addComment:Function}) => {
+export const NewComment = ({addComment}:{addComment:(data: ICreateComment)=>void}) => {
   const [comment, setComment] = useState("");
   const handleComment = () => {
-    const data = {
-      _id: `testId${Math.floor(Math.random() * 100)}`,
-      author: {
-        id: "12d999hj",
-        name: "John Taiwo",
-        position: "Intern at Google",
-        image: "/assets/images/user2.svg",
-      },
+    const data:ICreateComment = {
+      authorId: "63b030c13a37647b2079a2ce",
       content: comment,
       createdAt: Date(),
       likes: []

@@ -55,7 +55,7 @@ export async function addProfile(data: ICreateProfile){
 
 
 export async function getProfileById(id: string){
-     const response = await client.collection(collections.profile).findOne({ id : id });
+     const response = await client.collection(collections.profile).findOne({ _id : new ObjectId(id) });
      if(response) return JSON.parse(JSON.stringify(response));
      return null;
 }
@@ -67,9 +67,7 @@ export async function getProfileByEmail(email: string){
 }
 
 export async function updateProfile(user : Partial<IProfile>){
-     const client = connect();
-
-     const response = await client.collection(collections.users).updateOne(
+     const response = await client.collection(collections.profile).updateOne(
           { id: user._id},      
                { $set: { 
                     ...user,

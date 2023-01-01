@@ -1,4 +1,4 @@
-import { ICreatePost, getPosts, getPostsComplete, getPostById, addPost, addLike, unLike } from "..";
+import { ICreatePost, getPosts, getPostsComplete, getPostById, addPost, addLike, unLike, ICreateComment, addComment } from "..";
 import { ObjectId } from 'mongodb';
 
 export const postService = {
@@ -21,5 +21,13 @@ export const postService = {
      },
      async unlikePost(id: string, likeId: string){
           return await unLike(id, likeId);
+     },
+     async addComment(postId:string, comment: ICreateComment){
+          const c : ICreateComment = {
+               ...comment,
+               createdAt: Date.toString(),
+               authorId: new ObjectId(comment.authorId)
+          }
+          return await addComment(postId, c);
      },
 }
