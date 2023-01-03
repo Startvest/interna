@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600&display=swap');
 
 *{
   -webkit-tap-highlight-color: rgba(0,0,0,0);
@@ -136,8 +137,15 @@ input[type=number] {
   color: white;
 }
 
+.outline-primary {
+  background: transparent;
+  color: var(--primary);
+  outline: 1.5px solid var(--primary);
+}
+
 .contrast {
-  background: var(--contrast)
+  background: var(--contrast);
+  color: var(--primary);
 }
 
 .swiper-pagination {
@@ -145,15 +153,18 @@ input[type=number] {
   top: 0%;
 }
 
+/*
 .swiper-pagination-bullet {
   width: 60px !important; 
   height: 10px !important;
   border-radius: 10px !important;
-}
+}*/
 
 /* Utility Classes for simple styling solutions */
 .flex { display: flex; }
 .items-center { align-items: center; }
+.items-start { align-items: start; }
+.items-end { align-items: end; }
 .justify-center { justify-content: center; }
 .justify-end { justify-content: flex-end; }
 .justify-start { justify-content: flex-start; }
@@ -166,6 +177,24 @@ input[type=number] {
 .font-large { font-size: 20px; }
 
 .rti--container{
-  --rti-border: var(--primary);
-  
+  --rti-border: var(--primary) !important;
+}
+
+.tag-input {
+  border: 0 !important;
+}
+
+.tag {
+  border-radius: 8px !important;
+  color: white !important;
+  background: var(--primary) !important;
+  padding: 2px 4px !important;
+}
+
+.tag button {
+  border-radius: 50% !important;
+  background: white !important;
+  padding: 0;
+  margin-left: .5rem;
+  aspect-ratio: 1;
 }
