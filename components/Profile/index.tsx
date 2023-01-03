@@ -91,6 +91,14 @@ export const Profile = ({profileData}:{ profileData: IProfile}) =>{
                   </span>
   
               </div>
+
+              {connections.length > 0 &&
+               <div className={`${styles.detailsRow} ${styles.light}`}>
+                    <span>
+                         {connections.length} connections
+                    </span>
+               </div>
+              }
           </section>
           </section>
   
