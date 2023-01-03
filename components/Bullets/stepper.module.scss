@@ -1,0 +1,22 @@
+.bullet {
+    width: 60px; 
+    height: 10px;
+    border-radius: 10px;
+    background-color: #cecece;
+}
+
+[data-theme="dark"] {
+    .bullet {
+        background-color: #333;
+    }
+}
+
+.active {
+    background-color: var(--primary) !important;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+}
