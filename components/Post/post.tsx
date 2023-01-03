@@ -14,6 +14,7 @@ import styles from './post.module.scss';
 import {ICompletePost} from '../../server/db/Feed';
 import { ShareModal } from '../../components/Modal/ShareModal';
 import {likePost, unlikePost} from '../../services/feed';
+import Link from 'next/link';
 
 type PostProps =  {
     postData: ICompletePost;
@@ -52,6 +53,7 @@ export const Post: React.FC<PostProps> = ({postData, isMobile}) => {
     <div className={styles.post} >
         {shareModal && <ShareModal isOpen={shareModal} closeModal={() => setShareModal(!shareModal)} postId={_id.toString()}/>}
       <div onClick={() => router.push(`/feed/${_id.toString()}`)}>
+      <Link href={`/profile/${author[0].username}`} >
       <div className={styles.userInfo}>
         <Avatar size="small" src={author[0].image} />
         <div>
@@ -63,6 +65,7 @@ export const Post: React.FC<PostProps> = ({postData, isMobile}) => {
           <p>{author[0].username}</p>
         </div>
       </div>
+      </Link>
 
       <div className={styles.postContent}>
         {content.length < 300 && <span>{content}</span>}

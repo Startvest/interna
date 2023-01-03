@@ -8,8 +8,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(401).json({"error": "You are not allowed to view this page"});
   }
   if (req.method === 'GET') {
-          const id = req.query.id as string;
-          const posts = await profileService.getProfileById(id);
+          const username = req.query.username as string;
+          const posts = await profileService.getProfileByUsername(username);
           return res.status(200).json(posts);
      }
     else {

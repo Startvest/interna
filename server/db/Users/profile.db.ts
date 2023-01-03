@@ -10,6 +10,7 @@ export interface IProfile{
      email: string;
      gender: "male" | "female" | "none";
      username: string;
+     banner: string;
      image: string;
      headline: string;
      skills: string[];
@@ -22,7 +23,8 @@ export interface IProfile{
           current: boolean
      }[];
      last_login: string;
-     connections: string[];
+     location: string;
+     connections: string[]; //_id
      createdAt: string;
 }
 
@@ -30,6 +32,7 @@ export interface ICreateProfile{
      _id?: ObjectId;
      name: string;
      email: string;
+     banner: string;
      image: string;
      gender: "male" | "female" | "none";
      username: string;
@@ -44,6 +47,7 @@ export interface ICreateProfile{
           current: boolean
      }[];
      last_login: string;
+     location: string;
      connections: string[];
      createdAt: string;
 }
@@ -56,6 +60,12 @@ export async function addProfile(data: ICreateProfile){
 
 export async function getProfileById(id: string){
      const response = await client.collection(collections.profile).findOne({ _id : new ObjectId(id) });
+     if(response) return JSON.parse(JSON.stringify(response));
+     return null;
+}
+
+export async function getProfileByUsername(username: string){
+     const response = await client.collection(collections.profile).findOne({ username : username });
      if(response) return JSON.parse(JSON.stringify(response));
      return null;
 }

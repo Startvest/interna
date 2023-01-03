@@ -1,4 +1,4 @@
-import { ICreateProfile, addProfile, getProfileByEmail, getProfileById } from "..";
+import { ICreateProfile, addProfile, getProfileByEmail, getProfileById, getProfileByUsername } from "..";
 
 
 export const profileService = {
@@ -12,6 +12,10 @@ export const profileService = {
      },
      async getProfileById(id : string){
           const c = await getProfileById(id);
+          return c;
+     },
+     async getProfileByUsername(username : string){
+          const c = await getProfileByUsername(username);
           return c;
      }
 }
