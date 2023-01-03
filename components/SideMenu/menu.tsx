@@ -31,8 +31,9 @@ export const SideMenu: React.FC<SideMenuProps> = ({ isOpen, hasBeenDismissed }) 
                 <div className={styles.profile}>
                     <Link href={'/profile/@hanif'}>{/*Get username from session */}
                         <Avatar src="/assets/images/user2.svg" />
-                        <h2>John Doe</h2>
                     </Link>
+                        <h2>John Doe</h2>
+                    
                 </div>
                 <div className={styles.links}>
                     <Link href={'/companies'}>

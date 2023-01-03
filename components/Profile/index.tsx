@@ -8,9 +8,10 @@ import {useState} from 'react';
 import { useRouter } from 'next/router'
 import { IProfile } from '../../server/db';
 import DisplayDate from '../DisplayDate';
-const router = useRouter();
 
-export const ProfileContainer = ({profileData}:{ profileData: IProfile}) =>{
+
+export const Profile = ({profileData}:{ profileData: IProfile}) =>{
+     const router = useRouter();
      const { _id, name, username, headline, link, banner, image, connections, position, location, createdAt} = profileData;
      const isLoggedinUser = username === "@hanif"; //Use session to get if it is the logged in users account
 
