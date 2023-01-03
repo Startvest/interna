@@ -1,21 +1,32 @@
 import {useRef, useState} from 'react';
 import styles from './login.module.scss';
-import {Input, TagInput} from '../../components/Input';
+import {Input, TagInput, Textarea} from '../../components/Input';
 import { TagsInput } from 'react-tag-input-component';
+import { UseFormRegister, UseFormSetValue } from 'react-hook-form';
+import { CompleteSignup } from '../../types';
 
-export const WorkExperienceForm = () =>{
+interface WorkExperienceFormProps {
+     formRegister: UseFormRegister<CompleteSignup>,
+     setFormValue: UseFormSetValue<CompleteSignup>
+}
+export const WorkExperienceForm: React.FC<WorkExperienceFormProps> = ({ formRegister, setFormValue }) =>{
+     
      return(
           <section className={styles.formContainer}>
                <h2>Experience</h2>
-               <Input
+               <Textarea
                     type="text"
                     name="headline"
                     onChange={(e: any) => console.log(e.target.value)}
                     placeholder="Write a short description of yourself"
                     labelName={'Your headline'}
+                    reg={formRegister('headline')}
                />
 
-               <TagsInput
+               <TagInput
+                    labelName="Skills and Interests"
+                    name="skills"
+                    onChange={(values) => setFormValue('skills', values)}
                />
 
                <Input
@@ -24,6 +35,7 @@ export const WorkExperienceForm = () =>{
                     onChange={(e: any) => console.log(e.target.value)}
                     placeholder="www.portfolio.com"
                     labelName={'Link'}
+                    reg={formRegister('link')}
                />
           </section>
      )
