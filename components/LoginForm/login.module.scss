@@ -7,6 +7,8 @@
 
 .formContainer{
      padding: 0 10px;
+
+     h2 { font-size: large; }
 }
 
 .swiperSlide {
@@ -15,6 +17,8 @@
           width: 25%;
           height: 35px;
           border-radius: 5px;
+          font-weight: 600;
+          font-family: 'Montserrat', sans-serif;
      }
 
      .buttonContainer {
@@ -22,7 +26,64 @@
           justify-content: space-between;
           align-items: center;
           margin: 1rem 0;
+          padding: 0 10px;
      }
+}
+
+.input {
+     select, input {
+          width: 100% !important;
+          box-sizing: border-box;
+     }
+}
+
+.present{
+     font-size: 14px;
+}
+
+.gender {
+     text-align: left;
+     font-family: 'Nunito Sans',Verdana, Geneva, Tahoma, sans-serif;
+     font-size: 16px;
+}
+
+[data-theme="light"]{
+     .gender, .present{
+          color: var(--primary);
+     }
+}
+
+.radioButtonContainer {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     margin: 8px 0;
+
+     input[type="radio"] {
+          -webkit-appearance: none;
+          appearance: none;
+          margin: 0;
+          padding: 0 15px;
+          height: 28px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 600;
+          font-family: 'Montserrat', sans-serif;
+
+          &:checked {
+               background-color: var(--primary);
+               color: white;
+          }
+     }
+     
+     input::after {
+          content: attr(title);
+     }
+}
+
+.smallInput {
+     width: 47% !important;
 }
 
 .container{
@@ -144,10 +205,15 @@
 }
 .pickImage{
      height: 70px;
-     width: 70px;
+     width: 72px;
      border-radius: 50%;
      border: 2px solid var(--primary);
      object-fit: fill; 
+}
+
+.profileInput {
+     width: 100% !important;
+     box-sizing: border-box;
 }
 
 .hidden{
