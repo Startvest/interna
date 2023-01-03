@@ -1,5 +1,4 @@
 import styles from './sidemenu.module.scss';
-
 import { IoBusiness, IoColorWand, IoDocumentsOutline, IoSettings } from 'react-icons/io5'
 import Link from 'next/link';
 import { Avatar } from '../Avatar';
@@ -30,8 +29,12 @@ export const SideMenu: React.FC<SideMenuProps> = ({ isOpen, hasBeenDismissed }) 
         <div className={styles.backdrop}>
             <section>
                 <div className={styles.profile}>
-                    <Avatar src="/assets/images/user2.svg" />
-                    <h2>John Doe</h2>
+                <Avatar src="/assets/images/user2.svg" />
+                    <Link href={'/profile/@hanif'}>{/*Get username from session */}
+                        <h2 style={{cursor: 'pointer'}}>John Doe</h2>
+                    </Link>
+                       
+                    
                 </div>
                 <div className={styles.links}>
                     <Link href={'/companies'}>
