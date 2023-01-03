@@ -29,10 +29,11 @@ export const SideMenu: React.FC<SideMenuProps> = ({ isOpen, hasBeenDismissed }) 
         <div className={styles.backdrop}>
             <section>
                 <div className={styles.profile}>
+                <Avatar src="/assets/images/user2.svg" />
                     <Link href={'/profile/@hanif'}>{/*Get username from session */}
-                        <Avatar src="/assets/images/user2.svg" />
+                        <h2 style={{cursor: 'pointer'}}>John Doe</h2>
                     </Link>
-                        <h2>John Doe</h2>
+                       
                     
                 </div>
                 <div className={styles.links}>
