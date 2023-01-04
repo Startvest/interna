@@ -33,7 +33,7 @@ const ProfilePage: React.FC<ProfileProps> = ({isMobile}) => {
           setProfile(profileMutation.data);
           postsMutation.mutate()
         }
-        
+
       }, [profileMutation.isError, profileMutation.isSuccess])
 
     useEffect(() => {
@@ -44,7 +44,7 @@ const ProfilePage: React.FC<ProfileProps> = ({isMobile}) => {
       }, [postsMutation.isError, postsMutation.isSuccess])
     return(
     <main>
-        <Header pageName={"John Doe's Profile"}/>
+        <Header pageName={`${(profile) ? profile.name: ''} Profile`}/>
         {profileMutation.isLoading && <LoadingIcon size="35"/>}
         {profileMutation.isSuccess && profile && <Profile profileData={profile}/>}
         <section className={styles.userPosts}>

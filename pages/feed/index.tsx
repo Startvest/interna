@@ -66,6 +66,9 @@ const Feed = ({isMobile}:FeedProps) => {
       <NewPost addPost={addPostHandler}/>
       {showToast && <Toast data={toastData} setToast={setShowToast} position='top-right'/>}
       {postsMutation.isLoading && <LoadingIcon size="35"/>}
+      {postsMutation.isSuccess && posts.length == 0 && (
+          <div>Sorry no posts to show...</div>
+        )}
       {posts && posts.length > 0 &&
         <div>
           {posts.map((post) => (
@@ -73,7 +76,6 @@ const Feed = ({isMobile}:FeedProps) => {
           ))}
         </div>
       }
-      {posts.length <= 0 && <div>Sorry no posts to show...</div>}
       <NavBar />
     </>
   );
