@@ -114,7 +114,7 @@ export async function getPostById(id: string){
 export async function addLike(id: string, likeId: string){
      const response = await client.collection(collections.post).updateOne(
           { _id: new ObjectId(id) },
-          { $push: { likes:  likeId} }
+          { $addToSet: { likes:  likeId} }
        )
      if(response) return JSON.parse(JSON.stringify(response));
      return null;
@@ -132,7 +132,8 @@ export async function unLike(id: string, likeId: string){
 export async function addComment(id: string, data:ICreateComment){
      const response = await client.collection(collections.post).updateOne(
           { _id: new ObjectId(id) },
-          { $push: { comments:  data} }
+          { $push: { comments:  data} },
+          // {returnNewDocument : true }
        )
      if(response) return JSON.parse(JSON.stringify(response));
      return null;

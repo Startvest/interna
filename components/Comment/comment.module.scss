@@ -85,6 +85,15 @@ $postDark: rgba(77, 77, 77, 0.2);
           font-weight: 500;
           font-size: 16px;
      }
+
+     button:not(:disabled):hover{
+          scale: 1.05; //Scale not supported by Chrome, Chrome on Android. Edge, Opera and Samsumg Internet
+          transform: scale(1.05);
+      }
+      button:disabled, button[disabled]{
+          opacity: .7;
+          cursor: default;
+        }
 }
 
 [data-theme="dark"] {

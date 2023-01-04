@@ -13,8 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           const commentbody = req.body.comment as ICreateComment;
           try{
                const f = await postService.addComment(postId, commentbody);
-               console.log(f);
-               return res.status(200).json("Comment added successfully");
+               return res.status(200).json(f);
           }catch(e){
                return res.status(500).json(e);
           }
