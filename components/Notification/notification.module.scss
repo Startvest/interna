@@ -17,6 +17,23 @@ $bgdark: rgba(77, 77, 77, 0.5);
     margin: 2rem 0;
     text-align: left;
 }
+
+.emptyNotification {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1em;
+
+    h3 {
+        font-size: 15px;
+    }
+
+    img {
+        width: 60%;
+    }
+}
 .notification{
     width: 30%;
     height: max-content;
@@ -49,13 +66,13 @@ $bgdark: rgba(77, 77, 77, 0.5);
 }
 
 @media only screen and (max-width: 1000px) and (min-width: 701px) {
-    .notification{
+    .emptyNotification, .notification{
         width: 60%;
     }
 }
 
 @media only screen and (max-width: 700px) {
-    .notification{
+    .notification, .emptyNotification{
         width: 100%;
     }
 }

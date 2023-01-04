@@ -17,6 +17,8 @@
   --foreground: #21295c;
   --altDark:   #1E1E1E;
   --dark-text: #101828;
+
+  --sidebar-width: 320px;
 }
 
 [data-theme='dark'] {
@@ -146,6 +148,10 @@ input[type=number] {
 .contrast {
   background: var(--contrast);
   color: var(--primary);
+}
+
+.sidemenu-content {
+  margin-left: var(--sidebar-width)
 }
 
 .swiper-pagination {
