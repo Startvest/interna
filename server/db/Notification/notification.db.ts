@@ -13,7 +13,7 @@ export interface INotification {
      read: boolean;
 }
 
-export async function addNotification(data: INotification){
+export async function addNotification(data: Partial<Omit<INotification, "_id">>){
      const response = await client.collection(collections.notification).insertOne(data);
      return response;
 }
@@ -26,7 +26,7 @@ export async function getReadNotification(id: string){
 }
 
 export async function getUnreadNotification(userId: string){
-     const response = await client.collection(collections.notification).findOne({ authorId : new ObjectId(userId), read:false});
+     const response = await client.collection(collections.notification).find({ authorId : new ObjectId(userId), read:false}).toArray();
      if(response) return JSON.parse(JSON.stringify(response));
      return [];
 }

@@ -36,7 +36,7 @@ const NotificationsPage: React.FC = () => {
         {notifications &&
           notifications.length > 0 &&
           notifications.map((notification) => (
-            <Notification data={notification} />
+            <Notification key={notification._id.toString()} data={notification} />
           ))}
 
         {/*
