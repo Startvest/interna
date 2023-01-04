@@ -9,16 +9,6 @@ import { INotification } from '../../server/db/Notification';
 import { getUnreadNotification } from '../../services/notification';
 
 const NotificationsPage: React.FC = () => {
-    const notification = {
-        title: "You just gained a new follower!",
-        content: "Fortune Alebiosu started following you.",
-        dateCreated: "Tue, 11 Oct 2022 15:43:35 GMT"
-    }
-
-    const [notifications, setNotifications] = useState([
-        notification, notification, notification
-    ])
-
   const [notifications, setNotifications] = useState<INotification[]>([]);
   const notificationMutation = useMutation(getUnreadNotification);
 
@@ -44,7 +34,7 @@ const NotificationsPage: React.FC = () => {
           <p>You have no unread notifications</p>
         )}
         {notifications &&
-          notifications.length > 0 &&
+          notifications.length == 0 ? <EmptyNotification/> :
           notifications.map((notification) => (
             <Notification key={notification._id.toString()} data={notification} />
           ))}
@@ -66,5 +56,12 @@ const NotificationsPage: React.FC = () => {
     </main>
   );
 };
+
+const EmptyNotification: React.FC = () => (
+    <div className={styles.emptyNotification}>
+        <img src="/assets/notification.svg" alt='empty-notification'/>
+        <h3>Oops, looks like you are a silent mover....</h3>
+    </div>
+)
 
 export default NotificationsPage;
