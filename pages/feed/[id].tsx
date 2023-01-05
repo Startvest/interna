@@ -109,7 +109,7 @@ export const PostDetail: React.FC<PostProps> = ({ isMobile }) => {
     console.log(commentMutation.data);
     setComments(commentMutation.data);
     // postMutation.mutate(id as string);
-  }, [postMutation.isSuccess, commentMutation.isSuccess]);
+  }, [commentMutation.isSuccess]);
 
   const likeComment = (id: string) => {
     console.log(`Comment ${id} liked`);

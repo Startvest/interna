@@ -103,9 +103,9 @@ export const ResumeForm: React.FC<ResumeFormProps> = ({ setFormValue, formRegist
                     <input checked={checked} onChange={(e) => setChecked(e.target.checked)} type="checkbox" name="present" id="present"/>
                     <label htmlFor="present">I currently work here</label>
                 </div>
-                <Button type='button' onClick={addWorkToResume}>
+                {/* <Button type='button' onClick={addWorkToResume}>
                     Add
-                </Button>
+                </Button> */}
           </section>
      )
 }
