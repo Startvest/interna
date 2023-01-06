@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState , useEffect} from 'react';
 import type { NextPage } from 'next';
 import { Header } from '../../components/header';
 import styles from '../../components/LoginForm/login.module.scss';
@@ -29,7 +29,6 @@ const CompleteSignup = ({isMobile}: FeedProps) => {
   const [swiper, setSwiper] = useState<SwiperType>();
   const [activeTab, setActiveTab] = useState<number>(0);
 
-
   const goNext = (e:any) => {
     e.preventDefault();
     swiper?.slideNext();
@@ -43,7 +42,7 @@ const CompleteSignup = ({isMobile}: FeedProps) => {
   const { register, setValue, getValues } = useForm<CompleteSignup>({
     defaultValues: {
       name: "",
-      username: "",
+      username: "@",
       email: "",
       gender: undefined,
       headline: "",
@@ -52,6 +51,8 @@ const CompleteSignup = ({isMobile}: FeedProps) => {
       resume: []
     }
   })
+
+
 
   return(
     <div className={styles.container}>

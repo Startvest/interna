@@ -1,8 +1,11 @@
-import {useRef, useState} from 'react';
+import {useRef, useState, useEffect} from 'react';
 import styles from './login.module.scss';
 import {Input} from '../../components/Input';
 import { UseFormRegister } from 'react-hook-form';
 import { CompleteSignup } from '../../types';
+import {useMutation} from 'react-query';
+import {getProfile} from '../../services/profile';
+
 
 interface ProfileFormProps {
      image: string;
@@ -12,12 +15,28 @@ interface ProfileFormProps {
 
 export const ProfileForm: React.FC<ProfileFormProps> = ({ formRegister, image, setImage }) =>{
      const imageInputRef = useRef<HTMLInputElement>(null);
-     
+     const profileMutation = useMutation(getProfile);
+     const [username, setUsername] = useState({text: '', good: false});
+
      const uploadImage = (e:any) => {
           e.preventDefault(); 
           imageInputRef.current?.click();
      }
-     
+     const checkUsername = (s:string) =>{
+          profileMutation.mutate(s);
+     }
+
+     useEffect(() => {
+          if(profileMutation.isSuccess){
+            console.log(profileMutation.data);
+            if(profileMutation.data){
+              setUsername({text: "Username exists", good:false})
+            }else{
+               setUsername({text: "Username Good", good:true})
+            }
+          }
+        }, [profileMutation.isError, profileMutation.isSuccess])
+
      return(
           <section className={styles.formContainer}>
                <h2>Personal Information</h2>
@@ -55,11 +74,12 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formRegister, image, s
                     inputClassName={styles.profileInput}
                     type="text"
                     name="username"
-                    onChange={(e: any) => console.log(e.target.value)}
+                    onChange={(e: any) => {console.log(e.target.value); checkUsername(e.target.value)}}
                     placeholder="@username"
                     labelName={'Username'}
                     reg={formRegister('username')}
                />
+               <span className={styles.subtext}>{(profileMutation.isLoading) ? 'Loading...' : <span className={(username.good) ? styles.subtext : styles.errorText}>{username.text}</span>}</span>
 
                <Input
                     inputClassName={styles.profileInput}
@@ -69,6 +89,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formRegister, image, s
                     placeholder="example@getinterna.com"
                     labelName={'Email Address'}
                     reg={formRegister('email')}
+                    isDisabled
                />
 
                <div className={styles.gender}>
