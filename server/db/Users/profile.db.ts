@@ -40,15 +40,15 @@ export interface ICreateProfile{
      skills: string[];
      link: string;
      position: {
-          type: string, 
+          type: 'student'|'intern', 
           company_name: string,
           start: string,
           end: string
           current: boolean
      }[];
-     last_login: string;
+     last_login?: string;
      location: string;
-     connections: string[];
+     connections?: string[];
      createdAt: string;
 }
 

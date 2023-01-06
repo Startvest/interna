@@ -16,6 +16,7 @@ import { Bullets } from '../../components/Bullets';
 import Styles from "./complete-signup.module.scss";
 import { useForm } from 'react-hook-form';
 import { CompleteSignup } from '../../types';
+import { ICreateProfile } from '../../server/db';
 
 interface FeedProps{
   isMobile: boolean;
@@ -39,16 +40,16 @@ const CompleteSignup = ({isMobile}: FeedProps) => {
     swiper?.slidePrev();
   }
 
-  const { register, setValue, getValues } = useForm<CompleteSignup>({
+  const { register, setValue, getValues } = useForm<ICreateProfile>({
     defaultValues: {
       name: "",
       username: "@",
       email: "",
-      gender: undefined,
+      gender: "none",
       headline: "",
       skills: [],
       link: "",
-      resume: []
+      position: []
     }
   })
 
