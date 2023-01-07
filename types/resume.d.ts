@@ -1,6 +1,7 @@
 export interface Resume {
+    type: 'student'|'intern', 
     company_name: string,
-    position: 'student'|'intern',
-    start_date: string,
-    end_date: string,
+    start: string,
+    end: string
+    current: boolean
 }

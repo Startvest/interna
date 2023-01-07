@@ -4,10 +4,11 @@ import {Input, TagInput, Textarea} from '../../components/Input';
 import { TagsInput } from 'react-tag-input-component';
 import { UseFormRegister, UseFormSetValue } from 'react-hook-form';
 import { CompleteSignup } from '../../types';
+import { ICreateProfile } from '../../server/db';
 
 interface WorkExperienceFormProps {
-     formRegister: UseFormRegister<CompleteSignup>,
-     setFormValue: UseFormSetValue<CompleteSignup>
+     formRegister: UseFormRegister<ICreateProfile>,
+     setFormValue: UseFormSetValue<ICreateProfile>
 }
 export const WorkExperienceForm: React.FC<WorkExperienceFormProps> = ({ formRegister, setFormValue }) =>{
      

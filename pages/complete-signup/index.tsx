@@ -15,7 +15,7 @@ import { ResumeForm } from '../../components/LoginForm/ResumeForm';
 import { Bullets } from '../../components/Bullets';
 import Styles from "./complete-signup.module.scss";
 import { useForm } from 'react-hook-form';
-import { CompleteSignup } from '../../types';
+// import { CompleteSignup } from '../../types';
 import { ICreateProfile } from '../../server/db';
 
 interface FeedProps{
@@ -32,6 +32,9 @@ const CompleteSignup = ({isMobile}: FeedProps) => {
 
   const goNext = (e:any) => {
     e.preventDefault();
+    trigger();
+    const c =  Object.keys(errors).length === 0
+    console.log(c);
     swiper?.slideNext();
   }
 
@@ -40,7 +43,7 @@ const CompleteSignup = ({isMobile}: FeedProps) => {
     swiper?.slidePrev();
   }
 
-  const { register, setValue, getValues } = useForm<ICreateProfile>({
+  const { register, trigger, setValue, formState: { errors }, getValues } = useForm<ICreateProfile>({
     defaultValues: {
       name: "",
       username: "@",
@@ -50,7 +53,8 @@ const CompleteSignup = ({isMobile}: FeedProps) => {
       skills: [],
       link: "",
       position: []
-    }
+    },
+    mode:"onChange"    
   })
 
 
@@ -59,15 +63,6 @@ const CompleteSignup = ({isMobile}: FeedProps) => {
     <div className={styles.container}>
       <Header pageName='Login to interna' head/>
       <ThemeIcon/>
-      {/* 
-        <img className={styles.headImage} src='/assets/illustrations/welcome.svg'/> 
-        <h1 className={styles.header}>Complete your Profile</h1>
-        <div className={styles.subtext}>
-          We would like to know more about you!
-        </div>
-        
-        */
-      }
       <form 
         method='POST'
         onSubmit={(e:any) => {
@@ -90,7 +85,7 @@ const CompleteSignup = ({isMobile}: FeedProps) => {
             allowTouchMove={false}
           >
             <SwiperSlide className={styles.swiperSlide}>
-              <ProfileForm formRegister={register} image={image} setImage={setImage}/>
+              <ProfileForm formRegister={register} errors={errors} image={image} setImage={setImage}/>
               
               <div className={`${Styles.container} flex items-center justify-end`}>
                 <button 

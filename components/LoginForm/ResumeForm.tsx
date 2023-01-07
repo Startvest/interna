@@ -4,10 +4,11 @@ import { useEffect, useState } from 'react';
 import { UseFormRegister, UseFormSetValue, useForm } from 'react-hook-form';
 import { CompleteSignup, Resume } from '../../types';
 import { Button } from '../Button';
+import { ICreateProfile } from '../../server/db';
 
 interface ResumeFormProps {
-    formRegister: UseFormRegister<CompleteSignup>,
-    setFormValue: UseFormSetValue<CompleteSignup>
+    formRegister: UseFormRegister<ICreateProfile>,
+    setFormValue: UseFormSetValue<ICreateProfile>
 }
 
 type Postion = 'intern'|'student';
@@ -20,18 +21,19 @@ export const ResumeForm: React.FC<ResumeFormProps> = ({ setFormValue, formRegist
     const { register, getValues, reset, setValue, formState } = useForm<Resume>({
         defaultValues: {
             company_name: "",
-            position: "intern",
-            start_date: "",
-            end_date: ""
+            type: "intern",
+            start: "",
+            end: "",
+            current: checked,
         }
     })
 
     const addWorkToResume = () => {
         const workExperience = getValues();
-        checked ? workExperience.end_date = 'present' : workExperience.end_date;
-        const { company_name, start_date, end_date } = workExperience;
+        checked ? workExperience.end = 'present' : workExperience.end;
+        const { company_name, start, end } = workExperience;
         
-        if(!company_name || !start_date || !end_date) return;
+        if(!company_name || !start || !end) return;
 
         setExperiences((prev) => ([...prev, workExperience]));
         reset()
@@ -39,7 +41,7 @@ export const ResumeForm: React.FC<ResumeFormProps> = ({ setFormValue, formRegist
     }
 
     useEffect(() => {
-        setFormValue('resume', experiences)
+        setFormValue('position', experiences)
     }, [experiences])
     
     return(
@@ -66,7 +68,7 @@ export const ResumeForm: React.FC<ResumeFormProps> = ({ setFormValue, formRegist
                     name="position"
                     onChange={(e) => {
                         const value = e.target.value as Postion;
-                        setValue('position', value)
+                        setValue('type', value)
                     }}
                     placeholder="Were you a student or an Intern"
                     labelName={'Postion'}
@@ -81,21 +83,21 @@ export const ResumeForm: React.FC<ResumeFormProps> = ({ setFormValue, formRegist
                         type="date"
                         name="start_date"
                         onChange={(e: any) => console.log(e.target.value)}
-                        placeholder="www.portfolio.com"
+                        // placeholder="www.portfolio.com"
                         labelName={'Start Date'}
                         className={styles.smallInput}
-                        reg={register('start_date', {required: true})}
+                        reg={register('start', {required: true})}
                     />
 
                     <Input
                         type="date"
                         name="end_date"
                         onChange={(e: any) => console.log(e.target.value)}
-                        placeholder="www.portfolio.com"
+                        // placeholder="www.portfolio.com"
                         labelName={'End Date'}
                         className={styles.smallInput}
                         isDisabled={checked}
-                        reg={register('end_date', {required: true})}
+                        reg={register('end', {required: true})}
                     />
 
                 </div>

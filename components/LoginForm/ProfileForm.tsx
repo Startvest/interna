@@ -5,15 +5,17 @@ import { UseFormRegister } from 'react-hook-form';
 import { CompleteSignup } from '../../types';
 import {useMutation} from 'react-query';
 import {getProfile} from '../../services/profile';
+import { ICreateProfile } from '../../server/db';
 
 
 interface ProfileFormProps {
      image: string;
      setImage: Function;
-     formRegister: UseFormRegister<CompleteSignup>
+     formRegister: UseFormRegister<ICreateProfile>;
+     errors:  any
 }
 
-export const ProfileForm: React.FC<ProfileFormProps> = ({ formRegister, image, setImage }) =>{
+export const ProfileForm: React.FC<ProfileFormProps> = ({ formRegister, image, setImage, errors }) =>{
      const imageInputRef = useRef<HTMLInputElement>(null);
      const profileMutation = useMutation(getProfile);
      const [username, setUsername] = useState({text: '', good: false});
@@ -61,13 +63,16 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formRegister, image, s
                     />       
                </div>
                <Input
-                    reg={formRegister('name')}
+                    reg={formRegister('name', {
+                         required: `Full name is required`,
+                       })}
                     inputClassName={styles.profileInput}
                     type="text"
                     name="name"
                     onChange={(e: any) => console.log(e.target.value)}
                     placeholder="Enter your full name"
                     labelName={'Your full name'}
+                    error={errors.name?.message}
                />
 
                <Input
