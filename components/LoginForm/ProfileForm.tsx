@@ -1,21 +1,23 @@
 import {useRef, useState, useEffect} from 'react';
 import styles from './login.module.scss';
 import {Input} from '../../components/Input';
-import { UseFormRegister } from 'react-hook-form';
+import type { UseFormRegister } from 'react-hook-form';
 import { CompleteSignup } from '../../types';
 import {useMutation} from 'react-query';
 import {getProfile} from '../../services/profile';
 import { ICreateProfile } from '../../server/db';
+import { LoadingIcon } from '../loadScreen';
 
 
 interface ProfileFormProps {
      image: string;
      setImage: Function;
-     formRegister: UseFormRegister<ICreateProfile>;
-     errors:  any
+     formRegister: any//UseFormRegister<ICreateProfile>;
+     errors:  any,
+     handleInputSave: Function
 }
 
-export const ProfileForm: React.FC<ProfileFormProps> = ({ formRegister, image, setImage, errors }) =>{
+export const ProfileForm: React.FC<ProfileFormProps> = ({ formRegister, image, setImage, errors , handleInputSave}) =>{
      const imageInputRef = useRef<HTMLInputElement>(null);
      const profileMutation = useMutation(getProfile);
      const [username, setUsername] = useState({text: '', good: false});
@@ -56,6 +58,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formRegister, image, s
                               const fileList = e.target.files;
                               if (!fileList) return;
                               setImage(URL.createObjectURL(fileList[0]));
+                              handleInputSave()
                          }}
                          id="user_image"
                          name="user_image"
@@ -69,7 +72,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formRegister, image, s
                     inputClassName={styles.profileInput}
                     type="text"
                     name="name"
-                    onChange={(e: any) => console.log(e.target.value)}
+                    onChange={(e: any) => handleInputSave()}
                     placeholder="Enter your full name"
                     labelName={'Your full name'}
                     error={errors.name?.message}
@@ -79,12 +82,16 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formRegister, image, s
                     inputClassName={styles.profileInput}
                     type="text"
                     name="username"
-                    onChange={(e: any) => {console.log(e.target.value); checkUsername(e.target.value)}}
+                    onChange={(e: any) => {console.log(e.target.value); handleInputSave(); checkUsername(e.target.value)}}
                     placeholder="@username"
                     labelName={'Username'}
-                    reg={formRegister('username')}
+                    reg={formRegister('username', {
+                         required: "Username is required",
+                         pattern: '@'
+                    })}
+                    error={errors.username?.message}
                />
-               <span className={styles.subtext}>{(profileMutation.isLoading) ? 'Loading...' : <span className={(username.good) ? styles.subtext : styles.errorText}>{username.text}</span>}</span>
+               <p className={styles.subtext}>{(profileMutation.isLoading) ? <LoadingIcon size={"15"}/> : <span className={(username.good) ? styles.goodText : styles.errorText}>{username.text}</span>}</p>
 
                <Input
                     inputClassName={styles.profileInput}
@@ -105,18 +112,21 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formRegister, image, s
                               {...formRegister('gender', {required: true})} 
                               title='Female' type="radio" name="gender" 
                               value="female"
+                              onChange={() => handleInputSave()}
                          />
                          <input 
                               className='chip contrast' 
                               {...formRegister('gender', {required: true})} 
                               title='Male' type="radio" name="gender" 
                               value="male" 
+                              onChange={() => handleInputSave()}
                          />
                          <input 
                               className='chip contrast'
                               {...formRegister('gender', {required: true})}  
                               title='Prefer not to say' type="radio" name="gender" 
-                              value="unspecified" 
+                              value="none" 
+                              onChange={() => handleInputSave()}
                          />
                     </div>
                </div>

@@ -7,13 +7,14 @@ import { Button } from '../Button';
 import { ICreateProfile } from '../../server/db';
 
 interface ResumeFormProps {
-    formRegister: UseFormRegister<ICreateProfile>,
-    setFormValue: UseFormSetValue<ICreateProfile>
+    formRegister: any,//UseFormRegister<ICreateProfile>,
+    setFormValue: any,//UseFormSetValue<ICreateProfile>,
+    handleInputSave: Function
 }
 
 type Postion = 'intern'|'student';
 
-export const ResumeForm: React.FC<ResumeFormProps> = ({ setFormValue, formRegister }) =>{
+export const ResumeForm: React.FC<ResumeFormProps> = ({ setFormValue, formRegister, handleInputSave }) =>{
 
     const [checked, setChecked] = useState<boolean>(false);
     const [experiences, setExperiences] = useState<Resume[]>([]);
@@ -57,7 +58,7 @@ export const ResumeForm: React.FC<ResumeFormProps> = ({ setFormValue, formRegist
                <Input
                     type="text"
                     name="company_name"
-                    onChange={(e: any) => console.log(e.target.value)}
+                    onChange={(e: any) => handleInputSave()}
                     placeholder="Enter the company's name"
                     labelName={'Company Name'}
                     className={styles.input}
@@ -69,6 +70,7 @@ export const ResumeForm: React.FC<ResumeFormProps> = ({ setFormValue, formRegist
                     onChange={(e) => {
                         const value = e.target.value as Postion;
                         setValue('type', value)
+                        handleInputSave();
                     }}
                     placeholder="Were you a student or an Intern"
                     labelName={'Postion'}
@@ -82,7 +84,7 @@ export const ResumeForm: React.FC<ResumeFormProps> = ({ setFormValue, formRegist
                     <Input
                         type="date"
                         name="start_date"
-                        onChange={(e: any) => console.log(e.target.value)}
+                        onChange={(e: any) => handleInputSave()}
                         // placeholder="www.portfolio.com"
                         labelName={'Start Date'}
                         className={styles.smallInput}
@@ -92,7 +94,7 @@ export const ResumeForm: React.FC<ResumeFormProps> = ({ setFormValue, formRegist
                     <Input
                         type="date"
                         name="end_date"
-                        onChange={(e: any) => console.log(e.target.value)}
+                        onChange={(e: any) => handleInputSave()}
                         // placeholder="www.portfolio.com"
                         labelName={'End Date'}
                         className={styles.smallInput}

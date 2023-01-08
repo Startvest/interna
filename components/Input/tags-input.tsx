@@ -16,6 +16,7 @@ export const TagInput: React.FC<TagInputProps> = ({ name, labelName, className, 
                 {labelName}
             </label>
             <TagsInput
+                placeHolder='Type a skill and press enter'
                 value={value}
                 onChange={onChange}
                 classNames={{ input: 'tag-input', tag: 'tag' }}

@@ -32,7 +32,7 @@ export interface ICreateProfile{
      _id?: ObjectId;
      name: string;
      email: string;
-     banner: string;
+     banner?: string;
      image: string;
      gender: "male" | "female" | "none";
      username: string;

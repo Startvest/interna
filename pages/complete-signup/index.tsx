@@ -1,148 +1,194 @@
-import { useRef, useState , useEffect} from 'react';
-import type { NextPage } from 'next';
-import { Header } from '../../components/header';
-import styles from '../../components/LoginForm/login.module.scss';
-import {ThemeIcon} from '../../components/ThemeIcon';
 import { useRouter } from 'next/router';
-import {ProfileForm} from '../../components/LoginForm/ProfileForm';
-import {WorkExperienceForm} from '../../components/LoginForm/ExperienceForm';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation } from 'swiper';
-import { PaginationOptions, Swiper as SwiperType } from 'swiper/types'
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { Navigation, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { ResumeForm } from '../../components/LoginForm/ResumeForm';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper as SwiperType } from 'swiper/types';
 import { Bullets } from '../../components/Bullets';
-import Styles from "./complete-signup.module.scss";
-import { useForm } from 'react-hook-form';
+import { Header } from '../../components/header';
+import { WorkExperienceForm } from '../../components/LoginForm/ExperienceForm';
+import styles from '../../components/LoginForm/login.module.scss';
+import { ProfileForm } from '../../components/LoginForm/ProfileForm';
+import { ResumeForm } from '../../components/LoginForm/ResumeForm';
+import { ThemeIcon } from '../../components/ThemeIcon';
+import Styles from './complete-signup.module.scss';
 // import { CompleteSignup } from '../../types';
+import { useSession } from 'next-auth/react';
 import { ICreateProfile } from '../../server/db';
 
-interface FeedProps{
+interface FeedProps {
   isMobile: boolean;
 }
 
-
-
-const CompleteSignup = ({isMobile}: FeedProps) => {
-  const [image, setImage] = useState<string>('/assets/illustrations/avatar.png');
+const CompleteSignup = ({ isMobile }: FeedProps) => {
+  const [image, setImage] = useState<string>(
+    '/assets/illustrations/avatar.png'
+  );
   const router = useRouter();
   const [swiper, setSwiper] = useState<SwiperType>();
   const [activeTab, setActiveTab] = useState<number>(0);
+  const { data: session } = useSession();
 
-  const goNext = (e:any) => {
+  const goNext = async (e: any, s: number) => {
     e.preventDefault();
-    trigger();
-    const c =  Object.keys(errors).length === 0
-    console.log(c);
-    swiper?.slideNext();
-  }
+    if (s == 0) await trigger(['name', 'username', 'gender']);
+    if (s == 1) await trigger(['headline', 'skills', 'link']);
+    if (Object.keys(errors).length === 0) {
+      swiper?.slideNext();
+    }
+  };
 
-  const goBack = (e:any) => {
+  const handleInputSave = () => {
+    // localStorage.setItem(session?.userId, JSON.stringify(getValues()));
+    localStorage.setItem(
+      '63b030c13a37647b2079a2ce',
+      JSON.stringify(getValues())
+    );
+  };
+
+  useEffect(() => {
+    if (session?.user) {
+      setValue('name', session?.user?.name || '');
+      setValue('email', session?.user?.email || '');
+    }
+    if(localStorage.getItem('63b030c13a37647b2079a2ce')){
+      const form = JSON.parse(localStorage.getItem('63b030c13a37647b2079a2ce') as string); //session?.userId
+      reset(form);
+    }
+    
+  }, [session?.user]);
+
+  const goBack = (e: any) => {
     e.preventDefault();
     swiper?.slidePrev();
-  }
+  };
 
-  const { register, trigger, setValue, formState: { errors }, getValues } = useForm<ICreateProfile>({
+  const {
+    register,
+    trigger,
+    setValue,
+    reset,
+    formState: { errors },
+    getValues,
+  } = useForm<ICreateProfile>({
     defaultValues: {
-      name: "",
-      username: "@",
-      email: "",
-      gender: "none",
-      headline: "",
+      name: '',
+      username: '@',
+      email: 'hanif.adedotun@gmail.com',
+      gender: 'none',
+      headline: '',
       skills: [],
-      link: "",
-      position: []
+      link: 'www.',
+      position: [],
+      image: '',
     },
-    mode:"onChange"    
-  })
+    mode: 'onChange',
+  });
 
-
-
-  return(
+  return (
     <div className={styles.container}>
-      <Header pageName='Login to interna' head/>
-      <ThemeIcon/>
-      <form 
-        method='POST'
-        onSubmit={(e:any) => {
-          e.preventDefault()
-          console.log(getValues())
+      <Header pageName="Login to interna" head />
+      <ThemeIcon />
+      <form
+        method="POST"
+        onSubmit={(e: any) => {
+          e.preventDefault();
+          console.log(getValues());
         }}
       >
+        <Bullets value={activeTab} />
+        <Swiper
+          //navigation={true}
+          className={styles.swiper}
+          //pagination={pagination}
+          modules={[Pagination, Navigation]}
+          spaceBetween={0}
+          style={{ width: '100vw' }}
+          slidesPerView={1}
+          onSwiper={(e) => setSwiper(e)}
+          onSlideChange={(e) => setActiveTab(e.activeIndex)}
+          allowTouchMove={false}
+        >
+          <SwiperSlide className={styles.swiperSlide}>
+            <ProfileForm
+              formRegister={register}
+              errors={errors}
+              image={image}
+              setImage={setImage}
+              handleInputSave={handleInputSave}
+            />
 
-        <Bullets value={activeTab}/>
-          <Swiper 
-            //navigation={true}
-            className={styles.swiper}
-            //pagination={pagination}
-            modules={[Pagination, Navigation]}
-            spaceBetween={0}
-            style={{ width: '100vw'}}
-            slidesPerView={1}
-            onSwiper={(e) => setSwiper(e)}
-            onSlideChange={(e) => setActiveTab(e.activeIndex)}
-            allowTouchMove={false}
-          >
-            <SwiperSlide className={styles.swiperSlide}>
-              <ProfileForm formRegister={register} errors={errors} image={image} setImage={setImage}/>
-              
-              <div className={`${Styles.container} flex items-center justify-end`}>
-                <button 
-                  title='Move to Next Slide'
-                  onClick={goNext} 
-                  className={`${styles.nextBtn} primary`}>
-                  Next
-                </button>
-              </div>
-            
-            </SwiperSlide>
+            <div
+              className={`${Styles.container} flex items-center justify-end`}
+            >
+              <button
+                title="Move to Next Slide"
+                onClick={(e) => goNext(e, 0)}
+                className={`${styles.nextBtn} primary`}
+              >
+                Next
+              </button>
+            </div>
+          </SwiperSlide>
 
-            <SwiperSlide className={styles.swiperSlide}>
-              <WorkExperienceForm formRegister={register} setFormValue={setValue}/>
+          <SwiperSlide className={styles.swiperSlide}>
+            <WorkExperienceForm
+              formRegister={register}
+              errors={errors}
+              setFormValue={setValue}
+              handleInputSave={handleInputSave}
+            />
 
-              <div className={styles.buttonContainer}>
-                <button 
-                  title='Move to Next Slide'
-                  disabled={false}
-                  onClick={goBack} 
-                  className={`${styles.nextBtn} outline-primary`}>
-                  Previous
-                </button>
+            <div className={styles.buttonContainer}>
+              <button
+                title="Move to Next Slide"
+                disabled={false}
+                onClick={goBack}
+                className={`${styles.nextBtn} outline-primary`}
+              >
+                Previous
+              </button>
 
-                <button 
-                  title='Move to Next Slide'
-                  onClick={goNext} 
-                  className={`${styles.nextBtn} primary`}>
-                  Next
-                </button>
-              </div>
-            </SwiperSlide>
+              <button
+                title="Move to Next Slide"
+                onClick={(e) => goNext(e, 1)}
+                className={`${styles.nextBtn} primary`}
+              >
+                Next
+              </button>
+            </div>
+          </SwiperSlide>
 
-            <SwiperSlide className={styles.swiperSlide}>
-              <ResumeForm formRegister={register} setFormValue={setValue}/>
+          <SwiperSlide className={styles.swiperSlide}>
+            <ResumeForm 
+            formRegister={register} 
+            setFormValue={setValue} 
+            handleInputSave={handleInputSave}/>
 
-              <div className={styles.buttonContainer}>
-                <button 
-                  title='Move to Next Slide'
-                  onClick={goBack} 
-                  className={`${styles.nextBtn} outline-primary`}>
-                  Previous
-                </button>
+            <div className={styles.buttonContainer}>
+              <button
+                title="Move to Next Slide"
+                onClick={goBack}
+                className={`${styles.nextBtn} outline-primary`}
+              >
+                Previous
+              </button>
 
-                <button 
-                  title='Submit'
-                  type='submit'
-                  className={`${styles.nextBtn} primary`}>
-                  Submit
-                </button>
-
-              </div>
-            </SwiperSlide>
-          </Swiper>
-        </form>
+              <button
+                title="Submit"
+                type="submit"
+                className={`${styles.nextBtn} primary`}
+              >
+                Submit
+              </button>
+            </div>
+          </SwiperSlide>
+        </Swiper>
+      </form>
     </div>
-  )
-}
+  );
+};
 
 export default CompleteSignup;
