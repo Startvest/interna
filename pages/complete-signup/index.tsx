@@ -49,6 +49,10 @@ const CompleteSignup = ({ isMobile }: FeedProps) => {
   };
 
   useEffect(() => {
+    setValue('image', image);
+  },[image])
+
+  useEffect(() => {
     if (session?.user) {
       setValue('name', session?.user?.name || '');
       setValue('email', session?.user?.email || '');

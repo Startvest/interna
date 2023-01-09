@@ -1,13 +1,13 @@
-import {useRef, useState, useEffect} from 'react';
-import styles from './login.module.scss';
-import {Input} from '../../components/Input';
-import type { UseFormRegister } from 'react-hook-form';
-import { CompleteSignup } from '../../types';
-import {useMutation} from 'react-query';
-import {getProfile} from '../../services/profile';
-import { ICreateProfile } from '../../server/db';
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { useEffect, useRef, useState } from 'react';
+import { useMutation } from 'react-query';
+import { Input } from '../../components/Input';
+import { storage } from '../../services/firebase';
+import { getProfile } from '../../services/profile';
 import { LoadingIcon } from '../loadScreen';
-
+import { ErrorModal } from "../Modal";
+import { ProgressBar } from '../progressBar';
+import styles from './login.module.scss';
 
 interface ProfileFormProps {
      image: string;
@@ -21,14 +21,43 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formRegister, image, s
      const imageInputRef = useRef<HTMLInputElement>(null);
      const profileMutation = useMutation(getProfile);
      const [username, setUsername] = useState({text: '', good: false});
+     const [progresspercent, setProgresspercent] = useState(0);
+     const [errorModal, setErrorModal] = useState(false);
 
-     const uploadImage = (e:any) => {
+     const pickImage = (e:any) => {
           e.preventDefault(); 
           imageInputRef.current?.click();
      }
      const checkUsername = (s:string) =>{
           profileMutation.mutate(s);
      }
+     const uploadImage = (e:any, file:any) =>{
+          e.preventDefault()
+          if (!file) return;
+
+          const storageRef = ref(storage, `files/${file.name}`);
+          const uploadTask = uploadBytesResumable(storageRef, file);
+
+          uploadTask.on("state_changed",
+               (snapshot:any) => {
+               const progress =
+                    Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                    setProgresspercent(progress);
+               },
+               (error) => {
+               //    alert(error);
+               console.log(error);
+               setErrorModal(true);
+               },
+               () => {
+               getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                    setImage(downloadURL);
+                    console.log(downloadURL);
+               });
+               }
+          );
+     }
+     
 
      useEffect(() => {
           if(profileMutation.isSuccess){
@@ -42,29 +71,37 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formRegister, image, s
         }, [profileMutation.isError, profileMutation.isSuccess])
 
      return(
+     <>
+          <ErrorModal message="Could not Upload Image" isOpen={errorModal} closeModal={() => setErrorModal(false)}/>
           <section className={styles.formContainer}>
                <h2>Personal Information</h2>
                <div className={styles.imageContainer}>
                     <img className={styles.pickImage} src={image} alt="profile"/>
-                    <button onClick={uploadImage} className={styles.imageBtn}>
-                         Upload
+                    <button onClick={pickImage} className={styles.imageBtn}>
+                         Pick image
                     </button>
                     <input
                          title='Profile Picture Upload'  
                          type="file"
                          accept="image/*"
                          className={styles.hidden}
-                         onChange={e => {
+                         onChange={async (e) => {
                               const fileList = e.target.files;
                               if (!fileList) return;
                               setImage(URL.createObjectURL(fileList[0]));
-                              handleInputSave()
+                              await uploadImage(e, fileList[0])
+                              handleInputSave();
                          }}
                          id="user_image"
                          name="user_image"
                          ref={imageInputRef}
-                    />       
+                    /> 
+                    
                </div>
+               {progresspercent > 0 && <span>
+                         <ProgressBar completed={"40"}/> 
+                         <span>40%</span>   
+               </span>  }
                <Input
                     reg={formRegister('name', {
                          required: `Full name is required`,
@@ -131,5 +168,6 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formRegister, image, s
                     </div>
                </div>
           </section>
+          </>
      )
 }
