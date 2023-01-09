@@ -24,7 +24,7 @@ interface FeedProps {
 
 const CompleteSignup = ({ isMobile }: FeedProps) => {
   const [image, setImage] = useState<string>(
-    '/assets/illustrations/avatar.png'
+    '/assets/illustrations/avatar.svg'
   );
   const router = useRouter();
   const [swiper, setSwiper] = useState<SwiperType>();
@@ -33,8 +33,8 @@ const CompleteSignup = ({ isMobile }: FeedProps) => {
 
   const goNext = async (e: any, s: number) => {
     e.preventDefault();
-    if (s == 0) await trigger(['name', 'username', 'gender']);
-    if (s == 1) await trigger(['headline', 'skills', 'link']);
+    if (s === 0) await trigger(['name', 'username', 'gender']);
+    if (s === 1) await trigger(['headline', 'skills', 'link']);
     if (Object.keys(errors).length === 0) {
       swiper?.slideNext();
     }
@@ -69,14 +69,7 @@ const CompleteSignup = ({ isMobile }: FeedProps) => {
     swiper?.slidePrev();
   };
 
-  const {
-    register,
-    trigger,
-    setValue,
-    reset,
-    formState: { errors },
-    getValues,
-  } = useForm<ICreateProfile>({
+  const { register,trigger,setValue,reset,formState: { errors },getValues,} = useForm<ICreateProfile>({
     defaultValues: {
       name: '',
       username: '@',

@@ -31,11 +31,12 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formRegister, image, s
      const checkUsername = (s:string) =>{
           profileMutation.mutate(s);
      }
-     const uploadImage = (e:any, file:any) =>{
+     const uploadImage = (e:any, file:File) =>{
           e.preventDefault()
           if (!file) return;
+          console.log(file.name);
 
-          const storageRef = ref(storage, `files/${file.name}`);
+          const storageRef = ref(storage, `profile-image/${file.name}`);
           const uploadTask = uploadBytesResumable(storageRef, file);
 
           uploadTask.on("state_changed",
@@ -52,7 +53,6 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formRegister, image, s
                () => {
                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                     setImage(downloadURL);
-                    console.log(downloadURL);
                });
                }
           );
@@ -80,6 +80,11 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formRegister, image, s
                     <button onClick={pickImage} className={styles.imageBtn}>
                          Pick image
                     </button>
+               </div>
+               {progresspercent > 0 && <span className={styles.progresspercent}>
+                         <ProgressBar completed={progresspercent}/> 
+                         <span>{progresspercent}% uploaded</span>   
+               </span>  }
                     <input
                          title='Profile Picture Upload'  
                          type="file"
@@ -89,19 +94,13 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formRegister, image, s
                               const fileList = e.target.files;
                               if (!fileList) return;
                               setImage(URL.createObjectURL(fileList[0]));
-                              await uploadImage(e, fileList[0])
+                              uploadImage(e, fileList[0])
                               handleInputSave();
                          }}
                          id="user_image"
                          name="user_image"
                          ref={imageInputRef}
-                    /> 
-                    
-               </div>
-               {progresspercent > 0 && <span>
-                         <ProgressBar completed={"40"}/> 
-                         <span>40%</span>   
-               </span>  }
+                    />   
                <Input
                     reg={formRegister('name', {
                          required: `Full name is required`,

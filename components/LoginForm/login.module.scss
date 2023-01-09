@@ -211,13 +211,21 @@
      align-items: center;
 }
 .pickImage{
-     height: 100px;
-     width: 100px;
+     height: 150px;
+     width: 150px;
      border-radius: 50%;
      border: 2px solid var(--primary);
-     object-fit: fill; 
+     object-fit: cover; 
 }
-
+.progresspercent{
+     width: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     font-size: 13px;
+     color: var(--primary);
+     font-weight: bold;
+}
 .profileInput {
      width: 100% !important;
      box-sizing: border-box;
@@ -225,6 +233,7 @@
 
 .hidden{
      visibility: hidden;
+     width: 1px; height: 1px;
 }
 .imageBtn{
      background-color: var(--primary);
