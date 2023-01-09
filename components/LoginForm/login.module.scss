@@ -245,6 +245,13 @@
      margin-left: 2rem;
      /* margin: 1rem auto; */
 }
+.saveBtn{
+     width: 100%;
+     padding:  1rem 0 !important;
+     margin: 2rem auto;
+     font-size: 13px;
+     border-radius: 5px !important;
+}
 [data-theme="dark"] {
      .altLoginText, .forgot, .header, .resendText, .subtext{
           color: white;

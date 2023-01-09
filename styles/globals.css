@@ -173,6 +173,7 @@ input[type=number] {
 .items-end { align-items: end; }
 .justify-center { justify-content: center; }
 .justify-end { justify-content: flex-end; }
+.justify-between { justify-content: space-between; }
 .justify-start { justify-content: flex-start; }
 .font-bold { font-weight: bold; }
 .heading-small { font-size: 18px; }

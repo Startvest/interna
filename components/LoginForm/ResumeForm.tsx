@@ -5,7 +5,8 @@ import { UseFormRegister, UseFormSetValue, useForm } from 'react-hook-form';
 import { CompleteSignup, Resume } from '../../types';
 import { Button } from '../Button';
 import { ICreateProfile } from '../../server/db';
-
+import { AutocompleteName } from '../AutocompleteName/autocomplete';
+import { getSuggestions } from "../../services/waitlist";
 interface ResumeFormProps {
     formRegister: any,//UseFormRegister<ICreateProfile>,
     setFormValue: any,//UseFormSetValue<ICreateProfile>,
@@ -15,9 +16,10 @@ interface ResumeFormProps {
 type Postion = 'intern'|'student';
 
 export const ResumeForm: React.FC<ResumeFormProps> = ({ setFormValue, formRegister, handleInputSave }) =>{
-
+    const [suggestions, setSuggestions] = useState<any[]|undefined>(undefined);
     const [checked, setChecked] = useState<boolean>(false);
     const [experiences, setExperiences] = useState<Resume[]>([]);
+    const [query, setQueryText] = useState<string>('');
 
     const { register, getValues, reset, setValue, formState } = useForm<Resume>({
         defaultValues: {
@@ -44,6 +46,27 @@ export const ResumeForm: React.FC<ResumeFormProps> = ({ setFormValue, formRegist
     useEffect(() => {
         setFormValue('position', experiences)
     }, [experiences])
+
+    useEffect(() => {
+        getSuggestions(query)
+        .then((res:any[]) => {
+            if(!res || res.length === 0){
+                setValue('company_name', query);
+            } 
+
+            //Once suggestion has been tapped it removes all the previous suggestions
+            //Until the user starts typing again
+            //May want to refactor this code to make it look cleaner though
+            const names = res?.map(item => {
+                return item.name
+            })
+            if(names?.includes(query)){
+                return setSuggestions(undefined)
+            }
+
+            setSuggestions(res)
+        })
+    }, [query])
     
     return(
           <section className={styles.formContainer}>
@@ -55,15 +78,24 @@ export const ResumeForm: React.FC<ResumeFormProps> = ({ setFormValue, formRegist
                 )
             }
                <h2>Resume</h2>
+               
                <Input
                     type="text"
                     name="company_name"
-                    onChange={(e: any) => handleInputSave()}
+                    onChange={(e: any) => {handleInputSave(); setQueryText(e.target.value)}}
                     placeholder="Enter the company's name"
                     labelName={'Company Name'}
                     className={styles.input}
                     reg={register('company_name', {required: true})}
                />
+               <AutocompleteName 
+                    suggestions={suggestions} 
+                    setSelected={(e) => {
+                        setSuggestions(undefined);
+                        const companyName = e.currentTarget.title
+                        setValue('company_name', companyName)
+                        setQueryText(companyName); //Changes the Value of the input field as well
+                    }}/>
 
                <Select
                     name="position"
@@ -80,7 +112,7 @@ export const ResumeForm: React.FC<ResumeFormProps> = ({ setFormValue, formRegist
                     <option title="Student" value="student">Student</option>
                 </Select>
 
-                <div className="flex gap">
+                <div className="flex gap justify-between">
                     <Input
                         type="date"
                         name="start_date"
@@ -107,9 +139,9 @@ export const ResumeForm: React.FC<ResumeFormProps> = ({ setFormValue, formRegist
                     <input checked={checked} onChange={(e) => setChecked(e.target.checked)} type="checkbox" name="present" id="present"/>
                     <label htmlFor="present">I currently work here</label>
                 </div>
-                {/* <Button type='button' onClick={addWorkToResume}>
-                    Add
-                </Button> */}
+                <Button type='button' onClick={addWorkToResume} className={styles.saveBtn}>
+                    Save work experience
+                </Button>
           </section>
      )
 }
