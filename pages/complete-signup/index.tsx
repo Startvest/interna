@@ -14,22 +14,24 @@ import { ProfileForm } from '../../components/LoginForm/ProfileForm';
 import { ResumeForm } from '../../components/LoginForm/ResumeForm';
 import { ThemeIcon } from '../../components/ThemeIcon';
 import Styles from './complete-signup.module.scss';
-// import { CompleteSignup } from '../../types';
+import { addProfile } from '../../services/profile';
 import { useSession } from 'next-auth/react';
 import { ICreateProfile } from '../../server/db';
+import { useMutation } from 'react-query';
+import { ErrorModal } from "../../components/Modal";
 
 interface FeedProps {
   isMobile: boolean;
 }
 
 const CompleteSignup = ({ isMobile }: FeedProps) => {
-  const [image, setImage] = useState<string>(
-    '/assets/illustrations/avatar.svg'
-  );
+  const [image, setImage] = useState<string>('/assets/illustrations/avatar.svg');
   const router = useRouter();
   const [swiper, setSwiper] = useState<SwiperType>();
   const [activeTab, setActiveTab] = useState<number>(0);
   const { data: session } = useSession();
+  const profileMutation = useMutation(addProfile);
+  const [errorModal, setErrorModal] = useState(false);
 
   const goNext = async (e: any, s: number) => {
     e.preventDefault();
@@ -69,6 +71,14 @@ const CompleteSignup = ({ isMobile }: FeedProps) => {
     swiper?.slidePrev();
   };
 
+  useEffect(() => {
+    if(profileMutation.isSuccess){
+     router.push('/feed');
+    }else{
+      setErrorModal(true);
+    }
+  }, [profileMutation.isError, profileMutation.isSuccess])
+
   const { register,trigger,setValue,reset,formState: { errors },getValues,} = useForm<ICreateProfile>({
     defaultValues: {
       name: '',
@@ -85,6 +95,8 @@ const CompleteSignup = ({ isMobile }: FeedProps) => {
   });
 
   return (
+    <>
+    <ErrorModal isOpen={errorModal} closeModal={() => setErrorModal(false)}/>
     <div className={styles.container}>
       <Header pageName="Login to interna" head />
       <ThemeIcon />
@@ -93,6 +105,7 @@ const CompleteSignup = ({ isMobile }: FeedProps) => {
         onSubmit={(e: any) => {
           e.preventDefault();
           console.log(getValues());
+          profileMutation.mutate(getValues());
         }}
       >
         <Bullets value={activeTab} />
@@ -178,13 +191,14 @@ const CompleteSignup = ({ isMobile }: FeedProps) => {
                 type="submit"
                 className={`${styles.nextBtn} primary`}
               >
-                Submit
+                {(profileMutation.isLoading) ? "Creating Profile...." : "Submit"}
               </button>
             </div>
           </SwiperSlide>
         </Swiper>
       </form>
     </div>
+    </>
   );
 };
 

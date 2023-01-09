@@ -34,7 +34,6 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formRegister, image, s
      const uploadImage = (e:any, file:File) =>{
           e.preventDefault()
           if (!file) return;
-          console.log(file.name);
 
           const storageRef = ref(storage, `profile-image/${file.name}`);
           const uploadTask = uploadBytesResumable(storageRef, file);
@@ -61,7 +60,6 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formRegister, image, s
 
      useEffect(() => {
           if(profileMutation.isSuccess){
-            console.log(profileMutation.data);
             if(profileMutation.data){
               setUsername({text: "Username exists", good:false})
             }else{
