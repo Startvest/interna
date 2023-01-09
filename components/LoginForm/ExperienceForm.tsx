@@ -1,10 +1,6 @@
 import {useRef, useState} from 'react';
 import styles from './login.module.scss';
 import {Input, TagInput, Textarea} from '../../components/Input';
-import { TagsInput } from 'react-tag-input-component';
-import type { UseFormRegister, UseFormSetValue } from 'react-hook-form';
-import { CompleteSignup } from '../../types';
-import { ICreateProfile } from '../../server/db';
 
 interface WorkExperienceFormProps {
      formRegister: any,//UseFormRegister<ICreateProfile>,

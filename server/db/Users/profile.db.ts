@@ -39,17 +39,19 @@ export interface ICreateProfile{
      headline: string;
      skills: string[];
      link: string;
-     position: {
-          type: 'student'|'intern', 
-          company_name: string,
-          start: string,
-          end: string
-          current: boolean
-     }[];
+     position: IResume[];
      last_login?: string;
      location: string;
      connections?: string[];
      createdAt: string;
+}
+export interface IResume{ 
+     type: 'student'|'intern', 
+     company_name: string,
+     start: string,
+     end: string,
+     current: boolean,
+     logo?: string
 }
 
 export async function addProfile(data: ICreateProfile){

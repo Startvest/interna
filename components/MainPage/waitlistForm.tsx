@@ -172,9 +172,8 @@ export const WaitlistForm: React.FC<FormProps> = ({
                         type={'text'} title={'position'} placeholder={'eg Nile University of Nigeria'}  />
                     <AutocompleteName 
                         suggestions={suggestions} 
-                        setSelected={(e) => {
+                        setSelected={(e:any, companyName:string, logo:string) => {
                             setSuggestions(undefined);
-                            const companyName = e.currentTarget.title
                             setValue('position.company_name', companyName)
                             setQueryText(companyName); //Changes the Value of the input field as well
 

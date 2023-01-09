@@ -2,9 +2,8 @@ import styles from './login.module.scss';
 import {Input, Select} from '../../components/Input';
 import { useEffect, useState } from 'react';
 import { UseFormRegister, UseFormSetValue, useForm } from 'react-hook-form';
-import { CompleteSignup, Resume } from '../../types';
 import { Button } from '../Button';
-import { ICreateProfile } from '../../server/db';
+import { ICreateProfile, IResume } from '../../server/db';
 import { AutocompleteName } from '../AutocompleteName/autocomplete';
 import { getSuggestions } from "../../services/waitlist";
 interface ResumeFormProps {
@@ -18,16 +17,17 @@ type Postion = 'intern'|'student';
 export const ResumeForm: React.FC<ResumeFormProps> = ({ setFormValue, formRegister, handleInputSave }) =>{
     const [suggestions, setSuggestions] = useState<any[]|undefined>(undefined);
     const [checked, setChecked] = useState<boolean>(false);
-    const [experiences, setExperiences] = useState<Resume[]>([]);
+    const [experiences, setExperiences] = useState<IResume[]>([]);
     const [query, setQueryText] = useState<string>('');
 
-    const { register, getValues, reset, setValue, formState } = useForm<Resume>({
+    const { register, getValues, reset, setValue, formState } = useForm<IResume>({
         defaultValues: {
             company_name: "",
             type: "intern",
             start: "",
             end: "",
             current: checked,
+            logo: "assets/illustrations/job.svg"
         }
     })
 
@@ -50,21 +50,10 @@ export const ResumeForm: React.FC<ResumeFormProps> = ({ setFormValue, formRegist
     useEffect(() => {
         getSuggestions(query)
         .then((res:any[]) => {
-            if(!res || res.length === 0){
-                setValue('company_name', query);
-            } 
-
-            //Once suggestion has been tapped it removes all the previous suggestions
-            //Until the user starts typing again
-            //May want to refactor this code to make it look cleaner though
-            const names = res?.map(item => {
-                return item.name
-            })
-            if(names?.includes(query)){
-                return setSuggestions(undefined)
-            }
-
-            setSuggestions(res)
+            if(!res || res.length === 0) setValue('company_name', query);
+            const names = res?.map(item => { return item.name })
+            if(names?.includes(query)) return setSuggestions(undefined)
+            setSuggestions(res);
         })
     }, [query])
     
@@ -72,8 +61,10 @@ export const ResumeForm: React.FC<ResumeFormProps> = ({ setFormValue, formRegist
           <section className={styles.formContainer}>
             {
                 experiences && (
-                    experiences.map((val, key) => (
-                        <h3 key={key}>{val.company_name}</h3>
+                    experiences.map((val, key) => (<span key={key}>
+                        <h3 >{val.company_name}</h3>
+                        <h3 >{val.logo}</h3>
+                        </span>
                     ))
                 )
             }
@@ -90,17 +81,17 @@ export const ResumeForm: React.FC<ResumeFormProps> = ({ setFormValue, formRegist
                />
                <AutocompleteName 
                     suggestions={suggestions} 
-                    setSelected={(e) => {
+                    setSelected={(e:any, companyName:string, logo:string) => {
                         setSuggestions(undefined);
-                        const companyName = e.currentTarget.title
-                        setValue('company_name', companyName)
+                        setValue('company_name', companyName);
+                        setValue('logo', logo);
                         setQueryText(companyName); //Changes the Value of the input field as well
                     }}/>
 
                <Select
                     name="position"
                     onChange={(e) => {
-                        const value = e.target.value as Postion;
+                        const value = e.target.value as IResume["type"];
                         setValue('type', value)
                         handleInputSave();
                     }}
