@@ -49,8 +49,8 @@ export const ResumeForm: React.FC<ResumeFormProps> = ({ setFormValue, formRegist
           <section className={styles.formContainer}>
             {
                 experiences && (
-                    experiences.map(val => (
-                        <h3>{val.company_name}</h3>
+                    experiences.map((val, key) => (
+                        <h3 key={key}>{val.company_name}</h3>
                     ))
                 )
             }
