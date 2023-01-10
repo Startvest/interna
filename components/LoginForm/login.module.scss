@@ -8,7 +8,10 @@
 .formContainer{
      padding: 0 10px;
 
-     h2 { font-size: large; }
+     h2 { font-size: large; color: var(--primary);}
+
+     width: 60%;
+     margin: auto;
 }
 
 .swiperSlide {
@@ -256,6 +259,12 @@
      .altLoginText, .forgot, .header, .resendText, .subtext{
           color: white;
      }
+     .formContainer{
+          h2 { 
+               color: white;
+          }
+     }
+
 }
 @media only screen and (max-width: 600px) {
      .headImage{
@@ -269,5 +278,8 @@
      }
      .header{
           font-size: 28px;
+     }
+     .formContainer{
+          width: 90%;
      }
 }

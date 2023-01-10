@@ -13,8 +13,6 @@ interface ResumeFormProps {
   handleInputSave: Function;
 }
 
-type Postion = 'intern' | 'student';
-
 export const ResumeForm: React.FC<ResumeFormProps> = ({
   setFormValue,
   formRegister,
@@ -64,18 +62,22 @@ export const ResumeForm: React.FC<ResumeFormProps> = ({
     });
   }, [query]);
 
+  const onDelete = (name: string) => {
+      const newExperiences = experiences.filter((item) => {
+          return item.company_name !== name;
+      })
+      setExperiences(newExperiences);
+  }
+
   return (
     <section className={styles.formContainer}>
+       <h2>Resume</h2>
+
       {experiences &&
         experiences.map((val, key) => (
-        //   <span key={key}>
-        //     <h3>{val.company_name}</h3>
-        //     <h3>{val.logo}</h3>
-        //   </span>
-        <WorkExperience experience={val} key={key}/>
+        <WorkExperience experience={val} key={key} onDelete={onDelete}/>
         ))}
-      <h2>Resume</h2>
-
+     
       <Input
         type="text"
         name="company_name"

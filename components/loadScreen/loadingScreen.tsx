@@ -3,7 +3,7 @@ import styles from './loading.module.scss';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import {ProgressBar} from '../progressBar';
-import {useInterval} from '../customhook/useInterval';
+import {useInterval} from '../../hooks/useInterval';
 import {ThemeIcon} from '../ThemeIcon';
 
 export function LoadingScreen(){

@@ -3,7 +3,7 @@ import { IoTrashBinOutline, IoEllipse } from "react-icons/io5"
 import styles from './experience.module.scss';
 import DisplayDate from "../../DisplayDate";
 
-export const WorkExperience = ({experience}:{experience:IExperience}) => {
+export const WorkExperience = ({experience, onDelete}:{experience:IExperience, onDelete: (name:string) => void}) => {
      const capitaliseFirstWord = (str:string) => {
           return str.charAt(0).toUpperCase() + str.slice(1);
      }
@@ -26,7 +26,7 @@ export const WorkExperience = ({experience}:{experience:IExperience}) => {
                     </div>
                </div>
                </div>
-               <IoTrashBinOutline size={20} className={styles.deleteIcon}/>
+               <IoTrashBinOutline size={20} className={styles.deleteIcon} onClick={() => onDelete(experience.company_name)}/>
           </div>
      )
 }

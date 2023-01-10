@@ -3,14 +3,9 @@ var relativeTime = require('dayjs/plugin/relativeTime')
 var updateLocale = require('dayjs/plugin/updateLocale')
 var localizedFormat = require('dayjs/plugin/localizedFormat');
 var calendar = require('dayjs/plugin/calendar')
-import {useInterval} from '../customhook/useInterval';
+import {useInterval} from '../../hooks/useInterval';
 
 export default function DisplayDate({ date, show }) {
-  // useInterval(() => {
-  //   if(progress < 100){
-  //        setProgress(progress + 10)
-  //   }
-  // }, 300);
 
   dayjs.extend(relativeTime)
   dayjs.extend(updateLocale)
