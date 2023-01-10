@@ -6,6 +6,7 @@ import { getSuggestions } from '../../services/waitlist';
 import { AutocompleteName } from '../AutocompleteName/autocomplete';
 import { Button } from '../Button';
 import styles from './login.module.scss';
+import { WorkExperience } from './WorkExperience';
 interface ResumeFormProps {
   formRegister: any; //UseFormRegister<ICreateProfile>,
   setFormValue: any; //UseFormSetValue<ICreateProfile>,
@@ -67,10 +68,11 @@ export const ResumeForm: React.FC<ResumeFormProps> = ({
     <section className={styles.formContainer}>
       {experiences &&
         experiences.map((val, key) => (
-          <span key={key}>
-            <h3>{val.company_name}</h3>
-            <h3>{val.logo}</h3>
-          </span>
+        //   <span key={key}>
+        //     <h3>{val.company_name}</h3>
+        //     <h3>{val.logo}</h3>
+        //   </span>
+        <WorkExperience experience={val} key={key}/>
         ))}
       <h2>Resume</h2>
 

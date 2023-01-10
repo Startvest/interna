@@ -1,0 +1,58 @@
+.container{
+     background: #FFFFFF;
+     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.08);
+     border-radius: 10px;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     margin: 2rem auto;
+     padding: 1rem;
+     width: 60%;
+}
+.firstTwo{
+     display: flex;
+     align-items: center;
+     gap: 20px;
+}
+.logo{
+     height: 50px;
+     width: 50px;
+     border-radius: 50%;
+     box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.1);
+}
+.altTextContainer{
+     text-align: left;
+     h3{
+          font-weight: 500;
+          font-size: 16px;
+          color: var(--primary);
+     }
+}
+.altText{
+     color: rgba(50, 50, 50, 0.7);
+     font-weight: 500;
+     font-size: 12px;
+     gap: 10px;
+     display: flex;
+     align-items: center;
+}
+.deleteIcon{
+     color:  red;
+     cursor: pointer;
+}
+.deleteIcon:hover{
+     scale: 1.1;
+}
+@media only screen and (max-width:700px){
+     .altTextContainer{
+          h3{
+               font-size: 14px;
+          }
+     }
+     .altText{
+          font-size: 10px;
+     }
+     .container{
+          width: 90%;
+     }
+ }
