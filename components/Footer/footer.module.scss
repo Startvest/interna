@@ -39,7 +39,7 @@
                 font-weight: bold;
             }
             cursor: pointer;
-            margin: .5rem 0;
+            margin: 1rem 0;
         }
         a{
             color: inherit;
@@ -95,7 +95,7 @@
 
     .footer{
         --padding: 20px 2% 8px;
-        --gap: .5rem;
+        --gap: 1rem;
         .wavyLine {
             top: unset;
             bottom: 20%;
@@ -103,8 +103,9 @@
     }
     .footerContent{
         .firstLevel{
-            grid-template-columns: 60% auto;
-
+            grid-template-columns: 100%;
+            // grid-template-rows: 100%;
+            // grid-direction: column;
             div {
                 width: 90%;
             }
@@ -112,7 +113,12 @@
 
         .secondLevel{
             padding: 0;
+            padding-top: 1rem;
             width: 100%;
+            gap: 1rem;
+            flex-direction: column-reverse;
+            text-align: left !important;
+            margin-left: 0 !important;
         }
     }
 }

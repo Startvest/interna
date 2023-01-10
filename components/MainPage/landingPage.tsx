@@ -8,13 +8,11 @@ import { Button } from "../Button";
 import { useTheme } from "next-themes"
 import { useRouter } from "next/router";
 import Footer from "../Footer";
-import {uniqueSellingPoints} from '../../services/enums/usp';
 import {WaitlistForm} from '.';
 import {Testimonial} from '../Testimonial';
 import {ErrorModal} from '../Modal';
 import { useInView, useScroll } from "framer-motion";
 import { ScrollAnimationWrapper } from "../ScrollAnimationWrapper";
-import {tools} from "../../services/enums/tools";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay,} from "swiper";
 import "swiper/css/bundle";
@@ -146,7 +144,7 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
                             </Button>
                             :(
                             <Button className={styles.primaryButton} onClick={() => router.push('/signup')}>
-                                Join the community
+                                Get started
                             </Button>
                             )  
 
@@ -160,42 +158,7 @@ export const LandingPage: React.FC<Props> = ({ isWaitlist }) => {
                 </div>
                 <img className={styles.ellipses} src="/assets/ellipses-white.svg" alt="ellipses"/>
             </section>
-            
-            {/*
-            
-            <section className={styles.testimonialCont}>
-                <h2 className={styles.h2}>Hear from our interns</h2>
-                <div className={styles.testimonial}>
-                <Swiper
-                        spaceBetween={50}
-                        grabCursor={true}
-                        loop={true}
-                        centeredSlides={true}
-                        slidesOffsetBefore={0}
-                        slidesPerView={1}
-                        autoplay={{
-                        delay: 2000,
-                        disableOnInteraction: false
-                        }}
-                        modules={[Autoplay]}>
 
-                        <SwiperSlide>
-                            <Testimonial />
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                            <Testimonial />
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                            <Testimonial />
-                        </SwiperSlide>
-
-                </Swiper>
-                </div>                
-            </section>
-                        
-            */}
 
             <section id="interna_description" className={styles.landingPageWelcome}>
                 <div className={styles.internaDescription}>

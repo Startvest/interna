@@ -34,7 +34,7 @@ const Footer:React.FC = () => {
                 
                 <ul className={styles.socials}>
                     <li>
-                        <a href="https://www.linkedin.com/company/startvest" target={"_blank"}   rel="noreferrer">
+                        <a href="https://www.linkedin.com/company/ntrna-technologies-ltd/" target={"_blank"}   rel="noreferrer">
                             <IoLogoLinkedin />
                         </a>
                     </li>
