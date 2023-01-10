@@ -11,7 +11,7 @@ export function LoadingIcon({size}:{size?: string}){
      },[])
      if (!mounted) return null;
 
-     const color = resolvedTheme == "light" ? "#21295C":"ffffff";
+     const color = resolvedTheme == "light" ? "#21295C":"#ffffff";
      return(
           <div className={styles.loadIconContainer}>
           <div className={styles.loadIcon}>

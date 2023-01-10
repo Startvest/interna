@@ -698,6 +698,11 @@ $inputDark: #333333;
         .number{
             color: rgba(4, 222, 0, 0.14);;
         }
+        .container{
+            img{
+                color: white;
+            }
+        }
     }
 
     .internaFeature {
@@ -760,8 +765,9 @@ $inputDark: #333333;
     }
 
     .midSection{
+        background-color: #d3e2ed10;
         h2{
-            color: #1E1E1E !important;
+            color: white;
         }
     }
 
