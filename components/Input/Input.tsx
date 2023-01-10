@@ -24,7 +24,7 @@ export const Input:React.FC<InputProps> = (props) => {
             <label htmlFor={name} className={styles.inputLabel}>
                 {labelName}
             </label>
-            <input disabled={isDisabled} value={value} onChange={() => onChange} className={inputClassName} id={name} type={type} title={name} placeholder={placeholder}  {...reg}/>
+            <input disabled={isDisabled} value={value} {...reg} onChange={onChange} className={inputClassName} id={name} type={type} title={name} placeholder={placeholder}  />
             {error && <span className={styles.errorText}>{error}</span>}
         </div>
     )

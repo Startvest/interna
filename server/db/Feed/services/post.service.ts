@@ -11,7 +11,7 @@ export const postService = {
      async addPost(post: ICreatePost){
           const p : ICreatePost = {
                ...post,
-               createdAt: Date.toString(),
+               createdAt: Date(),
                authorId: new ObjectId(post.authorId)
           }
           return await addPost(p);
@@ -25,9 +25,16 @@ export const postService = {
      async addComment(postId:string, comment: ICreateComment){
           const c : ICreateComment = {
                ...comment,
-               createdAt: Date.toString(),
+               createdAt: Date(),
                authorId: new ObjectId(comment.authorId)
           }
-          return await addComment(postId, c);
+          console.log(c);
+          // return await addComment(postId, c);
+          return [{
+               authorId: new ObjectId("63b030c13a37647b2079a2ce"),
+               content: 'dad',
+               createdAt: 'Wed Jan 04 2023 20:19:17 GMT+0100 (West Africa Standard Time)',      
+               likes: []
+          }]
      },
 }

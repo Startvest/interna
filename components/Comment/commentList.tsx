@@ -8,6 +8,8 @@ export const CommentList = ({addComment, comments, likeComment}: {addComment:(da
      // const addComment=(data: IComment)=>{
      //      setComments([data, ...comment]);
      // }
+     console.log(comments);
+     // console.log(comments.length);
      return(
           <div className={styles.commentList}>
                 <NewComment addComment={addComment}/>

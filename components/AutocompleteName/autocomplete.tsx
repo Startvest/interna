@@ -6,8 +6,7 @@ interface AutocompleteProps {
         domain: string;
         logo: string;
     }[] | undefined;
-    setSelected?: React.MouseEventHandler<HTMLLIElement>;
-
+    setSelected: Function;
 }
 
 export const AutocompleteName: React.FC<AutocompleteProps> = ({ suggestions, setSelected }) => { 
@@ -23,7 +22,7 @@ export const AutocompleteName: React.FC<AutocompleteProps> = ({ suggestions, set
                             className={styles.suggestionListItem} 
                             key={suggestion.domain} 
                             title={`${suggestion.name}`} 
-                            onClick={setSelected}
+                            onClick={(e) => setSelected(e, suggestion.name, suggestion.logo)}
                         >
                             <img src={suggestion.logo} alt={`${suggestion.name}`} />
                             <span>{suggestion.name}</span>

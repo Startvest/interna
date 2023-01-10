@@ -144,6 +144,9 @@ input[type=number] {
   color: var(--primary);
   outline: 1.5px solid var(--primary);
 }
+[data-theme="dark"] .outline-primary{
+  color: white;
+}
 
 .contrast {
   background: var(--contrast);
@@ -173,6 +176,7 @@ input[type=number] {
 .items-end { align-items: end; }
 .justify-center { justify-content: center; }
 .justify-end { justify-content: flex-end; }
+.justify-between { justify-content: space-between; }
 .justify-start { justify-content: flex-start; }
 .font-bold { font-weight: bold; }
 .heading-small { font-size: 18px; }

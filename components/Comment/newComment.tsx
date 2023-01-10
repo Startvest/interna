@@ -26,7 +26,7 @@ export const NewComment = ({addComment}:{addComment:(data: ICreateComment)=>void
         </div>
       </div>
       <div className={styles.buttonContainer}>
-          <button onClick={() => handleComment()}>Post</button>
+          <button onClick={() => handleComment()} disabled={comment.length <= 0}>Post</button>
      </div>
     </div>
   );

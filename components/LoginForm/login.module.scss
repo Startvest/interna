@@ -91,8 +91,15 @@
      text-align: center;
      font-size: 19px;
 }
+.goodText{
+     color: green;
+     text-align: left;
+     font-size:  12px;
+}
 .errorText{
      color: red;
+     text-align: left;
+     font-size:  12px;
 }
 .headImage{
      width: 30%;
@@ -204,13 +211,21 @@
      align-items: center;
 }
 .pickImage{
-     height: 70px;
-     width: 72px;
+     height: 150px;
+     width: 150px;
      border-radius: 50%;
      border: 2px solid var(--primary);
-     object-fit: fill; 
+     object-fit: cover; 
 }
-
+.progresspercent{
+     width: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     font-size: 13px;
+     color: var(--primary);
+     font-weight: bold;
+}
 .profileInput {
      width: 100% !important;
      box-sizing: border-box;
@@ -218,6 +233,7 @@
 
 .hidden{
      visibility: hidden;
+     width: 1px; height: 1px;
 }
 .imageBtn{
      background-color: var(--primary);
@@ -228,6 +244,13 @@
      cursor: pointer;
      margin-left: 2rem;
      /* margin: 1rem auto; */
+}
+.saveBtn{
+     width: 100%;
+     padding:  1rem 0 !important;
+     margin: 2rem auto;
+     font-size: 13px;
+     border-radius: 5px !important;
 }
 [data-theme="dark"] {
      .altLoginText, .forgot, .header, .resendText, .subtext{
