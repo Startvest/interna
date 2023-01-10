@@ -7,6 +7,7 @@ import { addUser, getSuggestions } from "../../services/waitlist";
 import styles from '../../styles/waitlist.module.scss';
 import { AutocompleteName } from '../AutocompleteName/autocomplete';
 import {TError} from '../../services';
+import { useDebouce } from '../../hooks/useDebounce';
 
 type FormProps = {
   setHasSubmitted: (val: boolean) => void;
@@ -40,6 +41,8 @@ export const WaitlistForm: React.FC<FormProps> = ({
         },
         },
     });
+
+    const { debouncedValue } = useDebouce(query, 500);
     const waitlistMutation = useMutation(addUser, {
         onError(error: TError) {},
     });
@@ -68,7 +71,7 @@ export const WaitlistForm: React.FC<FormProps> = ({
 
             setSuggestions(res)
         })
-    }, [query])
+    }, [debouncedValue])
 
 
     useEffect(() => {
